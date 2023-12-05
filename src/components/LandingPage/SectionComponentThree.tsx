@@ -3,7 +3,7 @@ import { Element, Link } from 'react-scroll';
 
 const SectionComponentThree = () => {
   return (
-    <Element name="section4" className="element">
+    <Element name="section3" className="element">
       <motion.section
         initial={{ opacity: 0, y: '-100vh' }}
         animate={{ opacity: 1, y: 0 }}
@@ -14,10 +14,8 @@ const SectionComponentThree = () => {
           backgroundColor: 'black',
           color: 'white',
         }}
-      >
-        .
-      </motion.section>
-      <Link to="section5" smooth={true} duration={500}></Link>
+      ></motion.section>
+      <Link to="section4" smooth={true} duration={500}></Link>
     </Element>
   );
 };

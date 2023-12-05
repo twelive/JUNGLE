@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { Element, Link } from 'react-scroll';
 
-const SectionComponentFour = () => {
+const SectionComponentFive = () => {
   return (
-    <Element name="section4" className="element">
+    <Element name="section5" className="element">
       <motion.section
         initial={{ opacity: 0, y: '-100vh' }}
         animate={{ opacity: 1, y: 0 }}
@@ -17,9 +17,9 @@ const SectionComponentFour = () => {
       >
         .
       </motion.section>
-      <Link to="section5" smooth={true} duration={500}></Link>
+      <Link to="section1" smooth={true} duration={500}></Link>
     </Element>
   );
 };
 
-export default SectionComponentFour;
+export default SectionComponentFive;
