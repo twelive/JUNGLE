@@ -26,7 +26,7 @@ const TypingAnimationLogic: React.FC<TypingAnimationProps> = ({ text }) => {
       } else {
         clearInterval(intervalId);
       }
-    }, 80);
+    }, 50);
     return () => clearInterval(intervalId);
   }, [text]);
 
@@ -56,7 +56,7 @@ const TypingAnimation: React.FC<VideoWithTypingAnimationProps> = ({
         </TextBox>
         <ScrollButton>
           <Link to="section2" smooth={true} duration={500}>
-            <ScrollImg src={DownButton} alt="" />
+            <ScrollImg src={DownButton} alt="스크롤 버튼" />
           </Link>
         </ScrollButton>
       </VideoContainer>
