@@ -20,7 +20,7 @@ const SectionComponentOne = () => {
         <MainDiv>
           <FirstDiv>
             <FirstSpan>
-              시작과 마지막을 <br /> JUNGLE과 함께 하세요
+              시작과 마지막을 <br /> JUNGLE과 함께 하세요 !!
             </FirstSpan>
           </FirstDiv>
           <SecondDiv>
