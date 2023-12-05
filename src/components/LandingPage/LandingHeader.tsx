@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import SignInButton from '../Button/SignInButton';
-import SignUpButton from '../Button/SignUpButton';
+import EnterButton from '../Button/EnterButton';
 import Logo from '@/assets/landing/landing-logo.svg';
 
 function LandingHeader() {
@@ -10,8 +9,7 @@ function LandingHeader() {
         <img src={Logo} alt="JUNGLE 로고 이미지" />
       </ImgBox>
       <BtnBox>
-        <SignInButton />
-        <SignUpButton />
+        <EnterButton />
       </BtnBox>
     </MainBox>
   );
