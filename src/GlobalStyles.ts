@@ -28,6 +28,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
+  background-color: var(--main-bgColor);
 }
 ol, ul {
   list-style: none;
@@ -51,7 +52,7 @@ html, body, #root {
 }
 
 :root {
-  --main-bgColor: ##F4F3EF;
+  --main-bgColor: #F4F3EF;
   --bs-black-000: #000;
   --bs-black-100: #111;
   --bs-black-200: #222;
