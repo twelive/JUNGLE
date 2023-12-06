@@ -1,6 +1,8 @@
 import { supabase } from '@/client';
-import { create } from 'zustand';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { create } from 'zustand';
 
 
 type State = {
@@ -18,15 +20,19 @@ const initialAuthState = {
   token: '',
 };
 
+
 export const useAuthStore = create<State>((set) => {
+  
+
   const handleLogin: State['handleLogin'] = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({ provider: 'github' });
-
+    
     if (error) {
       console.error("Error during sign in: ", error);
     } else {
       console.log("Signed in successfully: ", data);
       set({ isAuth: true });
+
 
     }
   };
@@ -36,11 +42,9 @@ export const useAuthStore = create<State>((set) => {
     
     if (error) {
       console.error("Error during sign out: ", error);
-      
     } else {
       console.log("Signed out successfully");
       set({ isAuth: false });
-    
     }
   };
 
@@ -76,3 +80,16 @@ export const useAuthStore = create<State>((set) => {
     deleteUser 
   };
 });
+
+export function MyComponent() {
+  const navigate = useNavigate();
+  const { isAuth } = useAuthStore();
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/main');
+    }
+  }, [isAuth, navigate]);
+
+  // ...
+}
