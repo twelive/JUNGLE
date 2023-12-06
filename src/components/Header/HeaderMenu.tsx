@@ -20,15 +20,16 @@ function HeaderMenu() {
   return (
     <MenuSection>
       <FlexBox>
-        {(pathname !== '/introduction' ? DefaultMenu : IntroductionMenu).map(
-          (item, index) => (
-            <HeaderMenuItem key={index} path={item.path} isEvent={item.isEvent}>
-              {item.children}
-            </HeaderMenuItem>
-          )
-        )}
+        {(pathname.slice(0, 13) !== '/introduction'
+          ? DefaultMenu
+          : IntroductionMenu
+        ).map((item, index) => (
+          <HeaderMenuItem key={index} path={item.path} isEvent={item.isEvent}>
+            {item.children}
+          </HeaderMenuItem>
+        ))}
       </FlexBox>
-      {pathname !== '/introduction' && (
+      {pathname.slice(0, 13) !== '/introduction' && (
         <HeaderMenuItem path="/introduction">소개</HeaderMenuItem>
       )}
     </MenuSection>
