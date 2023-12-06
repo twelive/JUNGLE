@@ -1,21 +1,21 @@
 import { Link } from 'react-router-dom';
-import MenuItemEvent from '@components/Header/MenuItemEvent';
+import HeaderMenuItemEvent from '@components/Header/HeaderMenuItemEvent';
 import styled from 'styled-components';
 
-interface MenuItemProps {
+interface HeaderMenuItemProps {
   path?: string;
   children?: string;
   isEvent?: boolean;
 }
 
-function MenuItem({
+function HeaderMenuItem({
   path = '/mypage',
   children = '메뉴',
   isEvent = true,
-}: MenuItemProps) {
+}: HeaderMenuItemProps) {
   return (
     <FlexBox>
-      {isEvent && <MenuItemEvent />}
+      {isEvent && <HeaderMenuItemEvent />}
       <StyledLink to={path} $event={isEvent}>
         {children}
       </StyledLink>
@@ -23,7 +23,7 @@ function MenuItem({
   );
 }
 
-export default MenuItem;
+export default HeaderMenuItem;
 
 const FlexBox = styled.div`
   display: inline-flex;

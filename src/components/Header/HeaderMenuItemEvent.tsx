@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-function MenuItemEvent() {
+function HeaderMenuItemEvent() {
   return <StyledDiv />;
 }
 
-export default MenuItemEvent;
+export default HeaderMenuItemEvent;
 
 const StyledDiv = styled.div`
   width: 0.625rem;
