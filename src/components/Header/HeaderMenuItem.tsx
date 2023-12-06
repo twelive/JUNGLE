@@ -36,9 +36,11 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
   text-decoration: none;
   /* Styling */
   padding: 0.125rem;
-  border-bottom: ${(props) => (props.$event ? '0.125rem solid black' : 'none')};
-  color: ${(props) => (props.$event ? 'black' : 'var(--bs-black-600)')};
+  border-bottom: ${(props) =>
+    props.$event ? '0.3125rem solid black' : 'none'};
+  font-size: 2rem;
   font-weight: 600;
+  color: ${(props) => (props.$event ? 'black' : 'var(--bs-black-600)')};
   /* 애니메이션 CSS 추가 */
   position: relative;
 
@@ -46,8 +48,8 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
     content: '';
     position: absolute;
     width: 100%;
-    height: 0.125rem;
-    bottom: -0.125rem;
+    height: 0.3125rem;
+    bottom: -0.1875rem;
     left: 0;
     background-color: black;
     visibility: hidden;
