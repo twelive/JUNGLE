@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
+import MenuItemEvent from '@components/Header/MenuItemEvent';
 import styled from 'styled-components';
-import MenuItemEvent from './MenuItemEvent';
 
 interface MenuItemProps {
   path?: string;
