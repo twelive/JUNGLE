@@ -1,0 +1,39 @@
+import { useLocation } from 'react-router-dom';
+import HeaderMenuItem from '@components/Header/HeaderMenuItem';
+import styled from 'styled-components';
+
+const DefaultMenu = [
+  { path: '/mypage', children: '내 활동', isEvent: false },
+  { path: '/job', children: '취업', isEvent: false },
+  { path: '/community', children: '커뮤니티', isEvent: false },
+  { path: '/study', children: '공부', isEvent: false },
+];
+
+const IntroductionMenu = [
+  { path: '/introduction', children: '프로젝트 소개', isEvent: false },
+  { path: '/introduction/team', children: '팀 소개', isEvent: false },
+];
+
+function HeaderMenu() {
+  const { pathname } = useLocation();
+
+  return (
+    <FlexBox>
+      {(pathname !== '/introduction' ? DefaultMenu : IntroductionMenu).map(
+        (item, index) => (
+          <HeaderMenuItem key={index} path={item.path} isEvent={item.isEvent}>
+            {item.children}
+          </HeaderMenuItem>
+        )
+      )}
+    </FlexBox>
+  );
+}
+
+export default HeaderMenu;
+
+const FlexBox = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 1.875rem;
+`;
