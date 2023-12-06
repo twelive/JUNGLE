@@ -3,7 +3,7 @@ import HeaderMenuItem from '@components/Header/HeaderMenuItem';
 import styled from 'styled-components';
 
 const DefaultMenu = [
-  { path: '/mypage', children: '내 활동', isEvent: false },
+  { path: '/mypage', children: '내 활동', isEvent: true },
   { path: '/job', children: '취업', isEvent: false },
   { path: '/community', children: '커뮤니티', isEvent: false },
   { path: '/study', children: '공부', isEvent: false },
@@ -18,19 +18,31 @@ function HeaderMenu() {
   const { pathname } = useLocation();
 
   return (
-    <FlexBox>
-      {(pathname !== '/introduction' ? DefaultMenu : IntroductionMenu).map(
-        (item, index) => (
-          <HeaderMenuItem key={index} path={item.path} isEvent={item.isEvent}>
-            {item.children}
-          </HeaderMenuItem>
-        )
+    <MenuSection>
+      <FlexBox>
+        {(pathname !== '/introduction' ? DefaultMenu : IntroductionMenu).map(
+          (item, index) => (
+            <HeaderMenuItem key={index} path={item.path} isEvent={item.isEvent}>
+              {item.children}
+            </HeaderMenuItem>
+          )
+        )}
+      </FlexBox>
+      {pathname !== '/introduction' && (
+        <HeaderMenuItem path="/introduction">소개</HeaderMenuItem>
       )}
-    </FlexBox>
+    </MenuSection>
   );
 }
 
 export default HeaderMenu;
+
+const MenuSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+`;
 
 const FlexBox = styled.div`
   display: inline-flex;
