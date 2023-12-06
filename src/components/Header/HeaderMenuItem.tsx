@@ -11,7 +11,7 @@ interface HeaderMenuItemProps {
 function HeaderMenuItem({
   path = '/mypage',
   children = '메뉴',
-  isEvent = true,
+  isEvent = false,
 }: HeaderMenuItemProps) {
   return (
     <FlexBox>
