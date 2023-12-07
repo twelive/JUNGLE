@@ -6,7 +6,7 @@ interface CategoryProps {
   title?: string;
   context?: string;
   href: string;
-  size?: string;
+  height?: string;
 }
 
 function Category({
@@ -16,7 +16,7 @@ function Category({
   height = '21.875rem',
 }: CategoryProps) {
   return (
-    <CategorySection>
+    <CategorySection $height={height}>
       <CategoryTextBox>
         <Title>{title}</Title>
         <Context>{context}</Context>
@@ -35,9 +35,9 @@ const CommonLayout = styled.div`
   flex-direction: column;
 `;
 
-const CategorySection = styled(CommonLayout)`
+const CategorySection = styled(CommonLayout)<{ $height: string }>`
   position: relative;
-  height: 21.875rem;
+  height: ${(props) => props.$height};
   justify-content: space-between;
 `;
 
