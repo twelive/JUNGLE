@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import HeaderMenuItemEvent from '@components/Header/HeaderMenuItemEvent';
+import useHeaderMenuStore from '@store/useHeaderMenuStore';
 import styled from 'styled-components';
 
 interface HeaderMenuItemProps {
@@ -13,10 +14,20 @@ function HeaderMenuItem({
   children = '메뉴',
   isEvent = false,
 }: HeaderMenuItemProps) {
+  const { setCurrentMenu } = useHeaderMenuStore();
+
+  const handleToggleTitle = (url: string) => {
+    setCurrentMenu(url);
+  };
+
   return (
     <FlexBox>
       {isEvent && <HeaderMenuItemEvent />}
-      <StyledLink to={path} $event={isEvent}>
+      <StyledLink
+        to={path}
+        $event={isEvent}
+        onClick={() => handleToggleTitle(path)}
+      >
         {children}
       </StyledLink>
     </FlexBox>
