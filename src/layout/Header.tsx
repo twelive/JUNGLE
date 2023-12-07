@@ -1,17 +1,20 @@
-import HeaderMenu from '@components/Header/HeaderMenu';
-import HeaderTitle from '@components/Header/HeaderTitle';
 import Logo from '@components/Logo';
 import HeaderButtonGroup from '@components/Header/HeaderButtonGroup';
+import HeaderTitle from '@components/Header/HeaderTitle';
+import HeaderMenu from '@components/Header/HeaderMenu';
+import useHeaderMenuStore from '@store/useHeaderMenuStore';
 import styled from 'styled-components';
 
 function Header({ isMenu = true, isBorder = true }) {
+  const { currentMenu } = useHeaderMenuStore();
+
   return (
     <HeaderSecton $isBorder={isBorder}>
       <FlexBox>
-        <Logo isPoint={false} size="small" />
+        <Logo href="/main" isPoint={false} size="small" />
         <HeaderButtonGroup />
       </FlexBox>
-      <HeaderTitle>내 활동.</HeaderTitle>
+      <HeaderTitle>{currentMenu}</HeaderTitle>
       {isMenu && <HeaderMenu />}
     </HeaderSecton>
   );

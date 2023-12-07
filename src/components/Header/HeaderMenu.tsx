@@ -1,21 +1,27 @@
 import { useLocation } from 'react-router-dom';
 import HeaderMenuItem from '@components/Header/HeaderMenuItem';
+import useHeaderMenuStore from '@store/useHeaderMenuStore';
 import styled from 'styled-components';
 
 const DefaultMenu = [
-  { path: '/mypage', children: '내 활동', isEvent: true },
-  { path: '/job', children: '취업', isEvent: false },
-  { path: '/community', children: '커뮤니티', isEvent: false },
-  { path: '/study', children: '공부', isEvent: false },
+  { path: '/mypage', children: '내 활동' },
+  { path: '/job', children: '취업' },
+  { path: '/community', children: '커뮤니티' },
+  { path: '/study', children: '공부' },
 ];
 
 const IntroductionMenu = [
-  { path: '/introduction', children: '프로젝트 소개', isEvent: false },
-  { path: '/introduction/team', children: '팀 소개', isEvent: false },
+  { path: '/introduction', children: '프로젝트 소개' },
+  { path: '/introduction/team', children: '팀 소개' },
 ];
 
 function HeaderMenu() {
   const { pathname } = useLocation();
+  const { currentMenu } = useHeaderMenuStore();
+
+  const handleToggleMenu = (pageTitle: string) => {
+    return pageTitle === currentMenu.slice(0, -1);
+  };
 
   return (
     <MenuSection>
@@ -24,7 +30,11 @@ function HeaderMenu() {
           ? DefaultMenu
           : IntroductionMenu
         ).map((item, index) => (
-          <HeaderMenuItem key={index} path={item.path} isEvent={item.isEvent}>
+          <HeaderMenuItem
+            key={index}
+            path={item.path}
+            isEvent={handleToggleMenu(item.children)}
+          >
             {item.children}
           </HeaderMenuItem>
         ))}
