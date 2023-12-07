@@ -6,7 +6,7 @@ interface enterButtonProps {
 
 function EnterButton({ onClick }: enterButtonProps) {
   return (
-    <ButtonDiv type="button">
+    <ButtonDiv type="button" onClick={onClick}>
       <ButtonText>Join</ButtonText>
     </ButtonDiv>
   );
@@ -15,8 +15,8 @@ function EnterButton({ onClick }: enterButtonProps) {
 export default EnterButton;
 
 const ButtonDiv = styled.button`
-  width: 105px;
-  height: 43px;
+  width: 200px;
+  height: 50px;
   border-radius: 15px;
   background-color: transparent;
   cursor: pointer;
