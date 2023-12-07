@@ -64,11 +64,6 @@ html, body, #root {
   --bs-black-800: #888;
   --bs-black-900: #999;
     }
-
-h1 {
-  font-size: 1.875rem;
-  font-weight: bold;
-}
 `;
 
 export default GlobalStyles;
