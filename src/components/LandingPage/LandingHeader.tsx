@@ -4,15 +4,17 @@ import Logo from '@/assets/landing/landing-logo.svg';
 import { useRef, useState } from 'react';
 import LoginModal from '../LoginModal';
 
-
 function LandingHeader() {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [allSizeModalShow, setAllSizeModalShow] =useState(false);
+  const [allSizeModalShow, setAllSizeModalShow] = useState(false);
 
-  const modalOutSideClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if(modalRef.current === e.target) {
-      setAllSizeModalShow(false)
-  }  }
+  const modalOutSideClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    if (modalRef.current === e.target) {
+      setAllSizeModalShow(false);
+    }
+  };
 
   return (
     <MainBox>
@@ -20,9 +22,17 @@ function LandingHeader() {
         <img src={Logo} alt="JUNGLE 로고 이미지" />
       </ImgBox>
       <BtnBox>
-        <EnterButton onClick={()=>{setAllSizeModalShow(true)}}/>
-        {allSizeModalShow &&  
-          <LoginModal modalRef={modalRef} modalOutSideClick={modalOutSideClick}/>}
+        <EnterButton
+          onClick={() => {
+            setAllSizeModalShow(true);
+          }}
+        />
+        {allSizeModalShow && (
+          <LoginModal
+            modalRef={modalRef}
+            modalOutSideClick={modalOutSideClick}
+          />
+        )}
       </BtnBox>
     </MainBox>
   );
@@ -42,6 +52,4 @@ const ImgBox = styled.div`
   display: flex;
 `;
 
-const BtnBox = styled.div`
-  
-`;
+const BtnBox = styled.div``;

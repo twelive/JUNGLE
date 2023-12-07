@@ -1,64 +1,104 @@
 import { motion } from 'framer-motion';
-import LandingHeader from './LandingHeader';
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import { Element, Link } from 'react-scroll';
 import DownButton from '@/assets/landing/landing-scroll-down.svg';
-import People from '@/assets/landing/landing-people.svg';
-const SectionComponentOne = () => {
+import useLandingStore from '@/store/useLandingStore';
+
+// 타입 정의
+interface TypingAnimationProps {
+  text: string;
+}
+
+interface VideoWithTypingAnimationProps {
+  videoSource?: string;
+  text: string;
+}
+
+// 타이핑 애니메이션 로직
+const TypingAnimationLogic: React.FC<TypingAnimationProps> = ({ text }) => {
+  const [displayText, setDisplayText] = useState<string>('');
+
+  useEffect(() => {
+    let index = 0;
+    const intervalId = setInterval(() => {
+      if (index <= text.length) {
+        setDisplayText(text.slice(0, index));
+        index++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 50);
+    return () => clearInterval(intervalId);
+  }, [text]);
+
   return (
-    <Element name="section2" className="element">
-      <motion.section
-        style={{
-          backgroundColor: 'black',
-          color: 'white',
-          width: '100%',
-          height: '100vh',
-          position: 'relative',
-        }}
-      >
-        <LandingHeader />
-        <MainDiv>
-          <FirstDiv>
-            <FirstSpan>
-              시작과 마지막을 <br /> JUNGLE과 함께 하세요 !!
-            </FirstSpan>
-          </FirstDiv>
-          <SecondDiv>
-            <img src={People} alt="" />
-          </SecondDiv>
-        </MainDiv>
+    <motion.span
+      initial={{ opacity: 0 }} // 애니메이션 초기값 설정 !
+      animate={{ opacity: 1 }} // 종료값 설정 !!
+      transition={{ duration: 0.5 }} // 지속시간 설정 !!!!
+      style={{ whiteSpace: 'pre-line' }} // 스타일 !
+    >
+      {displayText}
+    </motion.span>
+  );
+};
+
+// 마지막
+const SectionComponentOne: React.FC<VideoWithTypingAnimationProps> = ({
+  videoSource,
+  text,
+}) => {
+  const setShowAnimationSectionOne = useLandingStore(
+    (state) => state.setShowAnimationSectionOne
+  );
+
+  const handleButtonClick = () => {
+    setShowAnimationSectionOne(true);
+  };
+
+  return (
+    <Element name="section1" className="element">
+      <VideoContainer>
+        <VideoBox src={videoSource} autoPlay loop muted />
+        <TextBox>
+          <TypingAnimationLogic text={text} />
+        </TextBox>
         <ScrollButton>
-          <Link to="section3" smooth={true} duration={500}>
-            <img src={DownButton} alt="" />
+          <Link
+            to="section2"
+            smooth={true}
+            duration={700}
+            onClick={handleButtonClick}
+          >
+            <img src={DownButton} alt="스크롤 버튼" />
           </Link>
         </ScrollButton>
-      </motion.section>
+      </VideoContainer>
     </Element>
   );
 };
 
 export default SectionComponentOne;
 
-const MainDiv = styled.div`
-  display: flex;
-  flex-direction: column;
+const VideoContainer = styled.div`
+  width: 100%;
   position: relative;
-  align-items: center;
-  text-align: center;
-  line-height: 70px;
-  gap: 120px;
 `;
 
-const FirstDiv = styled.div`
-  padding-top: 150px;
+const VideoBox = styled.video`
+  width: 100%;
 `;
 
-const FirstSpan = styled.span`
-  font-size: 50px;
-  font-weight: 900;
+const TextBox = styled.div`
+  position: absolute;
+  bottom: 70px;
+  left: 50px;
+  color: white;
+  font-size: 3em;
+  font-weight: 500;
+  z-index: 10;
 `;
-
-const SecondDiv = styled.div``;
 
 const ScrollButton = styled.button`
   background-color: transparent;
