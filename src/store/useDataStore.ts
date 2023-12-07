@@ -29,6 +29,8 @@ const useDataStore = create<State>((set) => ({
   data: [],
   user: null,
   setData: (data: DataType[]) => set({ data }),
+  //전부 가져오기
+  //
   getListData: async (tableName: string) => {
     const { data, error } = await supabase
       .from(tableName)
@@ -42,6 +44,7 @@ const useDataStore = create<State>((set) => ({
       }
     }
   },
+  //유저 id에 해당하는 것만 가져오기 
   getIdData: async (tableName: string, id: number) => {
     const { data, error } = await supabase
       .from(tableName)
@@ -56,28 +59,28 @@ const useDataStore = create<State>((set) => ({
     }
 
   },
+  //유저의 데이터 가져오기
 
   getUserData: async () => {
-    const { data: { user } } = await supabase.auth.getUser();// 현재 로그인한 사용자의 정보를 가져옵니다.
+    const { data: { user } } = await supabase.auth.getUser();
   
     if (user) {
-      set({ user });  // 유저 정보를 상태에 저장합니다.
+      set({ user }); 
     } else {
-      set({ user: null });  // 로그인하지 않은 경우에는 null을 상태에 저장합니다.
+      set({ user: null });  
     }
   },
   
-  // getUserData: async () => {
-  //   const { data: { user } } = await supabase.auth.getUser()
-  //   if (user !== null) {
-  //     set({ user });
-  //   }else {
-  //     set({ user });
-  //   }
-    
-  // },
 
-  
+  //생성하기
+  //
+  // const { error } = await supabase
+  // .from('countries')
+  // .insert({ id: 1, name: 'Denmark' })
+
+
+
+
   createData: async (tableName: string, newData: DataType) => {
     const { data, error } = await supabase
       .from(tableName)
@@ -90,6 +93,15 @@ const useDataStore = create<State>((set) => ({
       }
     }
   },
+
+  //업데이트
+  // const { error } = await supabase
+  // .from('countries')
+  // .update({ name: 'Australia' })
+  // .eq('id', 1)
+
+
+
   updateData: async (tableName: string, id: number, updatedData: DataType) => {
     const { data, error } = await supabase
       .from(tableName)
@@ -103,6 +115,14 @@ const useDataStore = create<State>((set) => ({
       }
     }
   },
+//삭제하기
+  // const { error } = await supabase
+  // .from('countries')
+  // .delete()
+  // .eq('id', 1)
+
+
+
   deleteData: async (tableName: string, id: number) => {
     const { error } = await supabase
       .from(tableName)
@@ -117,3 +137,80 @@ const useDataStore = create<State>((set) => ({
 }));
 
 export default useDataStore;
+
+
+//필터링
+
+// const { data, error } = await supabase
+//   .from('cities')
+//   .select('name, country_id')
+//   .eq('name', 'The Shire')    // Correct
+
+// const { data, error } = await supabase
+//   .from('cities')
+//   .eq('name', 'The Shire')    // Incorrect
+//   .select('name, country_id')
+
+
+//이름이 albania인 것만 가져와
+
+
+// const { data, error } = await supabase
+//   .from('countries')
+//   .select()
+//   .eq('name', 'Albania')
+
+//이름이 알바니아인거 빼고 가져와
+
+// const { data, error } = await supabase
+//   .from('countries')
+//   .select()
+//   .neq('name', 'Albania')
+
+// id가 2보다 큰 것만 가져와줘
+
+// const { data, error } = await supabase
+//   .from('countries')
+//   .select()
+//   .gt('id', 2)
+
+//작은거는 .lt('id', 2)
+
+
+
+
+
+// id가 2와 같거나 2 이상인 것만 가져와줘
+
+// const { data, error } = await supabase
+//   .from('countries')
+//   .select()
+//   .gte('id', 2)
+
+
+//작거나 같은 것   .lte('id', 2)
+
+//name에 alba가 일부 들어가는 애들 전부 가져와
+// const { data, error } = await supabase
+//   .from('countries')
+//   .select()
+//   .like('name', '%Alba%')
+
+
+//대소문자 구분 없이 name에 'alba'들어가는거 가져와
+// const { data, error } = await supabase
+//   .from('countries')
+//   .select()
+//   .ilike('name', '%alba%')
+
+//'name'이 없는 애들만 가져와
+// const { data, error } = await supabase
+//   .from('countries')
+//   .select()
+//   .is('name', null)
+
+
+//공식문서 참조하기 https://supabase.com/docs/reference/javascript/rangelte
+
+
+
