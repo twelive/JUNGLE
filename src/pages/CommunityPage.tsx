@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-// import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import {
   Swiper as ReactSwiper,
@@ -18,10 +17,11 @@ import banner1 from '../assets/community/community-banner1.svg';
 import banner2 from '../assets/community/community-banner2.svg';
 import banner3 from '../assets/community/community-banner3.svg';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom'; 
 
 
 function ComunityPage() {
+
   return (
     <>
       <Helmet>
@@ -72,7 +72,9 @@ function ComunityPage() {
       <section>
         <button>프로젝트</button>
         <button>스터디</button>
-        <button>글 작성하기</button>
+        <Link to="communitycreate">
+          모집하기
+        </Link>
         <SecondSwiperContainer>
           <SecondSwiper
             slidesPerView={3}
