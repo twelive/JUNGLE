@@ -5,6 +5,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
+
 const RootLayout = lazy(() => import('@layout/RootLayout'));
 const MainPage = lazy(() => import('@pages/MainPage'));
 const JobPage = lazy(() => import('@pages/JobPage'));
@@ -12,6 +13,8 @@ const StudyPage = lazy(() => import('@pages/StudyPage'));
 const MyPage = lazy(() => import('@pages/MyPage'));
 const CommunityPage = lazy(() => import('@pages/CommunityPage'));
 const IntroductionPage = lazy(() => import('@pages/IntroductionPage'));
+const CommunityCreatePage = lazy(() => import('@/pages/CommunityCreatePage'));
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="study" element={<StudyPage />} />
       <Route path="mypage" element={<MyPage />} />
       <Route path="community" element={<CommunityPage />} />
+      <Route path="community/communitycreate" element={<CommunityCreatePage />} />
       <Route path="introduction" element={<IntroductionPage />} />
     </Route>
   )
