@@ -6,12 +6,14 @@ interface CategoryProps {
   title?: string;
   context?: string;
   href: string;
+  size?: string;
 }
 
 function Category({
   title = '카테고리 타이틀',
   context = '카테고리 일부 내용 렌더링 + 클릭시 해당 글로 이동',
   href,
+  height = '21.875rem',
 }: CategoryProps) {
   return (
     <CategorySection>
@@ -35,7 +37,6 @@ const CommonLayout = styled.div`
 
 const CategorySection = styled(CommonLayout)`
   position: relative;
-  width: 53.75rem;
   height: 21.875rem;
   justify-content: space-between;
 `;

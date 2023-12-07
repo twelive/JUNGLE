@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import Category from '@components/MainPage/Category';
+import styled from 'styled-components';
 
 function MainPage() {
   return (
@@ -6,11 +8,14 @@ function MainPage() {
       <Helmet>
         <title>Main - JUNGLE</title>
       </Helmet>
-      <section>
-        <h1>MainPage</h1>
-      </section>
+      <Heading>JUNGLE</Heading>
+      <Category href="/mypage" />
     </>
   );
 }
 
 export default MainPage;
+
+const Heading = styled.h1`
+  // sr-only
+`;
