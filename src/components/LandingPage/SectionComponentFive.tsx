@@ -4,8 +4,22 @@ import TopButton from '@/assets/landing/landing-scroll-up.svg';
 import styled from 'styled-components';
 import Logo from '@/assets/landing/landing-logo.svg';
 import useLandingStore from '@/store/useLandingStore';
+import { useRef, useState } from 'react';
+import EnterButton from '../Button/EnterButton';
+import LoginModal from '../LoginModal';
 
 const SectionComponentFive = () => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [allSizeModalShow, setAllSizeModalShow] = useState(false);
+
+  const modalOutSideClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    if (modalRef.current === e.target) {
+      setAllSizeModalShow(false);
+    }
+  };
+
   const showAnimationOne = useLandingStore(
     (state) => state.showAnimationSectionOne
   );
@@ -90,7 +104,17 @@ const SectionComponentFive = () => {
             animate={showAnimationFour ? 'visible' : 'hidden'}
           >
             <ButtonBox>
-              <Button>Join to JUNGLE</Button>
+              <EnterButton
+                onClick={() => {
+                  setAllSizeModalShow(true);
+                }}
+              />
+              {allSizeModalShow && (
+                <LoginModal
+                  modalRef={modalRef}
+                  modalOutSideClick={modalOutSideClick}
+                />
+              )}
             </ButtonBox>
           </motion.div>
         </MainBox>
@@ -149,13 +173,13 @@ const ButtonBox = styled.div`
   text-align: center;
 `;
 
-const Button = styled.button`
-  width: 200px;
-  height: 50px;
-  background-color: transparent;
-  color: white;
-  cursor: pointer;
-`;
+// const Button = styled.button`
+//   width: 200px;
+//   height: 50px;
+//   background-color: transparent;
+//   color: white;
+//   cursor: pointer;
+// `;
 
 const ScrollButton = styled.button`
   background-color: transparent;
