@@ -69,6 +69,18 @@ h1 {
   font-size: 1.875rem;
   font-weight: bold;
 }
+
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  margin: -1px;
+}
 `;
+
 
 export default GlobalStyles;
