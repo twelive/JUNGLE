@@ -2,8 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 
-body { overflow: hidden; }
-body * { touch-action: none; }
+/* body { overflow: hidden; }
+body * { touch-action: none; } */  // 삭제 예정.
 /* reset CSS */
 html, body, div, span, applet, object, iframe, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
