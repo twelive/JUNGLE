@@ -37,6 +37,7 @@ const CommonLayout = styled.div`
 
 const CategorySection = styled(CommonLayout)<{ $height: string }>`
   position: relative;
+  width: 100%;
   height: ${(props) => props.$height};
   justify-content: space-between;
 `;
