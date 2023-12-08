@@ -2,8 +2,12 @@ import ArrowScrollDown from '@/components/ArrowScrollDown';
 import styled from 'styled-components';
 
 function ScrollDown() {
+  const handleScrollDown = () => {
+    window.scrollTo({ top: document.body.offsetHeight, behavior: 'smooth' });
+  };
+
   return (
-    <FlexButton type="button">
+    <FlexButton type="button" onClick={handleScrollDown}>
       <ArrowScrollDown color="var(--bs-black-400)" />
       <Text>Scroll Down</Text>
     </FlexButton>
