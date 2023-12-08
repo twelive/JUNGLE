@@ -48,7 +48,7 @@ function HeaderMenu() {
 
 export default HeaderMenu;
 
-const MenuSection = styled.div`
+const MenuSection = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
