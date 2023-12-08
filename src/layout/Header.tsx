@@ -1,24 +1,41 @@
-import { NavLink } from 'react-router-dom';
+import Logo from '@components/Logo';
+import HeaderButtonGroup from '@components/Header/HeaderButtonGroup';
+import HeaderTitle from '@components/Header/HeaderTitle';
+import HeaderMenu from '@components/Header/HeaderMenu';
+import useHeaderMenuStore from '@store/useHeaderMenuStore';
 import styled from 'styled-components';
 
-function Header() {
+function Header({ isMenu = true, isBorder = true }) {
+  const { currentMenu } = useHeaderMenuStore();
+
   return (
-    <header>
-      <StyledNav>
-        <NavLink to="/">MainPage</NavLink>
-        <NavLink to="/job">JobPage</NavLink>
-        <NavLink to="/study">StudyPage</NavLink>
-        <NavLink to="/mypage">MyPage</NavLink>
-        <NavLink to="/community">CommunityPage</NavLink>
-        <NavLink to="/introduction">IntroductionPage</NavLink>
-      </StyledNav>
-    </header>
+    <HeaderSecton $isBorder={isBorder}>
+      <FlexBox>
+        <Logo href="/main" isPoint={false} size="small" />
+        <HeaderButtonGroup />
+      </FlexBox>
+      <HeaderTitle>{currentMenu}</HeaderTitle>
+      {isMenu && <HeaderMenu />}
+    </HeaderSecton>
   );
 }
 
 export default Header;
 
-const StyledNav = styled.nav`
+const HeaderSecton = styled.header<{ $isBorder: boolean }>`
   display: flex;
-  gap: 1rem;
+  width: 100wh;
+  padding: 3.125rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.125rem;
+  border-bottom: ${(props) =>
+    props.$isBorder ? '0.15rem solid var(--bs-black-400)' : 'none'};
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
 `;

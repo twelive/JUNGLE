@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@supabase/storage-js':
+    specifier: ^2.5.5
+    version: 2.5.5
   '@supabase/supabase-js':
     specifier: ^2.39.0
     version: 2.39.0
