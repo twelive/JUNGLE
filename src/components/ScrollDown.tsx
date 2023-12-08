@@ -17,6 +17,9 @@ function ScrollDown() {
 export default ScrollDown;
 
 const FlexButton = styled.button`
+  /* reset CSS */
+  background-color: transparent;
+  /* CSS Style */
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
