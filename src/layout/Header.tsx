@@ -4,14 +4,18 @@ import HeaderTitle from '@components/Header/HeaderTitle';
 import HeaderMenu from '@components/Header/HeaderMenu';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
 import styled from 'styled-components';
+import BackButton from '@components/Button/BackButton';
 
-function Header({ isMenu = true, isBorder = true }) {
+function Header({ isMenu = true, isBorder = true, isBack = true }) {
   const { currentMenu } = useHeaderMenuStore();
 
   return (
     <HeaderSecton $isBorder={isBorder}>
       <FlexBox>
-        <Logo href="/main" isPoint={false} size="small" />
+        <LeftFlexBox>
+          {isBack && <BackButton />}
+          <Logo href="/main" isPoint={false} size="small" />
+        </LeftFlexBox>
         <HeaderButtonGroup />
       </FlexBox>
       <HeaderTitle>{currentMenu}</HeaderTitle>
@@ -38,4 +42,8 @@ const FlexBox = styled.div`
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+`;
+
+const LeftFlexBox = styled(FlexBox)`
+  gap: 1.25rem;
 `;
