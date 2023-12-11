@@ -36,6 +36,8 @@ const BookMarkButton = styled.button`
   /* reset CSS */
   border: none;
   background-color: transparent;
+  /* style CSS */
+  cursor: pointer;
 `;
 
 const CountText = styled.span`
