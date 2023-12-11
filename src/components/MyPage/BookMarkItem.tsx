@@ -19,9 +19,11 @@ export default BookMarkItem;
 const Box = styled(Link)`
   /* Reset CSS */
   text-decoration-line: none;
+  /* Style CSS */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-sizing: border-box;
   min-width: 25rem;
   height: 25rem;
   padding: 1.875rem;

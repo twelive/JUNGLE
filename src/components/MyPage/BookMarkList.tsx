@@ -21,7 +21,6 @@ const List = styled.div`
   overflow-x: auto;
   gap: 3.125rem;
   padding: 3.125rem 3.125rem 1.875rem 3.125rem;
-  border-left: 0.15rem solid var(--bs-black-400);
 
   &::-webkit-scrollbar {
     height: 1.25rem;
