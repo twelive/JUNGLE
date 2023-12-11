@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import Banner from '@/assets/job/job-banner.svg';
 import styled from 'styled-components';
 import JobHeaderItem from '@/components/JobPage/JobHeaderItem';
+import JobSeekBox from '@/components/JobPage/JobSeekBox';
 
 function JobSeekPage() {
   return (
@@ -14,7 +15,9 @@ function JobSeekPage() {
         <MenuBox>
           <JobHeaderItem />
         </MenuBox>
-        <MainBox></MainBox>
+        <MainBox>
+          <JobSeekBox />
+        </MainBox>
       </MainSection>
     </>
   );
@@ -45,7 +48,7 @@ const MainBox = styled.div`
   border: 1px solid black;
   padding-top: 50px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 100px;
   place-items: center;
 `;
