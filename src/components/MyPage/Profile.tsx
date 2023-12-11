@@ -14,8 +14,8 @@ export default Profile;
 
 const Circle = styled.div`
   position: relative;
-  min-width: 25rem;
-  height: 25rem;
+  min-width: 22.5rem;
+  min-height: 22.5rem;
   border-radius: 50%;
   background: var(--bs-black-300);
 `;

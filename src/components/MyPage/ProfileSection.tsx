@@ -19,7 +19,8 @@ const ProfileBox = styled.div`
   display: flex;
   align-items: center;
   gap: 3.125rem;
-  width: 70%;
+  width: 100%;
+  min-width: 49rem;
   padding-right: 3.125rem;
   border-right: 0.15rem solid var(--bs-black-400);
 `;
