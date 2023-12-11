@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import Banner from '@/assets/job/job-banner.svg';
 import styled from 'styled-components';
+import JobHeaderItem from '@/components/JobPage/JobHeaderItem';
+
 function JobSeekPage() {
   return (
     <>
@@ -10,59 +12,9 @@ function JobSeekPage() {
       <MainSection>
         <BannerImg src={Banner} alt="배너사진" />
         <MenuBox>
-          <button>취업</button> {/* 컴포넌트 들어갈자리 */}
-          <button>면접</button>
+          <JobHeaderItem />
         </MenuBox>
-        <MainBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-          <MainItemBox>
-            <ItemLogo>로고</ItemLogo>
-            <ItemName>회사명</ItemName>
-          </MainItemBox>
-        </MainBox>
+        <MainBox></MainBox>
       </MainSection>
     </>
   );
@@ -97,22 +49,3 @@ const MainBox = styled.div`
   gap: 100px;
   place-items: center;
 `;
-
-const MainItemBox = styled.div`
-  width: 850px;
-  height: 150px;
-  border: 1px solid black;
-  display: flex;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  font-size: 60px;
-`;
-
-const ItemLogo = styled.div`
-  width: 340px;
-  border: 5px solid black;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-`;
-
-const ItemName = styled.div``;
