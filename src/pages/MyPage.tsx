@@ -1,13 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
+import useBookMarkStore from '@store/useBookMarkStore';
 import ProfileSection from '@components/MyPage/ProfileSection';
 import PointSection from '@components/MyPage/PointSection';
 import BookMarkLink from '@components/MyPage/BookMarkLink';
 import BookMarkList from '@components/MyPage/BookMarkList';
 import WritingCategory from '@components/MyPage/WritingCategory';
 import ResumeLink from '@components/MyPage/ResumeLink';
+import BookMarkModal from '@components/MyPage/BookMarkModal';
 
 function MyPage() {
+  const { isBookMark } = useBookMarkStore();
+
   return (
     <>
       <Helmet>
@@ -27,6 +31,7 @@ function MyPage() {
           <WritingCategory />
           <ResumeLink />
         </FlexLayout>
+        {isBookMark && <BookMarkModal />}
       </Section>
     </>
   );

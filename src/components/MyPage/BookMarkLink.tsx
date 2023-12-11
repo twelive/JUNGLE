@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 import ArrowScrollDown from '@components/ArrowScrollDown';
+import useBookMarkStore from '@store/useBookMarkStore';
 
 function BookMarkLink() {
+  const { setIsBookMark } = useBookMarkStore();
+
+  const handleModal = () => {
+    setIsBookMark();
+    document.body.style.overflow = 'hidden';
+  };
+
   return (
     <BookMarkLinkBox>
       <InnerBox>
         <h2>북마크</h2>
-        <BookMarkButton type="button">
+        <BookMarkButton type="button" onClick={handleModal}>
           <ArrowScrollDown color="var(--bs-black-400)" />
         </BookMarkButton>
       </InnerBox>
@@ -22,9 +30,11 @@ const BookMarkLinkBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 50%;
-  min-width: 28.75rem;
-  padding: 3.125rem;
+  width: 20%;
+  min-width: 18.75rem;
+  margin: 3.125rem 0 3.125rem 3.125rem;
+  padding-right: 3.125rem;
+  border-right: 0.15rem solid var(--bs-black-400);
 `;
 
 const InnerBox = styled.div`
