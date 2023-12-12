@@ -8,7 +8,7 @@ function JobSeekPage() {
   return (
     <>
       <Helmet>
-        <title>Introduction - JUNGLE</title>
+        <title>Seek - JUNGLE</title>
       </Helmet>
       <MainSection>
         <BannerImg src={Banner} alt="배너사진" />
@@ -44,7 +44,7 @@ const MainBox = styled.div`
   padding-top: 50px;
   padding-bottom: 50px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 100px;
   place-items: center;
 `;
