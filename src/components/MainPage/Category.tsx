@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import ArrowScrollDown from '@components/ArrowScrollDown';
 import { Link } from 'react-router-dom';
+import ArrowScrollDown from '@components/ArrowScrollDown';
+import useHeaderMenuStore from '@store/useHeaderMenuStore';
+import styled from 'styled-components';
 
 interface CategoryProps {
   title?: string;
@@ -15,13 +16,24 @@ function Category({
   href,
   height = '21.875rem',
 }: CategoryProps) {
+  const { setCurrentMenu } = useHeaderMenuStore();
+
+  const handleCategoryLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const categoryLink = (e.target as HTMLElement).closest('a');
+
+    if (categoryLink) {
+      const pathname = categoryLink.href.slice(21);
+      setCurrentMenu(pathname);
+    }
+  };
+
   return (
     <CategorySection $height={height}>
       <CategoryTextBox>
         <Title>{title}</Title>
         <Context>{context}</Context>
       </CategoryTextBox>
-      <LinkBox to={href}>
+      <LinkBox to={href} onClick={handleCategoryLink}>
         <ArrowScrollDown color="var(--bs-black-400)" />
       </LinkBox>
     </CategorySection>

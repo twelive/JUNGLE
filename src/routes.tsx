@@ -12,6 +12,7 @@ const JobSeekPage = lazy(() => import('@pages/JobSeekPage'));
 const JobInterviewPage = lazy(() => import('@pages/JobInterviewPage'));
 const StudyPage = lazy(() => import('@pages/StudyPage'));
 const MyPage = lazy(() => import('@pages/MyPage'));
+const MyResumePage = lazy(() => import('@pages/MyResumePage'))
 const CommunityPage = lazy(() => import('@pages/CommunityPage'));
 const IntroductionProjectPage = lazy(
   () => import('@pages/IntroductionProjectPage')
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="/job/interview" element={<JobInterviewPage />} />
       <Route path="study" element={<StudyPage />} />
       <Route path="mypage" element={<MyPage />} />
+      <Route path="mypage/resume" element={<MyResumePage/>} />
       <Route path="community" element={<CommunityPage />} />
       <Route path="/introduction" element={<IntroductionProjectPage />} />
       <Route path="/introduction/team" element={<IntroductionTeamPage />} />
