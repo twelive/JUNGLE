@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 
-body { overflow: hidden; }
+body
 body * { touch-action: none; }
 /* reset CSS */
 html, body, div, span, applet, object, iframe, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -67,6 +67,23 @@ html, body, #root {
   --bs-black-800: #888;
   --bs-black-900: #999;
     }
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  margin: -1px;
+}
 `;
+
 
 export default GlobalStyles;
