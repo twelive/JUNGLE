@@ -48,7 +48,7 @@ const MainBox = styled.div`
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.1);
   }
 `;
 
