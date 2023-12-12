@@ -5,26 +5,34 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { getPbImageURL } from '@/store/getPbImageURL';
+import StudyTitleGroup from '@/components/StudyPage/StudyTitleGroup';
+import TagButtonComponent from '@/components/StudyPage/TagButton';
+import { Link } from 'react-router-dom';
 
-interface ButtonProps {
-  active?: boolean;
-}
 
 
 function StudyPage() {
   const { data: bookData, getListData } = useDataStore();
   const { selectedTag, setSelectedTag } = useTagStore();
+  const { updateData } = useDataStore(); 
   const { getAllList } = useStorageStore();
-
+  const [like, setLike] = useState<Record<string, number>>(() => {
+    const initialLike: Record<string, number> = {};
+    bookData.forEach(item => {
+      initialLike[String(item.anonymous_book_id)] = 0;
+    });
+    return initialLike;
+  });
+  
+  
 
   const [tags, setTags] = useState<string[]>([]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+ 
   useEffect(()=>{
     getListData('book');
-    setSelectedTag('html/css');
+    setSelectedTag('etc');
     getAllList('book','');
-    
     
   },[getListData,getAllList,setSelectedTag]);
   
@@ -44,18 +52,20 @@ function StudyPage() {
         <title>Study - JUNGLE</title>
       </Helmet>
       <section>
-        <h2>도서</h2>
         
+          <StudyTitleGroup studyTitle='도서'>
+        
+
+     {tags.map(tag => (
+      <TagButtonComponent key={tag} active={selectedTag === tag} onClick={() => handleButtonClick(tag)} title={tag} >
+        
+      </TagButtonComponent>
+     ))}
+
+          
+          </StudyTitleGroup>
         <article>
-          <div>
-
-                {tags.map(tag => (
-              <Button key={tag} active={selectedTag === tag} onClick={() => handleButtonClick(tag)}>
-                {tag}
-              </Button>
-            ))}
-
-          </div>
+         
           {bookData.filter(item => !selectedTag || item.tag === selectedTag).map((item)=> (
           <>
           <div>
@@ -65,7 +75,22 @@ function StudyPage() {
             </div>
             {item.title}
             {item.anonymous_book_id}
-            {item.URL}
+            <StyledLink to={`${item.URL}`}></StyledLink>
+           
+  
+            <span onClick={async () => {
+  const newLike = (like[String(item.anonymous_book_id)] || 0) + 1;
+  setLike(prevLike => ({
+    ...prevLike,
+    [String(item.anonymous_book_id)]: newLike
+  }));
+
+  const updatedItem = {
+    ...item,
+    like: newLike
+  };
+  await updateData('book', Number(item.anonymous_book_id), updatedItem);
+}}> 👍 </span> {like[String(item.anonymous_book_id)] || 0}
           </div>
           </>
           ))}
@@ -82,17 +107,17 @@ function StudyPage() {
 export default StudyPage;
 
 
-const Button = styled.button<ButtonProps> `
-    background-color: red;
-  ${props => props.active && 'background-color: yellow;'}
-  &[disabled] {
-    cursor: default;
-    opacity: 0.5;
-    background: #dc3545 #025ce2;
-  }
-`;
-
 const Img = styled.img `
 width: 100px;
 
+`;
+
+
+
+const StyledLink = styled(Link)`
+	box-sizing: border-box;
+	display: block;
+	padding: 4px 8px;
+	margin: 0 auto;
+	text-align: center;
 `;
