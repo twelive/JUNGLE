@@ -1,12 +1,29 @@
+import { useEffect } from 'react';
 import Category from '@components/MainPage/Category';
+import useDataStore from '@store/useDataStore';
+import getUserName from '@utils/getUserName';
 import styled from 'styled-components';
 
 function CategorySection() {
+  const {user, getUserData} = useDataStore();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getUserData();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    
+    fetchData();
+  }, [getUserData]);
+
   return (
     <CategoryBox>
       <TopLayout>
         <RightLayout>
-          <Category href="/mypage" title="내 활동" />
+          <Category href={`/mypage/${getUserName(user?.email)}`} title="내 활동" />
         </RightLayout>
         <Category href="/job" title="취업" />
       </TopLayout>
