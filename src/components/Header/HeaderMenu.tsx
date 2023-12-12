@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import HeaderMenuItem from '@components/Header/HeaderMenuItem';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
+import getPathName from '@utils/getPathName';
 import styled from 'styled-components';
 
 const DefaultMenu = [
@@ -26,7 +27,7 @@ function HeaderMenu() {
   return (
     <MenuSection>
       <FlexBox>
-        {(pathname.slice(0, 13) !== '/introduction'
+        {(getPathName(pathname) !== '/introduction'
           ? DefaultMenu
           : IntroductionMenu
         ).map((item, index) => (
@@ -39,7 +40,7 @@ function HeaderMenu() {
           </HeaderMenuItem>
         ))}
       </FlexBox>
-      {pathname.slice(0, 13) !== '/introduction' && (
+      {getPathName(pathname) !== '/introduction' && (
         <HeaderMenuItem path="/introduction">소개</HeaderMenuItem>
       )}
     </MenuSection>
@@ -48,7 +49,7 @@ function HeaderMenu() {
 
 export default HeaderMenu;
 
-const MenuSection = styled.div`
+const MenuSection = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

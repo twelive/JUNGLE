@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 
-type State = {
+interface State {
   currentMenu: string;
   setCurrentMenu: (path: string) => void;
-};
+}
 
-type HeaderMenu = {
+interface HeaderMenu {
   [key: string]: string;
-};
+}
 
 const HeaderMenuName: HeaderMenu[] = [
   { '/mypage': '내 활동.' },
