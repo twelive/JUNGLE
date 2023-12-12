@@ -26,15 +26,15 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<LandingPage />} />
       <Route path="main" element={<MainPage />} />
-      <Route path="/job" element={<JobSeekPage />} />
-      <Route path="/job/interview" element={<JobInterviewPage />} />
+      <Route path="job" element={<JobSeekPage />} />
+      <Route path="job/interview" element={<JobInterviewPage />} />
       <Route path="study" element={<StudyPage />} />
-      <Route path="mypage" element={<MyPage />} />
-      <Route path="mypage/resume" element={<MyResumePage/>} />
+      <Route path="mypage/:userId" element={<MyPage />} />
+      <Route path="mypage/:userId/resume" element={<MyResumePage/>} />
       <Route path="community" element={<CommunityPage />} />
       <Route path="community/communitycreate" element={<CommunityCreatePage />} />
-      <Route path="/introduction" element={<IntroductionProjectPage />} />
-      <Route path="/introduction/team" element={<IntroductionTeamPage />} />
+      <Route path="introduction" element={<IntroductionProjectPage />} />
+      <Route path="introduction/team" element={<IntroductionTeamPage />} />
     </Route>
   )
 );
