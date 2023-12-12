@@ -2,9 +2,9 @@ import Logo from '@components/Logo';
 import HeaderButtonGroup from '@components/Header/HeaderButtonGroup';
 import HeaderTitle from '@components/Header/HeaderTitle';
 import HeaderMenu from '@components/Header/HeaderMenu';
+import BackButton from '@components/Button/BackButton';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
 import styled from 'styled-components';
-import BackButton from '@components/Button/BackButton';
 
 function Header({ isMenu = true, isBorder = true, isBack = true }) {
   const { currentMenu } = useHeaderMenuStore();
