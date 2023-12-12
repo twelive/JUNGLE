@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const DefaultMenu = [
   { path: '/job', children: '취업' },
   { path: '/job/interview', children: '면접' },
+  { path: '/job/coding', children: '코딩 테스트' },
 ];
 
 function JobHeaderItem() {
