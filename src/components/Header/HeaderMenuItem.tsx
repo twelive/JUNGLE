@@ -1,6 +1,10 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderMenuItemEvent from '@components/Header/HeaderMenuItemEvent';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
+import useDataStore from '@store/useDataStore';
+import getPathName from '@utils/getPathName';
+import getUserName from '@utils/getUserName';
 import styled from 'styled-components';
 
 interface HeaderMenuItemProps {
@@ -15,16 +19,29 @@ function HeaderMenuItem({
   isEvent = false,
 }: HeaderMenuItemProps) {
   const { setCurrentMenu } = useHeaderMenuStore();
+  const {user, getUserData} = useDataStore();
+  const [userPath, setUserPath] = useState<string>('/mypage');
 
   const handleToggleTitle = (url: string) => {
     setCurrentMenu(url);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await getUserData();
+      if (user) {
+        setUserPath(`/mypage/${getUserName(user.email)}`);
+      }
+    };
+
+    fetchData();
+  }, [getUserData, user]);
+
   return (
     <FlexBox>
       {isEvent && <HeaderMenuItemEvent />}
       <StyledLink
-        to={path}
+        to={getPathName(path, 7) === '/mypage' ? userPath : path}
         $event={isEvent}
         onClick={() => handleToggleTitle(path)}
       >
