@@ -4,14 +4,17 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
 import router from '@/routes';
 import GlobalStyles from '@/GlobalStyles';
-import LandingPage from './pages/LandingPage';
-import { useAuthStore } from './store/useAuthStore';
+import LandingPage from '@pages/LandingPage';
+import { useAuthStore } from '@store/useAuthStore';
+import { ThemeProvider } from 'styled-components';
+import theme from '@/theme';
 
 function App() {
   const isAuth = useAuthStore((state) => state.isAuth);
 
   return (
     <>
+      <ThemeProvider theme={theme}>
       {!isAuth && (
         <>
           <LandingPage />
@@ -28,6 +31,7 @@ function App() {
           <ToastContainer />
         </>
       )}
+      </ThemeProvider>
     </>
   );
 }
