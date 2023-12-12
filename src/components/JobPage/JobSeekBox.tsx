@@ -1,40 +1,40 @@
 import useDataStore from '@/store/useDataStore';
-import useStorageStore from '@/store/useStorageStore';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { getPbImageURL } from '@/store/getPbImageURL';
+
+interface DataType {
+  id: number | string;
+  [key: string]: number | string;
+  title: string;
+  created_at: string;
+  text: string;
+}
+
 function JobSeekBox() {
   const { data, getListData } = useDataStore();
-  const { data: imgdata, getAllList } = useStorageStore();
-
   useEffect(() => {
     getListData('job');
+    getListData('job_img');
   }, [getListData]);
-
-  useEffect(() => {
-    getAllList('job_img', 'company');
-  }, [getAllList]);
-  console.log(imgdata);
 
   return (
     <>
-      {data.map((item) => (
+      {data.map((item: DataType) => (
         <a href={`${item.URL}`} key={item.id}>
           <MainBox>
-            <LogoBox>{item.id}</LogoBox>
+            <LogoBox>
+              <Img
+                src={getPbImageURL('job_img', `${item.tag}.svg`, 'company')}
+              />
+            </LogoBox>
             <NameBox>{item.title}</NameBox>
           </MainBox>
         </a>
       ))}
-      {imgdata.map((img) => (
-        <div key={img.id}>
-          <Img src={getPbImageURL('job_img', img.name, 'company')} />
-        </div>
-      ))}
     </>
   );
 }
-
 export default JobSeekBox;
 
 const MainBox = styled.div`
