@@ -32,23 +32,19 @@ const MainSection = styled.section`
 
 const BannerImg = styled.img`
   width: 100%;
-  height: 500px;
 `;
 
 const MenuBox = styled.div`
-  display: flex;
-  justify-content: start;
-  gap: 50px; //변경예정
   padding: 50px;
-  font-size: 40px;
   border: 1px solid black;
 `;
 
 const MainBox = styled.div`
   border: 1px solid black;
   padding-top: 50px;
+  padding-bottom: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 100px;
   place-items: center;
 `;
