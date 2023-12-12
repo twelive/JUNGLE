@@ -6,8 +6,6 @@ import getPathName from '@utils/getPathName';
 
 export default function RootLayout() {
   const { pathname } = useLocation();
-  console.log(pathname);
-  
 
   return (
     <>

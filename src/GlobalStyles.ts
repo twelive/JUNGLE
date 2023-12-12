@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 
-body
+body 
 body * { touch-action: none; }
 /* reset CSS */
 html, body, div, span, applet, object, iframe, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -68,11 +68,6 @@ html, body, #root {
   --bs-black-900: #999;
     }
 
-h1 {
-  font-size: 1.875rem;
-  font-weight: bold;
-}
-
 .sr-only {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
@@ -83,6 +78,9 @@ h1 {
   width: 1px;
   margin: -1px;
 }
+
+/* 반응형 레이아웃 CSS 설정 */
+body {margin: 3.125rem 9.375rem}
 `;
 
 
