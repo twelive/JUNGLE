@@ -21,7 +21,7 @@ function JobSeekBox() {
   return (
     <>
       {data.map((item: DataType) => (
-        <a href={`${item.URL}`} key={item.id}>
+        <Ancer href={`${item.URL}`} key={item.id} target="_blank">
           <MainBox>
             <LogoBox>
               <Img
@@ -30,7 +30,7 @@ function JobSeekBox() {
             </LogoBox>
             <NameBox>{item.title}</NameBox>
           </MainBox>
-        </a>
+        </Ancer>
       ))}
     </>
   );
@@ -38,27 +38,50 @@ function JobSeekBox() {
 export default JobSeekBox;
 
 const MainBox = styled.div`
-  width: 850px;
-  height: 150px;
+  width: 500px;
+  height: 250px;
   border-radius: 20px;
-  border: 5px solid black;
   display: flex;
+  flex-direction: column;
   text-align: center;
   margin-left: 20px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 `;
 
 const LogoBox = styled.div`
-  width: 340px;
-  height: 150px;
-  border-right: 5px solid black;
+  width: 500px;
+  height: 170px;
   display: flex;
   align-items: center;
+  background-color: white;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom: 1px solid black;
 `;
 
 const NameBox = styled.div`
-  font-size: 50px;
-  display: flex;
-  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 40px;
+  background-color: white;
+
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 `;
 
-const Img = styled.img``;
+const Img = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+`;
+
+const Ancer = styled.a`
+  text-decoration: none;
+  color: black;
+`;
