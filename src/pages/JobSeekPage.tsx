@@ -32,6 +32,7 @@ const MainSection = styled.section`
 
 const BannerImg = styled.img`
   width: 100%;
+  height: 50%;
 `;
 
 const MenuBox = styled.div`
@@ -44,7 +45,16 @@ const MainBox = styled.div`
   padding-top: 50px;
   padding-bottom: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 100px;
-  place-items: center;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 60px;
+
+  @media ${(props) => props.theme.device.tablet} {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 40px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+  }
 `;

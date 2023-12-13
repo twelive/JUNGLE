@@ -38,9 +38,7 @@ function JobSeekBox() {
 export default JobSeekBox;
 
 const MainBox = styled.div`
-  width: 500px;
-  height: 250px;
-  border-radius: 20px;
+  width: 90%;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -50,13 +48,18 @@ const MainBox = styled.div`
   &:hover {
     transform: scale(1.1);
   }
+
+  @media ${(props) => props.theme.device.tablet} {
+    width: 80%;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    width: 70%;
+  }
 `;
 
 const LogoBox = styled.div`
-  width: 500px;
-  height: 170px;
   display: flex;
-  align-items: center;
   background-color: white;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
@@ -66,17 +69,22 @@ const LogoBox = styled.div`
 const NameBox = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 40px;
+  font-size: 30px;
   background-color: white;
-
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 0.938rem;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 0.688rem;
+  }
 `;
 
 const Img = styled.img`
-  height: 100%;
   width: 100%;
-  object-fit: cover;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 `;
