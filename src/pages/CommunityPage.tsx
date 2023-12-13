@@ -53,7 +53,7 @@ function ComunityPage() {
             spaceBetween={30}
             centeredSlides={true}
             autoplay={{
-              delay: 2500,
+              delay: 3500,
               disableOnInteraction: false,
             }}
             pagination={{
@@ -107,7 +107,7 @@ function ComunityPage() {
             {/* SwiperSlide */}
             {(dataType === 'project' ? projectData : studyData).map((item) => (
               <CustomSwiperSlide key={item.id}>
-                <StyledLink to={`/detailPage/${item.id}`}>
+                <StyledLink to={`/detailPage/${dataType}/${item.id}`}>
                   <SecondSlide>
                     <Maincontents>
                       <H2>{item.title}</H2>
@@ -115,21 +115,21 @@ function ComunityPage() {
                       <Contents>{item.contents}</Contents>
                       {/* Loop through tags */}
                       <Imgwrapper>
-                      {[item.tag1, item.tag2, item.tag3].map(
-                        (tag, index) =>
-                        // Render image if tag exists
-                        tag && (
-                          <div key={index}>
-                              <Img
-                                src={getPbImageURL(
-                                  'community_img',
-                                  `${tag}.svg`
+                        {[item.tag1, item.tag2, item.tag3].map(
+                          (tag, index) =>
+                            // Render image if tag exists
+                            tag && (
+                              <div key={index}>
+                                <Img
+                                  src={getPbImageURL(
+                                    'community_img',
+                                    `${tag}.svg`
                                   )}
-                                  />
-                            </div>
-                          )
-                          )}
-                          </Imgwrapper>
+                                />
+                              </div>
+                            )
+                        )}
+                      </Imgwrapper>
                     </Maincontents>
                     <div>{item.email}</div>
                   </SecondSlide>
