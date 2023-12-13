@@ -5,13 +5,13 @@ import JobHeaderCreateButton from './JobHeaderCreateButton';
 const DefaultMenu = [
   { path: '/job', children: '취업' },
   { path: '/job/interview', children: '면접' },
-  { path: '/job/coding', children: '코딩 테스트' },
+  { path: '/job/codingTest', children: '코딩 테스트' },
 ];
 
 function JobHeaderItem() {
   const { pathname } = useLocation();
   const isInterviewOrCoding =
-    pathname === '/job/interview' || pathname === '/job/coding';
+    pathname === '/job/interview' || pathname === '/job/codingTest';
   return (
     <MenuSection>
       <FlexBox>
