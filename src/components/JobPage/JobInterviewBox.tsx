@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
 const hoverAnimation = keyframes`
   0% {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
@@ -11,15 +12,17 @@ function JobInterviewBox() {
   return (
     // map 돌릴 예정 h1 부분 , 날짜 , 작성자이름. title , createAt(slice 예정, 2023-12-10 까지), name
     // MainBox 에 클릭하면 해당 페이지로 이동 예정.
-    <MainBox>
-      <TitleBox>
-        <Title>지금까지 받았던 신입 프론트엔드 면접 질문들</Title>
-      </TitleBox>
-      <SubBox>
-        <DateBox>2023-12-10</DateBox>
-        <UserName>서진만</UserName>
-      </SubBox>
-    </MainBox>
+    <StyledLink to="/job/interview/interviewItem">
+      <MainBox>
+        <TitleBox>
+          <Title>지금까지 받았던 신입 프론트엔드 면접 질문들</Title>
+        </TitleBox>
+        <SubBox>
+          <DateBox>2023-12-10</DateBox>
+          <UserName>서진만</UserName>
+        </SubBox>
+      </MainBox>
+    </StyledLink>
   );
 }
 
@@ -74,5 +77,20 @@ const UserName = styled.div`
 
   @media ${(props) => props.theme.device.tablet} {
     font-size: 20px;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+    outline: none;
   }
 `;
