@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import HeaderMenuItem from '@components/Header/HeaderMenuItem';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
+import useDataStore from '@store/useDataStore';
+import getUserName from '@utils/getUserName';
 import getPathName from '@utils/getPathName';
 import styled from 'styled-components';
 
@@ -19,9 +21,10 @@ const IntroductionMenu = [
 function HeaderMenu() {
   const { pathname } = useLocation();
   const { currentMenu } = useHeaderMenuStore();
+  const {user} = useDataStore();
 
   const handleToggleMenu = (pageTitle: string) => {
-    return pageTitle === currentMenu.slice(0, -1);
+    return currentMenu && pageTitle === currentMenu.slice(0, -1);
   };
 
   return (
@@ -33,8 +36,8 @@ function HeaderMenu() {
         ).map((item, index) => (
           <HeaderMenuItem
             key={index}
-            path={item.path}
-            isEvent={handleToggleMenu(item.children)}
+            path={item.path !== '/mypage' ? item.path : `/mypage/${getUserName(user?.email)}`}
+            isEvent={handleToggleMenu(item.children) || false}
           >
             {item.children}
           </HeaderMenuItem>
