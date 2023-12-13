@@ -23,7 +23,7 @@ function Category({
 
     if (categoryLink) {
       const pathname = categoryLink.href.slice(21);
-      setCurrentMenu(pathname);
+      setCurrentMenu(pathname);     
     }
   };
 

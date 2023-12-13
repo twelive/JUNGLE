@@ -1,11 +1,16 @@
+// import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ArrowClickLink from '@assets/common/arrow-clickLink.svg';
+import useDataStore from '@store/useDataStore';
+import getUserName from '@utils/getUserName';
 import styled from 'styled-components';
 
 function ResumeLink() {
+  const {user} = useDataStore();
+
   return (
     <FlexBox>
-      <Link to="/mypage/resume">
+      <Link to={`/mypage/${getUserName(user?.email)}/resume`}>
         <img src={ArrowClickLink} />
       </Link>
       <Heading>이력서</Heading>
