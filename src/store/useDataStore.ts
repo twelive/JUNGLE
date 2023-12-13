@@ -17,7 +17,7 @@ type State = {
   user: User | null;
   setData: (data: DataType[]) => void;
   getListData: (tableName: string) => Promise<void>;
-  getIdData: (tableName: string, id: number) => Promise<void>;
+  getIdData: (tableName: string, id: string|number) => Promise<void>;
   createData: (tableName: string, newData: DataType) => Promise<void>;
   updateData: (tableName: string, id: number, updatedData: DataType) => Promise<void>;
   deleteData: (tableName: string, id: number) => Promise<void>;
@@ -45,7 +45,7 @@ const useDataStore = create<State>((set) => ({
     }
   },
   //유저 id에 해당하는 것만 가져오기 
-  getIdData: async (tableName: string, id: number) => {
+  getIdData: async (tableName: string, id: string|number) => {
     const { data, error } = await supabase
       .from(tableName)
       .select('*')
