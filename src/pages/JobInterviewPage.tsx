@@ -2,18 +2,21 @@ import { Helmet } from 'react-helmet-async';
 import Banner from '@/assets/job/job-banner.svg';
 import styled from 'styled-components';
 import JobHeaderItem from '@/components/JobPage/JobHeaderItem';
+import JobInterviewBox from '@/components/JobPage/JobInterviewBox';
 function JobInterviewPage() {
   return (
     <>
       <Helmet>
-        <title>Introduction - JUNGLE</title>
+        <title>Interview - JUNGLE</title>
       </Helmet>
       <MainSection>
         <BannerImg src={Banner} alt="배너사진" />
         <MenuBox>
           <JobHeaderItem />
         </MenuBox>
-        <MainBox></MainBox>
+        <MainBox>
+          <JobInterviewBox />
+        </MainBox>
       </MainSection>
     </>
   );
@@ -28,7 +31,6 @@ const MainSection = styled.section`
 
 const BannerImg = styled.img`
   width: 100%;
-  height: 500px;
 `;
 
 const MenuBox = styled.div`

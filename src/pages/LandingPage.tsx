@@ -26,6 +26,7 @@ export default LandingPage;
 const GlobalStyles = createGlobalStyle`
   body {
     overflow: auto;
+    margin : 0 !important;
 
     &::-webkit-scrollbar {
       display: none;

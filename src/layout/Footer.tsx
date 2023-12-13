@@ -9,6 +9,7 @@ const FooterName: FooterMenu[] = [
   { '/mypage': 'MyPage' },
   { '/job': 'JobSeeking' },
   { '/job/interview': 'JobInterview' },
+  { '/job/coding': 'JobCodingTest' },
   { '/community': 'Community' },
   { '/study': 'Study' },
 ];
