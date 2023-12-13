@@ -20,6 +20,9 @@ const IntroductionProjectPage = lazy(
   () => import('@pages/IntroductionProjectPage')
 );
 const IntroductionTeamPage = lazy(() => import('@pages/IntroductionTeamPage'));
+const CommunityDetailPage = lazy(() => import('@pages/CommunityDetailPage'));
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,9 +33,16 @@ const router = createBrowserRouter(
       <Route path="/job/interview" element={<JobInterviewPage />} />
       <Route path="study" element={<StudyPage />} />
       <Route path="mypage" element={<MyPage />} />
-      <Route path="mypage/resume" element={<MyResumePage/>} />
+      <Route path="mypage/resume" element={<MyResumePage />} />
       <Route path="community" element={<CommunityPage />} />
-      <Route path="community/communitycreate" element={<CommunityCreatePage />} />
+      <Route
+        path="community/communitycreate"
+        element={<CommunityCreatePage />}
+      />
+      <Route
+        path="/detailPage/:dataType/:itemId"
+        element={<CommunityDetailPage />}
+      />
       <Route path="/introduction" element={<IntroductionProjectPage />} />
       <Route path="/introduction/team" element={<IntroductionTeamPage />} />
     </Route>
