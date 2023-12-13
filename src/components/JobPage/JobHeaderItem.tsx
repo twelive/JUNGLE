@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import JobHeaderCreateButton from './JobHeaderCreateButton';
 
 const DefaultMenu = [
   { path: '/job', children: '취업' },
@@ -9,7 +10,8 @@ const DefaultMenu = [
 
 function JobHeaderItem() {
   const { pathname } = useLocation();
-
+  const isInterviewOrCoding =
+    pathname === '/job/interview' || pathname === '/job/coding';
   return (
     <MenuSection>
       <FlexBox>
@@ -23,6 +25,9 @@ function JobHeaderItem() {
           </StyledLink>
         ))}
       </FlexBox>
+      {isInterviewOrCoding && (
+        <JobHeaderCreateButton title="생성하기" type="button" />
+      )}
     </MenuSection>
   );
 }
