@@ -80,8 +80,7 @@ html, body, #root {
 }
 
 /* 반응형 레이아웃 CSS 설정 */
-body {margin: 3.125rem 9.375rem}
+body {margin: 2.6% 8%}
 `;
-
 
 export default GlobalStyles;

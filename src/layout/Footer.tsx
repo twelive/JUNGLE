@@ -89,9 +89,9 @@ const Text = styled.span`
   font-weight: 700;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 8.75rem;
+    font-size: 8.125rem;
   }
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 6.25rem;
+    font-size: 5rem;
   }
 `;
