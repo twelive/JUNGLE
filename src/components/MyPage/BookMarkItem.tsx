@@ -33,6 +33,7 @@ const Box = styled(Link)`
   @media ${(props) => props.theme.device.tablet} {
     min-width: 17.5rem;
     height: 17.5rem;
+    padding: 1.25rem
   }
 `;
 

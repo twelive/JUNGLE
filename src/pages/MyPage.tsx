@@ -27,10 +27,10 @@ function MyPage() {
           <BookMarkLink />
           <BookMarkList />
         </BookMarkSection>
-        <FlexLayout>
+        <BottomSection>
           <WritingCategory />
           <ResumeLink />
-        </FlexLayout>
+        </BottomSection>
         {isBookMark && <BookMarkModal />}
       </Section>
     </>
@@ -45,6 +45,14 @@ const Section = styled.section`
   h2 {
     font-size: 3rem;
     font-weight: 600;
+
+    @media ${(props) => props.theme.device.tablet} {
+      font-size: 2.75rem;
+    }
+
+    @media ${(props) => props.theme.device.mobile} {
+      font-size: 2.5rem;
+    }
   }
 `;
 
@@ -55,11 +63,40 @@ const FlexLayout = styled.div`
 const TopSection = styled(FlexLayout)`
   align-items: center;
   gap: 3.125rem;
-  padding: 3.125rem;
+  padding: 3.125rem 0;
+
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 2.5rem;
+    padding: 2.5rem 0;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 1.875rem;
+    padding: 1.875rem 0;
+  }
 `;
+
 
 const BookMarkSection = styled(FlexLayout)`
   width: 100%;
+  flex-direction: row;
   border-top: 0.15rem solid var(--bs-black-400);
   border-bottom: 0.15rem solid var(--bs-black-400);
+  
+  @media ${(props) => props.theme.device.tablet} {
+    flex-direction: column;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    flex-direction: column;
+  }
+`;
+
+const BottomSection = styled(FlexLayout)`
+  @media ${(props) => props.theme.device.tablet} {
+    flex-direction: column;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    flex-direction: column;
+  }
 `;
