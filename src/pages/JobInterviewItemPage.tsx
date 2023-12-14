@@ -2,7 +2,7 @@ import useDataStore from '@/store/useDataStore';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import AddComment from '@/components/JobPage/CommentForm';
+import AddComment from '@/components/JobPage/AddComment';
 import CommentSaveBox from '@/components/JobPage/CommentSaveBox';
 
 interface InterviewItemType {
@@ -135,25 +135,3 @@ const ModifyButton = styled.button`
   }
 `;
 const UserBox = styled.div``;
-
-// const UserDivBox = styled.div`
-//   margin-bottom: 40px;
-//   font-size: 40px;
-// `;
-
-// const UserInfo = styled.div`
-//   display: flex;
-//   gap: 20px;
-//   margin-bottom: 20px;
-// `;
-
-// const UserText = styled.p`
-//   font-size: 20px;
-// `;
-
-// const Text = styled.div`
-//   font-size: 20px;
-//   margin-bottom: 100px;
-//   border-bottom: 2px solid black;
-//   padding-bottom: 50px;
-// `;
