@@ -2,6 +2,9 @@ import useDataStore from '@/store/useDataStore';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import AddComment from '@/components/JobPage/CommentForm';
+import CommentSaveBox from '@/components/JobPage/CommentSaveBox';
+
 interface InterviewItemType {
   id: number | string;
   [key: string]: number | string;
@@ -24,6 +27,7 @@ function JobInterviewItemPage() {
   const filteredData = data.filter(
     (item: InterviewItemType) => item.id === (id ? parseInt(id) : NaN)
   );
+
   return (
     <>
       {filteredData.map((item: InterviewItemType) => (
@@ -40,29 +44,12 @@ function JobInterviewItemPage() {
               <Info>{item.info}</Info>
             </InfoBox>
           </FirstBox>
-          <ModifyButton>수정</ModifyButton>
+          <ModifyButton type="button">수정</ModifyButton>
           <CommentBox>
-            <Comment name="" id="" placeholder="댓글을 적어보삼~"></Comment>
-            <CommentButton>댓글작성</CommentButton>
+            <AddComment />
           </CommentBox>
           <UserBox>
-            <UserDivBox>댓글박스</UserDivBox>
-            <UserInfo>
-              <UserText>전선용</UserText>
-              <UserText>2023-12-11</UserText>
-            </UserInfo>
-            <Text>
-              이거보고 면접보러갔더니 회사 붙었습니다 !! 여러분들 이거 꼭 보고
-              외우고 연습 많이해보고 가보세요 !!!
-            </Text>
-            <UserInfo>
-              <UserText>전선용</UserText>
-              <UserText>2023-12-11</UserText>
-            </UserInfo>
-            <Text>
-              이거보고 면접보러갔더니 회사 붙었습니다 !! 여러분들 이거 꼭 보고
-              외우고 연습 많이해보고 가보세요 !!!
-            </Text>
+            <CommentSaveBox />
           </UserBox>
         </MainBox>
       ))}
@@ -100,10 +87,6 @@ const SubBox = styled.div`
   gap: 20px;
 `;
 
-const ModifyButton = styled.button`
-  align-self: end;
-`;
-
 const SubText = styled.p`
   font-size: 35px;
   font-weight: 500;
@@ -125,33 +108,52 @@ const CommentBox = styled.div`
   gap: 20px;
 `;
 
-const Comment = styled.textarea`
-  width: 100%;
-  height: 100px;
+const ModifyButton = styled.button`
+  background-color: white;
+  font-weight: 700;
+  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+  width: 10%;
+  border: none;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 10px;
+  margin-right: 5px;
+  border: 0.5px solid var(--bs-black-500);
+  box-sizing: border-box;
+  font-size: 20px;
+  align-self: end;
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 10px;
+    padding: 8px;
+  }
 `;
-
-const CommentButton = styled.button``;
-
 const UserBox = styled.div``;
 
-const UserDivBox = styled.div`
-  margin-bottom: 40px;
-  font-size: 40px;
-`;
+// const UserDivBox = styled.div`
+//   margin-bottom: 40px;
+//   font-size: 40px;
+// `;
 
-const UserInfo = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-`;
+// const UserInfo = styled.div`
+//   display: flex;
+//   gap: 20px;
+//   margin-bottom: 20px;
+// `;
 
-const UserText = styled.p`
-  font-size: 20px;
-`;
+// const UserText = styled.p`
+//   font-size: 20px;
+// `;
 
-const Text = styled.div`
-  font-size: 20px;
-  margin-bottom: 100px;
-  border-bottom: 2px solid black;
-  padding-bottom: 50px;
-`;
+// const Text = styled.div`
+//   font-size: 20px;
+//   margin-bottom: 100px;
+//   border-bottom: 2px solid black;
+//   padding-bottom: 50px;
+// `;
