@@ -69,9 +69,25 @@ const LinkBox = styled(Link)`
 const Title = styled.h2`
   font-size: 3rem;
   font-weight: 600;
+
+  @media ${(props) => props.theme.device.tablet} {
+      font-size: 2.75rem;
+    }
+
+    @media ${(props) => props.theme.device.mobile} {
+      font-size: 2.5rem;
+    }
 `;
 
 const Context = styled.p`
   font-size: 2rem;
   font-weight: 500;
+
+  @media ${(props) => props.theme.device.tablet} {
+      font-size: 1.75rem;
+    }
+
+    @media ${(props) => props.theme.device.mobile} {
+      font-size: 1.5rem;
+    }
 `;
