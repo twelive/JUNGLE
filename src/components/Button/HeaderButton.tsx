@@ -5,12 +5,20 @@ function HeaderButton({
   backgroundColor = 'black',
   color = 'white',
   children = 'HeaderButton',
+  onClick,
+}: {
+  borderWeight?: string,
+  backgroundColor?: string,
+  color?: string,
+  children?: React.ReactNode,
+  onClick?: React.MouseEventHandler<HTMLButtonElement>, 
 }) {
   return (
     <StyledButton
       $borderWeight={borderWeight}
       $backgroundColor={backgroundColor}
       $color={color}
+      onClick={onClick}
     >
       {children}
     </StyledButton>
