@@ -16,16 +16,6 @@ function JobCodingTestPage() {
         </MenuBox>
         <MainBox>
           <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
-          <JobCodingTestBox />
         </MainBox>
       </MainSection>
     </>

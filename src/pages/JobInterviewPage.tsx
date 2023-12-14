@@ -16,13 +16,6 @@ function JobInterviewPage() {
         </MenuBox>
         <MainBox>
           <JobInterviewBox />
-          <JobInterviewBox />
-          <JobInterviewBox />
-          <JobInterviewBox />
-          <JobInterviewBox />
-          <JobInterviewBox />
-          <JobInterviewBox />
-          <JobInterviewBox />
         </MainBox>
       </MainSection>
     </>
