@@ -3,7 +3,6 @@ import { create } from 'zustand';
 interface Comment {
   id: string;
   name: string;
-  date: string;
   text: string;
 }
 
@@ -19,7 +18,7 @@ const useCommentStore = create<CommentStore>((set) => ({
     set((state) => ({ comments: [...state.comments, comment] })),
   deleteComment: (id) =>
     set((state) => ({
-      comments: state.comments.filter((comment) => comment.id !== id),
+      comments: state.comments.filter((comment) => comment.id !== String(id)),
     })),
 }));
 
