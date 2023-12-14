@@ -2,14 +2,13 @@ import create from 'zustand';
 import { supabase } from '@/client';
 import { User } from '@supabase/supabase-js';
 
-
 type DataType = {
   id: number | string;
   [key: string]: number | string;
   title: string;
   created_at: string;
   text: string;
-  
+  name: string;
 };
 
 type State = {
@@ -19,13 +18,16 @@ type State = {
   getListData: (tableName: string) => Promise<void>;
   getIdData: (tableName: string, id: number) => Promise<void>;
   createData: (tableName: string, newData: DataType) => Promise<void>;
-  updateData: (tableName: string, id: number, updatedData: DataType) => Promise<void>;
+  updateData: (
+    tableName: string,
+    id: number,
+    updatedData: DataType
+  ) => Promise<void>;
   deleteData: (tableName: string, id: number) => Promise<void>;
   getUserData: () => Promise<void>;
 };
 
 const useDataStore = create<State>((set) => ({
-  
   data: [],
   user: null,
   setData: (data: DataType[]) => set({ data }),
@@ -44,7 +46,7 @@ const useDataStore = create<State>((set) => ({
       }
     }
   },
-  //유저 id에 해당하는 것만 가져오기 
+  //유저 id에 해당하는 것만 가져오기
   getIdData: async (tableName: string, id: number) => {
     const { data, error } = await supabase
       .from(tableName)
@@ -57,20 +59,20 @@ const useDataStore = create<State>((set) => ({
         set({ data });
       }
     }
-
   },
   //유저의 데이터 가져오기
 
   getUserData: async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-  
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     if (user) {
-      set({ user }); 
+      set({ user });
     } else {
-      set({ user: null });  
+      set({ user: null });
     }
   },
-  
 
   //생성하기
   //
@@ -78,13 +80,8 @@ const useDataStore = create<State>((set) => ({
   // .from('countries')
   // .insert({ id: 1, name: 'Denmark' })
 
-
-
-
   createData: async (tableName: string, newData: DataType) => {
-    const { data, error } = await supabase
-      .from(tableName)
-      .insert(newData);
+    const { data, error } = await supabase.from(tableName).insert(newData);
     if (error) {
       console.error('Error adding data:', error);
     } else {
@@ -100,8 +97,6 @@ const useDataStore = create<State>((set) => ({
   // .update({ name: 'Australia' })
   // .eq('id', 1)
 
-
-
   updateData: async (tableName: string, id: number, updatedData: DataType) => {
     const { data, error } = await supabase
       .from(tableName)
@@ -111,33 +106,33 @@ const useDataStore = create<State>((set) => ({
       console.error('Error updating data:', error);
     } else {
       if (data) {
-        set((state: State) => ({ data: state.data.map((item: DataType) => item.id === id ? { ...item, ...updatedData } : item) }));
+        set((state: State) => ({
+          data: state.data.map((item: DataType) =>
+            item.id === id ? { ...item, ...updatedData } : item
+          ),
+        }));
       }
     }
   },
-//삭제하기
+  //삭제하기
   // const { error } = await supabase
   // .from('countries')
   // .delete()
   // .eq('id', 1)
 
-
-
   deleteData: async (tableName: string, id: number) => {
-    const { error } = await supabase
-      .from(tableName)
-      .delete()
-      .eq('id', id);
+    const { error } = await supabase.from(tableName).delete().eq('id', id);
     if (error) {
       console.error('Error deleting data:', error);
     } else {
-      set((state: State) => ({ data: state.data.filter((item: DataType) => item.id !== id) }));
+      set((state: State) => ({
+        data: state.data.filter((item: DataType) => item.id !== id),
+      }));
     }
-  }
+  },
 }));
 
 export default useDataStore;
-
 
 //필터링
 
@@ -151,9 +146,7 @@ export default useDataStore;
 //   .eq('name', 'The Shire')    // Incorrect
 //   .select('name, country_id')
 
-
 //이름이 albania인 것만 가져와
-
 
 // const { data, error } = await supabase
 //   .from('countries')
@@ -176,17 +169,12 @@ export default useDataStore;
 
 //작은거는 .lt('id', 2)
 
-
-
-
-
 // id가 2와 같거나 2 이상인 것만 가져와줘
 
 // const { data, error } = await supabase
 //   .from('countries')
 //   .select()
 //   .gte('id', 2)
-
 
 //작거나 같은 것   .lte('id', 2)
 
@@ -195,7 +183,6 @@ export default useDataStore;
 //   .from('countries')
 //   .select()
 //   .like('name', '%Alba%')
-
 
 //대소문자 구분 없이 name에 'alba'들어가는거 가져와
 // const { data, error } = await supabase
@@ -209,8 +196,4 @@ export default useDataStore;
 //   .select()
 //   .is('name', null)
 
-
 //공식문서 참조하기 https://supabase.com/docs/reference/javascript/rangelte
-
-
-
