@@ -1,5 +1,16 @@
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+import useDataStore from '@/store/useDataStore';
+import { useEffect } from 'react';
+
+interface InterviewType {
+  id: number | string;
+  [key: string]: number | string;
+  title: string;
+  created_at: string;
+  name: string;
+}
+
 const hoverAnimation = keyframes`
   0% {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
@@ -9,27 +20,38 @@ const hoverAnimation = keyframes`
   }
 `;
 function JobInterviewBox() {
+  const { data, getListData } = useDataStore();
+  useEffect(() => {
+    getListData('job_interview');
+  }, [getListData]);
+
+  const extractDate = (dateString: string) => {
+    return (dateString || '').toString().slice(0, 10);
+  };
+
   return (
-    // map 돌릴 예정 h1 부분 , 날짜 , 작성자이름. title , createAt(slice 예정, 2023-12-10 까지), name
-    // MainBox 에 클릭하면 해당 페이지로 이동 예정.
-    <StyledLink to="/job/interview/interviewItem">
-      <MainBox>
-        <TitleBox>
-          <Title>지금까지 받았던 신입 프론트엔드 면접 질문들</Title>
-        </TitleBox>
-        <SubBox>
-          <DateBox>2023-12-10</DateBox>
-          <UserName>서진만</UserName>
-        </SubBox>
-      </MainBox>
-    </StyledLink>
+    <>
+      {data.map((item: InterviewType) => (
+        <StyledLink to={`/job/interview/${item.id}`} key={item.id}>
+          <MainBox>
+            <TitleBox>
+              <Title>{item.title}</Title>
+            </TitleBox>
+            <SubBox>
+              <DateBox>{extractDate(item.created_at)}</DateBox>
+              <UserName>{item.name}</UserName>
+            </SubBox>
+          </MainBox>
+        </StyledLink>
+      ))}
+    </>
   );
 }
 
 export default JobInterviewBox;
 
 const MainBox = styled.div`
-  width: 100%;
+  width: 400px;
   border: 1px solid black;
   border-radius: 10px;
   padding: 0 15px;
@@ -40,10 +62,16 @@ const MainBox = styled.div`
   &:hover {
     animation: ${hoverAnimation} 0.3s ease-in-out forwards;
   }
+
+  @media ${(props) => props.theme.device.tablet} {
+    width: 300px;
+  }
 `;
 
 const TitleBox = styled.div`
+  display: block;
   border-bottom: 1px solid black;
+  height: 170px;
 `;
 
 const Title = styled.p`
@@ -63,7 +91,7 @@ const SubBox = styled.div`
 
 const DateBox = styled.div`
   border-right: 1px solid black;
-  font-size: 25px;
+  font-size: 23px;
   padding: 0 15px;
 
   @media ${(props) => props.theme.device.tablet} {

@@ -1,5 +1,15 @@
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+import useDataStore from '@/store/useDataStore';
+import { useEffect } from 'react';
+
+interface CodingTestType {
+  id: number | string;
+  [key: string]: number | string;
+  title: string;
+  created_at: string;
+  name: string;
+}
 
 const hoverAnimation = keyframes`
   0% {
@@ -10,27 +20,38 @@ const hoverAnimation = keyframes`
   }
 `;
 function JobCodingTestBox() {
+  const { data, getListData } = useDataStore();
+  useEffect(() => {
+    getListData('job_codingtest');
+  }, [getListData]);
+
+  const extractDate = (dateString: string) => {
+    return (dateString || '').toString().slice(0, 10);
+  };
+
   return (
-    // map 돌릴 예정 h1 부분 , 날짜 , 작성자이름. title , createAt(slice 예정, 2023-12-10 까지), name
-    // MainBox 에 클릭하면 해당 페이지로 이동 예정.
-    <StyledLink to="/job/codingTest/codingTestItem">
-      <MainBox>
-        <TitleBox>
-          <Title>카카오 코딩테스트 본 후기</Title>
-        </TitleBox>
-        <SubBox>
-          <DateBox>2023-12-13</DateBox>
-          <UserName>정소이</UserName>
-        </SubBox>
-      </MainBox>
-    </StyledLink>
+    <>
+      {data.map((item: CodingTestType) => (
+        <StyledLink to={`/job/codingTest/${item.id}`} key={item.id}>
+          <MainBox>
+            <TitleBox>
+              <Title>{item.title}</Title>
+            </TitleBox>
+            <SubBox>
+              <DateBox>{extractDate(item.created_at)}</DateBox>
+              <UserName>{item.name}</UserName>
+            </SubBox>
+          </MainBox>
+        </StyledLink>
+      ))}
+    </>
   );
 }
 
 export default JobCodingTestBox;
 
 const MainBox = styled.div`
-  width: 100%;
+  width: 400px;
   border: 1px solid black;
   border-radius: 10px;
   padding: 0 15px;
@@ -41,9 +62,15 @@ const MainBox = styled.div`
   &:hover {
     animation: ${hoverAnimation} 0.3s ease-in-out forwards;
   }
+
+  @media ${(props) => props.theme.device.tablet} {
+    width: 300px;
+  }
 `;
 
 const TitleBox = styled.div`
+  display: block;
+  height: 170px;
   border-bottom: 1px solid black;
 `;
 
