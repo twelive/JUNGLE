@@ -24,13 +24,22 @@ const ProfileBox = styled.div`
   display: flex;
   align-items: center;
   gap: 3.125rem;
-  width: 100%;
-  min-width: 49rem;
+  width: 70%;
   padding-right: 3.125rem;
   border-right: 0.15rem solid var(--bs-black-400);
+
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 1.875rem;
+    padding-right: 1.875rem;
+  }
 `;
 
 const ProfileText = styled.p`
+  min-width: 18.75rem;
   font-size: 3rem;
   font-weight: 600;
   line-height: 6.25rem;

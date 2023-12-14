@@ -21,7 +21,16 @@ const PointBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.125rem;
-  padding-right: 1.875rem;
+  width: 20%;
+  min-width: fit-content;
+
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 2.5rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 1.875rem;
+  }
+
 `;
 
 const PointContainer = styled.div`
