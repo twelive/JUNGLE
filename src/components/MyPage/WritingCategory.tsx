@@ -28,7 +28,7 @@ export default WritingCategory;
 const Layout = styled.div<{ $isBorder?: boolean }>`
  display: grid;
  grid-template-columns: 1fr 1fr;
- min-width: 650px;
+ min-width: 40.625rem;
  border-bottom: ${(props) =>
     props.$isBorder ? `0.15rem solid var(--bs-black-400)` : 'none'};
 

@@ -62,11 +62,12 @@ const FlexLayout = styled.div`
 
 const TopSection = styled(FlexLayout)`
   align-items: center;
-  gap: 3.125rem;
+  gap: 40px;
   padding: 3.125rem 0;
 
   @media ${(props) => props.theme.device.tablet} {
-    gap: 2.5rem;
+    flex-direction: column;
+    align-items: start;
     padding: 2.5rem 0;
   }
 
