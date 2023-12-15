@@ -24,15 +24,15 @@ const Box = styled(Link)`
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  min-width: 21.875rem;
-  height: 21.875rem;
+  min-width: 260px;
+  height: 260px;
   padding: 1.875rem;
   border-radius: 0.9375rem;
   background: var(--bs-black-300);
 
   @media ${(props) => props.theme.device.tablet} {
-    min-width: 17.5rem;
-    height: 17.5rem;
+    min-width: 15rem;
+    height: 15rem;
     padding: 1.25rem
   }
 `;

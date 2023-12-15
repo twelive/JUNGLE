@@ -31,7 +31,7 @@ const BookMarkLinkBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 20%;
-  min-width: 18.75rem;
+  min-width: 13.75rem;
   margin: 3.125rem 0;
   padding-right: 3.125rem;
   border-right: 0.15rem solid var(--bs-black-400);
@@ -47,7 +47,7 @@ const BookMarkLinkBox = styled.div`
 
   @media ${(props) => props.theme.device.mobile} {
     flex-direction: row;
-    width: 20%;
+    width: 100%;
     min-width: 16.25rem;
     margin: 1.875rem 0;
     border: none;
