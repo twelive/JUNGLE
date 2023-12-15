@@ -10,7 +10,11 @@ const LandingPage = lazy(() => import('@pages/LandingPage'));
 const MainPage = lazy(() => import('@pages/MainPage'));
 const JobSeekPage = lazy(() => import('@pages/JobSeekPage'));
 const JobInterviewPage = lazy(() => import('@pages/JobInterviewPage'));
+const JobInterviewItemPage = lazy(() => import('@pages/JobInterviewItemPage'));
 const JobCodingTestPage = lazy(() => import('@pages/JobCodingTestPage'));
+const JobCodingTestItemPage = lazy(
+  () => import('@pages/JobCodingTestItemPage')
+);
 const StudyPage = lazy(() => import('@pages/StudyPage'));
 const MyPage = lazy(() => import('@pages/MyPage'));
 const MyResumePage = lazy(() => import('@pages/MyResumePage'));
@@ -31,7 +35,9 @@ const router = createBrowserRouter(
       <Route path="main" element={<MainPage />} />
       <Route path="/job" element={<JobSeekPage />} />
       <Route path="/job/interview" element={<JobInterviewPage />} />
-      <Route path="/job/coding" element={<JobCodingTestPage />} />
+      <Route path="/job/interview/:id" element={<JobInterviewItemPage />} />
+      <Route path="/job/codingTest" element={<JobCodingTestPage />} />
+      <Route path="/job/codingTest/:id" element={<JobCodingTestItemPage />} />
       <Route path="study" element={<StudyPage />} />
       <Route path="mypage/:userId" element={<MyPage />} />
       <Route path="mypage/:userId/resume" element={<MyResumePage />} />
@@ -50,4 +56,3 @@ const router = createBrowserRouter(
   )
 );
 export default router;
-// JobCodingTestPage
