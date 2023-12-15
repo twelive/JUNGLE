@@ -19,8 +19,18 @@ const List = styled.div`
   display: flex;
   /* 추후 swiper 구현 예정 */
   overflow-x: auto;
-  gap: 3.125rem;
-  padding: 3.125rem 3.125rem 1.875rem 3.125rem;
+  gap: 1.875rem;
+  padding: 3.125rem 0 3.125rem 3.125rem;
+
+  
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 2.5rem;
+    padding: 0 0  2.5rem 2.5rem;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    display: none;
+  }
 
   &::-webkit-scrollbar {
     height: 1.25rem;

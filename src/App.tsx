@@ -8,6 +8,10 @@ import LandingPage from '@pages/LandingPage';
 import { useAuthStore } from '@store/useAuthStore';
 import { ThemeProvider } from 'styled-components';
 import theme from '@/theme';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+const queryClient = new QueryClient();
 
 function App() {
   const isAuth = useAuthStore((state) => state.isAuth);
@@ -15,22 +19,25 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-      {!isAuth && (
-        <>
-          <LandingPage />
-        </>
-      )}
-      {isAuth && (
-        <>
-          <HelmetProvider>
-            <Suspense fallback={<div>Loading...</div>}>
-              <RouterProvider router={router} />
-              <GlobalStyles />
-            </Suspense>
-          </HelmetProvider>
-          <ToastContainer />
-        </>
-      )}
+        <QueryClientProvider client={queryClient}>
+          {!isAuth && (
+            <>
+              <LandingPage />
+            </>
+          )}
+          {isAuth && (
+            <>
+              <HelmetProvider>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <RouterProvider router={router} />
+                  <GlobalStyles />
+                </Suspense>
+              </HelmetProvider>
+              <ToastContainer />
+            </>
+          )}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </ThemeProvider>
     </>
   );

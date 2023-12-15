@@ -44,19 +44,35 @@ export default Category;
 
 const CommonLayout = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
 `;
 
 const CategorySection = styled(CommonLayout)<{ $height: string }>`
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
   height: ${(props) => props.$height};
   justify-content: space-between;
+
+  @media ${(props) => props.theme.device.tablet} {
+    height: 18.75rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    height: 15.625rem;
+  }
 `;
 
 const CategoryTextBox = styled(CommonLayout)`
   justify-content: center;
   gap: 1.875rem;
+
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 25px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 20px;
+  }
 `;
 
 const LinkBox = styled(Link)`
@@ -72,6 +88,5 @@ const Title = styled.h2`
 `;
 
 const Context = styled.p`
-  font-size: 2rem;
   font-weight: 500;
 `;
