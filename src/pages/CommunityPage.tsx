@@ -18,28 +18,80 @@ import banner2 from '../assets/community/community-banner2.svg';
 import banner3 from '../assets/community/community-banner3.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
-import useDataStore from '@/store/useDataStore';
-import { useEffect, useState } from 'react';
-import useStorageStore from '@/store/useStorageStore';
+import { useState } from 'react';
 import { getPbImageURL } from '@/store/getPbImageURL';
+import { supabase } from '@/client';
+import { useQuery } from 'react-query';
+import { CommunityProject } from '@/types/CommunityProject';
+import { Users } from '@/types/Users';
+import { CommunityStudy } from '@/types/CommunityStudy';
 
-function ComunityPage() {
-  const { data: projectData, getListData: getProjectListData } = useDataStore();
-  const { data: studyData, getListData: getStudyListData } = useDataStore();
-  const [dataType, setDataType] = useState('project'); // Initial data type is 'project'
-  const{getAllList} = useStorageStore();
 
-  useEffect(() => {
-    if (dataType === 'project') {
-      getProjectListData('community_project');
-    } else if (dataType === 'study') {
-      getStudyListData('community_study');
-    }
-    getAllList('community_img','');
-    
-  }, [dataType, getProjectListData, getStudyListData, getAllList]);
 
+
+const getUserData: () => Promise<Users[] | null> = async () => {
+  const { data } = await supabase
+    .from('users')
+    .select(
+      `
+      id,
+      email,
+      community_project:community_project (id, title)
+    `
+    )
+    .order('created_at', { ascending: false })
+    .returns<Users[] | null>();
   
+  return data;
+};
+
+const getProjects :()=> Promise<CommunityProject[] | null>= async () => {  
+   const { data } = await supabase
+     .from('community_project')
+     .select('*')
+     .order('created_at', { ascending: false }).returns<CommunityProject[] | null>();
+      return data;
+      
+}
+
+const getStudys :()=> Promise<CommunityStudy[] | null>= async () => {  
+   const { data } = await supabase
+     .from('community_study')
+     .select('*')
+     .order('created_at', { ascending: false }).returns<CommunityStudy[] | null>();
+      return data;
+      
+}
+
+
+function CommunityPage() {
+  const { data: projects } = useQuery('projects', getProjects);
+  const { data: studys } = useQuery('study', getStudys);
+  const { data: users } = useQuery('users', getUserData);
+
+  const [dataType, setDataType] = useState<'project' | 'study'>('project');
+  
+   const handleProjectClick = () => {
+     setDataType('project');
+     
+   };
+
+   // 스터디 버튼 클릭 시
+   const handleStudyClick = () => {
+     setDataType('study');
+   };
+
+
+   const getUserEmail = (userId: string) => {
+     // 'users' 데이터에서 해당 userId에 맞는 사용자의 이메일을 찾아 반환
+     const foundUser = users?.find((user) => user.id === userId);
+     return foundUser?.email || 'Unknown'; // 만약 사용자를 찾지 못하면 'Unknown' 반환
+   };
+  // Make sure users and projects are not null or undefined
+ 
+
+  console.log(projects);
+  // 12
 
   return (
     <>
@@ -53,7 +105,7 @@ function ComunityPage() {
             spaceBetween={30}
             centeredSlides={true}
             autoplay={{
-              delay: 2500,
+              delay: 3500,
               disableOnInteraction: false,
             }}
             pagination={{
@@ -89,8 +141,8 @@ function ComunityPage() {
       </section>
 
       <section>
-        <button onClick={() => setDataType('project')}>프로젝트</button>
-        <button onClick={() => setDataType('study')}>스터디</button>
+        <button onClick={handleProjectClick}>프로젝트</button>
+        <button onClick={handleStudyClick}>스터디</button>
         <Link to="communitycreate">모집하기</Link>
         <SecondSwiperContainer>
           <SecondSwiper
@@ -105,37 +157,39 @@ function ComunityPage() {
             modules={[Grid, Pagination]}
           >
             {/* SwiperSlide */}
-            {(dataType === 'project' ? projectData : studyData).map((item) => (
-              <CustomSwiperSlide key={item.id}>
-                <StyledLink to={`/detailPage/${item.id}`}>
-                  <SecondSlide>
-                    <Maincontents>
-                      <H2>{item.title}</H2>
-                      <P>마감일 : {item.deadline}</P>
-                      <Contents>{item.contents}</Contents>
-                      {/* Loop through tags */}
-                      <Imgwrapper>
-                      {[item.tag1, item.tag2, item.tag3].map(
-                        (tag, index) =>
-                        // Render image if tag exists
-                        tag && (
-                          <div key={index}>
-                              <Img
-                                src={getPbImageURL(
-                                  'community_img',
-                                  `${tag}.svg`
-                                  )}
+            {projects && studys && (dataType === 'project' ? projects : studys).map((item) => (
+            //  {projects &&
+            //   projects.map((item) => (
+                <CustomSwiperSlide key={item.id}>
+                  <StyledLink to={`/detailPage/${dataType}/${item.id}`}>
+                    <SecondSlide>
+                      <Maincontents>
+                        <H2>{item.title}</H2>
+                        <P>마감일 : {item.deadline}</P>
+                        <Contents>{item.contents}</Contents>
+                        {/* Loop through tags */}
+                        <Imgwrapper>
+                          {[item.tag1, item.tag2, item.tag3].map(
+                            (tag, index) =>
+                              // Render image if tag exists
+                              tag && (
+                                <div key={index}>
+                                  <Img
+                                    src={getPbImageURL(
+                                      'community_img',
+                                      `${tag}.svg`
+                                    )}
                                   />
-                            </div>
-                          )
+                                </div>
+                              )
                           )}
-                          </Imgwrapper>
-                    </Maincontents>
-                    <div>{item.email}</div>
-                  </SecondSlide>
-                </StyledLink>
-              </CustomSwiperSlide>
-            ))}
+                        </Imgwrapper>
+                      </Maincontents>
+                      <div>작성자: {getUserEmail(item.user_id || '')}</div>
+                    </SecondSlide>
+                  </StyledLink>
+                </CustomSwiperSlide>
+              ))}
           </SecondSwiper>
         </SecondSwiperContainer>
       </section>
@@ -143,7 +197,7 @@ function ComunityPage() {
   );
 }
 
-export default ComunityPage;
+export default CommunityPage;
 
 
 const FirstSwiperContainer = styled.div`
@@ -157,7 +211,7 @@ const FirstSwiper = styled(ReactSwiper)`
   height: 100%;
   `;
 
-  const ReactSwiperSlide = styled(SwiperSlideDefault)`
+const ReactSwiperSlide = styled(SwiperSlideDefault)`
     width: 100%;
     height: auto;
   `;
@@ -172,6 +226,7 @@ const SecondSwiperContainer = styled.div`
 const SecondSwiper = styled(ReactSwiper)`
   width: 100%;
   height: 100%;
+  
   .swiper-wrapper {
     display: grid;
     grid-template-columns: repeat(6, 1fr); 
@@ -179,6 +234,7 @@ const SecondSwiper = styled(ReactSwiper)`
     gap: 40px; 
     justify-items: center;
     margin: 0 auto;
+    
   }
   `;
 
@@ -197,6 +253,7 @@ const SecondSlide = styled.div`
   overflow: hidden;
   white-space: normal;
   border-radius: 20px;
+ 
   .swiper-slide {
     margin: 0 !important;
   }
@@ -206,10 +263,11 @@ const SecondSlide = styled.div`
 const CustomSwiperSlide = styled(SwiperSlideDefault)`
   width: 50px;
   height: 50px;
-  :hover{
-    border: 3px solid #000;
+   :hover{
+    border: 1px solid #000;
   }
-  `;
+`;
+
 
 const Img = styled.img`
   width: 50px;
