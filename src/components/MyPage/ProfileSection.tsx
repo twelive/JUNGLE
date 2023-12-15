@@ -1,15 +1,11 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import styled from 'styled-components';
 import Profile from '@components/MyPage/Profile';
 import useDataStore from '@store/useDataStore';
 import getUserName from '@utils/getUserName';
 
 function ProfileSection() {
-  const {user, getUserData} = useDataStore();
-
-  useEffect(()=> {
-    getUserData();
-  },[getUserData]);
+  const {user} = useDataStore();
 
   return (
     <ProfileBox>

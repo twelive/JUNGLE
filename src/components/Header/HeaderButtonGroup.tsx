@@ -1,7 +1,10 @@
+import { useAuthStore } from '@/store/useAuthStore';
 import HeaderButton from '@components/Button/HeaderButton';
 import styled from 'styled-components';
 
+
 function HeaderButtonGroup() {
+  const { handleLogout } = useAuthStore();
   return (
     <FlexBox>
       <HeaderButton
@@ -11,7 +14,7 @@ function HeaderButtonGroup() {
       >
         알림
       </HeaderButton>
-      <HeaderButton>로그아웃</HeaderButton>
+      <HeaderButton onClick={handleLogout}>로그아웃</HeaderButton>
     </FlexBox>
   );
 }

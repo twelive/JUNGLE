@@ -9,6 +9,7 @@ const FooterName: FooterMenu[] = [
   { '/mypage': 'MyPage' },
   { '/job': 'JobSeeking' },
   { '/job/interview': 'JobInterview' },
+  { '/job/coding': 'JobCodingTest' },
   { '/community': 'Community' },
   { '/study': 'Study' },
 ];
@@ -41,8 +42,16 @@ export default Footer;
 const AnimationFooter = styled.footer`
   width: 100%;
   padding-top: 3.125rem;
+  padding-bottom: 1rem;
   overflow: hidden;
   border-top: 0.15rem solid var(--bs-black-500);
+  
+  @media ${(props) => props.theme.device.tablet} {
+    padding-top: 2.5rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    padding-top: 1.875rem;
+  }
 `;
 
 const AnimationTrack = styled.div`
@@ -64,6 +73,13 @@ const FooterSection = styled.div`
   justify-content: center;
   align-items: center;
   gap: 3.125rem;
+
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 2.5rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 1.875rem;
+  }
 `;
 
 const Text = styled.span`
@@ -71,4 +87,11 @@ const Text = styled.span`
   text-align: center;
   font-size: 11.25rem;
   font-weight: 700;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 8.125rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 5rem;
+  }
 `;

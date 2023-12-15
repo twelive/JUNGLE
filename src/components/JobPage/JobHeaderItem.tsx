@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const DefaultMenu = [
   { path: '/job', children: '취업' },
   { path: '/job/interview', children: '면접' },
+  { path: '/job/coding', children: '코딩 테스트' },
 ];
 
 function JobHeaderItem() {
@@ -51,6 +52,14 @@ const StyledLink = styled(Link)<{ $isActive?: boolean }>`
   color: ${(props) => (props.$isActive ? 'black' : 'var(--bs-black-600)')};
   /* 애니메이션 CSS 추가 */
   position: relative;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 1.25rem;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1rem;
+  }
 
   &::after {
     content: '';

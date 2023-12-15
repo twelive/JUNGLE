@@ -2,13 +2,12 @@ import { Helmet } from 'react-helmet-async';
 import Banner from '@/assets/job/job-banner.svg';
 import styled from 'styled-components';
 import JobHeaderItem from '@/components/JobPage/JobHeaderItem';
-import JobSeekBox from '@/components/JobPage/JobSeekBox';
-
-function JobSeekPage() {
+import JobCodingTestBox from '@/components/JobPage/JobCodingTestBox';
+function JobCodingTestPage() {
   return (
     <>
       <Helmet>
-        <title>Seek - JUNGLE</title>
+        <title>CodingTest - JUNGLE</title>
       </Helmet>
       <MainSection>
         <BannerImg src={Banner} alt="배너사진" />
@@ -16,14 +15,13 @@ function JobSeekPage() {
           <JobHeaderItem />
         </MenuBox>
         <MainBox>
-          <JobSeekBox />
+          <JobCodingTestBox />
         </MainBox>
       </MainSection>
     </>
   );
 }
-
-export default JobSeekPage;
+export default JobCodingTestPage;
 
 const MainSection = styled.section`
   width: 100%;
@@ -32,29 +30,22 @@ const MainSection = styled.section`
 
 const BannerImg = styled.img`
   width: 100%;
-  height: 50%;
 `;
 
 const MenuBox = styled.div`
+  display: flex;
+  justify-content: start;
+  gap: 50px; //변경예정
   padding: 50px;
+  font-size: 40px;
   border: 1px solid black;
 `;
 
 const MainBox = styled.div`
   border: 1px solid black;
   padding-top: 50px;
-  padding-bottom: 50px;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 60px;
-
-  @media ${(props) => props.theme.device.tablet} {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 40px;
-  }
-
-  @media ${(props) => props.theme.device.mobile} {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 30px;
-  }
+  grid-template-columns: repeat(2, 1fr);
+  gap: 100px;
+  place-items: center;
 `;
