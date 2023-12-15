@@ -28,7 +28,10 @@ const PointBox = styled.div`
     gap: 2.5rem;
   }
   @media ${(props) => props.theme.device.mobile} {
+    width: 100%;
     gap: 1.875rem;
+    padding-top: 1.875rem;
+    border-top: 0.15rem solid var(--bs-black-400);
   }
 
 `;
@@ -38,6 +41,12 @@ const PointContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 0.625rem;
+
+  @media ${(props) => props.theme.device.mobile} {
+    flex-direction: row;
+    align-items: start;
+    gap: 0.625rem;
+  }
 `;
 
 const InnerBox = styled.div`
@@ -45,6 +54,10 @@ const InnerBox = styled.div`
   padding-left: 5rem;
   align-items: center;
   gap: 1.875rem;
+
+  @media ${(props) => props.theme.device.mobile} {
+    padding: 0.625rem;
+  }
 `;
 
 const Text = styled.span`
@@ -52,12 +65,20 @@ const Text = styled.span`
   font-size: 6.25rem;
   font-weight: 700;
   letter-spacing: -0.125rem;
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1.875rem;
+  }
 `;
 
 const PointText = styled(Text)`
   text-align: center;
-  font-size: 6.25rem;
+  font-size: 3.75rem;
   font-weight: 600;
   letter-spacing: -0.125rem;
   border-bottom: 0.4375rem solid black;
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1.125rem;
+  }
 `;

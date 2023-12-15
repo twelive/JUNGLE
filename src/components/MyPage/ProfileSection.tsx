@@ -12,7 +12,7 @@ function ProfileSection() {
       <h2 className="sr-only">프로필</h2>
       <Profile />
       <ProfileText>
-        어서오세요 {getUserName(user?.email)}님, <br /> 지금까지의 활동내역을 보여드립니다.
+        어서오세요 {getUserName(user?.email)}님! <br /> <BottomText>지금까지의 활동내역을 보여드립니다.</BottomText>
       </ProfileText>
     </ProfileBox>
   );
@@ -33,14 +33,29 @@ const ProfileBox = styled.div`
     padding-right: 2.5rem;
   }
   @media ${(props) => props.theme.device.mobile} {
+    flex-direction: column;
     gap: 1.875rem;
-    padding-right: 1.875rem;
+    width: 100%;
+    padding: 0;
+    border: none;
   }
 `;
 
 const ProfileText = styled.p`
+  text-align: center;
   min-width: 18.75rem;
   font-size: 3rem;
   font-weight: 600;
   line-height: 6.25rem;
+
+  @media ${(props) => props.theme.device.tablet} {
+    
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 2rem;
+    line-height: normal;
+  }
 `;
+
+const BottomText = styled.p`
+display: none`

@@ -71,11 +71,12 @@ const TopSection = styled(FlexLayout)`
   }
 
   @media ${(props) => props.theme.device.mobile} {
+    flex-direction: column;
+    align-items: start;
     gap: 1.875rem;
     padding: 1.875rem 0;
   }
 `;
-
 
 const BookMarkSection = styled(FlexLayout)`
   width: 100%;
@@ -87,6 +88,7 @@ const BookMarkSection = styled(FlexLayout)`
     flex-direction: column;
   }
   @media ${(props) => props.theme.device.mobile} {
+    width: 100%;
     flex-direction: column;
   }
 `;

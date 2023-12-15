@@ -39,6 +39,7 @@ const BookMarkLinkBox = styled.div`
   @media ${(props) => props.theme.device.tablet} {
     flex-direction: row;
     width: 100%;
+    min-width: 17.5rem;
     margin: 2.5rem 0;
     padding-right: 2.5rem;
     border: none;
@@ -46,9 +47,9 @@ const BookMarkLinkBox = styled.div`
 
   @media ${(props) => props.theme.device.mobile} {
     flex-direction: row;
-    width: 100%;
+    width: 20%;
+    min-width: 16.25rem;
     margin: 1.875rem 0;
-    padding-right: 1.875rem;
     border: none;
   }
 `;
@@ -63,7 +64,9 @@ const InnerBox = styled.div`
 
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
-  }
+    align-items: end;
+    align-content: stretch;
+
 `;
 
 const BookMarkButton = styled.button`
