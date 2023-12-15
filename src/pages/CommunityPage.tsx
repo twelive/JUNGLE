@@ -18,14 +18,32 @@ import banner2 from '../assets/community/community-banner2.svg';
 import banner3 from '../assets/community/community-banner3.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
-// import useDataStore from '@/store/useDataStore';
 import { useState } from 'react';
-// import useStorageStore from '@/store/useStorageStore';
 import { getPbImageURL } from '@/store/getPbImageURL';
-// import useEmailStore from '@/store/useEmailStore';
 import { supabase } from '@/client';
 import { useQuery } from 'react-query';
 import { CommunityProject } from '@/types/CommunityProject';
+import { Users } from '@/types/Users';
+import { CommunityStudy } from '@/types/CommunityStudy';
+
+
+
+
+const getUserData: () => Promise<Users[] | null> = async () => {
+  const { data } = await supabase
+    .from('users')
+    .select(
+      `
+      id,
+      email,
+      community_project:community_project (id, title)
+    `
+    )
+    .order('created_at', { ascending: false })
+    .returns<Users[] | null>();
+  
+  return data;
+};
 
 const getProjects :()=> Promise<CommunityProject[] | null>= async () => {  
    const { data } = await supabase
@@ -36,14 +54,41 @@ const getProjects :()=> Promise<CommunityProject[] | null>= async () => {
       
 }
 
+const getStudys :()=> Promise<CommunityStudy[] | null>= async () => {  
+   const { data } = await supabase
+     .from('community_study')
+     .select('*')
+     .order('created_at', { ascending: false }).returns<CommunityStudy[] | null>();
+      return data;
+      
+}
+
+
 function CommunityPage() {
-  const { data: projects } = useQuery<CommunityProject[] | null>({
-    queryKey: ['projects'],
-    queryFn: getProjects,
-  });
+  const { data: projects } = useQuery('projects', getProjects);
+  const { data: studys } = useQuery('study', getStudys);
+  const { data: users } = useQuery('users', getUserData);
+
+  const [dataType, setDataType] = useState<'project' | 'study'>('project');
+  
+   const handleProjectClick = () => {
+     setDataType('project');
+     
+   };
+
+   // 스터디 버튼 클릭 시
+   const handleStudyClick = () => {
+     setDataType('study');
+   };
 
 
-   const [dataType, setDataType] = useState<'project' | 'study'>('project');
+   const getUserEmail = (userId: string) => {
+     // 'users' 데이터에서 해당 userId에 맞는 사용자의 이메일을 찾아 반환
+     const foundUser = users?.find((user) => user.id === userId);
+     return foundUser?.email || 'Unknown'; // 만약 사용자를 찾지 못하면 'Unknown' 반환
+   };
+  // Make sure users and projects are not null or undefined
+ 
 
   console.log(projects);
   // 12
@@ -96,8 +141,8 @@ function CommunityPage() {
       </section>
 
       <section>
-        <button onClick={() => setDataType('project')}>프로젝트</button>
-        <button onClick={() => setDataType('study')}>스터디</button>
+        <button onClick={handleProjectClick}>프로젝트</button>
+        <button onClick={handleStudyClick}>스터디</button>
         <Link to="communitycreate">모집하기</Link>
         <SecondSwiperContainer>
           <SecondSwiper
@@ -112,9 +157,9 @@ function CommunityPage() {
             modules={[Grid, Pagination]}
           >
             {/* SwiperSlide */}
-            {/* {(dataType === 'project' ? projectData : studyData).map((item) => ( */}
-            {projects &&
-              projects.map((item) => (
+            {projects && studys && (dataType === 'project' ? projects : studys).map((item) => (
+            //  {projects &&
+            //   projects.map((item) => (
                 <CustomSwiperSlide key={item.id}>
                   <StyledLink to={`/detailPage/${dataType}/${item.id}`}>
                     <SecondSlide>
@@ -140,7 +185,7 @@ function CommunityPage() {
                           )}
                         </Imgwrapper>
                       </Maincontents>
-                      <div>작성자: {item.user_id}</div>
+                      <div>작성자: {getUserEmail(item.user_id || '')}</div>
                     </SecondSlide>
                   </StyledLink>
                 </CustomSwiperSlide>
