@@ -20,8 +20,19 @@ function BookMarkModal() {
     setIsHovered(false);
   };
 
+  const viewportWidth = window.innerWidth;
+  let scrollTop = 0;
 
-  window.scrollTo({ top: 500, behavior: 'smooth' });
+  if (viewportWidth < 768) {
+    scrollTop = 1300;
+  } else if (viewportWidth < 1010) {
+    scrollTop = 900;
+  } else {
+    scrollTop = 650;
+  }
+
+  window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+
 
 
   return (
@@ -61,7 +72,7 @@ const Modal = styled.div`
   /* Style CSS */
   box-sizing: border-box;
   width: 80%;
-  height: 55%;
+  height: 40%;
   padding: 3.125rem;
   border: 0.5rem solid var(--bs-black-600);
   border-radius: 3.125rem;
@@ -71,10 +82,30 @@ const Modal = styled.div`
   /* Scroll */
   overflow-y: auto;
 
+  @media ${(props) => props.theme.device.tablet} {
+      width: 100%;
+      height: 30%;
+      padding: 2.5rem;
+    }
+
+    @media ${(props) => props.theme.device.mobile} {
+      width: 100%;
+      height: 27%;
+      padding: 1.875rem;
+    }
+
   h2 {
     width: 100%;
   text-align: center;
   color: var(--bs-black-300);
+
+  @media ${(props) => props.theme.device.tablet} {
+      font-size: 2.375rem;
+    }
+
+    @media ${(props) => props.theme.device.mobile} {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -91,5 +122,14 @@ const CancelButton = styled.button`
     top: 4.5625rem;
     right: 1.875rem;
     transform: translate(-50%, -50%);
+
+    @media ${(props) => props.theme.device.tablet} {
+      top: 3.5rem;
+    }
+
+    @media ${(props) => props.theme.device.mobile} {
+      top: 2.75rem;
+      right: -0.625rem;
+    }
   }
 `

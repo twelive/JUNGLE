@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import ArrowScrollDown from '@components/ArrowScrollDown';
 import useBookMarkStore from '@store/useBookMarkStore';
+import styled from 'styled-components';
 
 function BookMarkLink() {
   const { setIsBookMark } = useBookMarkStore();
@@ -66,7 +66,7 @@ const InnerBox = styled.div`
     width: 100%;
     align-items: end;
     align-content: stretch;
-
+  }
 `;
 
 const BookMarkButton = styled.button`
