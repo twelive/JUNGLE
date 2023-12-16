@@ -13,11 +13,11 @@ const Title = styled.h1`
   letter-spacing: 2.1875rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 5.625rem;
-    letter-spacing: 1.875rem;
+    font-size: 5rem;
+    letter-spacing: 1.4rem;
   }
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 4.375rem;
-    letter-spacing: 1.5rem;
+    font-size: 2.8rem;
+    letter-spacing: 1rem;
   }
 `;

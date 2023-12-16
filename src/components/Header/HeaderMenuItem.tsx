@@ -61,7 +61,9 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
     font-size: 1.75rem;
   }
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 1.5rem;
+    border-bottom: ${(props) =>
+    props.$event ? '0.25rem solid black' : 'none'};
+    font-size: 1rem;
   }
 
   &::after {
@@ -75,6 +77,10 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
     visibility: hidden;
     transform: scale(0);
     transition: all 0.3s;
+
+    @media ${(props) => props.theme.device.mobile} {
+      height: 0.25rem;
+    }
   }
 
   ${(props) =>
