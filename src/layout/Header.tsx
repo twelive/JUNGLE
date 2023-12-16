@@ -28,13 +28,22 @@ export default Header;
 
 const HeaderSecton = styled.header<{ $isBorder: boolean }>`
   display: flex;
-  width: 100wh;
-  padding: 3.125rem;
+  width: 100%;
+  padding-bottom: 3.125rem;
   flex-direction: column;
   align-items: flex-start;
   gap: 3.125rem;
   border-bottom: ${(props) =>
     props.$isBorder ? '0.15rem solid var(--bs-black-400)' : 'none'};
+
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 1.875rem;
+    padding-bottom: 1.875rem;
+  }
 `;
 
 const FlexBox = styled.div`

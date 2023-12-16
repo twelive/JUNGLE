@@ -28,15 +28,33 @@ const StyledLink = styled(Link)<{ $size: string }>`
   flex-direction: column;
   align-items: center;
   gap: ${(props) => (props.$size === 'default' ? '2.75rem' : '1.375rem')};
+
+  @media ${(props) => props.theme.device.mobile} {
+    display: none;
+  }
 `;
 
 const FlexBox = styled.div<{ $size: string }>`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: ${(props) => (props.$size === 'default' ? '2.75rem' : '1.375rem')};
+  gap: ${(props) => (props.$size === 'default' ? '2rem' : '1.375rem')};
+
+  @media ${(props) => props.theme.device.mobile} {
+    gap: ${(props) => (props.$size === 'default' ? '1.25rem' : '1.0625rem')};
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: ${(props) => (props.$size === 'default' ? '0.9375rem' : '0.75rem')};
+  }
 `;
 
 const ImgBox = styled.img<{ $size: string }>`
-  width: ${(props) => (props.$size === 'default' ? '48.75rem' : '19.5rem')};
+  width: ${(props) => (props.$size === 'default' ? '36rem' : '12rem')};
+  
+  @media ${(props) => props.theme.device.tablet} {
+    width:  ${(props) => (props.$size === 'default' ? '27.5rem' : '10.3rem')};
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    width:  ${(props) => (props.$size === 'default' ? '16.125rem' : '8.75rem')};
+  }
 `;

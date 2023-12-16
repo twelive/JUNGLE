@@ -56,6 +56,14 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
   /* 애니메이션 CSS 추가 */
   position: relative;
 
+  
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 1.75rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1.5rem;
+  }
+
   &::after {
     content: '';
     position: absolute;
