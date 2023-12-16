@@ -8,6 +8,7 @@ type DataType = {
   title: string;
   created_at: string;
   text: string;
+  name: string;
 };
 
 type State = {
@@ -46,7 +47,7 @@ const useDataStore = create<State>((set) => ({
     }
   },
   //유저 id에 해당하는 것만 가져오기
-  getIdData: async (tableName: string, id: string | number) => {
+  getIdData: async (tableName: string, id: number | string) => {
     const { data, error } = await supabase
       .from(tableName)
       .select('*')
