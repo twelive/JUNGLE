@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import TeamPeople from '@components/IntroductionPage/TeamPeople';
+import Schedule from '@components/IntroductionPage/Schedule';
 import uniS2 from '@assets/Introduction/uniS2.svg'
 import seojinman from '@assets/Introduction/seojinman.svg'
 import cereallover from '@assets/Introduction/cereallover.svg'
@@ -20,19 +21,19 @@ function IntroductionTeamPage() {
       <Helmet>
         <title>IntroductionTeam - JUNGLE</title>
       </Helmet>
-      <IntroductionTeam>
+      <section>
         <h1 className='sr-only'>팀 소개 페이지</h1>
-        <h2>팀원 소개</h2>
+        <MemberHeading>팀원 소개</MemberHeading>
         <TeamMember>{teamMembers.map((member, index) => <TeamPeople key={index} src={member.src} name={member.name} introduction={member.introduction} />)}</TeamMember>
-      </IntroductionTeam>
+      <Schedule title='우리의 여정'>프론트엔드 스쿨 6기에서 프론트엔드 플러스 스쿨 1기를 지나 어엿한 주니어 프론트엔드 개발자를 향해 나아가고 있습니다! 특히 이번 주니어 프론트엔드만을 위한 반응형 웹사이트, `JUNGLE`을 개발하고 배포하면서 기획부터 디자인, 협업 사항을 상세하게 나누고 GitHub을 통해 기록하였습니다. 앞으로도 각자 희망하는 도메인 속에서 그려나갈 미래를 꿈꾸며 노력하겠습니다. 지금까지 팀 Twelive 였습니다. 감사합니다!</Schedule>
+      </section>
     </>
   );
 }
 
 export default IntroductionTeamPage;
 
-const IntroductionTeam = styled.section`
-  h2 {
+const MemberHeading = styled.h2`
     font-size: 2.75rem;
     font-weight: 600;
     margin-top: 3.125rem;
@@ -48,7 +49,6 @@ const IntroductionTeam = styled.section`
       margin-top: 1.875rem;
       margin-bottom: 0.625rem;
     }
-  }
 `
 
 const TeamMember = styled.ul`
