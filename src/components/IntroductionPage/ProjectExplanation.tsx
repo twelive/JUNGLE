@@ -1,14 +1,15 @@
 import styled from "styled-components"
 
-function ProjectExplanation({src= '#', projectName = '프로젝트명', date = '개발기간', review = '소감(회고)', plus='추후 구현하고 싶은 기능'}) {
+function ProjectExplanation({src= '#', projectName = '프로젝트명', planningDate = '기획기간', developingDate = '개발기간', review = '소감(회고)', plus='추후 구현하고 싶은 기능'}) {
   return (
     <Layout>
       <ProjectImg src={src} />
       <div>
         <ProjectName>{projectName}</ProjectName>
-        <Content>{date}</Content>
-        <Content>{review}</Content>
-        <Content>{plus}</Content>
+        <Content><dt>기획 기간</dt><dd>{planningDate}</dd></Content>
+        <Content><dt>개발 기간</dt><dd>{developingDate}</dd></Content>
+        <Content><dt>소개</dt><dd>{review}</dd></Content>
+        <Content><dt>추후 계획</dt><dd>{plus}</dd></Content>
       </div>
     </Layout>
   )
@@ -67,8 +68,16 @@ const ProjectName = styled.h3`
   }
 `
 
-const Content = styled.p`
+const Content = styled.dl`
   font-size: 2rem;
+
+  dt {
+    font-weight: 600;
+  }
+  
+  dd {
+    margin: 0.25rem 0 0.625rem 0.625rem;
+  }
 
   @media ${(props) => props.theme.device.tablet} {     
     font-size: 1.75rem;

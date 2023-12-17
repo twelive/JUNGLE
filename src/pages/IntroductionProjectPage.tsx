@@ -4,6 +4,11 @@ import ProjectExplanation from '@components/IntroductionPage/ProjectExplanation'
 import Schedule from '@components/IntroductionPage/Schedule';
 import twellive from '@assets/common/twellive.svg'
 
+const projectData = [
+  {src: twellive, projectName: 'Twellive', planningDate: '2023.11.20 ~ 2023.11.20', developingDate: '2023.11.21 ~ 2023.12.01', review: 'Redux, Supabase, YouTube Data API 를 활용하여 동영상 시청이 가능한 반응형 웹 사이트 제작하였습니다. Redux와 새로운 API에 도전하며 더 많이 성장한 자신을 발견할 수 있었던 프로젝트였습니다.', plus: '이후 새로운 프로젝트를 통해 더 발전된 모습을 보이고 싶습니다.'},
+  {src: '/logo.svg', projectName: 'JUNGLE', planningDate: '2023.11.30 ~ 2023.12.06', developingDate: '2023.12.07 ~ 2023.12.23', review: '', plus: ''},
+]
+
 function IntroductionProjectPage() {
   return (
     <>
@@ -16,8 +21,9 @@ function IntroductionProjectPage() {
           <TeamName>Twelive</TeamName>
           <Content>취업이라는 JUNGLE을 헤쳐나가는 용감한 사자들.</Content>
         </TeamSection>
-        <ProjectExplanation src={twellive} projectName='Twellive' />
-        <ProjectExplanation src='/logo.svg' projectName='JUNGLE'/>
+        {projectData.map(project => (
+          <ProjectExplanation src={project.src} projectName={project.projectName} planningDate={project.planningDate} developingDate={project.developingDate} review={project.review} plus={project.plus} />
+        ))}
         <Schedule isBorder={false} />
       </section>
     </>
