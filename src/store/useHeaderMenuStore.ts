@@ -21,9 +21,16 @@ const HeaderMenuName: HeaderMenu[] = [
 const useHeaderMenuStore = create<State>((set) => ({
   currentMenu: '내 활동.',
   setCurrentMenu: (path) =>
-    set(() => ({
-      currentMenu: (HeaderMenuName.find((menu) => menu[path]) || {})[path],
-    })),
+  set(() => {
+    const originMenu = HeaderMenuName.find((menu) => menu[path]);
+    
+    const paramsPath = path.substring(0, path.lastIndexOf('/'));
+    const paramsMenu = HeaderMenuName.find((menu) => menu[paramsPath]);
+
+    return {
+      currentMenu: (originMenu && originMenu[path]) || (paramsMenu && paramsMenu[paramsPath]) || '경로오류',
+    };
+  }),
 }));
 
 export default useHeaderMenuStore;
