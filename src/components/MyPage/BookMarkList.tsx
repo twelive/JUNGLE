@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { supabase } from '@/client';
 import BookMarkItem from '@components/MyPage/BookMarkItem';
-import { BookMarks } from '@/types/Bookmarks';
+import { BookMarks } from '@/types/BookMarks';
 import {useAuthStore} from '@store/useAuthStore';
 
 function BookMarkList() {
