@@ -3,121 +3,341 @@ import useStorageStore from '@/store/useStorageStore';
 import useTagStore from '@/store/useTagStore';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import styled from 'styled-components';
 import { getPbImageURL } from '@/store/getPbImageURL';
 import StudyTitleGroup from '@/components/StudyPage/StudyTitleGroup';
-import TagButtonComponent from '@/components/StudyPage/TagButton';
-import { Link } from 'react-router-dom';
+import { Swiper } from 'swiper/react';
+import TagButtonComponent from '@/components/StudyPage/TagButtonComponent';
+import { SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom'; 
+// Import Swiper React components
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 
+
+
+// import required modules
+import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+
+import styled from 'styled-components';
+import LikeButton from '@/components/StudyPage/LikeButton';
 
 function StudyPage() {
-  const { data: bookData, getListData } = useDataStore();
-  const { selectedTag, setSelectedTag } = useTagStore();
-  const { updateData } = useDataStore(); 
-  const { getAllList } = useStorageStore();
-  const [like, setLike] = useState<Record<string, number>>(() => {
-    const initialLike: Record<string, number> = {};
-    bookData.forEach(item => {
-      initialLike[String(item.anonymous_book_id)] = 0;
-    });
-    return initialLike;
-  });
-  
-  
+const { data: bookData, getListData } = useDataStore();
+const { selectedTag, setSelectedTag } = useTagStore();
+// const { updateData } = useDataStore();
+const { getAllList } = useStorageStore();
 
-  const [tags, setTags] = useState<string[]>([]);
+const [tags, setTags] = useState<string[]>([]);
+
+useEffect(()=>{
+getListData('book');
+setSelectedTag('etc');
+getAllList('book','');
+
+},[getListData,getAllList,setSelectedTag]);
+
+useEffect(() => {
+const uniqueTags = Array.from(new Set(bookData.map(item => String(item.tag))));
+setTags(uniqueTags);
+}, [bookData]);
+
+const handleButtonClick = (tag: string) => {
+setSelectedTag(tag);
+};
+
+return (
+<>
+<Helmet>
+<title>Study - JUNGLE</title>
+</Helmet>
+<OutGrid>
+
+            <BookGroup>
+
+
+      <StudyTitleGroup studyTitle='도서 추천' tagTitle='tag' studymobiletitle='도서추천' children2={tags.map(tag => (
+  <TagButtonComponent key={tag} $isActive={selectedTag === tag} onClick={() => handleButtonClick(tag)} title={tag} >
+    
+  </TagButtonComponent>
+ ))}>
+
+
+  
+       <SwiperOut
+        slidesPerView={3}
+            spaceBetween={0}
+            slidesPerGroup={3}
+        freeMode={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        cssMode={true}
+        mousewheel={true}
+        keyboard={true}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        className="mySwiper"
+        breakpoints={{
+          0: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+            slidesPerGroup:2,
+          },
+          1010:{
+            slidesPerView:3,
+
+
+          },
+          1920: {
+            slidesPerView: 3,
+          },
+         
+        }}
+      >
+
+      {bookData.filter(item => !selectedTag || item.tag === selectedTag).map((item)=> (
+    
+           <SwiperSlider key={item.anonymous_book_id}>
+  <BookCover>
+
+    <BookLinker to={`${item.URL}`}>
+    <Dl>
+      <Dt>
+  <Img src={getPbImageURL('book',`${item.anonymous_book_id}.webp`)} alt="/" />
+  
+      </Dt>
+      <Dd>
+        {item.title}
+      </Dd>
+
+  
+    </Dl>
+  
+  </BookLinker>
+  <LikeButton></LikeButton>
+  </BookCover>
+    </SwiperSlider>
+
+      ))}
+ 
+      
+      </SwiperOut>
+
+
+      
+      </StudyTitleGroup>
+
+
+  </BookGroup>
+
+
+    <FakeDiv>2</FakeDiv>
+    <FakeDiv>3</FakeDiv>
 
  
-  useEffect(()=>{
-    getListData('book');
-    setSelectedTag('etc');
-    getAllList('book','');
-    
-  },[getListData,getAllList,setSelectedTag]);
-  
+  </OutGrid>
 
-  useEffect(() => {
-    const uniqueTags = Array.from(new Set(bookData.map(item => String(item.tag))));
-    setTags(uniqueTags);
-  }, [bookData]);
-  
-  const handleButtonClick = (tag: string) => {
-    setSelectedTag(tag);
-  };
-  
-  return (
-    <>
-      <Helmet>
-        <title>Study - JUNGLE</title>
-      </Helmet>
-      <section>
-        
-          <StudyTitleGroup studyTitle='도서'>
-        
+  <section>
+      <h2>로드맵</h2>
 
-     {tags.map(tag => (
-      <TagButtonComponent key={tag} active={selectedTag === tag} onClick={() => handleButtonClick(tag)} title={tag} >
-        
-      </TagButtonComponent>
-     ))}
-
-          
-          </StudyTitleGroup>
-        <article>
-         
-          {bookData.filter(item => !selectedTag || item.tag === selectedTag).map((item)=> (
-          <>
-          <div>
-            <div>
-
-          <Img src={getPbImageURL('book',`${item.anonymous_book_id}.jpg`)}/>
-            </div>
-            {item.title}
-            {item.anonymous_book_id}
-            <StyledLink to={`${item.URL}`}></StyledLink>
-           
-  
-            <span onClick={async () => {
-  const newLike = (like[String(item.anonymous_book_id)] || 0) + 1;
-  setLike(prevLike => ({
-    ...prevLike,
-    [String(item.anonymous_book_id)]: newLike
-  }));
-
-  const updatedItem = {
-    ...item,
-    like: newLike
-  };
-  await updateData('book', Number(item.anonymous_book_id), updatedItem);
-}}> 👍 </span> {like[String(item.anonymous_book_id)] || 0}
-          </div>
-          </>
-          ))}
-        </article>
-      </section>
-      <section>
-          <h2>로드맵</h2>
-
-      </section>
-    </>
-  );
+  </section>
+</>
+);
 }
 
 export default StudyPage;
 
+const OutGrid = styled.section`
+/* display: grid;
+ */
 
-const Img = styled.img `
-width: 100px;
+display: block;
+
+
+@media ${(props) => props.theme.device.mobile} {
+/* font-size: 1rem; */
+}
+
+@media ${(props) => props.theme.device.tablet} {
+
+}
+
+@media ${(props) => props.theme.device.laptop} {
+/* font-size: 5rem;ㄴ */
+}
+`;
+
+const BookGroup = styled.div` 
+width: 100%; 
+display: block; 
+padding-top: 50px;
+padding-bottom: 50px;
+border-bottom: 0.0625rem solid var(--bs-black-300);
+
+
+
+
+`;
+const FakeDiv = styled.div `
+background-color: red;
+
+`;
+
+/////////
+
+
+ const SwiperOut = styled(Swiper)`
+    width: 100%;
+  height: 100%;
+  padding: 50px;
+
+  position: relative;
+  .swiper-wrapper {
+
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+.swiper-button-next {
+  right: 0;
+}
+.swiper-button-prev {
+  left: 0;
+}
+.swiper-button-next,
+.swiper-button-prev {
+
+  color: black !important;
+  &:hover {
+     background-color: #fff;
+  opacity: 0.5;
+  padding: 1px;
+  border-radius: 20px;
+  }
+}
+.swiper .swiper-pagination {
+  position: absolute;
+  bottom: 0; 
+}
+.swiper-pagination-bullet {
+  background-color: var(--bs-black-100);
+  margin: 0 10px;
+}
+
+
+
+
+
+@media ${(props) => props.theme.device.mobile} {
+    /* font-size: 1rem; */
+  }
+  
+  @media ${(props) => props.theme.device.tablet} {
+    /* font-size: 2rem; */
+  }
+  
+  @media ${(props) => props.theme.device.laptop} {
+
+  }
+
+  `;
+
+const SwiperSlider = styled(SwiperSlide) `
+    overflow: hidden;
+
+  
+.swiper-slide {
+
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+} 
+
+
+
+`;
+
+const Dl = styled.dl `
+height: 100%;
+width: auto;
+display: block;
+`;
+const Dt = styled.dt `
+display: flex;
+justify-content: center;
+margin-bottom: 5px;
+height: 100%;
+
+@media ${(props) => props.theme.device.mobile} {
+  /* font-size: 1rem; */
+  
+  
+}
+
+@media ${(props) => props.theme.device.tablet} {
+  /* font-size: 2rem; */
+}
+
+@media ${(props) => props.theme.device.laptop} {
+    /* height: 200px; */
+    
+  }
+  `;
+  const Img = styled.img`
+   /* display: block; */
+  width: auto;
+  /* height: 100%; */
+  object-fit: contain;
+  max-width: 100%;
+  height: 100%;
+  display: block;
+  
+  `;
+const Dd = styled.dd `
+overflow: hidden;
+-webkit-line-clamp: 1;
+height: 15px;
+text-align: center;
+`;
+
+const BookLinker = styled(Link)`
+display: block;
+height: 70%;
 
 `;
 
 
+const BookCover = styled.div `
+  /* background-color: purple; */
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  height: 100%;
+  width: auto;
 
-const StyledLink = styled(Link)`
-	box-sizing: border-box;
-	display: block;
-	padding: 4px 8px;
-	margin: 0 auto;
-	text-align: center;
+
+@media ${(props) => props.theme.device.mobile} {
+/* margin-top: 0px;
+margin-bottom: 0px; */
+
+
+}
 `;
