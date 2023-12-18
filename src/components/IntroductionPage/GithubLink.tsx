@@ -28,4 +28,8 @@ const Github = styled(Link)<{$isVisibility: boolean}>`
   text-align: center;
   cursor: pointer;
   transition: all 0.3s;
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1rem;
+  }
 `
