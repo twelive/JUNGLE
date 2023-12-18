@@ -26,4 +26,12 @@ const FlexBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1.25rem;
+
+  
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 0.9375rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 0.5rem;
+  }
 `;
