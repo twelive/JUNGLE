@@ -14,7 +14,7 @@ const HeaderMenuName: HeaderMenu[] = [
   { '/job': '취업.' },
   { '/community': '커뮤니티.' },
   { '/study': '공부.' },
-  { '/introduction': '프로젝트 소개.' },
+  { '/introduction': '프로젝트.' },
   { '/introduction/team': '팀 소개.' },
 ];
 

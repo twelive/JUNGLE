@@ -56,6 +56,16 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
   /* 애니메이션 CSS 추가 */
   position: relative;
 
+  
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 1.75rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    border-bottom: ${(props) =>
+    props.$event ? '0.25rem solid black' : 'none'};
+    font-size: 1rem;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -67,6 +77,10 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
     visibility: hidden;
     transform: scale(0);
     transition: all 0.3s;
+
+    @media ${(props) => props.theme.device.mobile} {
+      height: 0.25rem;
+    }
   }
 
   ${(props) =>
