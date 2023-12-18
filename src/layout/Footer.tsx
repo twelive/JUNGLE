@@ -85,7 +85,7 @@ const FooterSection = styled.div`
 const Text = styled.span`
   color: black;
   text-align: center;
-  font-size: 11.25rem;
+  font-size: 10rem;
   font-weight: 700;
 
   @media ${(props) => props.theme.device.tablet} {

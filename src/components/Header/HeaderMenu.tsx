@@ -55,7 +55,7 @@ export default HeaderMenu;
 const MenuSection = styled.nav`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
 `;
 
@@ -63,4 +63,12 @@ const FlexBox = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 1.875rem;
+
+  
+  @media ${(props) => props.theme.device.tablet} {
+    gap: 1.25rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 0.625rem;
+  }
 `;
