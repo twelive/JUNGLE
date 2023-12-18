@@ -19,10 +19,10 @@ const AddComment = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newComment.text.trim() !== '') {
-      addComment(newComment);
+      addComment({ ...newComment, id: '-2' }); // 빈 문자열 대신 null 값 할당
       setNewComment({
         ...newComment,
-        id: '',
+        id: '', // 혹시 모를 다른 필드 초기화
         text: '',
       });
     }
