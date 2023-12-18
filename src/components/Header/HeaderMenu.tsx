@@ -24,6 +24,7 @@ function HeaderMenu() {
   const {user} = useDataStore();
 
   const handleToggleMenu = (pageTitle: string) => {
+    if (pageTitle === '프로젝트 소개') pageTitle = '프로젝트';
     return currentMenu && pageTitle === currentMenu.slice(0, -1);
   };
 

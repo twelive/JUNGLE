@@ -5,9 +5,16 @@ import HeaderMenu from '@components/Header/HeaderMenu';
 import BackButton from '@components/Button/BackButton';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Header({ isMenu = true, isBorder = true, isBack = true }) {
-  const { currentMenu } = useHeaderMenuStore();
+  const { currentMenu, setCurrentMenu } = useHeaderMenuStore();
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    setCurrentMenu(pathname)
+  }, [pathname]);
 
   return (
     <HeaderSecton $isBorder={isBorder}>
