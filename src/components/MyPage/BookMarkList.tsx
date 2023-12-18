@@ -1,7 +1,32 @@
-import BookMarkItem from '@/components/MyPage/BookMarkItem';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
+import { supabase } from '@/client';
+import BookMarkItem from '@components/MyPage/BookMarkItem';
+import { BookMarks } from '@/types/Bookmarks';
+import {useAuthStore} from '@store/useAuthStore';
 
 function BookMarkList() {
+  const {user} = useAuthStore();
+
+  const getBookmarksData: () => Promise<BookMarks[] | null> = async () => {
+    const { data: bookmarks } = await supabase
+  .from('bookmarks')
+  .select(
+    `*, 
+    book:book (id, title, tag)`
+  )
+  .returns<BookMarks[] | null>();
+    
+    return bookmarks;
+  };
+
+  const { data } = useQuery('users', getBookmarksData);
+  
+  const bookmarkData = data?.filter(bookmark => bookmark.user_id === user)
+
+  console.log(bookmarkData);
+  
+
   return (
     <List>
       {/* map으로 불러올 예정입니다 */}
