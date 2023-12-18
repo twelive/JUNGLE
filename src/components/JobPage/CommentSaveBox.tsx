@@ -12,7 +12,7 @@ const CommentSaveBox = () => {
         <CommentItem key={comment.id}>
           <UserText>{comment.name}</UserText>
           <Text>{comment.text}</Text>
-          <DeleteButton id={comment.id} />
+          <DeleteButton id={comment.name} />
         </CommentItem>
       ))}
     </CommentList>

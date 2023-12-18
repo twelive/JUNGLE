@@ -13,7 +13,7 @@ const LOCAL_STORAGE_KEY = 'comments';
 
 // 댓글 데이터 타입 정의
 interface Comment {
-  id: string;
+  id?: string;
   name: string;
   text: string;
 }
@@ -42,17 +42,15 @@ const useCommentStore = create<CommentStore>((set) => {
       });
 
       // Supabase에 데이터 전송
-      const { data, error } = await supabase
-        .from('job_comment')
-        .insert([comment]);
+      const { error } = await supabase.from('job_comment').insert([comment]);
       if (error) {
         console.error('Error adding comment to Supabase:', error);
       }
     },
-    deleteComment: async (id) => {
+    deleteComment: async (name: string | number) => {
       set((state) => {
         const updatedComments = state.comments.filter(
-          (comment) => comment.id !== id
+          (comment) => comment.name !== name
         );
         localStorage.setItem(
           LOCAL_STORAGE_KEY,
@@ -61,8 +59,11 @@ const useCommentStore = create<CommentStore>((set) => {
         return { comments: updatedComments };
       });
 
-      // Supabase에서도 삭제
-      const { error } = await supabase.from('comment').delete().eq('id', id);
+      // Supabase에서 해당 ID의 댓글을 삭제
+      const { error } = await supabase
+        .from('job_comment')
+        .delete()
+        .match({ name });
       if (error) {
         console.error('Error deleting comment from Supabase:', error);
       }
