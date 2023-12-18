@@ -1,11 +1,28 @@
+import { useState } from "react";
 import styled from "styled-components"
+import GithubLink from "@components/IntroductionPage/GithubLink";
+import getGithubLink from "@utils/getGithubLink";
+import debounce from "@/utils/debounce";
 
 function TeamPeople({src = '#', name = '조원소개', introduction= '조원소개글'}) {
+  const [isHoverd, setIsHovered] = useState(false);
+
+  const handleMouseOver = () => {
+    if (!isHoverd) setIsHovered(true);
+  };
+
+  const handleMouseOut = () => {
+    debounce(() => setIsHovered(false), 1000)();
+  }
+
   return (
     <Member>
-      <MemberImg src={src} />
-      <MemberName>{name}</MemberName>
-      <MemberIntroduction>{introduction}</MemberIntroduction>
+      <button type='button' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        <MemberImg src={src} />
+        <MemberName>{name}</MemberName>
+        <MemberIntroduction>{introduction}</MemberIntroduction>
+      </button>
+      <GithubLink href={getGithubLink(src)} isVisibility={isHoverd} />
     </Member>
   )
 }
@@ -16,7 +33,14 @@ const Member = styled.li`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  
+  position: relative;
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
   @media ${(props) => props.theme.device.laptop} {
     width: 20%;
   }
@@ -41,6 +65,7 @@ const MemberImg = styled.img`
 `;
 
 const MemberName = styled.strong`
+  display: inline-block;
   padding: 0.6875rem 1.125rem;
   border-radius: 1.875rem;
   border: 0.0625rem solid var(--bs-black-200);
