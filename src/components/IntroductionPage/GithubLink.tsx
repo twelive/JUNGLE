@@ -1,17 +1,24 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-function GithubLink() {
+function GithubLink({href = '#', isVisibility = false}) {  
+
   return (
-    <Github to={'#'}>GithubLink</Github>
+    <Github to={href} target="_blank" rel="noopener noreferrer" $isVisibility={isVisibility}>GithubLink</Github>
   )
 }
 
 export default GithubLink
 
-const Github = styled(Link)`
+const Github = styled(Link)<{$isVisibility: boolean}>`
   /* reset CSS */
   text-decoration: none;
+  /* position */
+  position: absolute;
+  visibility: ${(props) => props.$isVisibility ? 'visible' : 'hidden'};
+  top: 40%;
+  left: 50%;
+  z-index: 1;
   /* Style CSS */
   padding: 0.625rem 0.9375rem;
   background-color: var(--bs-black-200);
