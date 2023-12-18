@@ -22,7 +22,7 @@ const CommentSaveBox: React.FC<CommentSaveBoxProps> = ({
         <CommentItem key={comment.id}>
           <UserText>{comment.name}</UserText>
           <Text>{comment.text}</Text>
-          <DeleteButton id={comment.name} />
+          <DeleteButton id={comment.id} />
         </CommentItem>
       ))}
     </CommentList>

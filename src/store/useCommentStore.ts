@@ -13,7 +13,7 @@ const LOCAL_STORAGE_KEY = 'comments';
 
 // 댓글 데이터 타입 정의
 interface Comment {
-  id?: string;
+  id?: number;
   name: string;
   text: string;
   interviewId?: number;
@@ -23,7 +23,7 @@ interface Comment {
 interface CommentStore {
   comments: Comment[];
   addComment: (comment: Comment) => void;
-  deleteComment: (id: string) => void;
+  deleteComment: (id: number) => void;
 }
 
 // Zustand Store 생성
@@ -50,10 +50,10 @@ const useCommentStore = create<CommentStore>((set) => {
         console.error('Error adding comment to Supabase:', error);
       }
     },
-    deleteComment: async (name: string | number) => {
+    deleteComment: async (id: number) => {
       set((state) => {
         const updatedComments = state.comments.filter(
-          (comment) => comment.name !== name
+          (comment) => comment.id !== id
         );
         localStorage.setItem(
           LOCAL_STORAGE_KEY,
@@ -66,7 +66,7 @@ const useCommentStore = create<CommentStore>((set) => {
       const { error } = await supabase
         .from('job_comment')
         .delete()
-        .match({ name });
+        .match({ id });
       if (error) {
         console.error('Error deleting comment from Supabase:', error);
       }
