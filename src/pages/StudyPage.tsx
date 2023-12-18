@@ -25,12 +25,16 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 import styled from 'styled-components';
 import LikeButton from '@/components/StudyPage/LikeButton';
+import { useAuthStore } from '@/store/useAuthStore';
 
 function StudyPage() {
 const { data: bookData, getListData } = useDataStore();
-const { selectedTag, setSelectedTag } = useTagStore();
-// const { updateData } = useDataStore();
-const { getAllList } = useStorageStore();
+  const { selectedTag, setSelectedTag } = useTagStore();
+  const  userId   = useAuthStore((state) => (state.user));
+  console.log(userId);
+
+  const { getAllList } = useStorageStore();
+  const itemType = `book`;
 
 const [tags, setTags] = useState<string[]>([]);
 
@@ -102,7 +106,7 @@ return (
 
       {bookData.filter(item => !selectedTag || item.tag === selectedTag).map((item)=> (
     
-           <SwiperSlider key={item.anonymous_book_id}>
+        <SwiperSlider key={item.anonymous_book_id}>
   <BookCover>
 
     <BookLinker to={`${item.URL}`}>
@@ -118,8 +122,10 @@ return (
   
     </Dl>
   
-  </BookLinker>
-  <LikeButton></LikeButton>
+            </BookLinker>
+          {/* 좋아요 버튼을 누르면 likes 스키마에 id는 자동생성되고 내 user_id가 들어가고 book_id에 해당 book.id가 들어간다. */}
+            
+  <LikeButton itemId={item.id} userId={userId} itemType={itemType}></LikeButton>
   </BookCover>
     </SwiperSlider>
 
