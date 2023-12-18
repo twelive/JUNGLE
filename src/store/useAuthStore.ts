@@ -1,7 +1,6 @@
 import { supabase } from '@/client';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { create } from 'zustand';
 
 
@@ -9,6 +8,8 @@ type State = {
   isAuth: boolean;
   user: string;
   token: string;
+  userEmail: string;
+  userName: string;
   handleLogin: () => Promise<void>;
   handleLogout: () => Promise<void>;
   deleteUser: (id: string) => Promise<void>;
@@ -18,6 +19,8 @@ const initialAuthState = {
   isAuth: false,
   user: '',
   token: '',
+  userEmail: '',
+  userName: '',
 };
 
 
@@ -67,7 +70,7 @@ export const useAuthStore = create<State>((set) => {
     console.log(`Supabase auth event: ${event}`);
 
     if (event === 'SIGNED_IN' && session) {
-      set({ isAuth: true, token: session.access_token, user: session.user.id });
+      set({ isAuth: true, token: session.access_token, user: session.user.id, userEmail: session.user.email });
     } else if (event === 'SIGNED_OUT') {
       set({ ...initialAuthState });
     }
