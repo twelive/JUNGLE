@@ -9,7 +9,7 @@ const DeleteButton = ({ id }: DeleteButtonProps) => {
   const deleteComment = useCommentStore((state) => state.deleteComment);
 
   const handleDelete = () => {
-    deleteComment(String(id));
+    deleteComment(String(id)); // 댓글의 ID를 문자열로 변환하여 전달
   };
 
   return <StyledButton onClick={handleDelete}>삭제</StyledButton>;

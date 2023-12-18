@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { create } from 'zustand';
 
-
 type State = {
   isAuth: boolean;
   user: string;
@@ -20,46 +19,43 @@ const initialAuthState = {
   token: '',
 };
 
-
 export const useAuthStore = create<State>((set) => {
-  
-
   const handleLogin: State['handleLogin'] = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({ provider: 'github' });
-    
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+    });
+
     if (error) {
-      console.error("Error during sign in: ", error);
+      console.error('Error during sign in: ', error);
     } else {
-      console.log("Signed in successfully: ", data);
+      console.log('Signed in successfully: ', data);
       set({ isAuth: true });
-
-
     }
   };
-  
+
   const handleLogout: State['handleLogout'] = async () => {
     const { error } = await supabase.auth.signOut();
-    
+
     if (error) {
-      console.error("Error during sign out: ", error);
+      console.error('Error during sign out: ', error);
     } else {
-      console.log("Signed out successfully");
+      console.log('Signed out successfully');
       set({ isAuth: false });
     }
   };
 
   const deleteUser: State['deleteUser'] = async (id: string) => {
-    if (id) { 
+    if (id) {
       const { data, error } = await supabase.auth.admin.deleteUser(id);
-      
+
       if (error) {
-        console.error("Error deleting user: ", error);
+        console.error('Error deleting user: ', error);
       } else {
-        console.log("User deleted successfully: ", data);
+        console.log('User deleted successfully: ', data);
         set({ isAuth: false });
       }
     } else {
-      console.error("No user id provided");
+      console.error('No user id provided');
     }
   };
 
@@ -73,11 +69,11 @@ export const useAuthStore = create<State>((set) => {
     }
   });
 
-  return { 
-    ...initialAuthState, 
-    handleLogin, 
-    handleLogout, 
-    deleteUser 
+  return {
+    ...initialAuthState,
+    handleLogin,
+    handleLogout,
+    deleteUser,
   };
 });
 
@@ -90,6 +86,4 @@ export function MyComponent() {
       navigate('/main');
     }
   }, [isAuth, navigate]);
-
-  // ...
 }

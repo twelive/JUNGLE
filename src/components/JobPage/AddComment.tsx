@@ -1,15 +1,41 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useCommentStore from '@/store/useCommentStore';
 import styled from 'styled-components';
+import { supabase } from '@/client';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const AddComment = () => {
   const [newComment, setNewComment] = useState({
-    id: '',
-    name: '전선용',
+    name: '',
     text: '',
   });
 
+  const [userEmail, setUserEmail] = useState('');
+  const user = useAuthStore((state) => state.user);
   const addComment = useCommentStore((state) => state.addComment);
+
+  useEffect(() => {
+    const fetchUserEmail = async () => {
+      if (user) {
+        const { data, error } = await supabase
+          .from('users')
+          .select('email')
+          .eq('id', user)
+          .single();
+
+        if (error) {
+          console.error('Error fetching user data:', error);
+          return;
+        }
+
+        if (data) {
+          setUserEmail(data.email);
+        }
+      }
+    };
+
+    fetchUserEmail();
+  }, [user]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,10 +45,9 @@ const AddComment = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newComment.text.trim() !== '') {
-      addComment(newComment);
+      addComment({ name: userEmail, text: newComment.text });
       setNewComment({
-        ...newComment,
-        id: '',
+        name: '',
         text: '',
       });
     }
