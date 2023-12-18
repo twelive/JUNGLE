@@ -46,10 +46,10 @@ function JobInterviewItemPage() {
           </FirstBox>
           <ModifyButton type="button">수정</ModifyButton>
           <CommentBox>
-            <AddComment />
+            <AddComment currentInterviewitemId={parseInt(item.id.toString())} />
           </CommentBox>
           <UserBox>
-            <CommentSaveBox />
+            <CommentSaveBox currentInterviewId={parseInt(item.id.toString())} />
           </UserBox>
         </MainBox>
       ))}

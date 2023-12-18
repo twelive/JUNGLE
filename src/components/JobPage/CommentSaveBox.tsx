@@ -2,13 +2,23 @@ import useCommentStore from '@/store/useCommentStore';
 import styled from 'styled-components';
 import DeleteButton from './DeleteButton';
 
-const CommentSaveBox = () => {
-  const comments = useCommentStore((state) => state.comments);
+interface CommentSaveBoxProps {
+  currentInterviewId: number;
+}
+
+const CommentSaveBox: React.FC<CommentSaveBoxProps> = ({
+  currentInterviewId,
+}) => {
+  const commentBox = useCommentStore((state) => state.comments);
+
+  const filteredComments = commentBox.filter(
+    (comment) => comment.interviewId === currentInterviewId
+  );
 
   return (
     <CommentList>
       <UserDivBox>댓글박스</UserDivBox>
-      {comments.map((comment) => (
+      {filteredComments.map((comment) => (
         <CommentItem key={comment.id}>
           <UserText>{comment.name}</UserText>
           <Text>{comment.text}</Text>

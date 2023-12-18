@@ -4,7 +4,11 @@ import styled from 'styled-components';
 import { supabase } from '@/client';
 import { useAuthStore } from '@/store/useAuthStore';
 
-const AddComment = () => {
+const AddComment = ({
+  currentInterviewitemId,
+}: {
+  currentInterviewitemId?: number;
+}) => {
   const [newComment, setNewComment] = useState({
     name: '',
     text: '',
@@ -45,7 +49,12 @@ const AddComment = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newComment.text.trim() !== '') {
-      addComment({ name: userEmail, text: newComment.text });
+      addComment({
+        name: userEmail,
+        text: newComment.text,
+        interviewId: currentInterviewitemId,
+      });
+      console.log(currentInterviewitemId);
       setNewComment({
         name: '',
         text: '',

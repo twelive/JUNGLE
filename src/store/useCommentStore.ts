@@ -16,6 +16,7 @@ interface Comment {
   id?: string;
   name: string;
   text: string;
+  interviewId?: number;
 }
 
 // Zustand 상태 관리를 위한 인터페이스
@@ -42,7 +43,9 @@ const useCommentStore = create<CommentStore>((set) => {
       });
 
       // Supabase에 데이터 전송
-      const { error } = await supabase.from('job_comment').insert([comment]);
+      const { error } = await supabase
+        .from('job_comment')
+        .insert([{ ...comment, interviewId: comment.interviewId }]);
       if (error) {
         console.error('Error adding comment to Supabase:', error);
       }
