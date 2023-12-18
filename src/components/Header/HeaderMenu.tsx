@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import HeaderMenuItem from '@components/Header/HeaderMenuItem';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
-import useDataStore from '@store/useDataStore';
+import { useAuthStore } from '@store/useAuthStore';
 import getUserName from '@utils/getUserName';
 import getPathName from '@utils/getPathName';
 import styled from 'styled-components';
@@ -21,7 +21,7 @@ const IntroductionMenu = [
 function HeaderMenu() {
   const { pathname } = useLocation();
   const { currentMenu } = useHeaderMenuStore();
-  const {user} = useDataStore();
+  const {userEmail} = useAuthStore();
 
   const handleToggleMenu = (pageTitle: string) => {
     if (pageTitle === '프로젝트 소개') pageTitle = '프로젝트';
@@ -37,7 +37,7 @@ function HeaderMenu() {
         ).map((item, index) => (
           <HeaderMenuItem
             key={index}
-            path={item.path !== '/mypage' ? item.path : `/mypage/${getUserName(user?.email)}`}
+            path={item.path !== '/mypage' ? item.path : `/mypage/${getUserName(userEmail)}`}
             isEvent={handleToggleMenu(item.children) || false}
           >
             {item.children}
