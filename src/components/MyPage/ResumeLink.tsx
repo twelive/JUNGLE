@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
-import useDataStore from '@store/useDataStore';
+import styled from 'styled-components';
+import { useAuthStore } from '@store/useAuthStore';
 import getUserName from '@utils/getUserName';
 import ArrowClickLink from '@assets/common/arrow-clickLink.svg';
-import styled from 'styled-components';
 
 function ResumeLink() {
-  const {user} = useDataStore();
+  const {userEmail} = useAuthStore();
 
   return (
     <FlexBox>
       <h2>이력서</h2>
-      <Link to={`/mypage/${getUserName(user?.email)}/resume`}>
+      <Link to={`/mypage/${getUserName(userEmail)}/resume`}>
         <img src={ArrowClickLink} />
       </Link>
     </FlexBox>
