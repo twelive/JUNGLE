@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+import EditButton from '../Button/EditButton';
 
-function Profile({ children = 'J' }) {
+function Profile({ src, children = 'J' }: { src?: File | undefined, children?: React.ReactNode }) {
   return (
     <>
-      <Circle>
-        <Level>{children}</Level>
+      <Circle $src={Boolean(src)}>
+        {src ? <Image src={URL.createObjectURL(src)} alt="profile" /> : <Level>{children}</Level>}
+        <EditButton />
       </Circle>
     </>
   );
@@ -12,12 +14,12 @@ function Profile({ children = 'J' }) {
 
 export default Profile;
 
-const Circle = styled.div`
+const Circle = styled.div<{$src: boolean}>`
   position: relative;
   min-width: 15rem;
   min-height: 15rem;
   border-radius: 50%;
-  background: var(--bs-black-300);
+  background: ${(props) => props.$src ? 'white' : 'var(--bs-black-300)'};
 
   @media ${(props) => props.theme.device.tablet} {
     min-width: 11.25rem;
@@ -37,6 +39,26 @@ const Level = styled.span`
   font-weight: 700;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 8.125rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 5rem;
+  }
+`;
+
+
+const Image = styled.img`
+  position: absolute;
+  display: block;
+  color: white;
+  font-size: 10.625rem;
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  width: 60%;
   transform: translate(-50%, -50%);
 
   @media ${(props) => props.theme.device.tablet} {
