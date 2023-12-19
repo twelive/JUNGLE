@@ -2,14 +2,15 @@ import { Suspense } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
-import router from '@/routes';
-import GlobalStyles from '@/GlobalStyles';
-import LandingPage from '@pages/LandingPage';
-import { useAuthStore } from '@store/useAuthStore';
-import { ThemeProvider } from 'styled-components';
-import theme from '@/theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from 'styled-components';
+import router from '@/routes';
+import theme from '@/theme';
+import GlobalStyles from '@/GlobalStyles';
+import Loading from '@components/Loading';
+import LandingPage from '@pages/LandingPage';
+import { useAuthStore } from '@store/useAuthStore';
 
 const queryClient = new QueryClient();
 
@@ -28,7 +29,7 @@ function App() {
           {isAuth && (
             <>
               <HelmetProvider>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loading />}>
                   <RouterProvider router={router} />
                   <GlobalStyles />
                 </Suspense>
