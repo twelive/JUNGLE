@@ -18,6 +18,7 @@ const JobCodingTestItemPage = lazy(
 const StudyPage = lazy(() => import('@pages/StudyPage'));
 const MyPage = lazy(() => import('@pages/MyPage'));
 const MyResumePage = lazy(() => import('@pages/MyResumePage'));
+const MyResumeDetailPage = lazy(() => import('@pages/MyResumeDetailPage'));
 const CommunityPage = lazy(() => import('@pages/CommunityPage'));
 const CommunityCreatePage = lazy(() => import('@/pages/CommunityCreatePage'));
 const IntroductionProjectPage = lazy(
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
       <Route path="study" element={<StudyPage />} />
       <Route path="mypage/:userId" element={<MyPage />} />
       <Route path="mypage/:userId/resume" element={<MyResumePage />} />
+      <Route path="mypage/:userId/resume/detail" element={<MyResumeDetailPage />} />
       <Route path="community" element={<CommunityPage />} />
       <Route
         path="community/communitycreate"
