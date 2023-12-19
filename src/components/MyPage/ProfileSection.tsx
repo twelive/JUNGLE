@@ -1,16 +1,17 @@
-import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Profile from '@components/MyPage/Profile';
+import { useAuthStore } from '@store/useAuthStore';
+import getUserName from '@utils/getUserName';
 
 function ProfileSection() {
-  const {userId} = useParams();  
+  const {userEmail} = useAuthStore();
 
   return (
     <ProfileBox>
       <h2 className="sr-only">프로필</h2>
       <Profile />
       <ProfileText>
-        어서오세요 {userId}님! <br /> 지금까지의 활동내역을 보여드립니다.
+        어서오세요 {getUserName(userEmail)}님! <br /> 지금까지의 활동내역을 보여드립니다.
       </ProfileText>
     </ProfileBox>
   );
