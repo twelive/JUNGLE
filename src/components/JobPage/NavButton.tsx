@@ -18,6 +18,6 @@ const Box = styled.div`
   flex-direction: column;
   gap: 20px;
   position: fixed;
-  right: 70px;
+  right: 4%;
   bottom: 50%;
 `;
