@@ -13,8 +13,8 @@ function WritingCategory() {
     <>
       <h2 className="sr-only">작성글</h2>
       <Layout>
-        {data.map(category => (
-          <CategoryBox>
+        {data.map((category, index) => (
+          <CategoryBox key={index}>
             <Category href={category.href} title={category.title} height={category.height} />
           </CategoryBox>
         ))}
