@@ -5,7 +5,7 @@ import EditButton from '@components/Button/EditButton';
 import { useAuthStore } from '@store/useAuthStore';
 import { getPbImageURL } from '@/store/getPbImageURL';
 
-function Profile({children = 'J' }: {children?: React.ReactNode }) {
+function Profile() {
   const {user} = useAuthStore();
   const profileRef = useRef<HTMLInputElement>(null);
   
@@ -37,15 +37,11 @@ function Profile({children = 'J' }: {children?: React.ReactNode }) {
       profileRef.current.click();
     }
   };
-
-  const src = getPbImageURL('profile', user)
-
+  
   return (
     <>
-      <Circle $src={Boolean(src)}>
-          {src ?
-            <Image src={src} alt="profile" />
-           : <Level>{children}</Level>}
+      <Circle >
+          <Image src={getPbImageURL('profile', user)} alt="profile" />
         <Input type="file" accept="image/*" ref={profileRef} onChange={uploadFile} />
         <EditButton onClick={handleSelectProfile} />
       </Circle>
@@ -55,12 +51,12 @@ function Profile({children = 'J' }: {children?: React.ReactNode }) {
 
 export default Profile;
 
-const Circle = styled.div<{$src: boolean}>`
+const Circle = styled.div`
   position: relative;
   min-width: 15rem;
   min-height: 15rem;
   border-radius: 50%;
-  background: ${(props) => props.$src ? 'white' : 'var(--bs-black-300)'};
+  background: white;
 
   @media ${(props) => props.theme.device.tablet} {
     min-width: 11.25rem;
@@ -69,24 +65,6 @@ const Circle = styled.div<{$src: boolean}>`
   @media ${(props) => props.theme.device.mobile} {
     min-width: 7.5rem;
     min-height: 7.5rem;
-  }
-`;
-
-const Level = styled.span`
-  position: absolute;
-  display: block;
-  color: white;
-  font-size: 10.625rem;
-  font-weight: 700;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 8.125rem;
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 5rem;
   }
 `;
 
