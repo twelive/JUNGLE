@@ -1,9 +1,11 @@
 import { useRef } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '@/client';
 import styled from 'styled-components';
 import EditButton from '@components/Button/EditButton';
 import { useAuthStore } from '@store/useAuthStore';
-import { getPbImageURL } from '@/store/getPbImageURL';
+import { getPbImageURL } from '@store/getPbImageURL';
 
 function Profile() {
   const {user} = useAuthStore();
@@ -21,7 +23,16 @@ function Profile() {
         });
 
         if(!error) {
-          alert('업로드 완료! (* 새로고침시 반영됩니다.)');
+          toast.success('업로드 완료! (* 새로고침시 반영됩니다.)', {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
         }
 
         if(error) return alert('storage 에러 발생');
@@ -44,6 +55,18 @@ function Profile() {
           <Image src={getPbImageURL('profile', user)} alt="profile" />
         <Input type="file" accept="image/*" ref={profileRef} onChange={uploadFile} />
         <EditButton onClick={handleSelectProfile} />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          />
       </Circle>
     </>
   );
