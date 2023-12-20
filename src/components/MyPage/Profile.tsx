@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useQuery } from 'react-query';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '@/client';
@@ -48,11 +49,13 @@ function Profile() {
       profileRef.current.click();
     }
   };
+
+  const { data: imageUrl } = useQuery(['profileImageUrl', 'profile', user], () => getPbImageURL('profile', user));
   
   return (
     <>
       <Circle >
-          <Image src={getPbImageURL('profile', user)} alt="profile" />
+          <Image src={imageUrl} alt="profile" />
         <Input type="file" accept="image/*" ref={profileRef} onChange={uploadFile} />
         <EditButton onClick={handleSelectProfile} />
         <ToastContainer
