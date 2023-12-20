@@ -6,16 +6,17 @@ interface DeleteButtonProps {
 }
 
 const DeleteButton = ({ id }: DeleteButtonProps) => {
-  console.log('DeleteButton id:', id);
   const deleteComment = useCommentStore((state) => state.deleteComment);
 
-  const handleDelete = () => {
-    console.log('DeleteButton id:', id); // 현재 id 값을 출력
-    if (id !== undefined) {
-      console.log(`Deleting comment with id: ${id}`); // 이 코드 추가
-      deleteComment(Number(id)); // 댓글의 ID를 문자열로 변환하여 전달
-    } else {
-      console.warn('댓글 ID가 없어 삭제할 수 없습니다.');
+  const handleDelete = async () => {
+    try {
+      if (id !== undefined) {
+        await deleteComment(Number(id));
+      } else {
+        console.warn('댓글 ID가 없어 삭제할 수 없습니다.');
+      }
+    } catch (error) {
+      console.error('댓글 삭제 중 에러 발생:', error);
     }
   };
 
