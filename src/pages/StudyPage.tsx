@@ -7,7 +7,7 @@ import { getPbImageURL } from '@/store/getPbImageURL';
 import StudyTitleGroup from '@/components/StudyPage/StudyTitleGroup';
 import { Swiper } from 'swiper/react';
 import TagButtonComponent from '@/components/StudyPage/TagButtonComponent';
-import StackDiggingNameSection from '@/components/StudyPage/StackDiggingNameSection';
+// import StackDiggingNameSection from '@/components/StudyPage/StackDiggingNameSection';
 // import { useQuery } from 'react-query';
 
 
@@ -30,7 +30,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import styled from 'styled-components';
 import LikeButton from '@/components/StudyPage/LikeButton';
 import { useAuthStore } from '@/store/useAuthStore';
-import StackDiggingContentsSection from '@/components/StudyPage/StackDiggingContentsSection';
+// import StackDiggingContentsSection from '@components/StudyPage/StackDiggingContentsSection';
 
 function StudyPage() {
 const { data: bookData, getListData } = useDataStore();
@@ -149,8 +149,8 @@ return (
       </BookGroup>
       
       <StackDiggingSection>
-        <StackDiggingContentsSection></StackDiggingContentsSection>
-        <StackDiggingNameSection></StackDiggingNameSection>
+        {/* <StackDiggingContentsSection></StackDiggingContentsSection> */}
+        {/* <StackDiggingNameSection></StackDiggingNameSection> */}
 
       </StackDiggingSection>
 
