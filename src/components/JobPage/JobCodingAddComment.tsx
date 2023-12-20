@@ -32,7 +32,7 @@ const JobCodingAddComment = ({
         }
 
         if (data) {
-          setUserEmail(data.email);
+          data.email && setUserEmail(data.email);
         }
       }
     };
