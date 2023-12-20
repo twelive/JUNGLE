@@ -6,9 +6,9 @@ import { useMutation } from 'react-query';
 // import { Users } from '@/types/Users';
 import { useAuthStore } from '@/store/useAuthStore';
 import useCreateStore from '@/store/useCreateStore';
-// import { useQuery } from 'react-query';
-// import { AuthUser } from '@supabase/supabase-js';
-// import { getPbImageURL } from '@/store/getPbImageURL';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 interface CreateData {
   title: string;
@@ -31,6 +31,7 @@ function CommunityCreatePage() {
   const [tag1, setStack1] = useState('');
   const [tag2, setStack2] = useState('');
   const [tag3, setStack3] = useState('');
+  const [deadline, setDeadline] = useState<Date | null>(null);
  
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +60,7 @@ const handleTag2Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
 const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
   setStack3(e.target.value);
 };
+
   const createPost = useMutation(async (data: CreateData) => {
     const currentDate = new Date().toISOString();
     const targetTable =
@@ -76,6 +78,7 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
           tag1: tag1,
           tag2: tag2,
           tag3: tag3,
+          deadline: deadline,
         },
       ]);
       if (error) {
@@ -131,7 +134,6 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (title.trim() !== '' && contents.trim() !== '') {
       // title과 content가 빈 값이 아닌지 확인
       addComment({
-        
         title: 'Title',
         contents: 'Content',
         division: 'Division',
@@ -141,12 +143,11 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
         tag2: 'Tag2',
         tag3: 'Tag3',
         user_id: user_id,
+        
       }); 
     }
   };
-
-
-  
+ 
   return (
     <>
       <Helmet>
@@ -210,12 +211,12 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
                         <option disabled selected>
                           사용언어
                         </option>
-                        <option>Javascript</option>
-                        <option>React</option>
-                        <option>TypeScript</option>
-                        <option>Next.js</option>
-                        <option>Vue</option>
-                        <option>Svelte</option>
+                        <option>javascript</option>
+                        <option>react</option>
+                        <option>ts</option>
+                        <option>next.js</option>
+                        <option>vue</option>
+                        <option>svelte</option>
                       </select>
                     </Li>
                     <Li>
@@ -224,12 +225,12 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
                         <option disabled selected>
                           사용언어
                         </option>
-                        <option>Javascript</option>
-                        <option>React</option>
-                        <option>TypeScript</option>
-                        <option>Next.js</option>
-                        <option>Vue</option>
-                        <option>Svelte</option>
+                        <option>javascript</option>
+                        <option>react</option>
+                        <option>ts</option>
+                        <option>next.js</option>
+                        <option>vue</option>
+                        <option>svelte</option>
                       </select>
                     </Li>
                     <Li>
@@ -238,15 +239,24 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
                         <option disabled selected>
                           사용언어
                         </option>
-                        <option>Javascript</option>
-                        <option>React</option>
-                        <option>TypeScript</option>
-                        <option>Next.js</option>
-                        <option>Vue</option>
-                        <option>Svelte</option>
+                        <option>javascript</option>
+                        <option>react</option>
+                        <option>ts</option>
+                        <option>next.js</option>
+                        <option>vue</option>
+                        <option>svelte</option>
                       </select>
                     </Li>
                   </Selectdiv>
+                  <Li>
+                    <label>마감일: </label>
+                    <DatePicker
+                      selected={deadline}
+                      onChange={(date) => setDeadline(date)}
+                      dateFormat="yyyy-MM-dd"
+                      placeholderText="Select a date"
+                    />
+                  </Li>
                   <Li>
                     <label>제목:</label>
                     <StyledInput
