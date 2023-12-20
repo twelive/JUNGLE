@@ -1,9 +1,13 @@
 import edit from '@assets/common/edit.svg'
 import styled from 'styled-components';
 
-function EditButton() {
+interface State {
+  onClick: () => void;
+}
+
+function EditButton({onClick}: State) {
   return (
-    <Button type='button'>
+    <Button type='button' onClick={onClick}>
       <img src={edit} alt="수정" />
     </Button>
   )
