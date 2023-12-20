@@ -120,7 +120,7 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
           }
           
           if (data) {
-            setUserEmail(data.email);
+            data.email && setUserEmail(data.email);
           }
         }
       };
