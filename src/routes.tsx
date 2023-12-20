@@ -15,6 +15,12 @@ const JobCodingTestPage = lazy(() => import('@pages/JobCodingTestPage'));
 const JobCodingTestItemPage = lazy(
   () => import('@pages/JobCodingTestItemPage')
 );
+const JobCodingTestCreatePage = lazy(
+  () => import('@pages/JobCodingTestCreatePage')
+);
+const JobInterviewCreatePage = lazy(
+  () => import('@pages/JobInterviewCreatePage')
+);
 const StudyPage = lazy(() => import('@pages/StudyPage'));
 const MyPage = lazy(() => import('@pages/MyPage'));
 const MyResumePage = lazy(() => import('@pages/MyResumePage'));
@@ -35,8 +41,17 @@ const router = createBrowserRouter(
       <Route path="/job" element={<JobSeekPage />} />
       <Route path="/job/interview" element={<JobInterviewPage />} />
       <Route path="/job/interview/:id" element={<JobInterviewItemPage />} />
+      <Route
+        path="/job/interview/create"
+        element={<JobInterviewCreatePage />}
+      />
       <Route path="/job/codingTest" element={<JobCodingTestPage />} />
       <Route path="/job/codingTest/:id" element={<JobCodingTestItemPage />} />
+      <Route
+        path="/job/codingTest/create"
+        element={<JobCodingTestCreatePage />}
+      />
+
       <Route path="study" element={<StudyPage />} />
       <Route path="mypage/:userId" element={<MyPage />} />
       <Route path="mypage/:userId/resume" element={<MyResumePage />} />

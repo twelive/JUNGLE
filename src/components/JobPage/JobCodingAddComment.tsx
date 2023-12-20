@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import useCommentStore from '@/store/useCommentStore';
 import styled from 'styled-components';
 import { supabase } from '@/client';
 import { useAuthStore } from '@/store/useAuthStore';
-
-const AddComment = ({
-  currentInterviewitemId,
+import useCodingCommentStore from '@/store/useCodingCommentStore';
+const JobCodingAddComment = ({
+  currentCodingTestItemId,
 }: {
-  currentInterviewitemId?: number;
+  currentCodingTestItemId?: number;
 }) => {
   const [newComment, setNewComment] = useState({
     name: '',
@@ -16,7 +15,7 @@ const AddComment = ({
 
   const [userEmail, setUserEmail] = useState('');
   const user = useAuthStore((state) => state.user);
-  const addComment = useCommentStore((state) => state.addComment);
+  const addComment = useCodingCommentStore((state) => state.addComment);
 
   useEffect(() => {
     const fetchUserEmail = async () => {
@@ -52,9 +51,9 @@ const AddComment = ({
       addComment({
         name: userEmail,
         text: newComment.text,
-        interviewId: currentInterviewitemId,
+        codingTestId: currentCodingTestItemId,
       });
-      console.log(currentInterviewitemId);
+      console.log(currentCodingTestItemId);
       setNewComment({
         name: '',
         text: '',
@@ -76,7 +75,7 @@ const AddComment = ({
   );
 };
 
-export default AddComment;
+export default JobCodingAddComment;
 
 const CommentForm = styled.form`
   display: flex;

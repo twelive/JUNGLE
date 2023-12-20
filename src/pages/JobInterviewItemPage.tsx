@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import AddComment from '@/components/JobPage/AddComment';
 import CommentSaveBox from '@/components/JobPage/CommentSaveBox';
+import NavButton from '@/components/JobPage/NavButton';
 
 interface InterviewItemType {
   id: number | string;
@@ -20,10 +21,6 @@ function JobInterviewItemPage() {
     getListData('job_interview');
   }, [getListData]);
 
-  const extractDate = (dateString: string) => {
-    return (dateString || '').toString().slice(0, 10);
-  };
-
   const filteredData = data.filter(
     (item: InterviewItemType) => item.id === (id ? parseInt(id) : NaN)
   );
@@ -32,24 +29,25 @@ function JobInterviewItemPage() {
     <>
       {filteredData.map((item: InterviewItemType) => (
         <MainBox key={item.id}>
+          <NavButton />
           <FirstBox>
             <TitleBox>
               <Title>{item.title}</Title>
             </TitleBox>
             <SubBox>
               <SubText>{item.name}</SubText>
-              <SubText>{extractDate(item.created_at)}</SubText>
             </SubBox>
             <InfoBox>
               <Info>{item.info}</Info>
             </InfoBox>
           </FirstBox>
-          <ModifyButton type="button">수정</ModifyButton>
+          {/* <ModifyButton type="button">수정</ModifyButton> */}
           <CommentBox>
-            <AddComment />
+            <AddComment currentInterviewitemId={parseInt(item.id.toString())} />
           </CommentBox>
+
           <UserBox>
-            <CommentSaveBox />
+            <CommentSaveBox currentInterviewId={parseInt(item.id.toString())} />
           </UserBox>
         </MainBox>
       ))}
@@ -64,6 +62,7 @@ const MainBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
 `;
 
 const FirstBox = styled.div`
@@ -108,30 +107,30 @@ const CommentBox = styled.div`
   gap: 20px;
 `;
 
-const ModifyButton = styled.button`
-  background-color: white;
-  font-weight: 700;
-  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
-  width: 10%;
-  border: none;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-radius: 10px;
-  margin-right: 5px;
-  border: 0.5px solid var(--bs-black-500);
-  box-sizing: border-box;
-  font-size: 20px;
-  align-self: end;
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 15px;
-    padding: 10px;
-  }
+// const ModifyButton = styled.button`
+//   background-color: white;
+//   font-weight: 700;
+//   box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+//   width: 10%;
+//   border: none;
+//   padding-left: 15px;
+//   padding-right: 15px;
+//   padding-top: 15px;
+//   padding-bottom: 15px;
+//   border-radius: 10px;
+//   margin-right: 5px;
+//   border: 0.5px solid var(--bs-black-500);
+//   box-sizing: border-box;
+//   font-size: 20px;
+//   align-self: end;
+//   @media ${(props) => props.theme.device.tablet} {
+//     font-size: 15px;
+//     padding: 10px;
+//   }
 
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 10px;
-    padding: 8px;
-  }
-`;
+//   @media ${(props) => props.theme.device.mobile} {
+//     font-size: 10px;
+//     padding: 8px;
+//   }
+// `;
 const UserBox = styled.div``;
