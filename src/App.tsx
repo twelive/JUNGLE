@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
@@ -34,7 +33,6 @@ function App() {
                   <GlobalStyles />
                 </Suspense>
               </HelmetProvider>
-              <ToastContainer />
             </>
           )}
           <ReactQueryDevtools initialIsOpen={false} />
