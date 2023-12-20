@@ -21,7 +21,7 @@ function Profile() {
         });
 
         if(!error) {
-          alert('업로드 완료!');
+          alert('업로드 완료! (* 새로고침시 반영됩니다.)');
         }
 
         if(error) return alert('storage 에러 발생');
