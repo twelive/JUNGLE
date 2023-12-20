@@ -1,47 +1,18 @@
-import { useRef } from "react";
+// import { useRef } from "react";
 import styled from 'styled-components';
-import { supabase } from '@/client';
+// import { supabase } from '@/client';
 import Profile from '@components/MyPage/Profile';
 import { useAuthStore } from '@store/useAuthStore';
 import getUserName from '@utils/getUserName';
-// import EditButton from "@components/Button/EditButton";
 
 
 function ProfileSection() {
-  const {user, userEmail} = useAuthStore();
-  const profileRef = useRef<HTMLInputElement>(null);
-  
-  const uploadFile = async () => {    
-    const avatarFile = profileRef.current?.files?.[0];
-    if (avatarFile ) {
-      const { data, error } = await supabase
-        .storage
-        .from('profile')
-        .upload(user, avatarFile, {
-          contentType: 'image/svg',
-          upsert: true
-        });
-
-        if(!error) {
-          alert('업로드 완료!');
-        }
-
-        if(error) return alert('storage 에러 발생');
-
-      return data;
-      
-    }
-    return null;
-  }
-
-  
+  const {userEmail} = useAuthStore();
 
   return (
     <ProfileBox>
       <h2 className="sr-only">프로필</h2>
-      <Profile src={profileRef.current?.files?.[0]} />
-      <input type="file" accept="image/*" ref={profileRef} onChange={uploadFile} />
-      {/* <EditButton /> */}
+      <Profile />
       <ProfileText>
         어서오세요 {getUserName(userEmail)}님! <br /> 지금까지의 활동내역을 보여드립니다.
       </ProfileText>

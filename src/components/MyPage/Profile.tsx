@@ -1,12 +1,53 @@
+import { useRef } from 'react';
+import { supabase } from '@/client';
 import styled from 'styled-components';
-import EditButton from '../Button/EditButton';
+import EditButton from '@components/Button/EditButton';
+import { useAuthStore } from '@store/useAuthStore';
+import { getPbImageURL } from '@/store/getPbImageURL';
 
-function Profile({ src, children = 'J' }: { src?: File | undefined, children?: React.ReactNode }) {
+function Profile({children = 'J' }: {children?: React.ReactNode }) {
+  const {user} = useAuthStore();
+  const profileRef = useRef<HTMLInputElement>(null);
+  
+  const uploadFile = async () => {    
+    const avatarFile = profileRef.current?.files?.[0];
+    if (avatarFile ) {
+      const { data, error } = await supabase
+        .storage
+        .from('profile')
+        .upload(user, avatarFile, {
+          contentType: 'image/*',
+          upsert: true
+        });
+
+        if(!error) {
+          alert('업로드 완료!');
+        }
+
+        if(error) return alert('storage 에러 발생');
+
+      return data;
+      
+    }
+    return null;
+  }
+
+  const handleSelectProfile = () => {
+    if (profileRef.current) {
+      profileRef.current.click();
+    }
+  };
+
+  const src = getPbImageURL('profile', user)
+
   return (
     <>
       <Circle $src={Boolean(src)}>
-        {src ? <Image src={URL.createObjectURL(src)} alt="profile" /> : <Level>{children}</Level>}
-        <EditButton />
+          {src ?
+            <Image src={src} alt="profile" />
+           : <Level>{children}</Level>}
+        <Input type="file" accept="image/*" ref={profileRef} onChange={uploadFile} />
+        <EditButton onClick={handleSelectProfile} />
       </Circle>
     </>
   );
@@ -49,7 +90,6 @@ const Level = styled.span`
   }
 `;
 
-
 const Image = styled.img`
   position: absolute;
   display: block;
@@ -58,7 +98,10 @@ const Image = styled.img`
   font-weight: 700;
   top: 50%;
   left: 50%;
-  width: 60%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: fill;
   transform: translate(-50%, -50%);
 
   @media ${(props) => props.theme.device.tablet} {
@@ -68,3 +111,7 @@ const Image = styled.img`
     font-size: 5rem;
   }
 `;
+
+const Input = styled.input`
+  display: none;
+`
