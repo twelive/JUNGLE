@@ -6,6 +6,28 @@ import useStorageStore from '@/store/useStorageStore';
 import { getPbImageURL } from '@/store/getPbImageURL';
 import styled from 'styled-components';
 import { ChangeEvent, useState } from 'react';
+import { useQuery } from 'react-query';
+import { Users } from '@/types/Users';
+import { supabase } from '@/client';
+// import { useMutation} from 'react-query';
+
+const getUserData: () => Promise<Users[] | null> = async () => {
+  const { data } = await supabase
+  .from('users')
+  .select(
+      `
+      id,
+      email,
+      community_project:community_project (id, title)
+    `
+    )
+    .order('created_at', { ascending: false })
+    .returns<Users[] | null>();
+
+  return data;
+};
+
+
 
 const CommunityDetailPage = () => {
   const { dataType, itemId } = useParams();
@@ -13,22 +35,106 @@ const CommunityDetailPage = () => {
   const { getAllList } = useStorageStore();
   const [comments, setComments] = useState<string[]>([]); // 댓글을 담을 상태
   const [newComment, setNewComment] = useState<string>(''); // 새 댓글을 담을 상태
-
-  useEffect(() => {
-    getIdData(`community_${dataType}`, `${itemId}`);
-    getAllList('community_img', '');
-  }, [getIdData, getAllList]);
-
-  const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setNewComment(e.target.value); // 댓글 입력 상태 업데이트
+  const { data: users } = useQuery('users', getUserData);
+  const currentDataType = dataType || '';
+  
+  const handleUpdate = async (dataType: string, itemId: string) => {
+    try {
+      // 데이터 업데이트 함수를 호출하여 수정합니다.
+      await updateData(dataType, itemId);
+    } catch (error) {
+      console.error('데이터를 업데이트하는 도중 오류가 발생했습니다:', error);
+      alert('데이터를 업데이트하는 도중 오류가 발생했습니다.');
+    }
+  };
+  
+  const handleDelete = async (dataType: string, itemId: string) => {
+    try {
+      // 데이터 삭제 함수를 호출하여 삭제합니다.
+      await deleteData(dataType, itemId); // deleteData 함수 호출 추가
+    } catch (error) {
+      console.error('데이터를 삭제하는 도중 오류가 발생했습니다:', error);
+      alert('데이터를 삭제하는 도중 오류가 발생했습니다.');
+    }
   };
 
-  const handleSubmitComment = () => {
-    // 새 댓글을 comments 배열에 추가
-    setComments([...comments, newComment]);
-    setNewComment(''); // 입력창 초기화
+  const updateData = async (dataType: string, itemId: string) => {
+    // dataType에 따라 다른 데이터를 업데이트하는 로직을 작성합니다.
+    if (dataType === 'project') {
+      // community_project 업데이트 로직
+      // itemId를 사용하여 해당 프로젝트 데이터를 가져와서 수정하는 로직을 작성합니다.
+      const updatedProjectData = {
+        title: 'New Title', // 업데이트할 새로운 제목
+        description: 'New Description', // 업데이트할 새로운 내용
+        // ...다른 필드에 대한 업데이트
+      };
+      await supabase.from('community_project').update(updatedProjectData).eq('id', itemId);
+    } else if (dataType === 'study') {
+      // community_study 업데이트 로직
+      // itemId를 사용하여 해당 스터디 데이터를 가져와서 수정하는 로직을 작성합니다.
+      const updatedStudyData = {
+      title: 'New Study Title', // 업데이트할 새로운 스터디 제목
+      details: 'New Study Details', // 업데이트할 새로운 스터디 내용
+      // ...다른 필드에 대한 업데이트
+    };
+      await supabase.from('community_study').update(updatedStudyData).eq('id', itemId);
+    }
+    // 다른 데이터 유형에 따른 업데이트 로직 추가 가능
+  };
+  
+  const deleteData = async (dataType: string, itemId: string) => {
+    // dataType에 따라 다른 데이터를 삭제하는 로직을 작성합니다.
+    console.log('Deleting data:', dataType, itemId); // 확인용 로그
+
+    if (dataType === 'project') {
+      // community_project 삭제 로직
+      const { data, error } = await supabase
+        .from('community_project')
+        .delete()
+        .eq('id', itemId);
+
+      if (error) {
+        console.error('Error deleting project data:', error);
+      } else {
+        console.log('Project data deleted:', data);
+      }
+    } else if (dataType === 'study') {
+      // community_study 삭제 로직
+      const { data, error } = await supabase
+        .from('community_study')
+        .delete()
+        .eq('id', itemId);
+
+      if (error) {
+        console.error('Error deleting study data:', error);
+      } else {
+        console.log('Study data deleted:', data);
+      }
+    }
+    // 다른 데이터 유형에 따른 삭제 로직 추가 가능
   };
 
+
+
+   useEffect(() => {
+     getIdData(`community_${dataType}`, `${itemId}`);
+     getAllList('community_img', '');
+   }, [getIdData, getAllList]);
+
+   const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+     setNewComment(e.target.value);
+   };
+
+   const handleSubmitComment = () => {
+     setComments([...comments, newComment]);
+     setNewComment('');
+   };
+
+  const getUserEmail = (userId: string) => {
+    // 'users' 데이터에서 해당 userId에 맞는 사용자의 이메일을 찾아 반환
+    const foundUser = users?.find((user) => user.id === userId);
+    return foundUser?.email || 'Unknown'; // 만약 사용자를 찾지 못하면 'Unknown' 반환
+  };
   return (
     <>
       <Helmet>
@@ -39,31 +145,53 @@ const CommunityDetailPage = () => {
           <h1>CommunityDetailPage</h1>
           {data.map((item) => (
             <div key={item.id}>
+              <div>
+                {/* Modification and Deletion buttons */}
+                <button
+                  onClick={() =>
+                    handleUpdate('community_project', String(item.id))
+                  }
+                >
+                  수정
+                </button>
+                <button
+                  onClick={() => handleDelete(currentDataType, String(item.id))}
+                >
+                  삭제
+                </button>
+              </div>
               <Wrapper>
-              <Title>제목: {item.title}</Title>
-              <CreaterWrapper>
-                <Creater>작성자: {item.email}</Creater>
-                <CreateDate>
-                  작성일자: {item.created_at.slice(0, 10)}
-                </CreateDate>
-              </CreaterWrapper>
-              <InfoWrapper>
-              <People>모집인원: {item.people}</People>
-              <Progress>진행방식: {item.progress}</Progress>
-              </InfoWrapper>
-              <StackWrapper>
-              <Stack>사용언어: </Stack>
-              {[item.tag1, item.tag2, item.tag3].map(
-                (tag, index) =>
-                tag && (
-                  <div key={index}>
-                      <Img src={getPbImageURL('community_img', `${tag}.svg`)} />
+                <Title>제목: {item.title}</Title>
+                <CreaterWrapper>
+                  <Creater>
+                    <div>
+                      작성자:{' '}
+                      {item.user_id ? getUserEmail(String(item.user_id)) : ''}
                     </div>
-                  )
+                  </Creater>
+                  <CreateDate>
+                    작성일자: {item.created_at.slice(0, 10)}
+                  </CreateDate>
+                </CreaterWrapper>
+                <InfoWrapper>
+                  <People>모집인원: {item.people}</People>
+                  <Progress>진행방식: {item.progress}</Progress>
+                </InfoWrapper>
+                <StackWrapper>
+                  <Stack>사용언어: </Stack>
+                  {[item.tag1, item.tag2, item.tag3].map(
+                    (tag, index) =>
+                      tag && (
+                        <div key={index}>
+                          <Img
+                            src={getPbImageURL('community_img', `${tag}.svg`)}
+                          />
+                        </div>
+                      )
                   )}
-                  </StackWrapper>
-                  </Wrapper>
-                  <Intro>소개</Intro>
+                </StackWrapper>
+              </Wrapper>
+              <Intro>소개</Intro>
               <Contents>내용: {item.contents}</Contents>
             </div>
           ))}

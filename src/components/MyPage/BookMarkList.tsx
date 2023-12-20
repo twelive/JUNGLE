@@ -1,16 +1,16 @@
-import { useQuery } from 'react-query';
+// import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import { supabase } from '@/client';
+// import { supabase } from '@/client';
 import BookMarkItem from '@components/MyPage/BookMarkItem';
-import { BookMarks } from '@/types/BookMarks';
-import {useAuthStore} from '@store/useAuthStore';
+// import { BookMarks } from '@/types/BookMarks';
+// import {useAuthStore} from '@store/useAuthStore';
 
 function BookMarkList() {
   //^ 1. 현재 로그인된 사용자 정보 가져오기
-  const {user} = useAuthStore();
+  // const {user} = useAuthStore();
 
   //^ 2. Supabase API: from, select, returns 문 이용하여 bookmarks 데이터 가져오기
-  const getBookmarksData: () => Promise<BookMarks[] | null> = async () => {
+ /*  const getBookmarksData: () => Promise<BookMarks[] | null> = async () => {
     const { data: bookmarks } = await supabase
   .from('bookmarks')
   .select(
@@ -20,12 +20,12 @@ function BookMarkList() {
   .returns<BookMarks[] | null>();
     
     return bookmarks;
-  };
+  }; */
 
   //^ 3. useQuery, filter() 메서드 이용하여 user에 맞는 bookmarkData만 가져오기
-  const { data } = useQuery('users', getBookmarksData);
-  const bookmarkData = data?.filter(bookmark => bookmark.user_id === user)
-  console.log(bookmarkData);
+  // const { data } = useQuery('users', getBookmarksData);
+  // const bookmarkData = data?.filter(bookmark => bookmark.user_id === user)
+  // console.log(bookmarkData);
   
 
   return (
