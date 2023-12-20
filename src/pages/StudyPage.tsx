@@ -7,6 +7,10 @@ import { getPbImageURL } from '@/store/getPbImageURL';
 import StudyTitleGroup from '@/components/StudyPage/StudyTitleGroup';
 import { Swiper } from 'swiper/react';
 import TagButtonComponent from '@/components/StudyPage/TagButtonComponent';
+import StackDiggingNameSection from '@/components/StudyPage/StackDiggingNameSection';
+// import { useQuery } from 'react-query';
+
+
 import { SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom'; 
 // Import Swiper React components
@@ -26,24 +30,27 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import styled from 'styled-components';
 import LikeButton from '@/components/StudyPage/LikeButton';
 import { useAuthStore } from '@/store/useAuthStore';
+import StackDiggingContentsSection from '@/components/StudyPage/StackDiggingContentsSection';
 
 function StudyPage() {
 const { data: bookData, getListData } = useDataStore();
   const { selectedTag, setSelectedTag } = useTagStore();
   const  userId   = useAuthStore((state) => (state.user));
-  console.log(userId);
-
+  // const  userEmail   = useAuthStore((state) => (state.userEmail));
+  // console.log(userEmail);
+  
   const { getAllList } = useStorageStore();
   const itemType = `book`;
-
-const [tags, setTags] = useState<string[]>([]);
-
-useEffect(()=>{
+  
+  const [tags, setTags] = useState<string[]>([]);
+  
+  useEffect(()=>{
+  console.log(userId);
+  setSelectedTag('etc');
 getListData('book');
-setSelectedTag('etc');
 getAllList('book','');
 
-},[getListData,getAllList,setSelectedTag]);
+},[]);
 
 useEffect(() => {
 const uniqueTags = Array.from(new Set(bookData.map(item => String(item.tag))));
@@ -125,7 +132,7 @@ return (
             </BookLinker>
           {/* 좋아요 버튼을 누르면 likes 스키마에 id는 자동생성되고 내 user_id가 들어가고 book_id에 해당 book.id가 들어간다. */}
             
-  <LikeButton itemId={item.id} userId={userId} itemType={itemType}></LikeButton>
+            <LikeButton itemId={item.id} userId={userId} itemType={itemType} likeCounter={item.book_like_counter}></LikeButton>
   </BookCover>
     </SwiperSlider>
 
@@ -139,11 +146,16 @@ return (
       </StudyTitleGroup>
 
 
-  </BookGroup>
+      </BookGroup>
+      
+      <StackDiggingSection>
+        <StackDiggingContentsSection></StackDiggingContentsSection>
+        <StackDiggingNameSection></StackDiggingNameSection>
+
+      </StackDiggingSection>
 
 
-    <FakeDiv>2</FakeDiv>
-    <FakeDiv>3</FakeDiv>
+
 
  
   </OutGrid>
@@ -187,10 +199,6 @@ border-bottom: 0.0625rem solid var(--bs-black-300);
 
 
 
-
-`;
-const FakeDiv = styled.div `
-background-color: red;
 
 `;
 
@@ -346,4 +354,25 @@ margin-bottom: 0px; */
 
 
 }
+`;
+
+const StackDiggingSection = styled.section`
+ display: flex;
+ width: 100%;
+  flex-direction: row;
+ 
+border-top: 0.15rem solid var(--bs-black-400);
+  border-bottom: 0.15rem solid var(--bs-black-400);
+  @media ${(props) => props.theme.device.tablet} {
+    flex-direction: column-reverse;
+    /* align-items: start;
+    padding: 2.5rem 0; */
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    flex-direction: column-reverse;
+    /* align-items: start;
+    gap: 1.875rem;
+    padding: 1.875rem 0; */
+  }
 `;
