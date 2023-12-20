@@ -31,8 +31,7 @@ function CommunityCreatePage() {
   const [tag1, setStack1] = useState('');
   const [tag2, setStack2] = useState('');
   const [tag3, setStack3] = useState('');
-  const [deadline, setDeadline] = useState<Date | null>(null);
- 
+  const [deadline, setDeadline] = useState<Date | null >(null);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -78,7 +77,7 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
           tag1: tag1,
           tag2: tag2,
           tag3: tag3,
-          deadline: deadline,
+          deadline: deadline?.toISOString().split('T')[0],
         },
       ]);
       if (error) {
@@ -86,6 +85,8 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
         throw new Error('Error creating post');
       }
       console.log('Post created');
+      console.log(String(deadline));
+      
     } catch (error) {
       console.error('Error creating post:', error);
     }
