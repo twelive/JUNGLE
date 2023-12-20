@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import AddComment from '@/components/JobPage/AddComment';
 import CommentSaveBox from '@/components/JobPage/CommentSaveBox';
-
 import NavButton from '@/components/JobPage/NavButton';
 
 interface InterviewItemType {
@@ -22,10 +21,6 @@ function JobInterviewItemPage() {
     getListData('job_interview');
   }, [getListData]);
 
-  const extractDate = (dateString: string) => {
-    return (dateString || '').toString().slice(0, 10);
-  };
-
   const filteredData = data.filter(
     (item: InterviewItemType) => item.id === (id ? parseInt(id) : NaN)
   );
@@ -41,7 +36,6 @@ function JobInterviewItemPage() {
             </TitleBox>
             <SubBox>
               <SubText>{item.name}</SubText>
-              <SubText>{extractDate(item.created_at)}</SubText>
             </SubBox>
             <InfoBox>
               <Info>{item.info}</Info>
