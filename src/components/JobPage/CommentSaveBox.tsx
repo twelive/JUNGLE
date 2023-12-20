@@ -10,19 +10,17 @@ const CommentSaveBox: React.FC<CommentSaveBoxProps> = ({
   currentInterviewId,
 }) => {
   const commentBox = useCommentStore((state) => state.comments);
-
   const filteredComments = commentBox.filter(
     (comment) => comment.interviewId === currentInterviewId
   );
-
   return (
     <CommentList>
       <UserDivBox>댓글박스</UserDivBox>
       {filteredComments.map((comment) => (
-        <CommentItem key={comment.id}>
+        <CommentItem key={comment.commentId}>
           <UserText>{comment.name}</UserText>
           <Text>{comment.text}</Text>
-          <DeleteButton id={comment.id} />
+          <DeleteButton id={comment.commentId} />
         </CommentItem>
       ))}
     </CommentList>
