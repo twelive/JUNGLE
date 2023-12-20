@@ -49,7 +49,7 @@ localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
     const { error } = await supabase
       .from('likes')
       .upsert({
-        user_id: userId,
+        // user_id: userId,
         [`${itemType}_id`]: itemId,
       });
 
