@@ -23,6 +23,7 @@ function TagButtonComponent({
     <TagButton key={key} active={active} onClick={onClick} type={type}>
       {title}
       {children}
+      
     </TagButton>
   )
 
