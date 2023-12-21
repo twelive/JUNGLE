@@ -34,7 +34,7 @@ function StackDiggingItem({  comment = '0' }) {
     
    {
   (stackListData ?? []).map((item) => (
-    <Box to={`/detailPage/stack/${item.id}`} key={item.id}>
+    <Box to={`/study/stack/detail/${item.id}`} key={item.id}>
       <BookMarkButtonWrapper>
 
       <BookMarkButton notBookmarkImg={notbookmark} itemId={item.id} userId={userId} itemType='stack' ></BookMarkButton>
