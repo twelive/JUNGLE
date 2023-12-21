@@ -14,7 +14,6 @@ export default BookMarkList;
 
 const List = styled.div`
   display: flex;
-  /* 추후 swiper 구현 예정 */
   overflow-x: auto;
   gap: 1.875rem;
   padding: 3.125rem 0 3.125rem 3.125rem;
