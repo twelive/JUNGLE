@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Element, Link } from 'react-scroll';
+import { Element } from 'react-scroll';
 import styled from 'styled-components';
-import DownButton from '@/assets/landing/landing-scroll-down.svg';
 import Job from '@/assets/landing/landing-job.svg';
 import Study from '@/assets/landing/landing-study.svg';
 import Community from '@/assets/landing/landing-community.svg';
 import LandingHeader from './LandingHeader';
 import useLandingStore from '@/store/useLandingStore';
+import SectionScrollDownButton from './SectionScrollDownButton';
 
 const SectionComponentThree = () => {
   const showAnimationOne = useLandingStore(
@@ -30,11 +30,11 @@ const SectionComponentThree = () => {
       y: 0,
     },
     visible: {
-      y: [-40, 20, -30, 15, -20, 10, -10, 5, 0], // 리듬을 느끼는 모션 배열
+      y: [-40, 20, -30, 15, -20, 10, -10, 5, 0],
       transition: {
-        duration: 20, // 애니메이션 속도를 느리게 조정 (20초)
+        duration: 10,
         ease: 'easeInOut',
-        loop: Infinity, // 무한 반복
+        loop: Infinity,
       },
     },
   };
@@ -71,16 +71,10 @@ const SectionComponentThree = () => {
             </ImgBox>
           </motion.div>
         </MainDiv>
-        <ScrollButton>
-          <Link
-            to="section4"
-            smooth={true}
-            duration={500}
-            onClick={handleButtonClick}
-          >
-            <img src={DownButton} alt="스크롤 버튼" />
-          </Link>
-        </ScrollButton>
+        <SectionScrollDownButton
+          sectionId={'section4'}
+          handleButtonClick={handleButtonClick}
+        />
       </MainSection>
     </Element>
   );
@@ -154,13 +148,4 @@ const ImgBoxText = styled.p`
   font-size: 40px;
   line-height: 150px;
   font-weight: 400;
-`;
-
-const ScrollButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  bottom: 30px;
-  right: 50px;
 `;

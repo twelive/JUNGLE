@@ -1,10 +1,10 @@
-import { Element, Link } from 'react-scroll';
+import { Element } from 'react-scroll';
 import styled from 'styled-components';
 import test from '@/assets/landing/landing-test.svg';
-import DownButton from '@/assets/landing/landing-scroll-down.svg';
 import { motion } from 'framer-motion';
 import useLandingStore from '@/store/useLandingStore';
 import LandingHeader from './LandingHeader';
+import SectionScrollDownButton from './SectionScrollDownButton';
 
 const SectionComponentFour = () => {
   const showAnimationOne = useLandingStore(
@@ -33,7 +33,7 @@ const SectionComponentFour = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 2, ease: 'easeInOut' }, // 수정된 부분: duration을 1.5초로 설정
+      transition: { duration: 2, ease: 'easeInOut' },
     },
   };
 
@@ -52,20 +52,14 @@ const SectionComponentFour = () => {
               <Text>원하시는걸 고른 후 이력서를 작성해보세요!</Text>
             </TextBox>
             <ImgDiv>
-              <Img src={test} alt="이력서 테스트" />
+              <img src={test} alt="이력서 테스트" />
             </ImgDiv>
           </motion.div>
         </MainBox>
-        <ScrollButton>
-          <Link
-            to="section5"
-            smooth={true}
-            duration={500}
-            onClick={handleButtonClick}
-          >
-            <img src={DownButton} alt="스크롤 버튼" />
-          </Link>
-        </ScrollButton>
+        <SectionScrollDownButton
+          sectionId={'section5'}
+          handleButtonClick={handleButtonClick}
+        />
       </MainSection>
     </Element>
   );
@@ -99,15 +93,4 @@ const Text = styled.p`
 
 const ImgDiv = styled.div`
   text-align: center;
-`;
-
-const Img = styled.img``;
-
-const ScrollButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  bottom: 30px;
-  right: 50px;
 `;

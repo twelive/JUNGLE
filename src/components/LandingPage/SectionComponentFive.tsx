@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Element, Link } from 'react-scroll';
-import TopButton from '@/assets/landing/landing-scroll-up.svg';
+import { Element } from 'react-scroll';
 import styled from 'styled-components';
 import Logo from '@/assets/landing/landing-logo.svg';
 import useLandingStore from '@/store/useLandingStore';
 import { useRef, useState } from 'react';
 import EnterButton from '../Button/EnterButton';
 import LoginModal from '../LoginModal';
+import SectionScrollUpButton from './SectionScrollUpButton';
 
 const SectionComponentFive = () => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -73,7 +73,7 @@ const SectionComponentFive = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 3, ease: 'easeInOut' },
+      transition: { duration: 2.5, ease: 'easeInOut' },
     },
   };
   return (
@@ -118,16 +118,10 @@ const SectionComponentFive = () => {
             </ButtonBox>
           </motion.div>
         </MainBox>
-        <ScrollButton>
-          <Link
-            to="section1"
-            smooth={true}
-            duration={500}
-            onClick={handleButtonClick}
-          >
-            <img src={TopButton} alt="스크롤 버튼" />
-          </Link>
-        </ScrollButton>
+        <SectionScrollUpButton
+          sectionId={'section1'}
+          handleButtonClick={handleButtonClick}
+        />
       </MainSection>
     </Element>
   );
@@ -171,21 +165,4 @@ const Text = styled.p`
 const ButtonBox = styled.div`
   padding-top: 50px;
   text-align: center;
-`;
-
-// const Button = styled.button`
-//   width: 200px;
-//   height: 50px;
-//   background-color: transparent;
-//   color: white;
-//   cursor: pointer;
-// `;
-
-const ScrollButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  bottom: 30px;
-  right: 50px;
 `;
