@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import NavButton from '@/components/JobPage/NavButton';
 import JobCodingAddComment from '@/components/JobPage/JobCodingAddComment';
 import JobCodingCommentSaveBox from '@/components/JobPage/JobCodingCommentSaveBox';
+import JobCodingTestItemDeleteButton from './JobCodingTestItemDeleteButton';
 
 interface CodingItemType {
   id: number | string;
@@ -39,7 +40,10 @@ function JobCodingTestItemPage() {
               <Info>{item.info}</Info>
             </InfoBox>
           </FirstBox>
-          {/* <ModifyButton>수정</ModifyButton> */}
+          <JobCodingTestItemDeleteButton
+            itemId={parseInt(item.id.toString())}
+          />
+
           <CommentBox>
             <JobCodingAddComment
               currentCodingTestItemId={parseInt(item.id.toString())}
@@ -85,10 +89,6 @@ const SubBox = styled.div`
   margin-bottom: 30px;
   gap: 20px;
 `;
-
-// const ModifyButton = styled.button`
-//   align-self: end;
-// `;
 
 const SubText = styled.p`
   font-size: 30px;
