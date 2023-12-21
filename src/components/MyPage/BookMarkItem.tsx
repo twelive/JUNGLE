@@ -29,7 +29,7 @@ function BookMarkItem({
       </TextBox>
       <BottomBox>
         <span>{new Date(created).toISOString().split('T')[0]}</span>
-        <ArrowScrollDown color="white" />
+        <ArrowScrollDown width="1rem" height='1rem' color="white" />
       </BottomBox>
     </Box>
   );
