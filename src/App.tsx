@@ -9,7 +9,7 @@ import router from '@/routes';
 import theme from '@/theme';
 import GlobalStyles from '@/GlobalStyles';
 import Loading from '@components/Loading';
-import LandingPage from '@pages/LandingPage';
+import LandingPage from '@pages/LandingPage/LandingPage';
 import { useAuthStore } from '@store/useAuthStore';
 
 const queryClient = new QueryClient();
