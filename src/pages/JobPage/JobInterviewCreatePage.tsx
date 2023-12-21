@@ -4,15 +4,15 @@ import styled from 'styled-components';
 import { supabase } from '@/client';
 
 import { useNavigate } from 'react-router-dom';
-import useInterviewCreateStore, {
-  useUserStore,
-} from '@/store/useInterviewCreateStore';
+import useInterviewCreateStore from '@/store/useInterviewCreateStore';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const JobInterviewCreatePage: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const addInterview = useInterviewCreateStore((state) => state.addInterview);
-  const userEmail = useUserStore((state) => state.email);
+  const { userEmail } = useAuthStore();
+  const extractedValue = userEmail.split('@')[0];
   const navigate = useNavigate();
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -22,8 +22,7 @@ const JobInterviewCreatePage: React.FC = () => {
   };
 
   const createInterview = async () => {
-    const data = { title, info: content };
-    console.log(data);
+    const data = { title, info: content, name: extractedValue };
     const { error } = await supabase.from('job_interview').insert([data]);
     if (error) {
       console.log('Error: ', error);
@@ -31,7 +30,7 @@ const JobInterviewCreatePage: React.FC = () => {
       const interviewData = {
         title,
         created_at: new Date().toISOString(),
-        name: userEmail,
+        name: extractedValue,
         info: content,
         content: '',
       };

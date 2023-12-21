@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import InterviewBookmark from './InterviewBookmark';
 import { useAuthStore } from '@/store/useAuthStore';
 import notbookmark from './../../assets/common/bookmarkwhite.svg';
+
 interface InterviewType {
   id: number | string;
   [key: string]: number | string;
@@ -31,6 +32,7 @@ function JobInterviewBox() {
     return (dateString || '').toString().slice(0, 10);
   };
   const userId = useAuthStore((state) => state.user);
+
   return (
     <>
       {data.map((item: InterviewType) => (

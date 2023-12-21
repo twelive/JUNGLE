@@ -2,10 +2,9 @@ import CreateButton from '@/components/JobPage/CreateButton';
 import React, { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { supabase } from '@/client';
-import useCodingTestCreateStore, {
-  useUserStore,
-} from '@/store/useCodingTestCreateStore';
+import useCodingTestCreateStore from '@/store/useCodingTestCreateStore';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const JobCodingTestCreatePage: React.FC = () => {
   const [title, setTitle] = useState<string>('');
@@ -13,7 +12,8 @@ const JobCodingTestCreatePage: React.FC = () => {
   const addCodingTest = useCodingTestCreateStore(
     (state) => state.addCodingTest
   );
-  const userEmail = useUserStore((state) => state.email);
+  const { userEmail } = useAuthStore();
+  const extractedValue = userEmail.split('@')[0];
   const navigate = useNavigate();
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -23,7 +23,7 @@ const JobCodingTestCreatePage: React.FC = () => {
   };
 
   const createCodingTest = async () => {
-    const data = { title, info: content };
+    const data = { title, info: content, name: extractedValue };
     const { error } = await supabase.from('job_codingtest').insert([data]);
     if (error) {
       console.log('Error: ', error);
@@ -31,7 +31,7 @@ const JobCodingTestCreatePage: React.FC = () => {
       const codingTestData = {
         title,
         created_at: new Date().toISOString(),
-        name: userEmail,
+        name: extractedValue,
         info: content,
         content: '',
       };
