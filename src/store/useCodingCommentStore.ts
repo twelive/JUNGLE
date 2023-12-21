@@ -17,6 +17,7 @@ interface Comment {
   name: string;
   text: string;
   codingTestId?: number;
+  commentId?: number;
 }
 
 // Zustand 상태 관리를 위한 인터페이스
@@ -31,13 +32,14 @@ const useCodingCommentStore = create<CommentStore>((set) => {
   // 로컬 스토리지에서 데이터를 불러와 초기화
   const savedComments = localStorage.getItem(LOCAL_STORAGE_KEY);
   const initialComments = savedComments ? JSON.parse(savedComments) : [];
+  let commentIdCounter = 1;
 
   return {
     comments: initialComments,
     addComment: async (comment) => {
-      // Zustand 상태 업데이트
+      const newCommentWithId = { ...comment, commentId: commentIdCounter++ }; // 간단한 숫자로 새로운 commentId 추가
       set((state) => {
-        const newComments = [...state.comments, comment];
+        const newComments = [...state.comments, newCommentWithId];
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newComments));
         return { comments: newComments };
       });
@@ -45,7 +47,7 @@ const useCodingCommentStore = create<CommentStore>((set) => {
       // Supabase에 데이터 전송
       const { error } = await supabase
         .from('job_coding_comment')
-        .insert([{ ...comment, codingTestId: comment.codingTestId }]);
+        .insert([{ ...newCommentWithId, codingTestId: comment.codingTestId }]);
       if (error) {
         console.error('Error adding comment to Supabase:', error);
       }
@@ -53,7 +55,7 @@ const useCodingCommentStore = create<CommentStore>((set) => {
     deleteComment: async (id: number) => {
       set((state) => {
         const updatedComments = state.comments.filter(
-          (comment) => comment.id !== id
+          (comment) => comment.commentId !== id
         );
         localStorage.setItem(
           LOCAL_STORAGE_KEY,
@@ -61,12 +63,11 @@ const useCodingCommentStore = create<CommentStore>((set) => {
         );
         return { comments: updatedComments };
       });
-
       // Supabase에서 해당 ID의 댓글을 삭제
       const { error } = await supabase
         .from('job_coding_comment')
         .delete()
-        .match({ id });
+        .match({ id }); // 여기도 commentId로 수정
       if (error) {
         console.error('Error deleting comment from Supabase:', error);
       }
