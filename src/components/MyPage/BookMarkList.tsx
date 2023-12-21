@@ -1,24 +1,11 @@
 import styled from 'styled-components';
-import useBookmarksData from '@/api/useBookmarksData';
-import BookMarkItem from '@components/MyPage/BookMarkItem';
+import BookMarkListData from '@components/MyPage/BookMarkListData';
 
 function BookMarkList() {
-  const { data } = useBookmarksData();
 
 return (
     <List>
-      {data &&
-        data.map((item) => (
-          <BookMarkItem
-            key={item.stack_digging.id}
-            src={`/study/stack/detail/${item.stack_digging.id}`}
-            ItemId={item.stack_digging.id}
-            title={item.stack_digging.title || undefined}
-            author={item.stack_digging.user_email || undefined}
-            content={item.stack_digging.text || undefined}
-            created={item.stack_digging.created_at}
-          />
-        ))}
+      <BookMarkListData />
     </List>
   );
 }
