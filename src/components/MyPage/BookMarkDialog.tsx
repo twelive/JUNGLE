@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import CancelImg from '@components/CancelImg';
 import useBookMarkStore from '@store/useBookMarkStore';
 
-function BookMarkModal() {
+function BookMarkDialog() {
   const [isHovered, setIsHovered] = useState(false);
   const { setIsBookMark } = useBookMarkStore();
 
-  const handleClickModal = () => {
+  const handleClickModal = () => {  
     setIsBookMark();
     document.body.style.overflow = 'auto';
   };
@@ -19,21 +19,6 @@ function BookMarkModal() {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-
-  const viewportWidth = window.innerWidth;
-  let scrollTop = 0;
-
-  if (viewportWidth < 768) {
-    scrollTop = 1300;
-  } else if (viewportWidth < 1010) {
-    scrollTop = 900;
-  } else {
-    scrollTop = 650;
-  }
-
-  window.scrollTo({ top: scrollTop, behavior: 'smooth' });
-
-
 
   return (
   <>
@@ -50,7 +35,7 @@ function BookMarkModal() {
   )
 }
 
-export default BookMarkModal;
+export default BookMarkDialog;
 
 const Dimmed = styled.div`
 position: fixed;
@@ -66,13 +51,13 @@ opacity: 0.8;
 const Modal = styled.div`
   /* 중앙 정렬 */
   position: absolute;
-  top: 30%;
+  top: 15vh;
   left: 50%;
   transform: translate(-50%, -50%);
   /* Style CSS */
   box-sizing: border-box;
   width: 80%;
-  height: 40%;
+  height: 43.75rem;
   padding: 3.125rem;
   border: 0.5rem solid var(--bs-black-600);
   border-radius: 3.125rem;
@@ -83,14 +68,16 @@ const Modal = styled.div`
   overflow-y: auto;
 
   @media ${(props) => props.theme.device.tablet} {
+      top: 20vh;
       width: 100%;
-      height: 30%;
+      height: 37.5rem;
       padding: 2.5rem;
     }
 
     @media ${(props) => props.theme.device.mobile} {
+      top: 20vh;
       width: 100%;
-      height: 27%;
+      height: 25rem;
       padding: 1.875rem;
     }
 
