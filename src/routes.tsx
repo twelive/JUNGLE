@@ -6,31 +6,41 @@ import {
 } from 'react-router-dom';
 
 const RootLayout = lazy(() => import('@layout/RootLayout'));
-const LandingPage = lazy(() => import('@pages/LandingPage'));
+const LandingPage = lazy(() => import('@pages/LandingPage/LandingPage'));
 const MainPage = lazy(() => import('@pages/MainPage'));
-const JobSeekPage = lazy(() => import('@pages/JobSeekPage'));
-const JobInterviewPage = lazy(() => import('@pages/JobInterviewPage'));
-const JobInterviewItemPage = lazy(() => import('@pages/JobInterviewItemPage'));
-const JobCodingTestPage = lazy(() => import('@pages/JobCodingTestPage'));
+const JobSeekPage = lazy(() => import('@pages/JobPage/JobSeekPage'));
+const JobInterviewPage = lazy(() => import('@pages/JobPage/JobInterviewPage'));
+const JobInterviewItemPage = lazy(
+  () => import('@pages/JobPage/JobInterviewItemPage')
+);
+const JobCodingTestPage = lazy(
+  () => import('@pages/JobPage/JobCodingTestPage')
+);
 const JobCodingTestItemPage = lazy(
-  () => import('@pages/JobCodingTestItemPage')
+  () => import('@pages/JobPage/JobCodingTestItemPage')
 );
 const JobCodingTestCreatePage = lazy(
-  () => import('@pages/JobCodingTestCreatePage')
+  () => import('@pages/JobPage/JobCodingTestCreatePage')
 );
 const JobInterviewCreatePage = lazy(
-  () => import('@pages/JobInterviewCreatePage')
+  () => import('@pages/JobPage/JobInterviewCreatePage')
 );
-const StudyPage = lazy(() => import('@pages/StudyPage'));
-const MyPage = lazy(() => import('@pages/MyPage'));
-const MyResumePage = lazy(() => import('@pages/MyResumePage'));
-const CommunityPage = lazy(() => import('@pages/CommunityPage'));
-const CommunityCreatePage = lazy(() => import('@/pages/CommunityCreatePage'));
+const StudyPage = lazy(() => import('@pages/StudyPage/StudyPage'));
+const MyPage = lazy(() => import('@pages/MyPage/MyPage'));
+const MyResumePage = lazy(() => import('@pages/MyPage/MyResumePage'));
+const CommunityPage = lazy(() => import('@pages/CommunityPage/CommunityPage'));
+const CommunityCreatePage = lazy(
+  () => import('@/pages/CommunityPage/CommunityCreatePage')
+);
 const IntroductionProjectPage = lazy(
-  () => import('@pages/IntroductionProjectPage')
+  () => import('@pages/IntroductionPage/IntroductionProjectPage')
 );
-const IntroductionTeamPage = lazy(() => import('@pages/IntroductionTeamPage'));
-const CommunityDetailPage = lazy(() => import('@pages/CommunityDetailPage'));
+const IntroductionTeamPage = lazy(
+  () => import('@pages/IntroductionPage/IntroductionTeamPage')
+);
+const CommunityDetailPage = lazy(
+  () => import('@pages/CommunityPage/CommunityDetailPage')
+);
 const ErrorPage = lazy(() => import('@pages/ErrorPage'));
 
 const router = createBrowserRouter(
