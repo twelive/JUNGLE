@@ -60,6 +60,13 @@ const Box = styled(Link)`
     height: 15rem;
     padding: 1.25rem
   }
+
+  @media ${(props) => props.theme.device.mobile} {
+    width: 12.5rem;
+    min-width: 12.5rem;
+    height: 12.5rem;
+    padding: 1.25rem
+  }
 `;
 
 const BookMarkButtonWrapper = styled.div`
@@ -80,16 +87,20 @@ const Title = styled.span`
   @media ${(props) => props.theme.device.tablet} {
     font-size: 1.75rem;
   }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1.5rem;
+  }
 `;
 
 const Author = styled.div`
-width: 100%;
-line-clamp: 1;
-text-overflow: ellipsis;
-white-space: nowrap;
-overflow: hidden;
-padding-top: 14px;
-padding-bottom: 14px
+  width: 100%;
+  line-clamp: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem
 `;
 
 const TextBox = styled.div`
@@ -109,6 +120,10 @@ const Content = styled.span`
 
   @media ${(props) => props.theme.device.tablet} {
     font-size: 1.25rem;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1rem;
   }
 `;
 
