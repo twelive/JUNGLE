@@ -13,9 +13,9 @@ import 'swiper/css/grid';
 
 // import required modules
 import { Autoplay, Pagination, Navigation, Grid } from 'swiper/modules';
-import banner1 from '../assets/community/community-banner1.svg';
-import banner2 from '../assets/community/community-banner2.svg';
-import banner3 from '../assets/community/community-banner3.svg';
+import banner1 from '@assets/community/community-banner1.svg';
+import banner2 from '@assets/community/community-banner2.svg';
+import banner3 from '@assets/community/community-banner3.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import { useState } from 'react';
