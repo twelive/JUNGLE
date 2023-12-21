@@ -10,19 +10,12 @@ import SectionScrollDownButton from './SectionScrollDownButton';
 import SectionThreeImgBox from './SectionThreeImgBox';
 
 const SectionComponentThree = () => {
-  const showAnimationOne = useLandingStore(
-    (state) => state.showAnimationSectionOne
-  );
-  const showAnimationTwo = useLandingStore(
-    (state) => state.showAnimationSectionTwo
-  );
-  const setShowAnimationSectionThree = useLandingStore(
-    (state) => state.setShowAnimationSectionThree
-  );
+  const animations = useLandingStore((state) => state.animations);
+  const setAnimation = useLandingStore((state) => state.setAnimation);
 
   const handleButtonClick = () => {
-    if (showAnimationOne && showAnimationTwo) {
-      setShowAnimationSectionThree(true);
+    if (animations.sectionOne && animations.sectionTwo) {
+      setAnimation('sectionThree', true);
     }
   };
 
@@ -41,7 +34,7 @@ const SectionComponentThree = () => {
   };
 
   return (
-    <Element name="section3" className="element">
+    <Element name="section3">
       <MainSection>
         <LandingHeader />
         <MainDiv>
@@ -51,7 +44,7 @@ const SectionComponentThree = () => {
           <motion.div
             variants={shakeVariants}
             initial="hidden"
-            animate={showAnimationTwo ? 'visible' : 'hidden'}
+            animate={animations.sectionTwo ? 'visible' : 'hidden'}
           >
             <ImgBox>
               <SectionThreeImgBox

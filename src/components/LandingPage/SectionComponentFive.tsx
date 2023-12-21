@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Element } from 'react-scroll';
 import styled from 'styled-components';
 import Logo from '@/assets/landing/landing-logo.svg';
@@ -7,10 +6,14 @@ import { useRef, useState } from 'react';
 import EnterButton from '../Button/EnterButton';
 import LoginModal from '../LoginModal';
 import SectionScrollUpButton from './SectionScrollUpButton';
-
+import MotionComponent from './SectionMotionDiv';
+import createChildVariants from '@/utils/createChildVariants';
 const SectionComponentFive = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [allSizeModalShow, setAllSizeModalShow] = useState(false);
+  const childVariants = createChildVariants(1);
+  const childVariantsTwo = createChildVariants(2);
+  const childVariantsThree = createChildVariants(2.5);
 
   const modalOutSideClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -20,88 +23,43 @@ const SectionComponentFive = () => {
     }
   };
 
-  const showAnimationOne = useLandingStore(
-    (state) => state.showAnimationSectionOne
-  );
-  const showAnimationTwo = useLandingStore(
-    (state) => state.showAnimationSectionTwo
-  );
-
-  const showAnimationThree = useLandingStore(
-    (state) => state.showAnimationSectionThree
-  );
-
-  const showAnimationFour = useLandingStore(
-    (state) => state.showAnimationSectionFour
-  );
-
-  const setShowAnimationSectionFive = useLandingStore(
-    (state) => state.setShowAnimationSectionFive
-  );
+  const animations = useLandingStore((state) => state.animations);
+  const setAnimation = useLandingStore((state) => state.setAnimation);
 
   const handleButtonClick = () => {
     if (
-      showAnimationOne &&
-      showAnimationTwo &&
-      showAnimationThree &&
-      showAnimationFour
+      animations.sectionOne &&
+      animations.sectionTwo &&
+      animations.sectionThree &&
+      animations.sectionFour
     ) {
-      setShowAnimationSectionFive(true);
+      setAnimation('sectionFive', true);
     }
   };
 
-  const childVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 1, ease: 'easeInOut' },
-    },
-  };
-
-  const childVariantsTwo = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 2, ease: 'easeInOut' },
-    },
-  };
-
-  const childVariantsThree = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 2.5, ease: 'easeInOut' },
-    },
-  };
   return (
-    <Element name="section5" className="element">
+    <Element name="section5">
       <MainSection>
         <MainBox>
-          <motion.div
+          <MotionComponent
             variants={childVariants}
-            initial="hidden"
-            animate={showAnimationFour ? 'visible' : 'hidden'}
+            animation={animations.sectionFour}
           >
             <LogoBox>
               <LogoImg src={Logo} alt="JUNGLE 로고" />
             </LogoBox>
-          </motion.div>
-          <motion.div
+          </MotionComponent>
+          <MotionComponent
             variants={childVariantsTwo}
-            initial="hidden"
-            animate={showAnimationFour ? 'visible' : 'hidden'}
+            animation={animations.sectionFour}
           >
             <TextBox>
               <Text>현명하게 취업준비 하는 방법</Text>
             </TextBox>
-          </motion.div>
-          <motion.div
+          </MotionComponent>
+          <MotionComponent
             variants={childVariantsThree}
-            initial="hidden"
-            animate={showAnimationFour ? 'visible' : 'hidden'}
+            animation={animations.sectionFour}
           >
             <ButtonBox>
               <EnterButton
@@ -116,7 +74,7 @@ const SectionComponentFive = () => {
                 />
               )}
             </ButtonBox>
-          </motion.div>
+          </MotionComponent>
         </MainBox>
         <SectionScrollUpButton
           sectionId={'section1'}

@@ -25,7 +25,7 @@ const TypingAnimationLogic: React.FC<TypingAnimationProps> = ({ text }) => {
       } else {
         clearInterval(intervalId);
       }
-    }, 50);
+    }, 100);
     return () => clearInterval(intervalId);
   }, [text]);
 
@@ -36,12 +36,10 @@ const SectionComponentOne: React.FC<VideoWithTypingAnimationProps> = ({
   videoSource,
   text,
 }) => {
-  const setShowAnimationSectionOne = useLandingStore(
-    (state) => state.setShowAnimationSectionOne
-  );
+  const setAnimation = useLandingStore((state) => state.setAnimation);
 
   const handleButtonClick = () => {
-    setShowAnimationSectionOne(true);
+    setAnimation('sectionOne', true);
   };
 
   return (

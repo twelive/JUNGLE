@@ -5,26 +5,17 @@ import { Element } from 'react-scroll';
 import People from '@/assets/landing/landing-people.svg';
 import useLandingStore from '@/store/useLandingStore';
 import SectionScrollDownButton from './SectionScrollDownButton';
+import createChildVariants from '@/utils/createChildVariants';
 
 const SectionComponentTwo = () => {
   const showAnimationOne = useLandingStore(
-    (state) => state.showAnimationSectionOne
+    (state) => state.animations.sectionOne
   );
-  const setShowAnimationSectionTwo = useLandingStore(
-    (state) => state.setShowAnimationSectionTwo
-  );
+  const setAnimation = useLandingStore((state) => state.setAnimation);
+  const childVariants = createChildVariants(2);
 
   const handleButtonClick = () => {
-    setShowAnimationSectionTwo(true);
-  };
-
-  const childVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 2,
-      y: 0,
-      transition: { duration: 1.5, ease: 'easeInOut' },
-    },
+    setAnimation('sectionTwo', true);
   };
 
   return (
