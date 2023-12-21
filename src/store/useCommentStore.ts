@@ -45,7 +45,7 @@ const useCommentStore = create<CommentStore>((set) => {
 
       // Supabase에 데이터 전송
       const { error } = await supabase
-        .from('job_comment')
+        .from('job_interview_comment')
         .insert([{ ...newCommentWithId, interviewId: comment.interviewId }]);
       if (error) {
         console.error('Error adding comment to Supabase:', error);
@@ -65,7 +65,7 @@ const useCommentStore = create<CommentStore>((set) => {
 
       // Supabase에서 해당 ID의 댓글을 삭제
       const { error } = await supabase
-        .from('job_comment')
+        .from('job_interivew_comment')
         .delete()
         .match({ id });
       if (error) {
