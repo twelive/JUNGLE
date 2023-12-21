@@ -6,6 +6,7 @@ function BookMarkLink() {
   const { setIsBookMark } = useBookMarkStore();
 
   const handleModal = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setIsBookMark();
     document.body.style.overflow = 'hidden';
   };
