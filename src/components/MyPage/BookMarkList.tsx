@@ -1,36 +1,24 @@
-import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import { supabase } from '@/client';
+import useBookmarksData from '@/api/useBookmarksData';
 import BookMarkItem from '@components/MyPage/BookMarkItem';
-import { BookMarks } from '@/types/BookMarks';
-import {useAuthStore} from '@store/useAuthStore';
 
 function BookMarkList() {
-  //^ 1. 현재 로그인된 사용자 정보 가져오기
-  const {user} = useAuthStore();
+  const { data } = useBookmarksData();
 
-  //^ 2. Supabase API: from, select, returns 문 이용하여 bookmarks 데이터 가져오기
-  const getBookmarksData: () => Promise<BookMarks[] | null> = async () => {
-    const { data: bookmarks } = await supabase
-  .from('bookmarks')
-  .select(
-    `*, 
-    stack_digging:stack_digging (*)`
-  )
-  .eq('user_id', user)
-  .returns<BookMarks[] | null>();
-    
-    return bookmarks;
-  };
-
-  //^ 3. useQuery, filter() 메서드 이용하여 user에 맞는 bookmarkData만 가져오기
-  const { data } = useQuery('users', getBookmarksData);
-  
-
-  return (
+return (
     <List>
-      {data && data.map((item) => <BookMarkItem src={`/study/stack/detail/${item.stack_digging
-.id}`} title={item.stack_digging.title || undefined} content={item.stack_digging.text || undefined} />)}
+      {data &&
+        data.map((item) => (
+          <BookMarkItem
+            key={item.stack_digging.id}
+            src={`/study/stack/detail/${item.stack_digging.id}`}
+            ItemId={item.stack_digging.id}
+            title={item.stack_digging.title || undefined}
+            author={item.stack_digging.user_email || undefined}
+            content={item.stack_digging.text || undefined}
+            created={item.stack_digging.created_at}
+          />
+        ))}
     </List>
   );
 }
