@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import BookMarkButton from '@components/StudyPage/BookMarkButton';
+import notbookmark from '@assets/common/bookmarkwhite.svg';
 
 function BookMarkItem({
   src = '/bookmark',
@@ -8,6 +10,7 @@ function BookMarkItem({
 }) {
   return (
     <Box to={src}>
+      <BookMarkButton notBookmarkImg={notbookmark} itemId={'#'} userId={'#'} itemType='stack' ></BookMarkButton>
       <Title>{title}</Title>
       <Content>{content}</Content>
     </Box>

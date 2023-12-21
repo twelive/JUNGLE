@@ -25,16 +25,12 @@ function BookMarkList() {
 
   //^ 3. useQuery, filter() 메서드 이용하여 user에 맞는 bookmarkData만 가져오기
   const { data } = useQuery('users', getBookmarksData);
-  console.log(data);
   
 
   return (
     <List>
-      {/* map으로 불러올 예정입니다 */}
-      <BookMarkItem />
-      <BookMarkItem />
-      <BookMarkItem />
-      <BookMarkItem />
+      {data && data.map((item) => <BookMarkItem src={`/study/stack/detail/${item.stack_digging
+.id}`} title={item.stack_digging.title || undefined} content={item.stack_digging.text || undefined} />)}
     </List>
   );
 }
