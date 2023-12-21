@@ -7,6 +7,7 @@ import Community from '@/assets/landing/landing-community.svg';
 import LandingHeader from './LandingHeader';
 import useLandingStore from '@/store/useLandingStore';
 import SectionScrollDownButton from './SectionScrollDownButton';
+import SectionThreeImgBox from './SectionThreeImgBox';
 
 const SectionComponentThree = () => {
   const showAnimationOne = useLandingStore(
@@ -53,21 +54,24 @@ const SectionComponentThree = () => {
             animate={showAnimationTwo ? 'visible' : 'hidden'}
           >
             <ImgBox>
-              <ImgBoxOne>
-                <ImgBoxTitle>Job</ImgBoxTitle>
-                <ImgBoxText>채용회사</ImgBoxText>
-                <ImgBoxText>면접</ImgBoxText>
-              </ImgBoxOne>
-              <ImgBoxTwo>
-                <ImgBoxTitle>Study</ImgBoxTitle>
-                <ImgBoxText>도서추천</ImgBoxText>
-                <ImgBoxText>기술스택</ImgBoxText>
-              </ImgBoxTwo>
-              <ImgBoxThree>
-                <ImgBoxTitle>Community</ImgBoxTitle>
-                <ImgBoxText>스터디</ImgBoxText>
-                <ImgBoxText>프로젝트</ImgBoxText>
-              </ImgBoxThree>
+              <SectionThreeImgBox
+                imageUrl={Job}
+                title="Job"
+                text1="채용회사"
+                text2="면접"
+              />
+              <SectionThreeImgBox
+                imageUrl={Study}
+                title="Study"
+                text1="도서추천"
+                text2="기술디깅"
+              />
+              <SectionThreeImgBox
+                imageUrl={Community}
+                title="Community"
+                text1="스터디"
+                text2="프로젝트"
+              />
             </ImgBox>
           </motion.div>
         </MainDiv>
@@ -108,44 +112,4 @@ const ImgBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 90px;
-`;
-
-const ImgBoxOne = styled.div`
-  background-image: url(${Job});
-  border: 5px solid white;
-  background-size: cover;
-  width: 300px;
-  height: 450px;
-  border-radius: 20px;
-  text-align: center;
-`;
-
-const ImgBoxTwo = styled.div`
-  background-image: url(${Study});
-  border: 5px solid white;
-  width: 300px;
-  height: 450px;
-  border-radius: 20px;
-  text-align: center;
-`;
-
-const ImgBoxThree = styled.div`
-  background-image: url(${Community});
-  border: 5px solid white;
-  width: 300px;
-  height: 450px;
-  border-radius: 20px;
-  text-align: center;
-`;
-
-const ImgBoxTitle = styled.p`
-  font-size: 50px;
-  font-weight: 600;
-  padding-top: 20px;
-`;
-
-const ImgBoxText = styled.p`
-  font-size: 40px;
-  line-height: 150px;
-  font-weight: 400;
 `;
