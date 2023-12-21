@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import CancelImg from '@components/CancelImg';
 import useBookMarkStore from '@store/useBookMarkStore';
+import BookMarkListData from '@components/MyPage/BookMarkListData';
 
 function BookMarkDialog() {
   const [isHovered, setIsHovered] = useState(false);
@@ -29,7 +30,9 @@ function BookMarkDialog() {
       onMouseLeave={handleMouseLeave}>
         <CancelImg fill={isHovered ? 'black' : '#666'} />
       </CancelButton>
-      {/* map 메서드를 통해 정보를 불러올 예정입니다. */}
+      <List>
+        <BookMarkListData />
+      </List>
     </Modal>
   </>
   )
@@ -66,6 +69,20 @@ const Modal = styled.div`
   opacity: 1;
   /* Scroll */
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.75rem;
+    height: 1.25rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--bs-black-900);
+    border-radius: 0.9375rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 0.9375rem;
+    margin: 1.875rem;
+  }
 
   @media ${(props) => props.theme.device.tablet} {
       top: 20vh;
@@ -119,4 +136,11 @@ const CancelButton = styled.button`
       right: -0.625rem;
     }
   }
+`
+
+const List = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1rem;
 `
