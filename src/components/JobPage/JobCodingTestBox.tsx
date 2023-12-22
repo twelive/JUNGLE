@@ -2,6 +2,9 @@ import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import useDataStore from '@/store/useDataStore';
 import { useEffect } from 'react';
+import notbookmark from './../../assets/common/bookmarkwhite.svg';
+import CodingTestBookmark from './CodingTestBookmark';
+import { useAuthStore } from '@/store/useAuthStore';
 
 interface CodingTestType {
   id: number | string;
@@ -28,7 +31,7 @@ function JobCodingTestBox() {
   const extractDate = (dateString: string) => {
     return (dateString || '').toString().slice(0, 10);
   };
-
+  const userId = useAuthStore((state) => state.user);
   return (
     <>
       {data.map((item: CodingTestType) => (
@@ -41,6 +44,12 @@ function JobCodingTestBox() {
               <DateBox>{extractDate(item.created_at)}</DateBox>
               <UserName>{item.name}</UserName>
             </SubBox>
+            <CodingTestBookmark
+              notBookmarkImg={notbookmark}
+              itemId={item.id}
+              userId={userId}
+              itemType="stack"
+            ></CodingTestBookmark>
           </MainBox>
         </StyledLink>
       ))}
@@ -58,6 +67,7 @@ const MainBox = styled.div`
   cursor: pointer;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   transition: box-shadow 0.3s ease-in-out;
+  position: relative;
 
   &:hover {
     animation: ${hoverAnimation} 0.3s ease-in-out forwards;

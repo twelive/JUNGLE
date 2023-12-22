@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { supabase } from '@/client';
 import useCodingTestCreateStore from '@/store/useCodingTestCreateStore';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const JobCodingTestCreatePage: React.FC = () => {
   const [title, setTitle] = useState<string>('');
@@ -11,17 +12,18 @@ const JobCodingTestCreatePage: React.FC = () => {
   const addCodingTest = useCodingTestCreateStore(
     (state) => state.addCodingTest
   );
+  const { userEmail } = useAuthStore();
+  const extractedValue = userEmail.split('@')[0];
   const navigate = useNavigate();
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
-
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
 
   const createCodingTest = async () => {
-    const data = { title, info: content }; // content를 info로 변경
+    const data = { title, info: content, name: extractedValue };
     const { error } = await supabase.from('job_codingtest').insert([data]);
     if (error) {
       console.log('Error: ', error);
@@ -29,12 +31,12 @@ const JobCodingTestCreatePage: React.FC = () => {
       const codingTestData = {
         title,
         created_at: new Date().toISOString(),
-        name: 'Your Name',
+        name: extractedValue,
         info: content,
         content: '',
-      }; // 여기에 실제 데이터 구조에 맞게 채워넣어야 합니다.
+      };
       addCodingTest(codingTestData);
-      navigate('/job/codingTest'); // 작성이 완료되면 jobinterviewpage로 이동
+      navigate('/job/codingTest');
     }
   };
 

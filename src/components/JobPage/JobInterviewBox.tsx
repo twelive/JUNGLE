@@ -2,6 +2,9 @@ import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import useDataStore from '@/store/useDataStore';
 import { useEffect } from 'react';
+import InterviewBookmark from './InterviewBookmark';
+import { useAuthStore } from '@/store/useAuthStore';
+import notbookmark from './../../assets/common/bookmarkwhite.svg';
 
 interface InterviewType {
   id: number | string;
@@ -28,6 +31,7 @@ function JobInterviewBox() {
   const extractDate = (dateString: string) => {
     return (dateString || '').toString().slice(0, 10);
   };
+  const userId = useAuthStore((state) => state.user);
 
   return (
     <>
@@ -41,6 +45,12 @@ function JobInterviewBox() {
               <DateBox>{extractDate(item.created_at)}</DateBox>
               <UserName>{item.name}</UserName>
             </SubBox>
+            <InterviewBookmark
+              notBookmarkImg={notbookmark}
+              itemId={item.id}
+              userId={userId}
+              itemType="stack"
+            ></InterviewBookmark>
           </MainBox>
         </StyledLink>
       ))}
@@ -58,6 +68,7 @@ const MainBox = styled.div`
   cursor: pointer;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   transition: box-shadow 0.3s ease-in-out;
+  position: relative;
 
   &:hover {
     animation: ${hoverAnimation} 0.3s ease-in-out forwards;
@@ -72,6 +83,7 @@ const TitleBox = styled.div`
   display: block;
   border-bottom: 1px solid black;
   height: 170px;
+  position: relative;
 `;
 
 const Title = styled.p`
