@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import CategorySection from '@components/MainPage/CategorySection';
 import gitLogo from '@assets/common/gitlogo.svg'
 import figmaLogo from '@assets/common/figmaLogo.svg'
+import jungleLogo from '@assets/common/logo.svg'
 import ArrowScrollDown from '@/components/ArrowScrollDown';
-import { Link } from 'react-router-dom';
 
 function MainPage() {
 
@@ -27,7 +28,7 @@ function MainPage() {
         <TeamBox>
           <TeamTitle>JUNGLE</TeamTitle>
           <TeamContent>
-            <Button type="button" onClick={() =>  window.open("jungler.vercel.app", '_blank')}><img src={"/logo.svg"} alt='JUNGLER' /></Button>
+            <Button type="button" onClick={() =>  window.open("jungler.vercel.app", '_blank')}><img src={jungleLogo} alt='JUNGLER' /></Button>
             <Button type="button" onClick={() =>  window.open("https://github.com/twelive/JUNGLE", '_blank')}><img src={gitLogo} alt='git' /></Button>
             <Button type="button" onClick={() =>  window.open("https://www.figma.com/file/lrcTq4IIk5FnHrfkC7AUej/Jungle_%EB%94%94%EC%9E%90%EC%9D%B8?type=design&node-id=552%3A824&mode=design&t=kMP4debZb4H7EBaZ-1", '_blank')}><img src={figmaLogo} alt='figma' /></Button>
           </TeamContent>
