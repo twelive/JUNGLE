@@ -1,6 +1,6 @@
 import { supabase } from '@/client';
 // import useDataStore from '@/store/useDataStore';
-import { StackDiggingDTO } from '@/types/StackDigging';
+import { StackDiggingDTO } from '@/types/StackDiggingDTO';
 import { useQuery } from 'react-query';
 // import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
