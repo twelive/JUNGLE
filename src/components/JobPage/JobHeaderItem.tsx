@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import JobHeaderCreateButton from './JobHeaderCreateButton';
+import JobHeaderCreateButton from '@components/JobPage/JobHeaderCreateButton';
 
 const DefaultMenu = [
   { path: '/job', children: '취업' },

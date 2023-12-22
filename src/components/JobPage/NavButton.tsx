@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ScrollToBottomButton from './ScrollBottomButton';
-import ScrollToTopButton from './ScrollTopButton';
+import ScrollToBottomButton from '@components/JobPage/ScrollBottomButton';
+import ScrollToTopButton from '@components/JobPage/ScrollTopButton';
 
 function NavButton() {
   return (

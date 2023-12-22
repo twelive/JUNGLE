@@ -1,7 +1,7 @@
+import styled from 'styled-components';
 import Logo from '@components/Logo';
 import HeaderButtonGroup from '@components/Header/HeaderButtonGroup';
 import ScrollDown from '@components/ScrollDown';
-import styled from 'styled-components';
 
 function MainHeader() {
   return (

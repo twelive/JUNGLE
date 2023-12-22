@@ -1,13 +1,14 @@
-import { motion } from 'framer-motion';
 import { Element } from 'react-scroll';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import Job from '@/assets/landing/landing-job.svg';
-import Study from '@/assets/landing/landing-study.svg';
-import Community from '@/assets/landing/landing-community.svg';
-import LandingHeader from './LandingHeader';
-import useLandingStore from '@/store/useLandingStore';
-import SectionScrollDownButton from './SectionScrollDownButton';
-import SectionThreeImgBox from './SectionThreeImgBox';
+
+import LandingHeader from '@components/LandingPage/LandingHeader';
+import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownButton';
+import SectionThreeImgBox from '@components/LandingPage/SectionThreeImgBox';
+import useLandingStore from '@store/useLandingStore';
+import Job from '@assets/landing/landing-job.svg';
+import Study from '@assets/landing/landing-study.svg';
+import Community from '@assets/landing/landing-community.svg';
 
 const SectionComponentThree = () => {
   const animations = useLandingStore((state) => state.animations);

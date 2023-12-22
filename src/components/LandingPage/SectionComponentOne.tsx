@@ -1,8 +1,8 @@
-import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { Element } from 'react-scroll';
-import useLandingStore from '@/store/useLandingStore';
-import SectionScrollDownButton from './SectionScrollDownButton';
+import styled from 'styled-components';
+import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownButton';
+import useLandingStore from '@store/useLandingStore';
 
 interface TypingAnimationProps {
   text: string;

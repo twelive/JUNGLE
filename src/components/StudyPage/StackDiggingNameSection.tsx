@@ -1,7 +1,6 @@
-
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowScrollDown from '@components/ArrowScrollDown';
-import { Link } from 'react-router-dom';
 
 
 function StackDiggingNameSection({ src = '/study/stack/ListTable', }) {

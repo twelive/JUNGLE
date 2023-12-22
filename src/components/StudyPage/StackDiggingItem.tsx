@@ -1,13 +1,14 @@
-import { supabase } from '@/client';
-// import useDataStore from '@/store/useDataStore';
-import { StackDiggingDTO } from '@/types/StackDiggingDTO';
-import { useQuery } from 'react-query';
 // import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import BookMarkButton from './BookMarkButton';
-import { useAuthStore } from '@/store/useAuthStore';
-import notbookmark from './../../assets/common/bookmarkwhite.svg';
+
+import { supabase } from '@/client';
+import { StackDiggingDTO } from '@/types/StackDiggingDTO';
+import BookMarkButton from '@components/StudyPage/BookMarkButton';
+import { useAuthStore } from '@store/useAuthStore';
+// import useDataStore from '@/store/useDataStore';
+import notbookmark from '@assets/common/bookmarkwhite.svg';
 
 const getListData: () => Promise<StackDiggingDTO[] | null> = async () => {
   const { data } = await supabase

@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import bookmark from './../../assets/common/bookmarkbluefilled.svg';
 import { useState, useEffect } from 'react';
+import styled from "styled-components";
 import { supabase } from "@/client";
+import bookmark from '@assets/common/bookmarkbluefilled.svg';
 
 
 

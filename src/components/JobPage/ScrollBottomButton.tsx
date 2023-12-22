@@ -1,6 +1,6 @@
 import { animateScroll as scroll } from 'react-scroll';
-import down from '@/assets/job/job-down-button.svg';
 import styled from 'styled-components';
+import down from '@assets/job/job-down-button.svg';
 const ScrollToBottomButton = () => {
   const scrollToBottom = () => {
     scroll.scrollToBottom();

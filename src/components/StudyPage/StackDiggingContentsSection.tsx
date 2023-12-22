@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import StackDiggingItem from './StackDiggingItem';
+import StackDiggingItem from '@components/StudyPage/StackDiggingItem';
 
 function StackDiggingContentsSection() {
   return (

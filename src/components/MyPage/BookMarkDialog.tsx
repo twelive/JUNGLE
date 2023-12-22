@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import CancelImg from '@components/CancelImg';
-import useBookMarkStore from '@store/useBookMarkStore';
 import BookMarkListData from '@components/MyPage/BookMarkListData';
+import useBookMarkStore from '@store/useBookMarkStore';
 
 function BookMarkDialog() {
   const [isHovered, setIsHovered] = useState(false);

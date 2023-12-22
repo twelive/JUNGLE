@@ -1,4 +1,8 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom'; 
+import { useQuery } from 'react-query';
 import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components';
 
 import {
   Swiper as ReactSwiper,
@@ -10,19 +14,15 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/grid';
 
+import { supabase } from '@/client';
 import { Autoplay, Pagination, Navigation, Grid } from 'swiper/modules';
+import { CommunityProject } from '@/types/CommunityProject';
+import { CommunityStudy } from '@/types/CommunityStudy';
+import { Users } from '@/types/Users';
+import { getPbImageURL } from '@store/getPbImageURL';
 import banner1 from '@assets/community/community-banner1.svg';
 import banner2 from '@assets/community/community-banner2.svg';
 import banner3 from '@assets/community/community-banner3.svg';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom'; 
-import { useState } from 'react';
-import { getPbImageURL } from '@/store/getPbImageURL';
-import { supabase } from '@/client';
-import { useQuery } from 'react-query';
-import { CommunityProject } from '@/types/CommunityProject';
-import { Users } from '@/types/Users';
-import { CommunityStudy } from '@/types/CommunityStudy';
 
 
 

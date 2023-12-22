@@ -1,10 +1,10 @@
 import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 import HeaderMenuItem from '@components/Header/HeaderMenuItem';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
 import { useAuthStore } from '@store/useAuthStore';
 import getUserName from '@utils/getUserName';
 import getPathName from '@utils/getPathName';
-import styled from 'styled-components';
 
 const DefaultMenu = [
   { path: '/mypage', children: '내 활동' },

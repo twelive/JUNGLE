@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import useCommentStore from '@/store/useCommentStore';
 import styled from 'styled-components';
 import { supabase } from '@/client';
-import { useAuthStore } from '@/store/useAuthStore';
+import { useAuthStore } from '@store/useAuthStore';
+import useCommentStore from '@store/useCommentStore';
 
 const AddComment = ({
   currentInterviewitemId,

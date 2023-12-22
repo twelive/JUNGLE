@@ -1,4 +1,4 @@
-import HeaderMenu from '@/components/Header/HeaderMenu';
+import HeaderMenu from '@components/Header/HeaderMenu';
 import { create } from 'zustand';
 
 interface State {

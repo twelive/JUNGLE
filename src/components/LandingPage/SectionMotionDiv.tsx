@@ -1,5 +1,5 @@
-import { motion, Variants } from 'framer-motion';
 import { ReactNode } from 'react';
+import { motion, Variants } from 'framer-motion';
 
 interface MotionComponentProps {
   variants: Variants;

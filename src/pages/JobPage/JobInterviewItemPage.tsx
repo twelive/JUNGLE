@@ -1,11 +1,12 @@
-import useDataStore from '@/store/useDataStore';
 import { useEffect } from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import AddComment from '@/components/JobPage/AddComment';
-import CommentSaveBox from '@/components/JobPage/CommentSaveBox';
-import NavButton from '@/components/JobPage/NavButton';
-import ItemDeleteButton from '@/components/JobPage/ItemDeleteButton';
+import styled from 'styled-components';
+
+import AddComment from '@components/JobPage/AddComment';
+import CommentSaveBox from '@components/JobPage/CommentSaveBox';
+import NavButton from '@components/JobPage/NavButton';
+import ItemDeleteButton from '@components/JobPage/ItemDeleteButton';
+import useDataStore from '@store/useDataStore';
 
 interface InterviewItemType {
   id: number | string;

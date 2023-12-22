@@ -1,5 +1,5 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom'; // useNavigate import 추가
 import { supabase } from '@/client';
 
 const JobCodingTestItemDeleteButton = ({ itemId }: { itemId: number }) => {

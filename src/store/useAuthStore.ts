@@ -1,8 +1,8 @@
-import { supabase } from '@/client';
-import { Session } from '@supabase/supabase-js';
 // import { useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
+import { supabase } from '@/client';
+import { Session } from '@supabase/supabase-js';
 
 type State = {
   isAuth: boolean;

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import ArrowScrollDown from '@components/ArrowScrollDown';
 import useHeaderMenuStore from '@store/useHeaderMenuStore';
-import styled from 'styled-components';
 
 interface CategoryProps {
   title?: string;

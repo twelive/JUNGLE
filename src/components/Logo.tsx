@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import logoTitle from '@assets/common/logo-title.svg';
 import logoBorder from '@assets/common/logo-border.svg';
-import styled from 'styled-components';
 
 interface LogoProps {
   isPoint?: boolean;

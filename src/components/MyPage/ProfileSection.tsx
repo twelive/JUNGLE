@@ -1,6 +1,4 @@
-// import { useRef } from "react";
 import styled from 'styled-components';
-// import { supabase } from '@/client';
 import Profile from '@components/MyPage/Profile';
 import { useAuthStore } from '@store/useAuthStore';
 import getUserName from '@utils/getUserName';

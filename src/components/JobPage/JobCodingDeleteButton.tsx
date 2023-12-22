@@ -1,5 +1,5 @@
-import useCodingCommentStore from '@/store/useCodingCommentStore';
 import styled from 'styled-components';
+import useCodingCommentStore from '@store/useCodingCommentStore';
 
 interface DeleteButtonProps {
   id: number | undefined;

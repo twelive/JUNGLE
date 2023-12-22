@@ -1,19 +1,17 @@
-import { Helmet } from 'react-helmet-async';
-// import useDataStore from '@/store/useDataStore';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import useTagStore from '@/store/useTagStore';
-import { supabase } from '@/client';
-// import useDataStore from '@/store/useDataStore';
-import { StackDiggingDTO } from '@/types/StackDiggingDTO';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-// import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuthStore } from '@/store/useAuthStore';
-import notbookmark from '../assets/common/bookmarkwhite.svg';
+import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-import BookMarkButton from '@/components/StudyPage/BookMarkButton';
-import TagButtonComponent from '@/components/StudyPage/TagButtonComponent';
+
+import { supabase } from '@/client';
+import { StackDiggingDTO } from '@/types/StackDiggingDTO';
+import BookMarkButton from '@components/StudyPage/BookMarkButton';
+import TagButtonComponent from '@components/StudyPage/TagButtonComponent';
+import { useAuthStore } from '@store/useAuthStore';
+// import useDataStore from '@store/useDataStore';
+import useTagStore from '@store/useTagStore';
+import notbookmark from '@assets/common/bookmarkwhite.svg';
 
 
 

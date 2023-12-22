@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Category from '@components/MainPage/Category';
-import { useAuthStore } from '@/store/useAuthStore';
+import { useAuthStore } from '@store/useAuthStore';
 import getUserName from '@utils/getUserName';
 
 function CategorySection() {

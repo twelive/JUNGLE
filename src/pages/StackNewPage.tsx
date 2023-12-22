@@ -1,9 +1,9 @@
+import { useRef } from 'react';
 import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
-import { useRef } from 'react';
-import { useAuthStore } from "@/store/useAuthStore";
-import { StackDiggingDTO } from '@/types/StackDiggingDTO';
 import { supabase } from "@/client";
+import { StackDiggingDTO } from '@/types/StackDiggingDTO';
+import { useAuthStore } from "@store/useAuthStore";
 
 const createData: (tableName: string, data: Partial<StackDiggingDTO>) => Promise<StackDiggingDTO[] | null> = async (tableName, data) => {
   const { data: insertedData } = await supabase

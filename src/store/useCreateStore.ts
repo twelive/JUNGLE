@@ -1,6 +1,5 @@
-
-import { createClient } from '@supabase/supabase-js';
 import { create } from 'zustand';
+import { createClient } from '@supabase/supabase-js';
 
 // Supabase 연결 정보
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
