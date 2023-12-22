@@ -60,7 +60,6 @@ const useStorageStore = create<State>((set) => ({
         
         if(data){
           set({ data });
-          console.log(data);
         }
       }
       

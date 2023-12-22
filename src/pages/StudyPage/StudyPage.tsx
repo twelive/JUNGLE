@@ -46,7 +46,6 @@ const { data: bookData, getListData } = useDataStore();
   const [tags, setTags] = useState<string[]>([]);
   
   useEffect(()=>{
-  console.log(userId);
   setSelectedTag('etc');
 getListData('book');
 getAllList('book','');
