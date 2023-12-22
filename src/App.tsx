@@ -16,51 +16,38 @@ import { Session } from '@supabase/supabase-js';
 const queryClient = new QueryClient();
 
 function App() {
-
-const [session, setSession] = useState<Session | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
 
-
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      console.log("변경");
-    })
-    
+      console.log('변경');
+    });
   }, []);
 
-
-
-
   return (
- 
     <>
-          {!session ? (
-            
-              <LandingPage />
-            
-          ) : (
-              <>
       <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
+        {!session ? (
+          <LandingPage />
+        ) : (
+          <>
+            <QueryClientProvider client={queryClient}>
               <HelmetProvider>
                 <Suspense fallback={<Loading />}>
                   <RouterProvider router={router} />
                   <GlobalStyles />
                 </Suspense>
               </HelmetProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+              <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
+          </>
+        )}
       </ThemeProvider>
-            </>
-              
-          )}
-          
-            </>
-
-          
+    </>
   );
 }
 

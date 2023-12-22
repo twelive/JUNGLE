@@ -1,16 +1,25 @@
 import { Helmet } from 'react-helmet-async';
-import Banner from '@/assets/community/community-banner1.svg';
+
 import styled from 'styled-components';
 import JobHeaderItem from '@/components/JobPage/JobHeaderItem';
 import JobInterviewBox from '@/components/JobPage/JobInterviewBox';
+
+import banner1 from '@assets/job/job-banner1.svg';
+import banner2 from '@assets/job/job-banner2.svg';
+import banner3 from '@assets/job/job-banner3.svg';
+import SwiperComponent from '@/components/SwiperComponet';
+type ImageArray = Array<string>;
+
 function JobInterviewPage() {
+  const slides: ImageArray = [banner1, banner2, banner3];
+
   return (
     <>
       <Helmet>
         <title>Interview - JUNGLE</title>
       </Helmet>
       <MainSection>
-        <BannerImg src={Banner} alt="배너사진" />
+        <SwiperComponent slides={slides} />
         <MenuBox>
           <JobHeaderItem />
         </MenuBox>
@@ -25,10 +34,6 @@ function JobInterviewPage() {
 export default JobInterviewPage;
 
 const MainSection = styled.section`
-  width: 100%;
-`;
-
-const BannerImg = styled.img`
   width: 100%;
 `;
 
