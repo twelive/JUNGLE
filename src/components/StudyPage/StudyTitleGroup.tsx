@@ -4,11 +4,11 @@ import styled from "styled-components"
 
 interface TagButtonProps {
 studyTitle: string;
-children: React.ReactNode;
-children2: React.ReactNode;
+children?: React.ReactNode;
+children2?: React.ReactNode;
 
-tagTitle: string;
-studymobiletitle: string;
+tagTitle?: string;
+studymobiletitle?: string;
 
 }
 
@@ -161,7 +161,7 @@ height: 10px;
 
 `;
 
-const StudyMobileWrapper = styled. div `
+const StudyMobileWrapper = styled.div `
 display: flex;   
 flex-direction: column;
 gap: 10px;

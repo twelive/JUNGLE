@@ -3,12 +3,11 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { supabase } from '@/client';
 import { useMutation } from 'react-query';
-// import { Users } from '@/types/Users';
 import { useAuthStore } from '@/store/useAuthStore';
 import useCreateStore from '@/store/useCreateStore';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import { useNavigate } from 'react-router-dom';
 
 interface CreateData {
   title: string;
@@ -32,6 +31,7 @@ function CommunityCreatePage() {
   const [tag2, setStack2] = useState('');
   const [tag3, setStack3] = useState('');
   const [deadline, setDeadline] = useState<Date | null >(null);
+  const navigate = useNavigate();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -45,7 +45,7 @@ const handlePeopleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 };
 const handleDivisionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
   setDivision(e.target.value);
-  console.log('Division changed: ', e.target.value); // 로깅 추가
+ 
 };
 const handleProgressChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
   setProgress(e.target.value);
@@ -84,8 +84,7 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
          console.error('Error creating post. Error details:', error);
         throw new Error('Error creating post');
       }
-      console.log('Post created');
-      console.log(String(deadline));
+      
       
     } catch (error) {
       console.error('Error creating post:', error);
@@ -93,14 +92,14 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
      },
      {
        onSuccess: () => {
-         // 성공 시 필요한 작업을 수행할 수 있습니다.
+         
          console.log('Successfully created post!');
-        // 예: 다른 곳으로 리다이렉트 또는 상태 초기화
+        
       },
       onError: () => {
-        // 에러 발생 시 필요한 작업을 수행할 수 있습니다.
+        
         console.error('Failed to create post');
-        // 예: 에러 메시지 표시 또는 재시도
+      
       },
       
     });
@@ -130,10 +129,9 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-    const user_id = user; // userEmail
+    const user_id = user;
     createPost.mutate({ title, contents, user_id: user });
     if (title.trim() !== '' && contents.trim() !== '') {
-      // title과 content가 빈 값이 아닌지 확인
       addComment({
         title: 'Title',
         contents: 'Content',
@@ -145,7 +143,8 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
         tag3: 'Tag3',
         user_id: user_id,
         
-      }); 
+      });
+      navigate('/community'); 
     }
   };
  
@@ -171,116 +170,140 @@ const handleTag3Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
               </div>
               <StyledForm onSubmit={handleSubmit}>
                 <ul>
-                  <Selectdiv>
-                    <Li>
-                      <p>구분</p>
-                      <select onChange={handleDivisionChange}>
-                        <option disabled selected>
-                          프로젝트/스터디
-                        </option>
-                        <option>프로젝트</option>
-                        <option>스터디</option>
-                      </select>
-                    </Li>
-                    <Li>
-                      <p>모집인원</p>
-                      <select onChange={handlePeopleChange}>
-                        <option disabled selected>
-                          모집인원
-                        </option>
-                        <option>1 명</option>
-                        <option>2 명</option>
-                        <option>3 명</option>
-                        <option>4 명</option>
-                        <option>5 명</option>
-                        <option>인원 수 제한없음</option>
-                      </select>
-                    </Li>
-                    <Li>
-                      <p>진행방식</p>
-                      <select onChange={handleProgressChange}>
-                        <option disabled selected>
-                          진행방식
-                        </option>
-                        <option>온라인</option>
-                        <option>오프라인</option>
-                      </select>
-                    </Li>
-                    <Li>
-                      <p>사용언어</p>
-                      <select onChange={handleTag1Change}>
-                        <option disabled selected>
-                          사용언어
-                        </option>
-                        <option>javascript</option>
-                        <option>react</option>
-                        <option>ts</option>
-                        <option>next.js</option>
-                        <option>vue</option>
-                        <option>svelte</option>
-                      </select>
-                    </Li>
-                    <Li>
-                      <p>사용언어</p>
-                      <select onChange={handleTag2Change}>
-                        <option disabled selected>
-                          사용언어
-                        </option>
-                        <option>javascript</option>
-                        <option>react</option>
-                        <option>ts</option>
-                        <option>next.js</option>
-                        <option>vue</option>
-                        <option>svelte</option>
-                      </select>
-                    </Li>
-                    <Li>
-                      <p>사용언어</p>
-                      <select onChange={handleTag3Change}>
-                        <option disabled selected>
-                          사용언어
-                        </option>
-                        <option>javascript</option>
-                        <option>react</option>
-                        <option>ts</option>
-                        <option>next.js</option>
-                        <option>vue</option>
-                        <option>svelte</option>
-                      </select>
-                    </Li>
-                  </Selectdiv>
+                  <div>
+                    <Info>✏프로젝트 기본 정보를 입력해주세요.</Info>
+                    <Firstwrapper>
+                      <Li>
+                        <label>작성자</label>
+                        <div> {userEmail} </div>
+                      </Li>
+                      <Li>
+                        <label>작성일자</label>
+                        <div>{new Date().toISOString().slice(0, 10)} </div>
+                      </Li>
+                    </Firstwrapper>
+                    <Secondwrapper>
+                      <Li>
+                          <p>구분</p>
+                          <Select
+                            defaultValue="프로젝트/스터디"
+                            onChange={handleDivisionChange}
+                          >
+                            <option disabled>프로젝트/스터디</option>
+                            <option>프로젝트</option>
+                            <option>스터디</option>
+                          </Select>
+                      </Li>
+                      <Li>
+                        <p>모집인원</p>
+                        <Select
+                          defaultValue="모집인원"
+                          onChange={handlePeopleChange}
+                        >
+                          <option disabled>모집인원</option>
+                          <option>1 명</option>
+                          <option>2 명</option>
+                          <option>3 명</option>
+                          <option>4 명</option>
+                          <option>5 명</option>
+                          <option>인원 수 제한없음</option>
+                        </Select>
+                      </Li>
+                    </Secondwrapper>
+                    <Thirdwrapper>
+                      <Li>
+                        <p>진행방식</p>
+                        <Select
+                          defaultValue="진행방식"
+                          onChange={handleProgressChange}
+                        >
+                          <option disabled>진행방식</option>
+                          <option>온라인</option>
+                          <option>오프라인</option>
+                        </Select>
+                      </Li>
+                      <Li>
+                        <p>사용언어</p>
+                        <Select
+                          defaultValue="사용언어"
+                          onChange={handleTag1Change}
+                        >
+                          <option disabled>사용언어</option>
+                          <option value="javascript">javascript</option>
+                          <option value="react">react</option>
+                          <option value="ts">ts</option>
+                          <option value="next.js">next.js</option>
+                          <option value="vue">vue</option>
+                          <option value="svelte">svelte</option>
+                        </Select>
+                      </Li>
+                    </Thirdwrapper>
+                    <Fourthwrapper>
+                      <Li>
+                        <p>사용언어</p>
+                        <Select
+                          defaultValue="사용언어"
+                          onChange={handleTag2Change}
+                        >
+                          <option disabled>사용언어</option>
+                          <option value="javascript">javascript</option>
+                          <option value="react">react</option>
+                          <option value="ts">ts</option>
+                          <option value="next.js">next.js</option>
+                          <option value="vue">vue</option>
+                          <option value="svelte">svelte</option>
+                        </Select>
+                      </Li>
+                      <Li>
+                        <p>사용언어</p>
+                        <Select defaultValue="사용언어" 
+                        onChange={handleTag3Change}>
+                          <option disabled>
+                            사용언어
+                          </option>
+                          <option value="javascript">javascript</option>
+                          <option value="react">react</option>
+                          <option value="ts">ts</option>
+                          <option value="next.js">next.js</option>
+                          <option value="vue">vue</option>
+                          <option value="svelte">svelte</option>
+                        </Select>
+                      </Li>
+                    </Fourthwrapper>
+                  </div>
                   <Li>
-                    <label>마감일: </label>
-                    <DatePicker
-                      selected={deadline}
-                      onChange={(date) => setDeadline(date)}
-                      dateFormat="yyyy-MM-dd"
-                      placeholderText="Select a date"
-                    />
+                    <Datewrapper>
+                      <label>마감일 </label>
+                      <StyledDatePicker
+                        selected={deadline}
+                        onChange={(date) => setDeadline(date)}
+                        dateFormat="yyyy-MM-dd"
+                        placeholderText="Select a date"
+                      />
+                    </Datewrapper>
                   </Li>
+                  <Info>👩‍💻프로젝트에 대해 소개해주세요.</Info>
                   <Li>
-                    <label>제목:</label>
+                    <Label>제목</Label>
                     <StyledInput
                       type="text"
                       value={title}
                       onChange={handleTitleChange}
+                      placeholder="JUNGLE을 이용해 주셔서 감사합니다. 제목을 입력해 주세요."
                     />
                   </Li>
                   <Li>
-                    <label>작성자: {userEmail} </label>
-                  </Li>
-                  <Li>
-                    <label>작성일자: {new Date().toISOString()} </label>
-                  </Li>
-                  <Li>
-                    <label>내용:</label>
+                    <Label>내용</Label>
                     <Styledtextarea
                       value={contents}
                       onChange={handleContentChange}
+                      placeholder="JUNGLE을 이용해 주셔서 감사합니다. 모집 내용을 입력해 주세요."
                     />
                   </Li>
                 </ul>
-                <button type="submit">작성 완료</button>
+                <SubmitWrapper>
+                  <Submit type="submit">작성 완료</Submit>
+                </SubmitWrapper>
               </StyledForm>
             </fieldset>
           </FormContainer>
@@ -297,21 +320,22 @@ const FormContainer = styled.div`
 `;
 
 const StyledForm = styled.form`
-  /* 여기에 원하는 스타일을 추가하세요 */
   font-size: 26px;
 `;
 
 const StyledInput = styled.input`
-  /* 여기에 원하는 스타일을 추가하세요 */
-  width: 80%;
+  width: 100%;
   height: 30px;
-  font-size: 24px;
+  font-size: 22px;
 `;
+
 const Li = styled.li`
-  /* 여기에 원하는 스타일을 추가하세요 */
   width: 80%;
-  height: 20%;
+  height: 40%;
+  padding-bottom: 20px;
+  padding-right: 10%;
 `;
+
 const Srlegend = styled.legend`
   .sr-only {
     clip: rect(1px, 1px, 1px, 1px);
@@ -324,16 +348,76 @@ const Srlegend = styled.legend`
     margin: -1px;
   }
 `;
-const Styledtextarea = styled.textarea`
-  /* 여기에 원하는 스타일을 추가하세요 */
-  width: 80%;
-  height: 80px;
-  font-size: 24px;
-`;
-const Selectdiv = styled.div`
-  /* 여기에 원하는 스타일을 추가하세요 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
+const Styledtextarea = styled.textarea`
+  width: 100%;
+  height: 100px;
+  font-size: 20px;
 `;
+
+const Firstwrapper = styled.div`
+  display: flex;
+  padding-top: 10px;
+  `;
+
+const Secondwrapper = styled.div`
+display: flex;
+`;
+
+const Thirdwrapper = styled.div`
+  display: flex;
+`;
+
+const Fourthwrapper = styled.div`
+  display: flex;
+`;
+
+const Datewrapper = styled.div`
+  padding-top: 10px;
+`;
+
+const Select = styled.select`
+  width: 100%;
+  height: 40px;
+  text-align: center;
+`;
+
+const Info = styled.div`
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d8d8d8;
+`;
+
+const Label = styled.label`
+  display: block;
+  padding-bottom: 10px;
+  padding-top: 10px;
+`;
+
+const StyledDatePicker = styled(DatePicker)`
+  width: 100%;
+  height: 100%;
+  text-align: center;
+`;
+
+  const Submit = styled.button`
+  width: 10%;
+  height: 40px;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 10px;
+  margin: 5px;
+  border: 0.5px solid var(--bs-black-500);
+  box-sizing: border-box;
+  font-weight: 700;
+  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+  background-color: #fff;
+  `;
+
+  const SubmitWrapper = styled.div`
+    display: flex;
+    justify-content: end;
+   `;
+  

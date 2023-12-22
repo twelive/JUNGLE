@@ -1,17 +1,15 @@
 import { Helmet } from 'react-helmet-async';
-// Import Swiper React components
+
 import {
   Swiper as ReactSwiper,
   SwiperSlide as SwiperSlideDefault,
 } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/grid';
 
-// import required modules
 import { Autoplay, Pagination, Navigation, Grid } from 'swiper/modules';
 import banner1 from '@assets/community/community-banner1.svg';
 import banner2 from '@assets/community/community-banner2.svg';
@@ -25,7 +23,6 @@ import { useQuery } from 'react-query';
 import { CommunityProject } from '@/types/CommunityProject';
 import { Users } from '@/types/Users';
 import { CommunityStudy } from '@/types/CommunityStudy';
-
 
 
 
@@ -76,22 +73,20 @@ function CommunityPage() {
      
    };
 
-   // 스터디 버튼 클릭 시
+   
    const handleStudyClick = () => {
      setDataType('study');
    };
 
 
    const getUserEmail = (userId: string) => {
-     // 'users' 데이터에서 해당 userId에 맞는 사용자의 이메일을 찾아 반환
+
      const foundUser = users?.find((user) => user.id === userId);
-     return foundUser?.email || 'Unknown'; // 만약 사용자를 찾지 못하면 'Unknown' 반환
+     return foundUser?.email || 'Unknown'; 
    };
-  // Make sure users and projects are not null or undefined
+ 
    
 
-  console.log(projects);
-  // 12
 
   return (
     <>
@@ -143,8 +138,8 @@ function CommunityPage() {
       <section>
         <ButtonWrapper>
         <div>
-        <button onClick={handleProjectClick}>프로젝트</button>
-        <button onClick={handleStudyClick}>스터디</button>
+        <ToggleButton onClick={handleProjectClick}>프로젝트</ToggleButton>
+        <ToggleButton onClick={handleStudyClick}>스터디</ToggleButton>
         </div>
         <LinkWrapper>
         <CreateLink to="communitycreate">모집하기</CreateLink>
@@ -162,22 +157,18 @@ function CommunityPage() {
             }}
             modules={[Grid, Pagination]}
           >
-            {/* SwiperSlide */}
+        
             {projects && studys && (dataType === 'project' ? projects : studys).map((item) => (
-            //  {projects &&
-            //   projects.map((item) => (
                 <CustomSwiperSlide key={item.id}>
                   <StyledLink to={`/detailPage/${dataType}/${item.id}`}>
                     <SecondSlide>
                       <Maincontents>
                         <H2>{item.title}</H2>
-                        <P>마감일 : {item.deadline}</P>
+                        <P>모집 마감일 : {item.deadline}</P>
                         <Contents>{item.contents}</Contents>
-                        {/* Loop through tags */}
                         <Imgwrapper>
                           {[item.tag1, item.tag2, item.tag3].map(
                             (tag, index) =>
-                              // Render image if tag exists
                               tag && (
                                 <div key={index}>
                                   <Img
@@ -208,8 +199,8 @@ export default CommunityPage;
 
 const FirstSwiperContainer = styled.div`
   margin: 0 auto;
-  width: 70%;
-  height: 200px;
+  width: 100%;
+  height: 100%;
 `;
 
 const FirstSwiper = styled(ReactSwiper)`
@@ -269,9 +260,6 @@ const SecondSlide = styled.div`
 const CustomSwiperSlide = styled(SwiperSlideDefault)`
   width: 50px;
   height: 50px;
-   :hover{
-    border: 1px solid #000;
-  }
 `;
 
 
@@ -284,9 +272,9 @@ const Img = styled.img`
 const H2 = styled.h2`
   padding-top: 20px;
   padding-bottom: 20px;
-  white-space: nowrap; /* Prevent wrapping */
-  overflow: hidden; /* Hide overflowing content */
-  text-overflow: ellipsis; /* Show ellipsis for overflowed content */
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 `;
 
 const P = styled.p`
@@ -299,12 +287,12 @@ const Contents = styled.p`
   text-align: left;
   padding-left: 10px;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limit to two lines */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-top: 20px;
-  height: 35px; /* Set a fixed height */
+  height: 35px; 
 `;
 
 const Imgwrapper = styled.div`
@@ -317,19 +305,19 @@ const Imgwrapper = styled.div`
 
 
 const StyledLink = styled(Link)`
-    text-decoration: none; /* Remove underline */
-    color: black; /* Set default text color */
+    text-decoration: none; 
+    color: black; 
     &:visited {
-      color: black; /* Set visited link color */
+      color: black; 
     }
     &:hover {
-      text-decoration: none; /* Remove underline on hover */
-      color: black; /* Change text color on hover */
+      text-decoration: none; 
+      color: black; 
     }
     `;
 
     const Maincontents = styled.div`
-      height: 240px; /* Set a fixed height */
+      height: 240px; 
       overflow: hidden;
       text-overflow: ellipsis;
       border-bottom: 1px solid gray;
@@ -359,29 +347,22 @@ const StyledLink = styled(Link)`
       `;
 
 const CreateLink = styled(Link)`
-  text-decoration: none; /* Remove underline */
-  color: black; /* Set default text color */
+  text-decoration: none; 
+  color: black; 
   &:visited {
-    color: white; /* Set visited link color */
+    color: white;
   }
-`;
+  `;
 
+  const ToggleButton = styled.button`
+    background-color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    font-weight: 700;
+    box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+  `;
     
-// const TagButton = styled.button<{ isActive: boolean }>`
-//   background-color: ${(props) => (props.isActive ? 'white' : 'black')};
-//   color: ${(props) => (props.isActive ? 'black' : 'white')};
-//   border: none;
-//   padding: 5px 15px;
-//   border-radius: 10px;
-//   margin: 5px;
-//   border: 0.5px solid var(--bs-black-500);
-//   box-sizing: border-box;
-//   font-weight: 700;
-//   box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
-
-//   @media ${(props) => props.theme.device.mobile} {
-//     font-size: 0.5rem;
-//     padding: 1% 3%;
-//   }
-// `;
 
