@@ -108,6 +108,14 @@ const LogoBox = styled.div`
 
 const LogoImg = styled.img`
   width: 1000px;
+
+  @media ${(props) => props.theme.device.tablet} {
+    width: 700px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    width: 500px;
+  }
 `;
 
 const TextBox = styled.div`

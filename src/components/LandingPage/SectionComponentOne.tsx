@@ -77,6 +77,14 @@ const TextBox = styled.div`
   font-size: 3em;
   font-weight: 500;
   z-index: 10;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 2em;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1.5em;
+  }
 `;
 
 const Ani = styled.div`
