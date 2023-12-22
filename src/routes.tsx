@@ -3,7 +3,7 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
-} from 'react-router-dom';d
+} from 'react-router-dom';
 
 const RootLayout = lazy(() => import('@layout/RootLayout'));
 const LandingPage = lazy(() => import('@pages/LandingPage/LandingPage'));
@@ -70,7 +70,6 @@ const router = createBrowserRouter(
       <Route path="study" element={<StudyPage />} />
       <Route path="mypage/:userId" element={<MyPage />} />
       <Route path="mypage/:userId/resume" element={<MyResumePage />} />
-      <Route path="mypage/:userId/resume/detail" element={<MyResumeDetailPage />} />
       <Route path="community" element={<CommunityPage />} />
       <Route
         path="community/communitycreate"
