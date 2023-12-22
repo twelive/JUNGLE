@@ -1,8 +1,13 @@
 import { Helmet } from 'react-helmet-async';
-import CategorySection from '@components/MainPage/CategorySection';
 import styled from 'styled-components';
+import CategorySection from '@components/MainPage/CategorySection';
+import gitLogo from '@assets/common/gitlogo.svg'
+import figmaLogo from '@assets/common/figmaLogo.svg'
+import ArrowScrollDown from '@/components/ArrowScrollDown';
+import { Link } from 'react-router-dom';
 
 function MainPage() {
+
   return (
     <>
       <Helmet>
@@ -11,10 +16,21 @@ function MainPage() {
       <h1 className="sr-only">JUNGLE</h1>
       <CategorySection />
       <IntroductionSection>
-        <IntroductionBox>페이지 소개/슬로건</IntroductionBox>
+        <IntroductionBox>
+          취업을 헤쳐나가는 용감한 사자들, JUNGLER
+          <div>
+            <Link to={"/introduction"}>
+              <ArrowScrollDown color="var(--bs-black-400)" />
+            </Link>
+          </div>
+        </IntroductionBox>
         <TeamBox>
           <TeamTitle>JUNGLE</TeamTitle>
-          <TeamContent>팀 소개 또는 Github, Figma 링크 연결</TeamContent>
+          <TeamContent>
+            <Button type="button" onClick={() =>  window.open("jungler.vercel.app", '_blank')}><img src={"/logo.svg"} alt='JUNGLER' /></Button>
+            <Button type="button" onClick={() =>  window.open("https://github.com/twelive/JUNGLE", '_blank')}><img src={gitLogo} alt='git' /></Button>
+            <Button type="button" onClick={() =>  window.open("https://www.figma.com/file/lrcTq4IIk5FnHrfkC7AUej/Jungle_%EB%94%94%EC%9E%90%EC%9D%B8?type=design&node-id=552%3A824&mode=design&t=kMP4debZb4H7EBaZ-1", '_blank')}><img src={figmaLogo} alt='figma' /></Button>
+          </TeamContent>
         </TeamBox>
       </IntroductionSection>
     </>
@@ -25,11 +41,11 @@ export default MainPage;
 
 const IntroductionSection = styled.div`
   display: flex;
-  height: 28.125rem;
+  height: 22.5rem;
   padding: 3.125rem 0;
 
   @media ${(props) => props.theme.device.tablet} {
-    height: 22.5rem;
+    height: 18.75rem;
     padding: 2.5rem 0;
   }
   @media ${(props) => props.theme.device.mobile} {
@@ -40,27 +56,46 @@ const IntroductionSection = styled.div`
 `;
 
 const IntroductionBox = styled.div`
+  position: relative;
   width: 100%;
-  padding-right: 3.125rem;
-  font-size: 4.5rem;
-  font-weight: 700;
   align-self: center;
+  padding-right: 3.125rem;
+  font-size: 3.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  word-spacing: 1rem;
 
   @media ${(props) => props.theme.device.tablet} {
     padding-right: 2.5rem;
-    font-size: 4rem;
+    font-size: 3.25rem;
   }
   @media ${(props) => props.theme.device.mobile} {
-    /* min-height: 15.625rem; */
     padding: 0 0 1.875rem 0;
     border-bottom: 0.15rem solid var(--bs-black-400);
-    font-size: 3.5rem;
+    font-size: 3rem;
+  }
+
+  div {
+    position: absolute;
+    right: 2rem;
+    bottom: -8rem;
+    z-index: 1;
+
+    @media ${(props) => props.theme.device.tablet} {
+      right: 2rem;
+      bottom: -5rem;
+    }
+    @media ${(props) => props.theme.device.mobile} {
+      right: 0;
+      bottom: 0;
+    }
   }
 `;
 
 const TeamBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1.875rem;
   width: 60%;
   padding-left: 3.125rem;
@@ -75,11 +110,34 @@ const TeamBox = styled.div`
   }
 `;
 
+
 const TeamTitle = styled.span`
   font-size: 3rem;
   font-weight: 600;
 `;
 
 const TeamContent = styled.p`
+  margin-left: auto;
   font-size: 2rem;
+`;
+
+const Button = styled.button`
+  margin: 0.125rem 0.25rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+
+    @media ${(props) => props.theme.device.tablet} {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    @media ${(props) => props.theme.device.mobile} {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
 `;
