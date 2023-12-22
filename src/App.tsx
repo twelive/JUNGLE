@@ -30,11 +30,11 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        {!session ? (
-          <LandingPage />
-        ) : (
-          <>
+      {!session ? (
+        <LandingPage />
+      ) : (
+        <>
+          <ThemeProvider theme={theme}>
             <QueryClientProvider client={queryClient}>
               <HelmetProvider>
                 <Suspense fallback={<Loading />}>
@@ -44,9 +44,9 @@ function App() {
               </HelmetProvider>
               <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
-          </>
-        )}
-      </ThemeProvider>
+          </ThemeProvider>
+        </>
+      )}
     </>
   );
 }
