@@ -47,7 +47,7 @@ export const useAuthStore = create<State>((set) => {
     const handleLogin: State['handleLogin'] = async () => {
     const {data,  error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
-      options : {redirectTo: "https://jungler.vercel.app/main",}
+      options : {redirectTo: "jungler.vercel.app/main",}
     });
      
     if (error) {
