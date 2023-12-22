@@ -1,27 +1,21 @@
 import { motion } from 'framer-motion';
-import { Element, Link } from 'react-scroll';
+import { Element } from 'react-scroll';
 import styled from 'styled-components';
-import DownButton from '@/assets/landing/landing-scroll-down.svg';
 import Job from '@/assets/landing/landing-job.svg';
 import Study from '@/assets/landing/landing-study.svg';
 import Community from '@/assets/landing/landing-community.svg';
 import LandingHeader from './LandingHeader';
 import useLandingStore from '@/store/useLandingStore';
+import SectionScrollDownButton from './SectionScrollDownButton';
+import SectionThreeImgBox from './SectionThreeImgBox';
 
 const SectionComponentThree = () => {
-  const showAnimationOne = useLandingStore(
-    (state) => state.showAnimationSectionOne
-  );
-  const showAnimationTwo = useLandingStore(
-    (state) => state.showAnimationSectionTwo
-  );
-  const setShowAnimationSectionThree = useLandingStore(
-    (state) => state.setShowAnimationSectionThree
-  );
+  const animations = useLandingStore((state) => state.animations);
+  const setAnimation = useLandingStore((state) => state.setAnimation);
 
   const handleButtonClick = () => {
-    if (showAnimationOne && showAnimationTwo) {
-      setShowAnimationSectionThree(true);
+    if (animations.sectionOne && animations.sectionTwo) {
+      setAnimation('sectionThree', true);
     }
   };
 
@@ -30,17 +24,17 @@ const SectionComponentThree = () => {
       y: 0,
     },
     visible: {
-      y: [-40, 20, -30, 15, -20, 10, -10, 5, 0], // 리듬을 느끼는 모션 배열
+      y: [-40, 20, -30, 15, -20, 10, -10, 5, 0],
       transition: {
-        duration: 20, // 애니메이션 속도를 느리게 조정 (20초)
+        duration: 10,
         ease: 'easeInOut',
-        loop: Infinity, // 무한 반복
+        loop: Infinity,
       },
     },
   };
 
   return (
-    <Element name="section3" className="element">
+    <Element name="section3">
       <MainSection>
         <LandingHeader />
         <MainDiv>
@@ -50,37 +44,34 @@ const SectionComponentThree = () => {
           <motion.div
             variants={shakeVariants}
             initial="hidden"
-            animate={showAnimationTwo ? 'visible' : 'hidden'}
+            animate={animations.sectionTwo ? 'visible' : 'hidden'}
           >
             <ImgBox>
-              <ImgBoxOne>
-                <ImgBoxTitle>Job</ImgBoxTitle>
-                <ImgBoxText>채용회사</ImgBoxText>
-                <ImgBoxText>면접</ImgBoxText>
-              </ImgBoxOne>
-              <ImgBoxTwo>
-                <ImgBoxTitle>Study</ImgBoxTitle>
-                <ImgBoxText>도서추천</ImgBoxText>
-                <ImgBoxText>기술스택</ImgBoxText>
-              </ImgBoxTwo>
-              <ImgBoxThree>
-                <ImgBoxTitle>Community</ImgBoxTitle>
-                <ImgBoxText>스터디</ImgBoxText>
-                <ImgBoxText>프로젝트</ImgBoxText>
-              </ImgBoxThree>
+              <SectionThreeImgBox
+                imageUrl={Job}
+                title="Job"
+                text1="채용회사"
+                text2="면접"
+              />
+              <SectionThreeImgBox
+                imageUrl={Study}
+                title="Study"
+                text1="도서추천"
+                text2="기술디깅"
+              />
+              <SectionThreeImgBox
+                imageUrl={Community}
+                title="Community"
+                text1="스터디"
+                text2="프로젝트"
+              />
             </ImgBox>
           </motion.div>
         </MainDiv>
-        <ScrollButton>
-          <Link
-            to="section4"
-            smooth={true}
-            duration={500}
-            onClick={handleButtonClick}
-          >
-            <img src={DownButton} alt="스크롤 버튼" />
-          </Link>
-        </ScrollButton>
+        <SectionScrollDownButton
+          sectionId={'section4'}
+          handleButtonClick={handleButtonClick}
+        />
       </MainSection>
     </Element>
   );
@@ -114,53 +105,4 @@ const ImgBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 90px;
-`;
-
-const ImgBoxOne = styled.div`
-  background-image: url(${Job});
-  border: 5px solid white;
-  background-size: cover;
-  width: 300px;
-  height: 450px;
-  border-radius: 20px;
-  text-align: center;
-`;
-
-const ImgBoxTwo = styled.div`
-  background-image: url(${Study});
-  border: 5px solid white;
-  width: 300px;
-  height: 450px;
-  border-radius: 20px;
-  text-align: center;
-`;
-
-const ImgBoxThree = styled.div`
-  background-image: url(${Community});
-  border: 5px solid white;
-  width: 300px;
-  height: 450px;
-  border-radius: 20px;
-  text-align: center;
-`;
-
-const ImgBoxTitle = styled.p`
-  font-size: 50px;
-  font-weight: 600;
-  padding-top: 20px;
-`;
-
-const ImgBoxText = styled.p`
-  font-size: 40px;
-  line-height: 150px;
-  font-weight: 400;
-`;
-
-const ScrollButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  bottom: 30px;
-  right: 50px;
 `;

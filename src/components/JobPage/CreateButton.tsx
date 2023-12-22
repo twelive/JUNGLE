@@ -23,10 +23,7 @@ const StyleButton = styled.button<{ $isActive?: boolean }>`
       : 'background-color: black; color: white;'}
   width :12%;
   border: none;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
   border-radius: 10px;
   margin-right: 5px;
   border: 0.5px solid var(--bs-black-500);
