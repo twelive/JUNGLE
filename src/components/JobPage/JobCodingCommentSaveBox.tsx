@@ -11,7 +11,7 @@ const JobCodingCommentSaveBox: React.FC<CommentSaveBoxProps> = ({
 }) => {
   const commentBox = useCodingCommentStore((state) => state.comments);
   const filteredComments = commentBox.filter(
-    (comment) => comment.codingTestId === currentCodingTestId
+    (comment) => comment.codingtestId === currentCodingTestId
   );
   console.log(filteredComments);
   return (

@@ -1,16 +1,25 @@
 import create from 'zustand';
 
+interface UserStore {
+  email: string;
+  setEmail: (email: string) => void;
+}
+
 interface CodingTest {
   title: string;
   content: string;
   name: string;
-  // 그 외 필요한 필드들을 여기에 추가해주세요.
 }
 
 interface CodingTestCreateStore {
   jobCodingTest: CodingTest[];
   addCodingTest: (CodingTest: CodingTest) => void;
 }
+
+export const useUserStore = create<UserStore>((set) => ({
+  email: '',
+  setEmail: (email) => set({ email }),
+}));
 
 const useCodingTestCreateStore = create<CodingTestCreateStore>((set) => ({
   jobCodingTest: [],
