@@ -83,7 +83,7 @@ const router = createBrowserRouter(
       <Route path="introduction/team" element={<IntroductionTeamPage />} />
       <Route path="*" element={<ErrorPage />} />
       <Route path="/study/stack/detail/:itemId" element={<StackDetailPage />} />
-      <Route path="study/stack/ListTable" element={<StackListlPage />} />
+      <Route path="/study/stack/ListTable" element={<StackListlPage />} />
       <Route path="/study/stack/StackNewPage" element={<StackNewPage />} />
     </Route>
   )
