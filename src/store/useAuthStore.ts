@@ -1,6 +1,7 @@
 import { supabase } from '@/client';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Session } from '@supabase/supabase-js';
+// import { useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
 type State = {
@@ -8,10 +9,10 @@ type State = {
   user: string;
   token: string;
   userEmail: string;
-  userName: string;
   handleLogin: () => Promise<void>;
   handleLogout: () => Promise<void>;
   deleteUser: (id: string) => Promise<void>;
+  register : (session :Session | null) => Promise<void>
 };
 
 const initialAuthState = {
@@ -21,21 +22,50 @@ const initialAuthState = {
   userEmail: '',
   userName: '',
 };
+// export function MyComponent() {
+//   const navigate = useNavigate();
+//   const { isAuth } = useAuthStore();
+
+//   useEffect(() => {
+//      console.log('isAuth state:', isAuth);
+//   if (isAuth) {
+//     console.log('Redirecting to /main');
+//     navigate('/main');
+//   }
+// }, [isAuth, navigate]);
+
+
+//   // useEffect(() => {
+//   //   if (isAuth) {
+//   //     navigate('/main');
+//   //   }
+//   // }, [isAuth, navigate]);
+// }
 
 export const useAuthStore = create<State>((set) => {
-  const handleLogin: State['handleLogin'] = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+  
+    const handleLogin: State['handleLogin'] = async () => {
+    const {data,  error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
+      options : {redirectTo: "http://localhost:3000/main",}
     });
-
+     
     if (error) {
       console.error('Error during sign in: ', error);
-    } else {
-      console.log('Signed in successfully: ', data);
-      set({ isAuth: true });
+      return;
+      }
+    if (data)  {
+      console.log('성공')
+      
     }
   };
-
+  
+  const register: State['register'] = async (session: Session | null): Promise<void> => {
+    set((prevState) => {
+      console.log(session);
+          return ({ ...prevState, isAuth: true, token: session!.access_token, user: session!.user.id, userEmail: session!.user.email })
+        });  
+  }
   const handleLogout: State['handleLogout'] = async () => {
     const { error } = await supabase.auth.signOut();
 
@@ -43,7 +73,7 @@ export const useAuthStore = create<State>((set) => {
       console.error('Error during sign out: ', error);
     } else {
       console.log('Signed out successfully');
-      set({ isAuth: false });
+      set((prevState) => ({ ...prevState, isAuth: false }));
     }
   };
 
@@ -55,38 +85,32 @@ export const useAuthStore = create<State>((set) => {
         console.error('Error deleting user: ', error);
       } else {
         console.log('User deleted successfully: ', data);
-        set({ isAuth: false });
+        set((prevState) => ({ ...prevState, isAuth: false }));
       }
     } else {
       console.error('No user id provided');
     }
   };
 
-  supabase.auth.onAuthStateChange((event, session) => {
-    console.log(`Supabase auth event: ${event}`);
+    supabase.auth.onAuthStateChange((_event, session) => {
+    console.log(`Supabase auth event: ${_event}`);
 
-    if (event === 'SIGNED_IN' && session) {
+    if (_event === 'SIGNED_IN' && session) {
       set({ isAuth: true, token: session.access_token, user: session.user.id, userEmail: session.user.email });
-    } else if (event === 'SIGNED_OUT') {
+    } else if (_event === 'SIGNED_OUT') {
       set({ ...initialAuthState });
     }
   });
+
+
+  
 
   return {
     ...initialAuthState,
     handleLogin,
     handleLogout,
     deleteUser,
+    register,
   };
 });
 
-export function MyComponent() {
-  const navigate = useNavigate();
-  const { isAuth } = useAuthStore();
-
-  useEffect(() => {
-    if (isAuth) {
-      navigate('/main');
-    }
-  }, [isAuth, navigate]);
-}
