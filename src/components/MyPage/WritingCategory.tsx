@@ -1,21 +1,21 @@
-import Category from '@components/MainPage/Category';
 import styled from 'styled-components';
-
-const data = [
-  {href: '#', title:"작성글 타이틀", height: '19.375rem'},
-  {href: '#', title:"작성글 타이틀", height: '19.375rem'},
-  {href: '#', title:"작성글 타이틀", height: '19.375rem'},
-  {href: '#', title:"작성글 타이틀", height: '19.375rem'},
-];
+import Category from '@components/MainPage/Category';
+import useWrittingData from '@/api/useWrittingData';
 
 function WritingCategory() {
+  const {data} = useWrittingData();
+
   return (
     <>
       <h2 className="sr-only">작성글</h2>
       <Layout>
-        {data.map((category, index) => (
+        {data && data.map((category, index) => (
           <CategoryBox key={index}>
-            <Category href={category.href} title={category.title} height={category.height} />
+            <Category
+              href={`/study/stack/detail/${category.id}`}
+              title={category.title || undefined}
+              context={category.text || undefined}
+              height={'19.375rem'} />
           </CategoryBox>
         ))}
       </Layout>

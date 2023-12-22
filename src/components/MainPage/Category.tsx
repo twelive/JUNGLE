@@ -54,6 +54,7 @@ const CategorySection = styled(CommonLayout)<{ $height: string }>`
   width: 100%;
   height: ${(props) => props.$height};
   justify-content: space-between;
+  overflow: hidden;
 
   @media ${(props) => props.theme.device.tablet} {
     height: 18.75rem;
@@ -90,6 +91,7 @@ const Title = styled.h2`
 const Context = styled.p`
   font-size: 2rem;
   font-weight: 500;
+  white-space: pre-line;
 
   @media ${(props) => props.theme.device.tablet} {
     gap: 1.5625rem;
