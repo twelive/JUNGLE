@@ -1,11 +1,15 @@
+import styled from 'styled-components';
+import useBookmarksData from '@/api/useBookmarksData';
 import ArrowScrollDown from '@components/ArrowScrollDown';
 import useBookMarkStore from '@store/useBookMarkStore';
-import styled from 'styled-components';
 
 function BookMarkLink() {
   const { setIsBookMark } = useBookMarkStore();
+  const { data } = useBookmarksData();
+  const bookmarkCount = data?.length || 0;
 
   const handleModal = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setIsBookMark();
     document.body.style.overflow = 'hidden';
   };
@@ -18,8 +22,7 @@ function BookMarkLink() {
           <ArrowScrollDown color="var(--bs-black-400)" />
         </BookMarkButton>
       </InnerBox>
-      {/* Supabase 에서 북마크 정보 불러오기 */}
-      <CountText>[n]개</CountText>
+      <CountText>{bookmarkCount}개</CountText>
     </BookMarkLinkBox>
   );
 }
