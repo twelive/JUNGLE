@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import CategorySection from '@components/MainPage/CategorySection';
-import gitLogo from '@assets/common/gitlogo.svg'
-import figmaLogo from '@assets/common/figmaLogo.svg'
 import jungleLogo from '@assets/common/logo.svg'
+import gitLogo from '@assets/common/gitlogo.svg'
+import figmaLogo from '@assets/common/figmalogo.svg'
 import ArrowScrollDown from '@/components/ArrowScrollDown';
 
 function MainPage() {
