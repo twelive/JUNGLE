@@ -1,5 +1,3 @@
-import { CommunityProject } from "./CommunityProject";
-
 export type Json =
   | string
   | number
@@ -49,18 +47,24 @@ export interface Database {
           book_id: number | null;
           created_at: string;
           id: number;
+          job_id: number | null;
+          stack_id: number | null;
           user_id: string;
         };
         Insert: {
           book_id?: number | null;
           created_at?: string;
           id?: number;
+          job_id?: number | null;
+          stack_id?: number | null;
           user_id: string;
         };
         Update: {
           book_id?: number | null;
           created_at?: string;
           id?: number;
+          job_id?: number | null;
+          stack_id?: number | null;
           user_id?: string;
         };
         Relationships: [
@@ -69,6 +73,20 @@ export interface Database {
             columns: ['book_id'];
             isOneToOne: false;
             referencedRelation: 'book';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'bookmarks_job_id_fkey';
+            columns: ['job_id'];
+            isOneToOne: false;
+            referencedRelation: 'job';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'bookmarks_stack_id_fkey';
+            columns: ['stack_id'];
+            isOneToOne: false;
+            referencedRelation: 'stack_digging';
             referencedColumns: ['id'];
           },
           {
@@ -84,42 +102,25 @@ export interface Database {
         Row: {
           created_at: string;
           id: number;
-          project_id: number | null;
-          study_id: number | null;
+          name: string | null;
           text: string | null;
           user_id: string;
         };
         Insert: {
           created_at?: string;
           id?: number;
-          project_id?: number | null;
-          study_id?: number | null;
+          name?: string | null;
           text?: string | null;
           user_id: string;
         };
         Update: {
           created_at?: string;
           id?: number;
-          project_id?: number | null;
-          study_id?: number | null;
+          name?: string | null;
           text?: string | null;
           user_id?: string;
         };
         Relationships: [
-          {
-            foreignKeyName: 'comment_project_id_fkey';
-            columns: ['project_id'];
-            isOneToOne: false;
-            referencedRelation: 'community_project';
-            referencedColumns: ['id'];
-          },
-          {
-            foreignKeyName: 'comment_study_id_fkey';
-            columns: ['study_id'];
-            isOneToOne: false;
-            referencedRelation: 'community_study';
-            referencedColumns: ['id'];
-          },
           {
             foreignKeyName: 'comment_user_id_fkey';
             columns: ['user_id'];
@@ -130,11 +131,26 @@ export interface Database {
         ];
       };
       community_project: {
-        Row: CommunityProject;
+        Row: {
+          contents: string;
+          created_at: string;
+          deadline: string | null;
+          division: string | null;
+          id: number;
+          people: string | null;
+          primary_key: string;
+          progress: string | null;
+          tag1: string | null;
+          tag2: string | null;
+          tag3: string | null;
+          title: string;
+          user_id: string | null;
+        };
         Insert: {
           contents: string;
           created_at?: string;
           deadline?: string | null;
+          division?: string | null;
           id?: number;
           people?: string | null;
           primary_key?: string;
@@ -149,6 +165,7 @@ export interface Database {
           contents?: string;
           created_at?: string;
           deadline?: string | null;
+          division?: string | null;
           id?: number;
           people?: string | null;
           primary_key?: string;
@@ -174,6 +191,7 @@ export interface Database {
           contents: string;
           created_at: string;
           deadline: string | null;
+          division: string | null;
           id: number;
           people: string | null;
           primary_key: string;
@@ -188,6 +206,7 @@ export interface Database {
           contents: string;
           created_at?: string;
           deadline?: string | null;
+          division?: string | null;
           id?: number;
           people?: string | null;
           primary_key?: string;
@@ -202,6 +221,7 @@ export interface Database {
           contents?: string;
           created_at?: string;
           deadline?: string | null;
+          division?: string | null;
           id?: number;
           people?: string | null;
           primary_key?: string;
@@ -215,6 +235,56 @@ export interface Database {
         Relationships: [
           {
             foreignKeyName: 'community_study_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+      create: {
+        Row: {
+          contents: string;
+          date: string;
+          division: string;
+          id: number;
+          people: string;
+          progress: string;
+          tag1: string;
+          tag2: string;
+          tag3: string;
+          title: string;
+          user_id: string;
+        };
+        Insert: {
+          contents: string;
+          date?: string;
+          division: string;
+          id?: number;
+          people: string;
+          progress: string;
+          tag1: string;
+          tag2: string;
+          tag3: string;
+          title: string;
+          user_id: string;
+        };
+        Update: {
+          contents?: string;
+          date?: string;
+          division?: string;
+          id?: number;
+          people?: string;
+          progress?: string;
+          tag1?: string;
+          tag2?: string;
+          tag3?: string;
+          title?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'create_user_id_fkey';
             columns: ['user_id'];
             isOneToOne: false;
             referencedRelation: 'users';
@@ -249,6 +319,36 @@ export interface Database {
         };
         Relationships: [];
       };
+      job_coding_comment: {
+        Row: {
+          codingId: number | null;
+          commentId: number | null;
+          created_at: string;
+          id: number;
+          name: string | null;
+          text: string | null;
+          uuid: string | null;
+        };
+        Insert: {
+          codingId?: number | null;
+          commentId?: number | null;
+          created_at?: string;
+          id?: number;
+          name?: string | null;
+          text?: string | null;
+          uuid?: string | null;
+        };
+        Update: {
+          codingId?: number | null;
+          commentId?: number | null;
+          created_at?: string;
+          id?: number;
+          name?: string | null;
+          text?: string | null;
+          uuid?: string | null;
+        };
+        Relationships: [];
+      };
       job_codingtest: {
         Row: {
           created_at: string;
@@ -276,8 +376,39 @@ export interface Database {
         };
         Relationships: [];
       };
+      job_comment: {
+        Row: {
+          '\bcommentId': number;
+          created_at: string;
+          id: number;
+          interviewId: number | null;
+          name: string | null;
+          text: string | null;
+          uuid: string | null;
+        };
+        Insert: {
+          '\bcommentId'?: number;
+          created_at?: string;
+          id?: number;
+          interviewId?: number | null;
+          name?: string | null;
+          text?: string | null;
+          uuid?: string | null;
+        };
+        Update: {
+          '\bcommentId'?: number;
+          created_at?: string;
+          id?: number;
+          interviewId?: number | null;
+          name?: string | null;
+          text?: string | null;
+          uuid?: string | null;
+        };
+        Relationships: [];
+      };
       job_interview: {
         Row: {
+          content: string | null;
           created_at: string;
           id: number;
           info: string | null;
@@ -286,6 +417,7 @@ export interface Database {
           uuid: string | null;
         };
         Insert: {
+          content?: string | null;
           created_at?: string;
           id?: number;
           info?: string | null;
@@ -294,6 +426,7 @@ export interface Database {
           uuid?: string | null;
         };
         Update: {
+          content?: string | null;
           created_at?: string;
           id?: number;
           info?: string | null;
@@ -377,60 +510,84 @@ export interface Database {
       };
       stack_comment: {
         Row: {
-          anonymous_user_id: string;
-          comment_id: string;
-          created_at: string;
-          id: number;
-          text: string | null;
-        };
-        Insert: {
-          anonymous_user_id?: string;
-          comment_id?: string;
-          created_at?: string;
-          id?: number;
-          text?: string | null;
-        };
-        Update: {
-          anonymous_user_id?: string;
-          comment_id?: string;
-          created_at?: string;
-          id?: number;
-          text?: string | null;
-        };
-        Relationships: [];
-      };
-      stack_discussion: {
-        Row: {
-          anonymous_user_id: string;
           created_at: string;
           email: string | null;
           id: number;
-          text: string;
-          title: string;
-          URL: string | null;
+          stack_id: number | null;
+          text: string | null;
+          user_id: string;
         };
         Insert: {
-          anonymous_user_id: string;
           created_at?: string;
           email?: string | null;
           id?: number;
-          text: string;
-          title: string;
-          URL?: string | null;
+          stack_id?: number | null;
+          text?: string | null;
+          user_id: string;
         };
         Update: {
-          anonymous_user_id?: string;
           created_at?: string;
           email?: string | null;
           id?: number;
-          text?: string;
-          title?: string;
-          URL?: string | null;
+          stack_id?: number | null;
+          text?: string | null;
+          user_id?: string;
         };
         Relationships: [
           {
-            foreignKeyName: 'stack_discussion_anonymous_user_id_fkey';
-            columns: ['anonymous_user_id'];
+            foreignKeyName: 'stack_comment_stack_id_fkey';
+            columns: ['stack_id'];
+            isOneToOne: false;
+            referencedRelation: 'stack_digging';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'stack_comment_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+      stack_digging: {
+        Row: {
+          created_at: string;
+          id: number;
+          stack_comment_counter: number | null;
+          tag: string;
+          text: string | null;
+          title: string | null;
+          updated_at: string | null;
+          user_email: string | null;
+          user_id: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          stack_comment_counter?: number | null;
+          tag?: string;
+          text?: string | null;
+          title?: string | null;
+          updated_at?: string | null;
+          user_email?: string | null;
+          user_id?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          stack_comment_counter?: number | null;
+          tag?: string;
+          text?: string | null;
+          title?: string | null;
+          updated_at?: string | null;
+          user_email?: string | null;
+          user_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'stack_digging_user_id_fkey';
+            columns: ['user_id'];
             isOneToOne: false;
             referencedRelation: 'users';
             referencedColumns: ['id'];

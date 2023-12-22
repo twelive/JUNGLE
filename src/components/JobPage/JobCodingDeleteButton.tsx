@@ -1,12 +1,12 @@
-import useCommentStore from '@/store/useCommentStore';
+import useCodingCommentStore from '@/store/useCodingCommentStore';
 import styled from 'styled-components';
 
 interface DeleteButtonProps {
   id: number | undefined;
 }
 
-const DeleteButton = ({ id }: DeleteButtonProps) => {
-  const deleteComment = useCommentStore((state) => state.deleteComment);
+const JobCodingDeleteButton = ({ id }: DeleteButtonProps) => {
+  const deleteComment = useCodingCommentStore((state) => state.deleteComment);
 
   const handleDelete = async () => {
     try {
@@ -23,7 +23,7 @@ const DeleteButton = ({ id }: DeleteButtonProps) => {
   return <StyledButton onClick={handleDelete}>삭제</StyledButton>;
 };
 
-export default DeleteButton;
+export default JobCodingDeleteButton;
 
 const StyledButton = styled.button`
   background-color: transparent;

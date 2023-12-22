@@ -7,7 +7,8 @@ import { supabase } from "@/client";
 interface LikeButtonProps { 
   itemId: string | number,
   userId: string | number | undefined,
-  itemType: string | number
+  itemType: string | number,
+  likeCounter: string | number,
 
 }
 //본 컴포넌트를 사용하려는 곳에서 
@@ -22,7 +23,7 @@ interface LikeButtonProps {
 //<LikeButton itemId={item.id} userId={userId} itemType={itemTypeLoveYou}></LikeButton> 
   //한 페이지 내에서 여러 곳에 쓰거나 하면 이렇게 이름 바꿔서 해주면 됩니다 ^^
 
-function LikeButton({ itemId, userId, itemType }:LikeButtonProps) {
+function LikeButton({ itemId, userId, itemType, likeCounter}:LikeButtonProps) {
 const initialLikes = JSON.parse(localStorage.getItem(`likes-${itemId}`) || 'false');
 
 
@@ -48,16 +49,15 @@ localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
     const { error } = await supabase
       .from('likes')
       .upsert({
-        user_id: userId,
+        // user_id: userId,
         [`${itemType}_id`]: itemId,
-        // liked: true
       });
 
     if (error) {
       console.error('Error updating likes:', error.message);
     } else {
       setToggle(!toggle);
-      localStorage.setItem('likes', String(!toggle));
+      localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
     }
   }
 };
@@ -87,9 +87,9 @@ localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
   return (
     <LikesWrapper>
       <Button onClick={updateLikes}>
-        <Img src={toggle ? likes : dislikes}></Img>
+        <Img src={toggle ? likes : dislikes} alt={toggle ? '좋아요' : '좋아요 취소'}></Img>
       </Button>
-      <Likes>5</Likes>
+      <Likes>{likeCounter}</Likes>
     </LikesWrapper>
   )
 }
@@ -113,6 +113,7 @@ const Button = styled.button`
   height: auto;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 
 `;
 

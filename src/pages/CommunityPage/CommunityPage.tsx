@@ -13,9 +13,9 @@ import 'swiper/css/grid';
 
 // import required modules
 import { Autoplay, Pagination, Navigation, Grid } from 'swiper/modules';
-import banner1 from '../assets/community/community-banner1.svg';
-import banner2 from '../assets/community/community-banner2.svg';
-import banner3 from '../assets/community/community-banner3.svg';
+import banner1 from '@assets/community/community-banner1.svg';
+import banner2 from '@assets/community/community-banner2.svg';
+import banner3 from '@assets/community/community-banner3.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import { useState } from 'react';
@@ -88,7 +88,7 @@ function CommunityPage() {
      return foundUser?.email || 'Unknown'; // 만약 사용자를 찾지 못하면 'Unknown' 반환
    };
   // Make sure users and projects are not null or undefined
- 
+   
 
   console.log(projects);
   // 12
@@ -141,9 +141,15 @@ function CommunityPage() {
       </section>
 
       <section>
+        <ButtonWrapper>
+        <div>
         <button onClick={handleProjectClick}>프로젝트</button>
         <button onClick={handleStudyClick}>스터디</button>
-        <Link to="communitycreate">모집하기</Link>
+        </div>
+        <LinkWrapper>
+        <CreateLink to="communitycreate">모집하기</CreateLink>
+        </LinkWrapper>
+        </ButtonWrapper>
         <SecondSwiperContainer>
           <SecondSwiper
             slidesPerView={3}
@@ -328,3 +334,54 @@ const StyledLink = styled(Link)`
       text-overflow: ellipsis;
       border-bottom: 1px solid gray;
       `;
+    
+    const ButtonWrapper = styled.div`
+      display: flex;
+      justify-content: space-between;
+      margin-left: 10%;
+      margin-right: 10%;
+      `;
+
+
+    const LinkWrapper = styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      padding: 5px 15px;
+      border-radius: 10px;
+      margin: 5px;
+      border: 0.5px solid var(--bs-black-500);
+      box-sizing: border-box;
+      font-weight: 700;
+      box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+      background-color: #000;
+      `;
+
+const CreateLink = styled(Link)`
+  text-decoration: none; /* Remove underline */
+  color: black; /* Set default text color */
+  &:visited {
+    color: white; /* Set visited link color */
+  }
+`;
+
+    
+// const TagButton = styled.button<{ isActive: boolean }>`
+//   background-color: ${(props) => (props.isActive ? 'white' : 'black')};
+//   color: ${(props) => (props.isActive ? 'black' : 'white')};
+//   border: none;
+//   padding: 5px 15px;
+//   border-radius: 10px;
+//   margin: 5px;
+//   border: 0.5px solid var(--bs-black-500);
+//   box-sizing: border-box;
+//   font-weight: 700;
+//   box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+
+//   @media ${(props) => props.theme.device.mobile} {
+//     font-size: 0.5rem;
+//     padding: 1% 3%;
+//   }
+// `;
+

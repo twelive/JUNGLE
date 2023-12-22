@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import Banner from '@/assets/job/job-banner.svg';
+import Banner from '@/assets/community/community-banner1.svg';
 import styled from 'styled-components';
 import JobHeaderItem from '@/components/JobPage/JobHeaderItem';
 import JobInterviewBox from '@/components/JobPage/JobInterviewBox';

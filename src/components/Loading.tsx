@@ -2,85 +2,97 @@ import styled, { keyframes } from "styled-components";
 
 const Loading = () => {
   return (
-    <Container>
-      Load&nbsp;ng
-      <Before />
-      <After />
-    </Container>
+    <Layout>
+      <Container>
+        Load&nbsp;ng
+        <Before />
+        <After />
+      </Container>
+    </Layout>
   );
 };
 
 export default Loading;
 
-const animloader1 = keyframes`
+const animloader = keyframes`
   0% {
-    transform: translate(0px, 0px) scaleX(1);
+    transform: translate(1rem, 0rem) scaleX(1);
   }
   14% {
-    transform: translate(-12px, -16px) scaleX(1.05);
+    transform: translate(-1rem, -1.5rem) scaleX(1.05);
   }
   28% {
-    transform: translate(-27px, -28px) scaleX(1.07);
+    transform: translate(-3rem, -2.125rem) scaleX(1.07);
   }
   42% {
-    transform: translate(-46px, -35px) scaleX(1.1);
+    transform: translate(-5.125rem, -2.5rem) scaleX(1.1);
   }
   57% {
-    transform: translate(-70px, -37px) scaleX(1.1);
+    transform: translate(-7.125rem, -2.625rem) scaleX(1.1);
   }
   71% {
-    transform: translate(-94px, -32px) scaleX(1.07);
+    transform: translate(-9.125rem, -2.25rem) scaleX(1.07);
   }
   85% {
-    transform: translate(-111px, -22px) scaleX(1.05);
+    transform: translate(-11.125rem, -28px) scaleX(1.05);
   }
   100% {
-    transform: translate(-125px, -9px) scaleX(1);
+    transform: translate(-13rem, -1rem) scaleX(1);
   }
 `;
 
-const animloader = keyframes`
+const animloader_1 = keyframes`
   0% {
-    box-shadow: 0 -6px, -122.9px -8px;
+    box-shadow: 0 -1rem, -14.875rem -0.5rem;
   }
   25%, 75% {
-    box-shadow: 0 0px, -122.9px -8px;
+    box-shadow: 0 0rem, -14.875rem -0.5rem;
   }
   100% {
-    box-shadow: 0 0px, -122.9px -16px;
+    box-shadow: 0 0rem, -14.875rem -2rem;
   }
+`;
+
+const Layout = styled.div`
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 `;
 
 const Container = styled.span`
+  // Reset CSS
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  // Layout
   position: relative;
   display: inline-block;
-  margin-top: 40px;
-  font-size: 48px;
-  letter-spacing: 4px;
+  font-size: 6.25rem;
+  letter-spacing: 0.25rem;
   box-sizing: border-box;
 `;
 
 const Before = styled.div`
-   content: '';  
+  content: '';  
   position: absolute;
-  right: 70px;
-  bottom: 10px;
-  height: 28px;
-  width: 5.15px;
+  right: 8.375rem;
+  bottom: 1.125rem;
+  height: 3.5rem;
+  width: 0.5625rem;
   background: currentColor;
   box-sizing: border-box;
-  animation: ${animloader} 1s linear infinite alternate;
+  animation: ${animloader_1} 0.65s linear infinite alternate;
 `;
 
 const After = styled.div`
   content: '';
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   position: absolute;
-  left: 125px;
-  top: 2px;
+  left: 14.0625rem;
+  top: 0.125rem;
   border-radius: 50%;
   background: red;
   box-sizing: border-box;
-  animation: ${animloader1} 1s linear infinite alternate;
+  animation: ${animloader} 0.65s linear infinite alternate;
 `;

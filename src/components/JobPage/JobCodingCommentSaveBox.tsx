@@ -1,33 +1,34 @@
-import useCommentStore from '@/store/useCommentStore';
 import styled from 'styled-components';
-import DeleteButton from './DeleteButton';
+import useCodingCommentStore from '@/store/useCodingCommentStore';
+import JobCodingDeleteButton from './JobCodingDeleteButton';
 
 interface CommentSaveBoxProps {
-  currentInterviewId: number;
+  currentCodingTestId: number;
 }
 
-const CommentSaveBox: React.FC<CommentSaveBoxProps> = ({
-  currentInterviewId,
+const JobCodingCommentSaveBox: React.FC<CommentSaveBoxProps> = ({
+  currentCodingTestId,
 }) => {
-  const commentBox = useCommentStore((state) => state.comments);
+  const commentBox = useCodingCommentStore((state) => state.comments);
   const filteredComments = commentBox.filter(
-    (comment) => comment.interviewId === currentInterviewId
+    (comment) => comment.codingTestId === currentCodingTestId
   );
+  console.log(filteredComments);
   return (
     <CommentList>
       <UserDivBox>댓글박스</UserDivBox>
       {filteredComments.map((comment) => (
-        <CommentItem key={comment.commentId}>
+        <CommentItem key={comment.id}>
           <UserText>{comment.name}</UserText>
           <Text>{comment.text}</Text>
-          <DeleteButton id={comment.commentId} />
+          <JobCodingDeleteButton id={comment.commentId} />
         </CommentItem>
       ))}
     </CommentList>
   );
 };
 
-export default CommentSaveBox;
+export default JobCodingCommentSaveBox;
 
 const CommentList = styled.div``;
 
