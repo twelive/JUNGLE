@@ -5,7 +5,7 @@ import { useState } from 'react';
 import useTagStore from '@/store/useTagStore';
 import { supabase } from '@/client';
 // import useDataStore from '@/store/useDataStore';
-import { StackDiggingDTO } from '@/types/StackDigging';
+import { StackDiggingDTO } from '@/types/StackDiggingDTO';
 import { useQuery } from 'react-query';
 // import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -94,7 +94,7 @@ const StackListPage = ({ comment = '0' }) => {
       <OutGrid>
           {
   (stackListData ?? []).filter(item => !selectedTag || item.tag === selectedTag).map((item) => (
-    <Box to={`/detailPage/stack/${item.id}`} key={item.id}>
+    <Box to={`/study/stack/detail/${item.id}`} key={item.id}>
       <BookMarkButtonWrapper>
 
       <BookMarkButton notBookmarkImg={notbookmark} itemId={item.id} userId={userId} itemType='stack' ></BookMarkButton>
