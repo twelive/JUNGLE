@@ -7,7 +7,7 @@ import BookMarkLink from '@components/MyPage/BookMarkLink';
 import BookMarkList from '@components/MyPage/BookMarkList';
 import WritingCategory from '@components/MyPage/WritingCategory';
 import ResumeLink from '@components/MyPage/ResumeLink';
-import BookMarkModal from '@components/MyPage/BookMarkModal';
+import BookMarkDialog from '@/components/MyPage/BookMarkDialog';
 
 function MyPage() {
   const { isBookMark } = useBookMarkStore();
@@ -31,7 +31,7 @@ function MyPage() {
           <WritingCategory />
           <ResumeLink />
         </BottomSection>
-        {isBookMark && <BookMarkModal />}
+        {isBookMark && <BookMarkDialog />}
       </Section>
     </>
   );

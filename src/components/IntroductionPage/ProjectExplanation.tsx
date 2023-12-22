@@ -42,6 +42,7 @@ const Layout = styled.div`
 const ProjectImg = styled.img`
   width: 40%;
   max-width: 15.625rem;
+  margin-bottom: auto;
   object-fit: cover;
   border-radius: 0.9375rem;
 
@@ -69,6 +70,7 @@ const ProjectName = styled.h3`
 `
 
 const Content = styled.dl`
+  margin: 1rem 0;
   font-size: 2rem;
 
   dt {

@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import { useRef } from 'react';
 import { useAuthStore } from "@/store/useAuthStore";
-import { StackDiggingDTO } from '@/types/StackDigging';
+import { StackDiggingDTO } from '@/types/StackDiggingDTO';
 import { supabase } from "@/client";
 
 const createData: (tableName: string, data: Partial<StackDiggingDTO>) => Promise<StackDiggingDTO[] | null> = async (tableName, data) => {
@@ -25,8 +25,7 @@ const StackNewPage = () => {
   // const emailRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
 
-  const SecureEmail = userEmail.replace(/@.*/, '');//이메일 자르고 남은 이름 모두 match로 돌면서 **** 로 순환
-  //.replace(/(?<=..).*/g, match => '*'.repeat(match.length))
+  const SecureEmail = userEmail.replace(/@.*/, '');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
