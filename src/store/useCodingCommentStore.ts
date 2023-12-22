@@ -16,7 +16,7 @@ interface Comment {
   id?: number;
   name: string;
   text: string;
-  codingTestId?: number;
+  codingtestId?: number;
   commentId?: number;
 }
 
@@ -47,7 +47,7 @@ const useCodingCommentStore = create<CommentStore>((set) => {
       // Supabase에 데이터 전송
       const { error } = await supabase
         .from('job_coding_comment')
-        .insert([{ ...newCommentWithId, codingTestId: comment.codingTestId }]);
+        .insert([{ ...newCommentWithId, codingtestId: comment.codingtestId }]);
       if (error) {
         console.error('Error adding comment to Supabase:', error);
       }

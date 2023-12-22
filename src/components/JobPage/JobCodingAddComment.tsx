@@ -51,7 +51,7 @@ const JobCodingAddComment = ({
       addComment({
         name: userEmail,
         text: newComment.text,
-        codingTestId: currentCodingTestItemId,
+        codingtestId: currentCodingTestItemId,
       });
       console.log(currentCodingTestItemId);
       setNewComment({
