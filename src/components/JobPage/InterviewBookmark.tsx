@@ -7,7 +7,7 @@ interface BookMarkButtonProps {
   itemId: string | number;
   userId: string | number | undefined;
   itemType: string | number;
-  notBookmarkImg: string; // notBookmark 이미지 URL
+  notBookmarkImg: string;
 }
 
 function InterviewBookmark({
@@ -23,7 +23,7 @@ function InterviewBookmark({
   const [toggle, setToggle] = useState(initialBookMarks);
 
   const updateBookMarks = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation(); // Stop event from bubbling up
+    e.stopPropagation();
     e.preventDefault();
     if (toggle) {
       const { error } = await supabase

@@ -23,8 +23,8 @@ interface Comment {
 // Zustand 상태 관리를 위한 인터페이스
 interface CommentStore {
   comments: Comment[];
-  addComment: (comment: Comment) => void;
-  deleteComment: (id: number) => void;
+  addComment: (comment: Comment) => Promise<void>; // 비동기 함수임을 명시
+  deleteComment: (id: number) => Promise<void>;
 }
 
 // Zustand Store 생성
@@ -42,11 +42,12 @@ const useCommentStore = create<CommentStore>((set) => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newComments));
         return { comments: newComments };
       });
+      console.log(newCommentWithId);
 
       // Supabase에 데이터 전송
       const { error } = await supabase
         .from('job_interview_comment')
-        .insert([{ ...newCommentWithId, interviewId: comment.interviewId }]);
+        .insert([{ ...newCommentWithId, interview_id: comment.interviewId }]);
       if (error) {
         console.error('Error adding comment to Supabase:', error);
       }
@@ -65,7 +66,7 @@ const useCommentStore = create<CommentStore>((set) => {
 
       // Supabase에서 해당 ID의 댓글을 삭제
       const { error } = await supabase
-        .from('job_interivew_comment')
+        .from('job_interview_comment')
         .delete()
         .match({ id });
       if (error) {

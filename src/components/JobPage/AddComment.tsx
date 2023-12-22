@@ -13,7 +13,6 @@ const AddComment = ({
     name: '',
     text: '',
   });
-
   const [userEmail, setUserEmail] = useState('');
   const user = useAuthStore((state) => state.user);
   const addComment = useCommentStore((state) => state.addComment);
@@ -26,35 +25,32 @@ const AddComment = ({
           .select('email')
           .eq('id', user)
           .single();
-
         if (error) {
           console.error('Error fetching user data:', error);
           return;
         }
-
-        if (data) {
-          data.email && setUserEmail(data.email);
+        if (data && data.email) {
+          setUserEmail(data.email);
         }
       }
     };
-
     fetchUserEmail();
   }, [user]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setNewComment({ ...newComment, [name]: value });
+    setNewComment((prevComment) => ({ ...prevComment, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const trimmedText = newComment.text.trim();
     if (newComment.text.trim() !== '') {
       addComment({
         name: userEmail,
-        text: newComment.text,
+        text: trimmedText,
         interviewId: currentInterviewitemId,
       });
-      console.log(currentInterviewitemId);
       setNewComment({
         name: '',
         text: '',
@@ -101,10 +97,7 @@ const AddButton = styled.button`
   box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
   width: 10%;
   border: none;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
   border-radius: 10px;
   margin-right: 5px;
   border: 0.5px solid var(--bs-black-500);

@@ -53,7 +53,6 @@ const JobCodingAddComment = ({
         text: newComment.text,
         codingtestId: currentCodingTestItemId,
       });
-      console.log(currentCodingTestItemId);
       setNewComment({
         name: '',
         text: '',
@@ -100,10 +99,7 @@ const AddButton = styled.button`
   box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
   width: 10%;
   border: none;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
   border-radius: 10px;
   margin-right: 5px;
   border: 0.5px solid var(--bs-black-500);
