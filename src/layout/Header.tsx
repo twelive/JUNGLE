@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
-
 import Logo from '@components/Logo';
 import HeaderButtonGroup from '@components/Header/HeaderButtonGroup';
 import HeaderTitle from '@components/Header/HeaderTitle';

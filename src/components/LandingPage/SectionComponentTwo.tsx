@@ -1,7 +1,6 @@
 import { Element } from 'react-scroll';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-
 import LandingHeader from '@components/LandingPage/LandingHeader';
 import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownButton';
 import useLandingStore from '@store/useLandingStore';

@@ -1,15 +1,15 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useDataStore from '@/store/useDataStore';
-import { useEffect } from 'react';
-import useStorageStore from '@/store/useStorageStore';
-import { getPbImageURL } from '@/store/getPbImageURL';
-import styled from 'styled-components';
-import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Users } from '@/types/Users';
+import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components';
+
 import { supabase } from '@/client';
-import { useAuthStore } from '@/store/useAuthStore';
+import { Users } from '@/types/Users';
+import { useAuthStore } from '@store/useAuthStore';
+import useDataStore from '@store/useDataStore';
+import useStorageStore from '@store/useStorageStore';
+import { getPbImageURL } from '@store/getPbImageURL';
 
 
 interface Item {

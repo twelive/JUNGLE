@@ -2,7 +2,6 @@
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { supabase } from '@/client';
 import { StackDiggingDTO } from '@/types/StackDiggingDTO';
 import BookMarkButton from '@components/StudyPage/BookMarkButton';

@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-
 import JobHeaderItem from '@components/JobPage/JobHeaderItem';
 import JobSeekBox from '@components/JobPage/JobSeekBox';
 import SwiperComponent from '@components/SwiperComponet';

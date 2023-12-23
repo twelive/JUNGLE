@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-
 import AddComment from '@components/JobPage/AddComment';
 import CommentSaveBox from '@components/JobPage/CommentSaveBox';
 import NavButton from '@components/JobPage/NavButton';

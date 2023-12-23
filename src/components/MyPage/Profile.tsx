@@ -2,8 +2,9 @@ import { useState, useRef } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { supabase } from '@/client';
 import styled from 'styled-components';
+
+import { supabase } from '@/client';
 import EditButton from '@components/Button/EditButton';
 import { useAuthStore } from '@store/useAuthStore';
 import { getPbImageURL } from '@store/getPbImageURL';

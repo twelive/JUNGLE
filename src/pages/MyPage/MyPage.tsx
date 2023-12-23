@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-
 import ProfileSection from '@components/MyPage/ProfileSection';
 import PointSection from '@components/MyPage/PointSection';
 import BookMarkLink from '@components/MyPage/BookMarkLink';

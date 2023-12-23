@@ -3,17 +3,11 @@ import styled from "styled-components";
 import { supabase } from "@/client";
 import bookmark from '@assets/common/bookmarkbluefilled.svg';
 
-
-
 interface BookMarkButtonProps { 
   itemId: string | number,
   userId: string | number | undefined,
   itemType: string | number,
   notBookmarkImg: string,  // notBookmark 이미지 URL
-
-  
-
-
 }
 
 function BookMarkButton({ itemId, userId, itemType, notBookmarkImg }: BookMarkButtonProps) { 
