@@ -1,5 +1,5 @@
-import edit from '@assets/common/edit.svg'
 import styled from 'styled-components';
+import edit from '@assets/common/edit.svg'
 
 interface State {
   onClick: () => void;

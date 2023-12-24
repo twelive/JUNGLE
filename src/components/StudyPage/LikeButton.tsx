@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import dislikes from './../../assets/common/inactivelike.svg';
-import likes from './../../assets/common/activelike.svg';
 import { useState, useEffect } from 'react';
+import styled from "styled-components";
 import { supabase } from "@/client";
+import dislikes from '@assets/common/inactivelike.svg';
+import likes from '@assets/common/activelike.svg';
 
 interface LikeButtonProps { 
   itemId: string | number,

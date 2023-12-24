@@ -1,10 +1,10 @@
-import CreateButton from '@/components/JobPage/CreateButton';
 import React, { useState, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { supabase } from '@/client';
-import useCodingTestCreateStore from '@/store/useCodingTestCreateStore';
-import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '@/store/useAuthStore';
+import CreateButton from '@components/JobPage/CreateButton';
+import { useAuthStore } from '@store/useAuthStore';
+import useCodingTestCreateStore from '@store/useCodingTestCreateStore';
 
 const JobCodingTestCreatePage: React.FC = () => {
   const [title, setTitle] = useState<string>('');

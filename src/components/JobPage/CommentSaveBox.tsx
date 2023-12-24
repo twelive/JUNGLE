@@ -1,6 +1,6 @@
-import useCommentStore from '@/store/useCommentStore';
 import styled from 'styled-components';
-import DeleteButton from './DeleteButton';
+import DeleteButton from '@components/JobPage/DeleteButton';
+import useCommentStore from '@store/useCommentStore';
 
 interface CommentSaveBoxProps {
   currentInterviewId: number;

@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import useDataStore from '@/store/useDataStore';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import NavButton from '@/components/JobPage/NavButton';
-import JobCodingAddComment from '@/components/JobPage/JobCodingAddComment';
-import JobCodingCommentSaveBox from '@/components/JobPage/JobCodingCommentSaveBox';
-import JobCodingTestItemDeleteButton from './JobCodingTestItemDeleteButton';
+import styled from 'styled-components';
+import NavButton from '@components/JobPage/NavButton';
+import JobCodingAddComment from '@components/JobPage/JobCodingAddComment';
+import JobCodingCommentSaveBox from '@components/JobPage/JobCodingCommentSaveBox';
+import JobCodingTestItemDeleteButton from '@pages/JobPage/JobCodingTestItemDeleteButton';
+import useDataStore from '@store/useDataStore';
 
 interface CodingItemType {
   id: number | string;

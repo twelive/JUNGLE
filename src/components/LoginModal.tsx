@@ -1,8 +1,8 @@
-import { useAuthStore } from '@/store/useAuthStore';
-import styled from 'styled-components';
-import gitlogo from '../assets/common/gitlogo.svg';
-import { supabase } from '@/client';
 // import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { supabase } from '@/client';
+import { useAuthStore } from '@store/useAuthStore';
+import gitlogo from '@assets/common/gitlogo.svg';
 
 
 interface propsType  {

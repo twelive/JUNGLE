@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components"
 import GithubLink from "@components/IntroductionPage/GithubLink";
 import getGithubLink from "@utils/getGithubLink";
-import debounce from "@/utils/debounce";
+import debounce from "@utils/debounce";
 
 function TeamPeople({src = '#', name = '조원소개', introduction= '조원소개글'}) {
   const [isHoverd, setIsHovered] = useState(false);

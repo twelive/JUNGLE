@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { supabase } from '@/client';
-import { useAuthStore } from '@/store/useAuthStore';
-import useCodingCommentStore from '@/store/useCodingCommentStore';
+import { useAuthStore } from '@store/useAuthStore';
+import useCodingCommentStore from '@store/useCodingCommentStore';
 const JobCodingAddComment = ({
   currentCodingTestItemId,
 }: {

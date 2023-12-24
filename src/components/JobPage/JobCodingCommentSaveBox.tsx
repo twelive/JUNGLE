@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import useCodingCommentStore from '@/store/useCodingCommentStore';
-import JobCodingDeleteButton from './JobCodingDeleteButton';
+import useCodingCommentStore from '@store/useCodingCommentStore';
+import JobCodingDeleteButton from '@components/JobPage/JobCodingDeleteButton';
 
 interface CommentSaveBoxProps {
   currentCodingTestId: number;

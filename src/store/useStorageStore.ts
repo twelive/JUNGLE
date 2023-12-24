@@ -1,12 +1,7 @@
-import { supabase } from "@/client";
 import { create } from "zustand";
+import { supabase } from "@/client";
 import { FileObject } from '@supabase/storage-js';
 import { User } from '@supabase/supabase-js';
-
-
-
-
-
 
 type State = {
   data: FileObject[];

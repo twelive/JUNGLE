@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Category from '@components/MainPage/Category';
 import useWrittingData from '@/api/useWrittingData';
+import Category from '@components/MainPage/Category';
 
 function WritingCategory() {
   const {data} = useWrittingData();

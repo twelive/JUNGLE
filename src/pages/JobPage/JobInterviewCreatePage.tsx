@@ -1,11 +1,10 @@
-import CreateButton from '@/components/JobPage/CreateButton';
 import React, { useState, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { supabase } from '@/client';
-
-import { useNavigate } from 'react-router-dom';
-import useInterviewCreateStore from '@/store/useInterviewCreateStore';
-import { useAuthStore } from '@/store/useAuthStore';
+import CreateButton from '@components/JobPage/CreateButton';
+import { useAuthStore } from '@store/useAuthStore';
+import useInterviewCreateStore from '@store/useInterviewCreateStore';
 
 const JobInterviewCreatePage: React.FC = () => {
   const [title, setTitle] = useState<string>('');

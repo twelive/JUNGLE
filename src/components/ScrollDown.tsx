@@ -1,5 +1,5 @@
-import ArrowScrollDown from '@/components/ArrowScrollDown';
 import styled from 'styled-components';
+import ArrowScrollDown from '@components/ArrowScrollDown';
 
 function ScrollDown() {
   const handleScrollDown = () => {

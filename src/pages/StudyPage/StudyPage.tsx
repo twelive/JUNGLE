@@ -1,14 +1,15 @@
-import useDataStore from '@/store/useDataStore';
-import useStorageStore from '@/store/useStorageStore';
-import useTagStore from '@/store/useTagStore';
 import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { getPbImageURL } from '@/store/getPbImageURL';
-import StudyTitleGroup from '@/components/StudyPage/StudyTitleGroup';
-import { Swiper } from 'swiper/react';
-import TagButtonComponent from '@/components/StudyPage/TagButtonComponent';
-import StackDiggingNameSection from '@/components/StudyPage/StackDiggingNameSection';
 // import { useQuery } from 'react-query';
+import { Helmet } from 'react-helmet-async';
+import { Swiper } from 'swiper/react';
+
+import StudyTitleGroup from '@components/StudyPage/StudyTitleGroup';
+import TagButtonComponent from '@components/StudyPage/TagButtonComponent';
+import StackDiggingNameSection from '@components/StudyPage/StackDiggingNameSection';
+import useDataStore from '@store/useDataStore';
+import useStorageStore from '@store/useStorageStore';
+import useTagStore from '@store/useTagStore';
+import { getPbImageURL } from '@store/getPbImageURL';
 
 
 import { SwiperSlide } from 'swiper/react';
@@ -28,9 +29,9 @@ import 'swiper/css/navigation';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 import styled from 'styled-components';
-import LikeButton from '@/components/StudyPage/LikeButton';
-import { useAuthStore } from '@/store/useAuthStore';
-import StackDiggingContentsSection from '@/components/StudyPage/StackDiggingContentsSection';
+import LikeButton from '@components/StudyPage/LikeButton';
+import { useAuthStore } from '@store/useAuthStore';
+import StackDiggingContentsSection from '@components/StudyPage/StackDiggingContentsSection';
 // import StackDiggingContentsSection from '@components/StudyPage/StackDiggingContentsSection';
 
 function StudyPage() {

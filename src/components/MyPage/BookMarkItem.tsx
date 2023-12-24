@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BookMarkButton from '@components/StudyPage/BookMarkButton';
+import ArrowScrollDown from '@components/ArrowScrollDown';
 import { useAuthStore } from '@store/useAuthStore';
 import notbookmark from '@assets/common/bookmarkwhite.svg';
-import ArrowScrollDown from '@components/ArrowScrollDown';
 
 function BookMarkItem({
   src = '/bookmark',

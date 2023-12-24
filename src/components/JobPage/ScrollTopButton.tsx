@@ -1,6 +1,6 @@
 import { animateScroll as scroll } from 'react-scroll';
-import up from '@/assets/job/job-up-button.svg';
 import styled from 'styled-components';
+import up from '@assets/job/job-up-button.svg';
 
 const ScrollToTopButton = () => {
   const scrollToTop = () => {

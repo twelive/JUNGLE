@@ -1,13 +1,15 @@
+import { useRef, useState } from 'react';
 import { Element } from 'react-scroll';
 import styled from 'styled-components';
-import Logo from '@/assets/landing/landing-logo.svg';
-import useLandingStore from '@/store/useLandingStore';
-import { useRef, useState } from 'react';
-import EnterButton from '../Button/EnterButton';
-import LoginModal from '../LoginModal';
-import SectionScrollUpButton from './SectionScrollUpButton';
-import MotionComponent from './SectionMotionDiv';
-import createChildVariants from '@/utils/createChildVariants';
+
+import EnterButton from '@components/Button/EnterButton';
+import LoginModal from '@components/LoginModal';
+import SectionScrollUpButton from '@components/LandingPage/SectionScrollUpButton';
+import MotionComponent from '@components/LandingPage/SectionMotionDiv';
+import useLandingStore from '@store/useLandingStore';
+import createChildVariants from '@utils/createChildVariants';
+import Logo from '@assets/landing/landing-logo.svg';
+
 const SectionComponentFive = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [allSizeModalShow, setAllSizeModalShow] = useState(false);

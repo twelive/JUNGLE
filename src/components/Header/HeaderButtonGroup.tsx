@@ -1,6 +1,6 @@
-import { useAuthStore } from '@/store/useAuthStore';
-import HeaderButton from '@components/Button/HeaderButton';
 import styled from 'styled-components';
+import HeaderButton from '@components/Button/HeaderButton';
+import { useAuthStore } from '@store/useAuthStore';
 
 
 function HeaderButtonGroup() {

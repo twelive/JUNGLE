@@ -1,10 +1,10 @@
-import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
-import useDataStore from '@/store/useDataStore';
 import { useEffect } from 'react';
-import InterviewBookmark from './InterviewBookmark';
-import { useAuthStore } from '@/store/useAuthStore';
-import notbookmark from './../../assets/common/bookmarkwhite.svg';
+import { Link } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
+import InterviewBookmark from '@components/JobPage/InterviewBookmark';
+import { useAuthStore } from '@store/useAuthStore';
+import useDataStore from '@store/useDataStore';
+import notbookmark from '@assets/common/bookmarkwhite.svg';
 
 interface InterviewType {
   id: number | string;
