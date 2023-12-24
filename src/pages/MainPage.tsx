@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import CategorySection from '@components/MainPage/CategorySection';
 import ArrowScrollDown from '@/components/ArrowScrollDown';
-import jungleLogo from '@assets/common/logo.svg'
 import gitLogo from '@assets/common/gitlogo.svg'
 import figmaLogo from '@assets/common/figmalogo.svg'
 
@@ -28,9 +27,6 @@ function MainPage() {
         <TeamBox>
           <TeamTitle>JUNGLE</TeamTitle>
           <TeamContent>
-            <Button type="button" onClick={() =>  window.open("https://jungler.vercel.app", '_blank')}>
-              <img src={jungleLogo} alt='JUNGLER' />
-            </Button>
             <Button type="button" onClick={() =>  window.open("https://github.com/twelive/JUNGLE", '_blank')}>
               <img src={gitLogo} alt='git' />
             </Button>
