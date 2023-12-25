@@ -1,9 +1,14 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import { supabase } from "@/client";
 import { StackDiggingDTO } from '@/types/StackDiggingDTO';
 import { useAuthStore } from "@store/useAuthStore";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import debounce from '@/utils/debounce';
+
 
 const createData: (tableName: string, data: Partial<StackDiggingDTO>) => Promise<StackDiggingDTO[] | null> = async (tableName, data) => {
   const { data: insertedData } = await supabase
@@ -19,14 +24,17 @@ const createData: (tableName: string, data: Partial<StackDiggingDTO>) => Promise
 const StackNewPage = () => {
   const userId = useAuthStore((state) => (state.user));
   const userEmail = useAuthStore((state) => (state.userEmail));
+  const navigate = useNavigate();
+ const [title, setTitle] = useState('');
+const [content, setContent] = useState('');
   
   const titleRef = useRef<HTMLInputElement>(null);
   const tagRef = useRef<HTMLSelectElement>(null);
-  // const emailRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
 
   const SecureEmail = userEmail.replace(/@.*/, '');
-
+  const debouncedSetTitle = debounce((value: string) => setTitle(value), 50);
+  const debouncedSetContent = debounce((value: string) => setContent(value), 50);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const title = titleRef.current?.value;
@@ -41,8 +49,18 @@ const StackNewPage = () => {
       user_email: userEmail,
       tag
     };
-    const insertedData = await createData('stack_digging', data);
-    console.log("Inserted data: ", insertedData);
+        
+        try {
+          await createData('stack_digging', data);
+          toast.success('작성 완료 👌');
+        setTimeout(() => {
+navigate(`/study/stack/ListTable`);
+        }, 3000);
+}
+        catch (error) { 
+          toast.error('작성 실패 😞');
+        }
+    
   }
       
 
@@ -50,7 +68,6 @@ const StackNewPage = () => {
 
   const handleReset = () => {
     titleRef.current!.value = '';
-    // emailRef.current!.value = '';
     contentRef.current!.value = '';
   };
 
@@ -68,7 +85,7 @@ const StackNewPage = () => {
             <AnyTextBox>
 
             <Author>제목</Author>
-            <Input type="text" ref={titleRef} />
+            <Input type="text" ref={titleRef} onChange={(e) => debouncedSetTitle(e.target.value)}/>
 
             </AnyTextBox>
           </Label>
@@ -99,7 +116,8 @@ const StackNewPage = () => {
           </Label>
           <Label>
             
-            <Textarea ref={contentRef} />
+            <Textarea ref={contentRef} onChange={(e) => debouncedSetContent(e.target.value)}
+/>
           </Label>
           <ButtonArea>
             <Button type="submit">저장</Button>
@@ -120,18 +138,18 @@ export default StackNewPage;
 
 
 const NewOuter = styled.section`
-  padding: 50px;
+  padding: 3.125rem;
   color: black;
 
 @media ${(props) => props.theme.device.mobile} {
-      padding-top: 20px;
+      padding-top: 1.25rem;
 padding-left: 0;
 padding-bottom: 0;
 padding-right: 0;
 }
 
 select {
-  border: 1px solid black;
+  border: 0.0625rem solid black;
 
 
 }
@@ -141,10 +159,10 @@ const FormArea = styled.form`
 margin: 5%;
   display: flex;
   flex-direction: column;
-  border: 1px solid black; 
-  border-radius: 35px;
-  padding: 20px;
-min-height: 400px;
+  border: 0.0625rem solid black; 
+  border-radius: 2.1875rem;
+  padding: 1.25rem;
+min-height: 25rem;
   
 
 `;
@@ -152,8 +170,8 @@ min-height: 400px;
 const Author = styled.div`
 text-align: center;
 white-space: nowrap;
-padding-left: 5px;
-padding-right: 15px;
+padding-left: 0.3125rem;
+padding-right: 0.9375rem;
 `;
 
 const Email = styled.p`
@@ -172,7 +190,7 @@ display: flex;
     vertical-align: middle;
     align-items: center;
     @media ${(props) => props.theme.device.mobile} {
-font-size: 10px;
+font-size: 0.625rem;
 
 }
 
@@ -182,17 +200,17 @@ font-size: 10px;
 const Label = styled.label`
 width: 100%;
 display: block;
-margin-bottom: 10px;
+margin-bottom: 0.625rem;
 
 `;
 
 const Input = styled.input`
 width: 100%;
- margin-top: 5px;
-    padding: 5px;
-    border: 1px solid black;
+ margin-top: 0.3125rem;
+    padding: 0.3125rem;
+    border: 0.0625rem solid black;
      @media ${(props) => props.theme.device.mobile} {
-    padding: 0px;
+    padding: 0rem;
 
 
 }
@@ -201,22 +219,22 @@ width: 100%;
 
 const Textarea = styled.textarea`
 width: 100%;
-min-height: 300px;
+min-height: 18.75rem;
 resize: none;
 box-sizing: border-box;
- margin-top: 5px;
-    padding: 5px;
-    border: 1px solid black;
-    padding: 10px;
+ margin-top: 0.3125rem;
+    padding: 0.3125rem;
+    border: 0.0625rem solid black;
+    padding: 0.625rem;
 
 `;
 
 const TitleArea = styled.p`
 font-weight: 600;
-font-size: 50px;
+font-size: 3.125rem;
 margin-left: 5%;
 @media ${(props) => props.theme.device.mobile} {
-font-size: 20px;
+font-size: 1.25rem;
 
 }
 
@@ -225,25 +243,24 @@ const ButtonArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;
-  height: 30px;
+  height: 1.875rem;
 `;
 const Button = styled.button`
-margin: 2px;
-border: 1px solid black;
+margin: 0.125rem;
+border: 0.0625rem solid black;
 padding-top: 0.5%;
 padding-bottom: 0.5%;
-border-radius: 5px;
+border-radius: 0.3125rem;
 box-sizing: border-box;
 
 &:hover {
-  /* border: 2px solid black;
-   */
+
   background-color: #111;
 color: white;
 
 }
  @media ${(props) => props.theme.device.mobile} {
-font-size: 10px;
+font-size: 0.625rem;
 
 }
 `;
