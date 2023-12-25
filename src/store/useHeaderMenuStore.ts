@@ -19,6 +19,7 @@ const HeaderMenuName: HeaderMenu[] = [
   { '/detailPage/project': '커뮤니티.' },
   { '/detailPage/study': '커뮤니티.' },
   { '/study': '공부.' },
+  { '/study/stack/ListTable': '공부.' },
   { '/study/stack/detail': '공부.' },
   { '/introduction': '프로젝트.' },
   { '/introduction/team': '팀 소개.' },
