@@ -21,6 +21,7 @@ const HeaderMenuName: HeaderMenu[] = [
   { '/study': '공부.' },
   { '/study/stack/ListTable': '공부.' },
   { '/study/stack/detail': '공부.' },
+  { '/study/stack/StackNewPage': '공부.' },
   { '/introduction': '프로젝트.' },
   { '/introduction/team': '팀 소개.' },
 ];

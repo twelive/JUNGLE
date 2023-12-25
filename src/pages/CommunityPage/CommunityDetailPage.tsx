@@ -181,7 +181,7 @@ useEffect(() => {
       </Helmet>
       <section>
         <MainWrapper>
-          <h1>CommunityDetailPage</h1>
+          <h1 className='sr-only'>CommunityDetailPage</h1>
           {data.map((item) => (
             <div key={item.id}>
               <div>
@@ -261,7 +261,7 @@ const MainWrapper = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  margin: 0 auto;
+  margin: 1.875rem auto;
   background-color: white;
   border-radius: 30px;
   border: 1px solid #000;
