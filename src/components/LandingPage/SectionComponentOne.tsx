@@ -67,6 +67,11 @@ const VideoContainer = styled.div`
 
 const VideoBox = styled.video`
   width: 100%;
+
+  @media ${(props) => props.theme.device.laptop} {
+    height: 100vh;
+    background-color: black;
+  }
 `;
 
 const TextBox = styled.div`
