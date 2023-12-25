@@ -12,6 +12,8 @@ import theme from '@/theme';
 import GlobalStyles from '@/GlobalStyles';
 import Loading from '@components/Loading';
 import LandingPage from '@pages/LandingPage/LandingPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const queryClient = new QueryClient();
 
@@ -24,7 +26,7 @@ function App() {
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      console.log('변경');
+
     });
   }, []);
 
@@ -43,7 +45,15 @@ function App() {
                 </Suspense>
               </HelmetProvider>
               <ReactQueryDevtools initialIsOpen={false} />
-            </QueryClientProvider>
+              </QueryClientProvider>
+                            
+<ToastContainer
+        position="top-center"
+        limit={1}
+        closeButton={false}
+        autoClose={2000}
+        hideProgressBar
+      />
           </>
         )}
       </ThemeProvider>

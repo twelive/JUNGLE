@@ -1,4 +1,3 @@
-// import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -6,7 +5,6 @@ import { supabase } from '@/client';
 import { StackDiggingDTO } from '@/types/StackDiggingDTO';
 import BookMarkButton from '@components/StudyPage/BookMarkButton';
 import { useAuthStore } from '@store/useAuthStore';
-// import useDataStore from '@/store/useDataStore';
 import notbookmark from '@assets/common/bookmarkwhite.svg';
 
 const getListData: () => Promise<StackDiggingDTO[] | null> = async () => {
@@ -24,10 +22,10 @@ const getListData: () => Promise<StackDiggingDTO[] | null> = async () => {
 };
 
 function StackDiggingItem({  comment = '0' }) {
-  // const { getListData } = useDataStore();
+
   const { data: stackListData } = useQuery('stacklist', getListData);
   const  userId   = useAuthStore((state) => (state.user));
-  // console.log(stackListData);
+
 
   return (
     <>
@@ -67,18 +65,14 @@ function StackDiggingItem({  comment = '0' }) {
 export default StackDiggingItem;
 
 const Box = styled(Link)`
-  /* Reset CSS */
   text-decoration-line: none;
-  /* Style CSS */
   position: relative;
-
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   box-sizing: border-box;
-  min-width: 260px;
-  height: 260px;
+  min-width: 16.25rem;
+  height: 16.25rem;
   padding: 1.875rem;
   border-radius: 0.9375rem;
   background: var(--bs-black-300);
@@ -92,7 +86,6 @@ const Box = styled(Link)`
 
 const TitleBox = styled.div`
 width: 100%;
-/* height: 100%; */
 `;
 
 const Title = styled.span`
@@ -105,8 +98,7 @@ const Title = styled.span`
   display: inline-block;
   font-size: 2rem;
   font-weight: 600;
-  padding-bottom: 2px;
-  /* padding-top: 2px; */
+  padding-bottom: 0.125rem;
   @media ${(props) => props.theme.device.tablet} {
     font-size: 1.75rem;
   }
@@ -118,8 +110,8 @@ line-clamp: 1;
 text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;
-padding-top: 14px;
-padding-bottom: 14px;
+padding-top: 0.875rem;
+padding-bottom: 0.875rem;
 color: white;
 `;
 
@@ -127,8 +119,7 @@ const Content = styled.span`
   color: white;
   text-align: right;
   font-size: 1.5rem;
-  padding-top: 12px;
-  /* white-space: nowrap; */
+  padding-top: 0.75rem;
   text-overflow: ellipsis;
   overflow: hidden;
   line-clamp: 5;
@@ -147,9 +138,9 @@ overflow: hidden;
   width: 100%;
   height: 100%;
   -webkit-line-clamp: 4; 
-  padding-bottom: 15px;
+  padding-bottom: 0.9375rem;
   -webkit-box-orient: vertical;
-  padding-top: 5px;
+  padding-top: 0.3125rem;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -161,7 +152,6 @@ overflow: hidden;
 `;
 
 const Created = styled.div`
-/* padding-top: 5px; */
   color: white;
   
 `;
@@ -171,20 +161,19 @@ const BottomBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  /* justify-content: center; */
   align-items: center;
   text-align: center;
-  margin-top: 15px;
+  margin-top: 0.9375rem;
   
 `;
 
 const CommentCounter = styled.p`
 color: white;
-font-size: 16px;
-border: 1px solid white;
-border-radius: 5px;
-padding-left: 5px;
-padding-right: 5px;
+font-size: 1rem;
+border: 0.0625rem solid white;
+border-radius: 0.3125rem;
+padding-left: 0.3125rem;
+padding-right: 0.3125rem;
 
 
 `;
@@ -192,6 +181,6 @@ padding-right: 5px;
 const BookMarkButtonWrapper = styled.div`
 z-index: 999999;
 position: absolute;
-right: 5px;
-top: 12px;
+right: 0.3125rem;
+top: 0.75rem;
 `;

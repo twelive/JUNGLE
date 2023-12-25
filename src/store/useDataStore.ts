@@ -15,7 +15,7 @@ type State = {
   data: DataType[];
   user: User | null;
   setData: (data: DataType[]) => void;
-  getListData: (tableName: string) => Promise<void>;
+  getListData: (tableName: string, orderBy?: string) => Promise<void>;
   getIdData: (tableName: string, id: string | number) => Promise<void>;
   createData: (tableName: string, newData: DataType) => Promise<void>;
   updateData: (
@@ -33,11 +33,11 @@ const useDataStore = create<State>((set) => ({
   setData: (data: DataType[]) => set({ data }),
   //전부 가져오기
   //
-  getListData: async (tableName: string) => {
+  getListData: async (tableName: string, orderBy: string = 'created_at') => {
     const { data, error } = await supabase
       .from(tableName)
       .select('*')
-      .order('created_at', { ascending: false });
+      .order(orderBy, { ascending: false });
     if (error) {
       console.error('Error fetching data:', error);
     } else {
