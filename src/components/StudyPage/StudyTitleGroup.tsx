@@ -5,9 +5,8 @@ import styled from "styled-components"
 interface TagButtonProps {
 studyTitle: string;
 children?: React.ReactNode;
-children2?: React.ReactNode;
-
-tagTitle?: string;
+  children2?: React.ReactNode;
+  tagTitle?: string | undefined;
 studymobiletitle?: string;
 
 }
@@ -58,8 +57,8 @@ border-right: 0.0625rem solid var(--bs-black-500);
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-width: 280px;
-padding-right: 50px;
+width: 17.5rem;
+padding-right: 3.125rem;
 @media ${(props) => props.theme.device.tablet}    
 {
 
@@ -73,7 +72,6 @@ const StudyButtonGroup = styled.div `
 display: flex;
 flex-direction: row;
 vertical-align: middle;
-/* align-items: center; */
 width: 100%;
 
 
@@ -93,10 +91,9 @@ display: none;
 
 const TagButtonGroup = styled(StudyButtonGroup)`
 border: none;
-/* width: calc( 80vw - 22.5% ); */
-margin-left: 20px;
+margin-left: 1.25rem;
 @media ${(props) => props.theme.device.mobile} {
-margin-left: 0px;
+margin-left: 0rem;
 
 }
 
@@ -106,7 +103,7 @@ const StudyTitle = styled.p`
 padding-top: 0.625rem;
 font-size: 2.8125rem;
 font-weight: 700;
-width: 200px;
+width: 12.5rem;
 @media ${(props) => props.theme.device.mobile} {
 
 }
@@ -121,11 +118,9 @@ text-align: end;
 `;
 
 const ContentWrapper = styled.div `
-/* width: 100%; */
-/* height: 100%; */
+
 
 @media ${(props) => props.theme.device.mobile} {
-    /* width: 100%; */
     
     
   }
@@ -156,7 +151,7 @@ display: inline;
 
 flex-basis: 2.8125rem;
 flex-grow: 1;
-height: 10px;
+height: 0.625rem;
 }
 
 `;
@@ -164,6 +159,6 @@ height: 10px;
 const StudyMobileWrapper = styled.div `
 display: flex;   
 flex-direction: column;
-gap: 10px;
+gap: 0.625rem;
 `;  
 

@@ -42,18 +42,14 @@ function TagButtonComponent({
 export default TagButtonComponent
 
 const TagButton = styled.button<{ $isActive?: boolean }> `
-  ${props => props.$isActive ? 'background-color: white; font-weight: 700; box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2); ' : 'background-color: black; color: white;'}
+  ${props => props.$isActive ? 'background-color: white; font-weight: 700; box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2); ' : 'background-color: black; color: white;'}
   border: none;
-  /* padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px; */
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 20px;
-  border-radius: 10px;
-  margin: 5px;
-  border: 0.5px solid var(--bs-black-500);
+    padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  height: 1.25rem;
+  border-radius: 0.625rem;
+  margin: 0.3125rem;
+  border: 0.0313rem solid var(--bs-black-500);
   box-sizing: border-box;
   @media ${(props) => props.theme.device.mobile} { 
     font-size: 0.5rem;

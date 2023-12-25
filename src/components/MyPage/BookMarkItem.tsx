@@ -38,13 +38,10 @@ function BookMarkItem({
 export default BookMarkItem;
 
 const Box = styled(Link)`
-  /* Reset CSS */
   text-decoration-line: none;
-  /* Style CSS */
   position: relative;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   box-sizing: border-box;
   width: 16.25rem;
   min-width: 16.25rem;
