@@ -9,14 +9,13 @@ import { StackDiggingDTO } from '@/types/StackDiggingDTO';
 import BookMarkButton from '@components/StudyPage/BookMarkButton';
 import TagButtonComponent from '@components/StudyPage/TagButtonComponent';
 import { useAuthStore } from '@store/useAuthStore';
-// import useDataStore from '@store/useDataStore';
 import useTagStore from '@store/useTagStore';
 import notbookmark from '@assets/common/bookmarkwhite.svg';
 
 
 
 const getListData: () => Promise<StackDiggingDTO[] | null> = async () => {
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from('stack_digging')
     .select(
       `
@@ -25,16 +24,26 @@ const getListData: () => Promise<StackDiggingDTO[] | null> = async () => {
     )
     .order('created_at', { ascending: false })
     .returns<StackDiggingDTO[] | null>();
+  if (error) {
+      console.error('Error fetching data:', error);
+    } else {
+    if (data) { 
+      console.log('fetching data');
+
+      }
+    }
   
   return data;
 };
 
 
 const StackListPage = ({ comment = '0' }) => {
-  const stackListData = useQuery('stacklist', getListData).data!;
 
+  const { data: stackListData, error } = useQuery('stacklist', getListData);
+
+  
   const  userId   = useAuthStore((state) => (state.user));
-// const { data: stackListData, getListData } = useDataStore();
+
   const { selectedTag, setSelectedTag } = useTagStore();
   const [tags, setTags] = useState<string[]>([]);
 
@@ -42,27 +51,31 @@ const StackListPage = ({ comment = '0' }) => {
   
   
   
-  useEffect(()=>{
-    
+  useEffect(() => {
+
+   
     setSelectedTag('etc');
-    // getListData('stack_digging');
-    
-    
+
   }, []);
   
-  useEffect(() => {
-    const uniqueTags = Array.from(new Set(stackListData.map(item => String(item.tag))));
+ useEffect(() => {
+    const uniqueTags = Array.from(new Set(stackListData?.map((tagItem: StackDiggingDTO) => String(tagItem.tag))));
     setTags(uniqueTags);
   }, [stackListData]);
+
   
-  const handleButtonClick = (tag: string) => {
-    setSelectedTag(tag);
+  if (error) {
+    console.error('Error fetching data:', error);
+    return <div>Error fetching data</div>;
+  }
+
+  if (!stackListData) {
+    return <div>Loading...</div>;
+  }
+  const handleButtonClick = (tag: string | null) => {
+    setSelectedTag(tag || 'etc');
   };
   
-  if (!stackListData) {
-    // 값이 없을 때의 처리
-    return <div>No data available</div>;
-  }
   
   return (
     <>
@@ -90,8 +103,9 @@ const StackListPage = ({ comment = '0' }) => {
       <GridOuter>
 
       <OutGrid>
-          {
-  (stackListData ?? []).filter(item => !selectedTag || item.tag === selectedTag).map((item) => (
+          {stackListData
+          .filter((item: StackDiggingDTO) => selectedTag == null || item.tag === selectedTag)
+          .map((item: StackDiggingDTO)=> (
     <Box to={`/study/stack/detail/${item.id}`} key={item.id}>
       <BookMarkButtonWrapper>
 
@@ -131,12 +145,12 @@ const StackListPage = ({ comment = '0' }) => {
 export default StackListPage;
 
 const GridOuter = styled.div`
-  padding: 50px;
+  padding: 3.125rem;
   @media ${(props) => props.theme.device.mobile} {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  padding-left: 0px;
-  padding-right: 0px;
+    padding-top: 3.125rem;
+    padding-bottom: 3.125rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
   
   }
 `;
@@ -148,8 +162,8 @@ const OutGrid = styled.section`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-auto-flow: row; 
-  column-gap: 5px;
-  row-gap: 5px;
+  column-gap: 0.3125rem;
+  row-gap: 0.3125rem;
 
   @media ${(props) => props.theme.device.tablet} {
     grid-template-columns: repeat(3, 1fr);
@@ -165,13 +179,6 @@ const OutGrid = styled.section`
 
 `;
 
-
-// const FakeDiv = styled.div`
-//   background-color: red;
-//   height: 100px;
-//   overflow: hidden;
-
-// `;
 const Box = styled(Link)`
 
   text-decoration-line: none;
@@ -182,22 +189,15 @@ const Box = styled(Link)`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  /* min-width: 260px; */
-  height: 260px;
+  height: 16.25rem;
   padding: 1.875rem;
   border-radius: 0.9375rem;
   background: var(--bs-black-300);
 
-  /* @media ${(props) => props.theme.device.tablet} {
-    min-width: 15rem;
-    height: 15rem;
-    padding: 1.25rem;
-  } */
 `;
 
 const TitleBox = styled.div`
 width: 100%;
-/* height: 100%; */
 `;
 
 const Title = styled.span`
@@ -210,8 +210,7 @@ const Title = styled.span`
   display: inline-block;
   font-size: 2rem;
   font-weight: 600;
-  padding-bottom: 2px;
-  /* padding-top: 2px; */
+  padding-bottom: 0.125rem;
   @media ${(props) => props.theme.device.tablet} {
     font-size: 1.75rem;
   }
@@ -223,8 +222,8 @@ line-clamp: 1;
 text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;
-padding-top: 14px;
-padding-bottom: 14px;
+padding-top: 0.875rem;
+padding-bottom: 0.875rem;
 color: white;
 `;
 
@@ -232,8 +231,7 @@ const Content = styled.span`
   color: white;
   text-align: right;
   font-size: 1.5rem;
-  padding-top: 12px;
-  /* white-space: nowrap; */
+  padding-top: 0.75rem;
   text-overflow: ellipsis;
   overflow: hidden;
   line-clamp: 5;
@@ -252,9 +250,9 @@ overflow: hidden;
   width: 100%;
   height: 100%;
   -webkit-line-clamp: 4; 
-  padding-bottom: 15px;
+  padding-bottom: 0.9375rem;
   -webkit-box-orient: vertical;
-  padding-top: 5px;
+  padding-top: 0.3125rem;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -278,17 +276,17 @@ const BottomBox = styled.div`
   width: 100%;
   align-items: center;
   text-align: center;
-  margin-top: 15px;
+  margin-top: 0.9375rem;
   
 `;
 
 const CommentCounter = styled.p`
 color: white;
-font-size: 16px;
-border: 1px solid white;
-border-radius: 5px;
-padding-left: 5px;
-padding-right: 5px;
+font-size: 1rem;
+border: 0.0625rem solid white;
+border-radius: 0.3125rem;
+padding-left: 0.3125rem;
+padding-right: 0.3125rem;
 
 
 `;
@@ -296,21 +294,21 @@ padding-right: 5px;
 const BookMarkButtonWrapper = styled.div`
 z-index: 999999;
 position: absolute;
-right: 5px;
-top: 12px;
+right: 0.3125rem;
+top: 0.75rem;
 `;
 
 const TitleWrapper = styled.div `
 display: flex;   
 flex-direction: row;
-gap: 10px;
-padding-top: 50px;
-padding-bottom: 50px;
-border-bottom: 1px solid black;
+gap: 0.625rem;
+padding-top: 3.125rem;
+padding-bottom: 3.125rem;
+border-bottom: 0.0625rem solid black;
 @media ${(props) => props.theme.device.mobile} {
 flex-direction: column;
-  padding-top: 30px;
-padding-bottom: 30px;
+  padding-top: 1.875rem;
+padding-bottom: 1.875rem;
   
   }
 
@@ -319,7 +317,7 @@ padding-bottom: 30px;
 
 
 const MainTitle = styled.h2`
-font-size: 50px;
+font-size: 3.125rem;
 font-weight: 600;
 
 `;
@@ -338,17 +336,17 @@ display: flex;
     flex-direction: row;
     align-items: center;
 text-decoration: none;
-  padding-left: 15px;
+  padding-left: 0.9375rem;
   background-color: #666; 
   color: white;
-  padding-right: 15px;
-  height: 20px;
-  border-radius: 10px;
-  margin: 5px;
-  border: 0.5px solid var(--bs-black-500);
+  padding-right: 0.9375rem;
+  height: 1.25rem;
+  border-radius: 0.625rem;
+  margin: 0.3125rem;
+  border: 0.0313rem solid var(--bs-black-500);
   box-sizing: border-box;
-  max-width: 200px; /* Set a maximum width */
-  overflow: hidden; /* Hide content overflow */
+  max-width: 12.5rem;
+  overflow: hidden; 
   @media ${(props) => props.theme.device.mobile} { 
     font-size: 0.5rem;
     padding-left: 3%;
@@ -362,6 +360,6 @@ const ButtonSpaceContainer = styled.div`
 display: flex;
 align-items: flex-end;
 
-/* justify-content: space-between; */
+
 
 `;

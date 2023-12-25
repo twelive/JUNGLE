@@ -1,4 +1,3 @@
-// import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { supabase } from '@/client';
 import { useAuthStore } from '@store/useAuthStore';
@@ -14,13 +13,11 @@ interface propsType  {
 
 function LoginModal({modalRef, modalOutSideClick}:propsType) {
   const { handleLogin, register } = useAuthStore();
-  // const navigate = useNavigate();
     const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
       await handleLogin();
       const {data : {session}} = await supabase.auth.getSession()
       await register(session)
-      // navigate('/main');
   }
 
   
@@ -83,7 +80,7 @@ const Div = styled.div `
 const LoginContainer = styled.div `
 display: flex;
 flex-direction: column;
-width: 250px;
+width: 15.625rem;
 margin: 0 auto;
 height: 100%;
 justify-items: center;
@@ -96,9 +93,9 @@ gap: 2.1875rem;
 
 const Button = styled.button `
 background-color: red;
-width: 250px;
-height: 50px;
-border-radius: 15px;
+width: 15.625rem;
+height: 3.125rem;
+border-radius: 0.9375rem;
 background-color: var(--main-bgColor);
 display: flex;
 justify-items: center;
@@ -117,8 +114,8 @@ p {
   font-size: 0.9375rem;
 }
 img {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
 }
 
 
