@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+
+body 
+body * { touch-action: none; }
 /* reset CSS */
 html, body, div, span, applet, object, iframe, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -28,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
+  background-color: var(--main-bgColor);
 }
 ol, ul {
   list-style: none;
@@ -51,7 +55,7 @@ html, body, #root {
 }
 
 :root {
-  --main-bgColor: ##F4F3EF;
+  --main-bgColor: #F4F3EF;
   --bs-black-000: #000;
   --bs-black-100: #111;
   --bs-black-200: #222;
@@ -64,10 +68,19 @@ html, body, #root {
   --bs-black-900: #999;
     }
 
-h1 {
-  font-size: 1.875rem;
-  font-weight: bold;
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  margin: -1px;
 }
+
+/* 반응형 레이아웃 CSS 설정 */
+body {margin: 2.6% 8%}
 `;
 
 export default GlobalStyles;
