@@ -27,7 +27,8 @@ const StackNewPage = () => {
   const navigate = useNavigate();
  const [title, setTitle] = useState('');
 const [content, setContent] = useState('');
-  
+  console.log(title);
+  console.log(content);
   const titleRef = useRef<HTMLInputElement>(null);
   const tagRef = useRef<HTMLSelectElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
