@@ -24,12 +24,9 @@
     - [Config](#config)
     - [Development](#development)
     - [Communication](#communication)
-  - [📺 화면 구성](#-화면-구성)
   - [⚙️ 주요 기능](#️-주요-기능)
-    - [1. 메인 페이지](#1-메인-페이지)
+    - [1. User Flow](#1-User-Flow)
       - [구현기능](#구현기능)
-    - [2. 카테고리 페이지](#2-카테고리-페이지)
-      - [구현기능](#구현기능-1)
   - [🔪 컨벤션](#-컨벤션)
     - [Commit Convention ⚡](#commit-convention-)
     - [Coding Convention ⚡](#coding-convention-)
@@ -53,8 +50,7 @@
 ## ✈️ 프로젝트 소개
 
 ```
-를 활용하여
-~~ 웹 사이트 제작
+프론트엔드 주니어 들을 위해 여러 취업사이트의 정보와 면접, 코딩테스트, 스터디 등등 여러 가지의 정보를 확인할 수 있도록 웹사이트를 제작하였습니다. 계속해서 업데이트할 예정입니다. 많은 관심 부탁드립니다.
 ```
 
 <br>
@@ -62,7 +58,7 @@
 ## 📅 일정
 
 🗓️ 기획 기간 : 2023.11.30 ~ 2023.12.06 <br>
-🗓️ 개발 기간 : 2023.12.07 ~ 2023.12.22
+🗓️ 개발 기간 : 2023.12.07 ~ 2023.12.23
 
 <br>
 
@@ -97,6 +93,7 @@ $ pnpm install @supabase/supabase-js
 
 ### Development
 
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white)
 ![ESlint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white)
@@ -113,33 +110,22 @@ $ pnpm install @supabase/supabase-js
 
 <br>
 
-## 📺 화면 구성
-
-| 메인 페이지 | 디테일 페이지 |
-| :---------: | :-----------: |
-|             |               |
-
-<br>
 
 ## ⚙️ 주요 기능
+👨‍💻User Flow(Figma) <br>
 
-- 기능1 <br>
+https://www.figma.com/file/lrcTq4IIk5FnHrfkC7AUej/Jungle_%EB%94%94%EC%9E%90%EC%9D%B8?type=design&node-id=38-408&mode=design&t=Dekmzx04s5UNKwxo-0
 
-### 1. 메인 페이지
 
-#### 구현기능
 
-### 2. 카테고리 페이지
-
-#### 구현기능
 
 ## 🔪 컨벤션
 
-### [Commit Convention ⚡]()
+### [Commit Convention ⚡](https://github.com/twelive/JUNGLE/wiki/%F0%9F%A7%A9Commit-Convention)
 
-### [Coding Convention ⚡]()
+### [Coding Convention ⚡](https://github.com/twelive/JUNGLE/wiki/%F0%9F%A7%A9Coding-Convention)
 
-### [MileStone ⚡]()
+### [MileStone ⚡](https://github.com/twelive/JUNGLE/milestones)
 
 <br>
 
@@ -363,10 +349,10 @@ $ pnpm install @supabase/supabase-js
 
 |  이름  | 회고내용 |
 | :----: | -------- |
-| 정소이 |          |
-| 서진만 |          |
-| 신명화 |          |
-| 전선용 |          |
+| 정소이 |처음 팀장으로 프로젝트를 진행하며 한계에 부딪혔던 3주였습니다. 개인 능력을 더 발전하였다면 팀장으로서도, 개발 팀원으로서도 업무를 완벽하게 마무리할 수 있었을까 하는 아쉬움이 남았습니다. 그래도 팀원들 덕분에 큰 어려움 없이 마무리할 수 있었습니다. 감사합니다! 앞으로도 화이팅 :9           |
+| 서진만 |TypeScript를 처음 사용해 보면서 부족함을 많이 느꼈습니다. Type에러가 많이 발생해 어려움이 있었지만 그래도 프로젝트를 잘 마무리 할 수 있어서 뿌듯했습니다. 부족한 점들을 하나하나 잡아주고 이끌어준 팀원들에게 감사합니다.          |
+| 신명화 |스스로의 부족함을 크게 느낄 수 있었다. 3주간 완주할 수 있도록 함께 해준 팀원들에게 더욱 감사하다. 공부 열심히 해서 다음에는 더 도움이 되는 팀원이 되고 싶습니다. 감사합니다.        |
+| 전선용 |처음으로 오프라인 프로젝트를 진행하며 팀원들과 직접 대화하고 기획하고 같이 회의하는 경험이 너무좋았습니다. 제가 사용해보고싶던 기술, 기능을 다 경험해봐서 좋았습니다. 지금의 저보단 더 성장할 수있는 저를 보았기에 너무 만족스러운 프로젝트였습니다.          |
 
 ## 👨‍💻👩‍💻 Support 연락 경로(E-mail , Github)
 
