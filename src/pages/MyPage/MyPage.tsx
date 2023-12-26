@@ -1,13 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-import useBookMarkStore from '@store/useBookMarkStore';
 import ProfileSection from '@components/MyPage/ProfileSection';
 import PointSection from '@components/MyPage/PointSection';
 import BookMarkLink from '@components/MyPage/BookMarkLink';
 import BookMarkList from '@components/MyPage/BookMarkList';
 import WritingCategory from '@components/MyPage/WritingCategory';
 import ResumeLink from '@components/MyPage/ResumeLink';
-import BookMarkModal from '@components/MyPage/BookMarkModal';
+import BookMarkDialog from '@components/MyPage/BookMarkDialog';
+import useBookMarkStore from '@store/useBookMarkStore';
 
 function MyPage() {
   const { isBookMark } = useBookMarkStore();
@@ -31,7 +31,7 @@ function MyPage() {
           <WritingCategory />
           <ResumeLink />
         </BottomSection>
-        {isBookMark && <BookMarkModal />}
+        {isBookMark && <BookMarkDialog />}
       </Section>
     </>
   );
@@ -100,6 +100,7 @@ const BottomSection = styled(FlexLayout)`
   }
 
   @media ${(props) => props.theme.device.mobile} {
+    overflow: hidden;
     flex-direction: column;
   }
 `;

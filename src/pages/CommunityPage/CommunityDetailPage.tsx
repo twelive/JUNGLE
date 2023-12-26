@@ -1,15 +1,15 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useDataStore from '@/store/useDataStore';
-import { useEffect } from 'react';
-import useStorageStore from '@/store/useStorageStore';
-import { getPbImageURL } from '@/store/getPbImageURL';
-import styled from 'styled-components';
-import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Users } from '@/types/Users';
+import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components';
+
 import { supabase } from '@/client';
-import { useAuthStore } from '@/store/useAuthStore';
+import { Users } from '@/types/Users';
+import { useAuthStore } from '@store/useAuthStore';
+import useDataStore from '@store/useDataStore';
+import useStorageStore from '@store/useStorageStore';
+import { getPbImageURL } from '@store/getPbImageURL';
 
 
 interface Item {
@@ -181,7 +181,7 @@ useEffect(() => {
       </Helmet>
       <section>
         <MainWrapper>
-          <h1>CommunityDetailPage</h1>
+          <h1 className='sr-only'>CommunityDetailPage</h1>
           {data.map((item) => (
             <div key={item.id}>
               <div>
@@ -261,7 +261,7 @@ const MainWrapper = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  margin: 0 auto;
+  margin: 1.875rem auto;
   background-color: white;
   border-radius: 30px;
   border: 1px solid #000;

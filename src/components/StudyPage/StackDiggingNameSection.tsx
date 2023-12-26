@@ -1,22 +1,22 @@
-
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowScrollDown from '@components/ArrowScrollDown';
-import { Link } from 'react-router-dom';
 
 
-function StackDiggingNameSection({ src = '/study/stack/ListTable', }) {
+function StackDiggingNameSection({ src = '/study/stack/ListTable', length = 0 }) {
+  
 
   return (
     <ProfileBox>
       <InnerBox to={ src }>
         <h2>기술 디깅</h2>
         <StackDiggingListButton>
-          {/* onClick={handleModal} */}
+
           <ArrowScrollDown color="var(--bs-black-400)" />
         </StackDiggingListButton>
       </InnerBox>
-      {/* Supabase 에서 북마크 정보 불러오기 */}
-      <CountText>[n]개</CountText>
+
+      <CountText>[{ length }]개</CountText>
     </ProfileBox>
   );
 }
@@ -33,8 +33,7 @@ const ProfileBox = styled.div`
   margin: 3.125rem 0;
   padding-left: 2rem;
   border-left: 0.15rem solid var(--bs-black-400);
-  /* gap: 1.875rem; */
-  /* padding-right: 1.875rem; */
+
 
 
   @media ${(props) => props.theme.device.tablet} {
@@ -45,10 +44,6 @@ const ProfileBox = styled.div`
     padding-left: 0;
     border: none;
 
-    /* width: 100%;
-    gap: 2.5rem;
-    padding: 0;
-    border: none; */
   }
   @media ${(props) => props.theme.device.mobile} {
     flex-direction: row;
@@ -58,10 +53,6 @@ const ProfileBox = styled.div`
     border: none;
     padding-left: 0;
 
-    /* flex-direction: column;
-    width: 100%;
-    padding: 0;
-    border: none; */
   }
 `;
 
@@ -85,10 +76,8 @@ const InnerBox = styled(Link)`
 `;
 
 const StackDiggingListButton = styled.div`
-  /* reset CSS */
   border: none;
   background-color: transparent;
-  /* style CSS */
   cursor: pointer;
 `;
 
@@ -97,7 +86,7 @@ const CountText = styled.span`
   text-align: right;
   font-size: 2rem;
   font-weight: 600;
-
+  display: none;
   @media ${(props) => props.theme.device.mobile} {
     font-size: 1.75rem;
   }

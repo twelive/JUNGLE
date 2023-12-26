@@ -1,18 +1,20 @@
 import { Suspense, useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from 'styled-components';
+
+import { supabase } from '@/client';
+import { Session } from '@supabase/supabase-js';
 import router from '@/routes';
 import theme from '@/theme';
 import GlobalStyles from '@/GlobalStyles';
-import LandingPage from '@pages/LandingPage/LandingPage';
-
 import Loading from '@components/Loading';
-import { supabase } from './client';
+import LandingPage from '@pages/LandingPage/LandingPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { Session } from '@supabase/supabase-js';
 const queryClient = new QueryClient();
 
 function App() {
@@ -24,7 +26,7 @@ function App() {
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      console.log('변경');
+
     });
   }, []);
 
@@ -43,7 +45,15 @@ function App() {
                 </Suspense>
               </HelmetProvider>
               <ReactQueryDevtools initialIsOpen={false} />
-            </QueryClientProvider>
+              </QueryClientProvider>
+                            
+<ToastContainer
+        position="top-center"
+        limit={1}
+        closeButton={false}
+        autoClose={2000}
+        hideProgressBar
+      />
           </>
         )}
       </ThemeProvider>

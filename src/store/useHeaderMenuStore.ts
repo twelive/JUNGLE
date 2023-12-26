@@ -1,3 +1,4 @@
+import HeaderMenu from '@components/Header/HeaderMenu';
 import { create } from 'zustand';
 
 interface State {
@@ -12,23 +13,30 @@ interface HeaderMenu {
 const HeaderMenuName: HeaderMenu[] = [
   { '/mypage': '내 활동.' },
   { '/job': '취업.' },
+  { '/job/interview': '취업.' },
+  { '/job/codingTest': '취업.' },
   { '/community': '커뮤니티.' },
+  { '/detailPage/project': '커뮤니티.' },
+  { '/detailPage/study': '커뮤니티.' },
   { '/study': '공부.' },
+  { '/study/stack/ListTable': '공부.' },
+  { '/study/stack/detail': '공부.' },
+  { '/study/stack/StackNewPage': '공부.' },
   { '/introduction': '프로젝트.' },
   { '/introduction/team': '팀 소개.' },
 ];
 
 const useHeaderMenuStore = create<State>((set) => ({
   currentMenu: '내 활동.',
-  setCurrentMenu: (path) =>
-  set(() => {
-    const originMenu = HeaderMenuName.find((menu) => menu[path]);
-    
+  setCurrentMenu: (path) => set(() => {
+    if (path.includes('/resume')) return { currentMenu: '이력서.' };
+
+    const exactMatch = HeaderMenuName.find((menu) => menu[path]);
     const paramsPath = path.substring(0, path.lastIndexOf('/'));
-    const paramsMenu = HeaderMenuName.find((menu) => menu[paramsPath]);
+    const paramsMatch = HeaderMenuName.find((menu) => menu[paramsPath]);
 
     return {
-      currentMenu: (originMenu && originMenu[path]) || (paramsMenu && paramsMenu[paramsPath]) || '경로오류',
+      currentMenu: (exactMatch && exactMatch[path]) || (paramsMatch && paramsMatch[paramsPath]) || '경로오류',
     };
   }),
 }));

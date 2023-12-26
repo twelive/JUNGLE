@@ -1,20 +1,27 @@
-import { useRef } from 'react';
-import { useQuery } from 'react-query';
+import { useState, useRef } from 'react';
+import { useQuery, useQueryClient } from 'react-query';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { supabase } from '@/client';
 import styled from 'styled-components';
+
+import { supabase } from '@/client';
 import EditButton from '@components/Button/EditButton';
 import { useAuthStore } from '@store/useAuthStore';
 import { getPbImageURL } from '@store/getPbImageURL';
 
 function Profile() {
-  const {user} = useAuthStore();
+  const { user } = useAuthStore();
   const profileRef = useRef<HTMLInputElement>(null);
-  
-  const uploadFile = async () => {    
+  const queryClient = useQueryClient();
+  const [imageUrl, setImageUrl] = useState('');
+
+  const uploadFile = async () => {
     const avatarFile = profileRef.current?.files?.[0];
-    if (avatarFile ) {
+    if (!avatarFile) return null;
+
+    try {
+      setImageUrl(URL.createObjectURL(avatarFile));
+
       const { data, error } = await supabase
         .storage
         .from('profile')
@@ -23,26 +30,42 @@ function Profile() {
           upsert: true
         });
 
-        if(!error) {
-          toast.success('업로드 완료! (* 새로고침시 반영됩니다.)', {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
-        }
+      if (error) {
+        throw new Error('storage 에러 발생');
+      }
 
-        if(error) return alert('storage 에러 발생');
+      const imageUrl = getPbImageURL('profile', user);
+      setImageUrl(imageUrl);
+
+      toast.success('업로드 완료! 잠시 후 반영됩니다.', {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
+      queryClient.setQueryData(['profileImageUrl', 'profile', user], imageUrl);
 
       return data;
-      
+    } catch (error) {
+      toast.error('사진 업로드 중 에러가 발생하였습니다.', {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
+      return null;
     }
-    return null;
-  }
+  };
 
   const handleSelectProfile = () => {
     if (profileRef.current) {
@@ -50,28 +73,35 @@ function Profile() {
     }
   };
 
-  const { data: imageUrl } = useQuery(['profileImageUrl', 'profile', user], () => getPbImageURL('profile', user));
-  
+  useQuery(
+    ['profileImageUrl', 'profile', user],
+    () => getPbImageURL('profile', user),
+    {
+      staleTime: 0,
+      onSuccess: (data) => {
+        setImageUrl(data);
+      },
+    }
+  );
+
   return (
-    <>
-      <Circle >
-          <Image src={imageUrl} alt="profile" />
-        <Input type="file" accept="image/*" ref={profileRef} onChange={uploadFile} />
-        <EditButton onClick={handleSelectProfile} />
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          />
-      </Circle>
-    </>
+    <Circle>
+      <Image src={imageUrl} alt="profile" />
+      <Input type="file" accept="image/*" ref={profileRef} onChange={uploadFile} />
+      <EditButton onClick={handleSelectProfile} />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </Circle>
   );
 }
 
@@ -118,4 +148,4 @@ const Image = styled.img`
 
 const Input = styled.input`
   display: none;
-`
+`;

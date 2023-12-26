@@ -1,198 +1,313 @@
-import useDataStore from "@/store/useDataStore";
-// import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useAuthStore } from "@store/useAuthStore";
+import useDataStore from "@store/useDataStore";
+import { supabase } from "@/client";
+import debounce from "@utils/debounce";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { useEffect, useState } from "react";
-import { useAuthStore } from "@/store/useAuthStore";
 
+
+
+
+
+type StackDiggingDTO = {
+  created_at?: string;
+  id?: string | number;
+  stack_comment_counter?: number | null;
+  tag?: string;
+  text?: string | null;
+  title?: string | null;
+  updated_at?: string | null;
+  user_email?: string | null;
+  user_id?: string | null;
+};
+
+
+
+
+
+const updateData: (
+  tableName: string,
+  data: Partial<StackDiggingDTO>,
+  itemId: string | undefined
+) => Promise<StackDiggingDTO[] | null> = async (tableName, data, itemId) => {
+  try {
+
+    const updatedDataWithTimestamp = {
+      ...data,
+      updated_at: new Date().toISOString(),
+    };
+
+    const { data: editedData } = await supabase
+      .from(tableName)
+      .update(updatedDataWithTimestamp)
+      .eq('id', itemId);
+
+    return editedData;
+  } catch (error) {
+    console.error('Data update failed:', error);
+    return null;
+  }
+};
+
+
+const deleteBookMarkData = (userId: string, itemId: number, itemType: string) => async () => {
+
+  const { error } = await supabase
+    .from('bookmarks')
+    .delete()
+    .match({
+      user_id: userId as string,
+      [`${itemType}_id`]: itemId
+    });
+  
+  if (error) {
+    console.error('Error deleting like:', error.message);
+  } else {
+    console.log('deleted');
+  }
+};
 
 
 const StackDetailPage = () => {
+  const navigate = useNavigate();
   const { itemId } = useParams();
-  const itemIdNumber = Number(itemId); 
+  const itemIdNumber = Number(itemId);
   const [editMode, setEditMode] = useState(false);
-  const [disabled, setDisabled] = useState(true);
-  const { data: thisData , getIdData} = useDataStore();
-  const  userId   = useAuthStore((state) => (state.user));
-  console.log(userId);
-  useEffect(() => { 
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
+  const { data: thisData, getIdData } = useDataStore();
+  const { deleteData } = useDataStore();
+  const userId = useAuthStore((state) => (state.user));
+  const [stackDataState, setStackDataState] = useState<StackDiggingDTO | null>(null);
+  
+
+  const titleRef = useRef<HTMLInputElement>(null);
+  const tagRef = useRef<HTMLSelectElement>(null);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
     getIdData('stack_digging', itemIdNumber);
 
-  },[]);
+  }, []);
+
+  const stackData = stackDataState || thisData.find((data) => Number(data.id) === itemIdNumber);
 
 
-  console.log(thisData);
-  const stackData = thisData[0];
-  console.log(stackData);
-  if(!stackData){
-  return <div>데이터를 불러오는 중...</div>;
-}
+  useEffect(() => {
+    if (thisData) {
+      const stackData = thisData.find((data) => Number(data.id) === itemIdNumber);
+      if (stackData) {
+        setStackDataState(stackData);
+        setTitle(stackData.title);
+        setText(stackData.text);
+      }
+    }
+  }, [thisData, itemIdNumber]);
+
+  
+  if (!stackData) {
+    return <div>데이터를 불러오는 중...</div>;
+  }
 
 
   const userEmail = stackData.user_email;
-  // const [thisData, setThisData] = useState(null);
-  // const thisEmail = stackData.user_email;
   let SecureEmail = '';
-if (typeof userEmail === 'string') {
-  SecureEmail = userEmail.replace(/@.*/, '');
-}
+  if (typeof userEmail === 'string') {
+    SecureEmail = userEmail.replace(/@.*/, '');
+  }
 
-    // 수정 버튼 클릭시 실행되는 함수
   const handleEditClick = () => {
-  console.log("Edit button clicked"); // 이런 식으로 로그 추가
-  setEditMode(true);
-  setDisabled(false);
-}
+    setEditMode(true);
+  
 
-
-  // 저장 버튼 클릭시 실행되는 함수
-  const handleSaveClick = () => {
-    // 데이터를 저장하는 코드를 이곳에 작성하세요.
-    
-    // 데이터 저장이 완료된 후 상태 변경
-    setEditMode(false);
-    setDisabled(true);
   }
 
-  // 삭제 버튼 클릭시 실행되는 함수
-  const handleDeleteClick = () => {
-    // 데이터를 삭제하는 코드를 이곳에 작성하세요.
+  const handleSaveClick = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const title = titleRef.current?.value;
+    const content = contentRef.current?.value;
+    const tag = tagRef.current?.value;
+       
 
-    // 데이터 삭제가 완료된 후 상태 변경 (필요시)
-    setEditMode(false);
-    setDisabled(true);
+    if (title && content && userId && userEmail) {
+      const data: Partial<StackDiggingDTO> = {
+        title,
+        text: content,
+        tag
+      };
+      
+      try {
+        await updateData('stack_digging', data, itemId);
+        toast.success('수정 완료 👌');
+        setTimeout(() => {
+          navigate(`/study/stack/detail/${itemId}`);
+        }, 3000);
+
+        setEditMode(false);
+      } catch (error) {
+        console.error('Error updating data:');
+        toast.error('수정 실패 😞');
+        navigate(`/study/stack/ListTable`);
+
+      }
   }
+  };
 
-
-  // console.log(getIdData);
-
-  // useEffect(() => {
-  //   getIdData(`stack_digging`, `${itemId}`);
-  // }, [getIdData]);
-
-
-
-  return (
-    <>
-      <Helmet>
-        createNew StackPage
-     </Helmet>
-      <NewOuter>
-        <TitleArea></TitleArea>
-        <FormArea>
-           {/* onSubmit={handleSubmit} */}
-          <Label>
-            <AnyTextBox>
-
-            <Author>제목</Author>
-              <Input readOnly={disabled} type="text" value={ stackData.title }/>
-              {/* ref={titleRef} */}
-
-            </AnyTextBox>
-          </Label>
-
-          <Label>
-            <AnyTextBox>
-
-              <Author>작성자</Author>
-              <Email>{SecureEmail}</Email>
-              {/* {SecureEmail} */}
-
-            </AnyTextBox>
-
-
-            
-          </Label>
-          <Label>
-            <AnyTextBox>
-              <Author>카테고리</Author>
-{editMode ? (
-      <select defaultValue={stackData.tag}>
-        {['etc', 'javascript', 'react'].map((tag, index) => (
-          <option key={index} value={tag}>{tag}</option>
-        ))}
-      </select>
-    ) : (
-      <div>{stackData.tag}</div>
-    )}
-
-            </AnyTextBox>
-
-          </Label>
-          <Label>
-            
-            <Textarea readOnly={disabled} value={stackData.text}/>
-            {/* ref={contentRef}  */}
-          </Label>
-          <DateArea></DateArea>
-          {stackData.user_id === userId && (
-  <ButtonArea>
-{!editMode && <Button type="button" onClick={handleEditClick}>수정</Button>}
-              {editMode && <Button type="button" onClick={handleSaveClick}>저장</Button>}
-              <Button type="button" onClick={handleDeleteClick}>삭제</Button>
-  </ButtonArea>
-)}
-          
-        </FormArea>
-        <CommentArea></CommentArea>
-
-
-
-     </NewOuter>
-    </>
-  );
+const handleDeleteClick = async () => {
+  try {
+    await Promise.all([
+      deleteData('stack_digging', itemIdNumber),
+      deleteBookMarkData(userId, itemIdNumber, 'stack')
+    ]);
+    toast.success('삭제 완료 👌');
+    setTimeout(() => {
+      navigate(`/study/stack/ListTable`);
+    }, 3000);
+  } catch (error) {
+    console.error('Error deleting data:', error);
+    toast.error('삭제 실패 😞');
+  }
 };
+const debouncedSetTitle = debounce((value: string) => setTitle(value), 50);
+  const debouncedSetText = debounce((value: string) => setText(value), 50);
+    return (
+      <>
+        <Helmet>
+          createNew StackPage
+        </Helmet>
+        <NewOuter>
+          <TitleArea></TitleArea>
+          <FormArea onSubmit={handleSaveClick} >
 
-export default StackDetailPage;
+            <Label>
+              <AnyTextBox>
 
-const NewOuter = styled.section`
-  padding: 50px;
+                <Author>제목</Author>
+                <Input type="text" value={title} onChange={(e) => debouncedSetTitle(e.target.value)} disabled={!editMode} ref={titleRef}/>
+
+
+              </AnyTextBox>
+            </Label>
+
+            <Label>
+              <AnyTextBox>
+
+                <Author>작성자</Author>
+                <Email>{SecureEmail}</Email>
+
+              </AnyTextBox>
+
+
+            
+            </Label>
+            <Label>
+              <AnyTextBox>
+                <Author>카테고리</Author>
+                {editMode ? (
+                  <select defaultValue={stackData.tag} ref={tagRef} >
+                    {['etc', 'javascript', 'react'].map((tag, index) => (
+                      <option key={index} value={tag}>{tag}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <div>{stackData.tag}</div>
+                )}
+
+              </AnyTextBox>
+
+            </Label>
+            <Label>
+            
+              <Textarea value={text} onChange={(e) => debouncedSetText(e.target.value)}
+ disabled={!editMode}  ref={contentRef}>
+                {stackData.text} 
+              </Textarea>
+
+            </Label>
+            <BottomBox>
+              
+
+              
+              <DateArea>
+  {
+    stackData.updated_at && typeof stackData.updated_at === 'string'
+      ? `${stackData.updated_at.slice(0, 10)} - 수정됨`
+      : null
+  }
+</DateArea>
+
+            {stackData.user_id === userId && (
+              <ButtonArea>
+                {!editMode && <Button type="button" onClick={handleEditClick}>수정</Button>}
+                {editMode && <Button type="submit" >저장</Button>}
+                <Button type="button" onClick={handleDeleteClick} >삭제</Button>
+              </ButtonArea>
+            )}
+          
+            </BottomBox>
+          
+          </FormArea>
+          <CommentArea></CommentArea>
+
+
+
+        </NewOuter>
+      </>
+    );
+  };
+
+  export default StackDetailPage;
+
+  const NewOuter = styled.section`
+  padding: 3.125rem;
   color: black;
 
 @media ${(props) => props.theme.device.mobile} {
-      padding-top: 20px;
+      padding-top: 1.25rem;
 padding-left: 0;
 padding-bottom: 0;
 padding-right: 0;
 }
 
 select {
-  border: 1px solid black;
+  border: 0.0625rem solid black;
 
 
 }
 `;
 
-const FormArea = styled.form`
+  const FormArea = styled.form`
 margin: 5%;
   display: flex;
   flex-direction: column;
-  border: 1px solid black; 
-  border-radius: 35px;
-  padding: 20px;
-min-height: 400px;
+  border: 0.0625rem solid black; 
+  border-radius: 2.1875rem;
+  padding: 1.25rem;
+min-height: 25rem;
   
 
 `;
 
-const Author = styled.div`
+  const Author = styled.div`
 text-align: center;
 white-space: nowrap;
-padding-left: 5px;
-padding-right: 15px;
+padding-left: 0.3125rem;
+padding-right: 0.9375rem;
 `;
 
-const Email = styled.p`
-
-`;
-
-const CommentArea = styled.div`
+  const Email = styled.p`
 
 `;
 
-const AnyTextBox = styled.div`
+  const CommentArea = styled.div`
+
+`;
+
+  const AnyTextBox = styled.div`
 width: 100%;
 display: flex;
 
@@ -200,83 +315,96 @@ display: flex;
     vertical-align: middle;
     align-items: center;
     @media ${(props) => props.theme.device.mobile} {
-font-size: 10px;
+font-size: 0.625rem;
 
 }
 
 `;
 
 
-const Label = styled.label`
+  const Label = styled.label`
 width: 100%;
 display: block;
-margin-bottom: 10px;
+margin-bottom: 0.625rem;
 
 `;
 
-const Input = styled.input`
+  const Input = styled.input`
 width: 100%;
- margin-top: 5px;
-    padding: 5px;
-    border: 1px solid black;
+ margin-top: 0.3125rem;
+    padding: 0.3125rem;
+    border: 0.0625rem solid black;
      @media ${(props) => props.theme.device.mobile} {
-    padding: 0px;
+    padding: 0rem;
 
 
 }
 
 `;
 
-const Textarea = styled.textarea`
-width: 100%;
-min-height: 300px;
-resize: none;
-box-sizing: border-box;
- margin-top: 5px;
-    padding: 5px;
-    border: 1px solid black;
-    padding: 10px;
+  const Textarea = styled.textarea`
+  width: 100%;
 
+  min-height: 18.75rem;
+  resize: none;
+  box-sizing: border-box;
+  margin-top: 0.3125rem;
+  padding: 0.3125rem;
+  border: 0.0625rem solid black;
+  padding: 0.625rem;
 `;
 
-const TitleArea = styled.p`
+
+
+  const TitleArea = styled.p`
 font-weight: 600;
-font-size: 50px;
+font-size: 3.125rem;
 margin-left: 5%;
 @media ${(props) => props.theme.device.mobile} {
-font-size: 20px;
+font-size: 1.25rem;
 
 }
 
 `;
-const ButtonArea = styled.div`
+  const ButtonArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;
-  height: 30px;
+  height: 1.875rem;
 `;
-const Button = styled.button`
-margin: 2px;
-border: 1px solid black;
+  const Button = styled.button`
+margin: 0.125rem;
+border: 0.0625rem solid black;
 padding-top: 0.5%;
 padding-bottom: 0.5%;
-border-radius: 5px;
+border-radius: 0.3125rem;
 box-sizing: border-box;
 
 &:hover {
-  /* border: 2px solid black;
-   */
+
   background-color: #111;
 color: white;
 
 }
  @media ${(props) => props.theme.device.mobile} {
-font-size: 10px;
+font-size: 0.625rem;
 
 }
 `;
 
 
-const DateArea = styled.div`
+  const DateArea = styled.div`
+  
+  `;
 
+const BottomBox = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+justify-items: center;
+@media ${(props) => props.theme.device.mobile} {
+font-size: 0.625rem;
+
+}
 `;

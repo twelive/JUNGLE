@@ -25,6 +25,7 @@ const FlexBox = styled.div`
   justify-content: space-between;
   width: 20%;
   margin: 3.125rem 0;
+  margin-left: auto;
   padding-left: 1.875rem;
   border-left: 0.15rem solid var(--bs-black-400);
 

@@ -1,21 +1,20 @@
-import useDataStore from '@/store/useDataStore';
-import useStorageStore from '@/store/useStorageStore';
-import useTagStore from '@/store/useTagStore';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { getPbImageURL } from '@/store/getPbImageURL';
-import StudyTitleGroup from '@/components/StudyPage/StudyTitleGroup';
 import { Swiper } from 'swiper/react';
-import TagButtonComponent from '@/components/StudyPage/TagButtonComponent';
-import StackDiggingNameSection from '@/components/StudyPage/StackDiggingNameSection';
-// import { useQuery } from 'react-query';
-
-
 import { SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom'; 
-// Import Swiper React components
+import { getPbImageURL } from '@store/getPbImageURL';
 
-// Import Swiper styles
+
+import StudyTitleGroup from '@components/StudyPage/StudyTitleGroup';
+import TagButtonComponent from '@components/StudyPage/TagButtonComponent';
+import StackDiggingNameSection from '@components/StudyPage/StackDiggingNameSection';
+import useDataStore from '@store/useDataStore';
+import useStorageStore from '@store/useStorageStore';
+import useTagStore from '@store/useTagStore';
+
+
+
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
@@ -24,21 +23,26 @@ import 'swiper/css/navigation';
 
 
 
-// import required modules
+
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 import styled from 'styled-components';
-import LikeButton from '@/components/StudyPage/LikeButton';
-import { useAuthStore } from '@/store/useAuthStore';
-import StackDiggingContentsSection from '@/components/StudyPage/StackDiggingContentsSection';
-// import StackDiggingContentsSection from '@components/StudyPage/StackDiggingContentsSection';
+import LikeButton from '@components/StudyPage/LikeButton';
+import { useAuthStore } from '@store/useAuthStore';
+import StackDiggingContentsSection from '@components/StudyPage/StackDiggingContentsSection';
+
+
+
+
+
 
 function StudyPage() {
-const { data: bookData, getListData } = useDataStore();
+const { data: bookData,  getListData } = useDataStore();
+
+
   const { selectedTag, setSelectedTag } = useTagStore();
   const  userId   = useAuthStore((state) => (state.user));
-  // const  userEmail   = useAuthStore((state) => (state.userEmail));
-  // console.log(userEmail);
+
   
   const { getAllList } = useStorageStore();
   const itemType = `book`;
@@ -46,10 +50,10 @@ const { data: bookData, getListData } = useDataStore();
   const [tags, setTags] = useState<string[]>([]);
   
   useEffect(()=>{
-  console.log(userId);
   setSelectedTag('etc');
-getListData('book');
-getAllList('book','');
+getListData('book','book_like_counter');
+    getAllList('book', '');
+   
 
 },[]);
 
@@ -61,6 +65,7 @@ setTags(uniqueTags);
 const handleButtonClick = (tag: string) => {
 setSelectedTag(tag);
 };
+  
 
 return (
 <>
@@ -72,7 +77,7 @@ return (
             <BookGroup>
 
 
-      <StudyTitleGroup studyTitle='도서 추천' tagTitle='tag' studymobiletitle='도서추천' children2={tags.map(tag => (
+      <StudyTitleGroup studyTitle='도서 추천' tagTitle={selectedTag as string} studymobiletitle='도서추천' children2={tags.map(tag => (
   <TagButtonComponent key={tag} $isActive={selectedTag === tag} onClick={() => handleButtonClick(tag)} title={tag} >
     
   </TagButtonComponent>
@@ -131,7 +136,7 @@ return (
     </Dl>
   
             </BookLinker>
-          {/* 좋아요 버튼을 누르면 likes 스키마에 id는 자동생성되고 내 user_id가 들어가고 book_id에 해당 book.id가 들어간다. */}
+
             
             <LikeButton itemId={item.id} userId={userId} itemType={itemType} likeCounter={item.book_like_counter}></LikeButton>
   </BookCover>
@@ -172,30 +177,18 @@ return (
 export default StudyPage;
 
 const OutGrid = styled.section`
-/* display: grid;
- */
+
 
 display: block;
 
 
-@media ${(props) => props.theme.device.mobile} {
-/* font-size: 1rem; */
-}
-
-@media ${(props) => props.theme.device.tablet} {
-
-}
-
-@media ${(props) => props.theme.device.laptop} {
-/* font-size: 5rem;ㄴ */
-}
 `;
 
 const BookGroup = styled.div` 
 width: 100%; 
 display: block; 
-padding-top: 50px;
-padding-bottom: 50px;
+padding-top: 3.125rem;
+padding-bottom: 3.125rem;
 border-bottom: 0.0625rem solid var(--bs-black-300);
 
 
@@ -203,13 +196,13 @@ border-bottom: 0.0625rem solid var(--bs-black-300);
 
 `;
 
-/////////
+
 
 
  const SwiperOut = styled(Swiper)`
     width: 100%;
   height: 100%;
-  padding: 50px;
+  padding: 3.125rem;
 
   position: relative;
   .swiper-wrapper {
@@ -235,8 +228,8 @@ border-bottom: 0.0625rem solid var(--bs-black-300);
   &:hover {
      background-color: #fff;
   opacity: 0.5;
-  padding: 1px;
-  border-radius: 20px;
+  padding: 0.0625rem;
+  border-radius: 1.25rem;
   }
 }
 .swiper .swiper-pagination {
@@ -245,24 +238,14 @@ border-bottom: 0.0625rem solid var(--bs-black-300);
 }
 .swiper-pagination-bullet {
   background-color: var(--bs-black-100);
-  margin: 0 10px;
+  margin: 0 0.625rem;
 }
 
 
 
 
 
-@media ${(props) => props.theme.device.mobile} {
-    /* font-size: 1rem; */
-  }
-  
-  @media ${(props) => props.theme.device.tablet} {
-    /* font-size: 2rem; */
-  }
-  
-  @media ${(props) => props.theme.device.laptop} {
 
-  }
 
   `;
 
@@ -273,13 +256,13 @@ const SwiperSlider = styled(SwiperSlide) `
 .swiper-slide {
 
     text-align: center;
-    font-size: 18px;
+    font-size: 1.125rem;
     background: #fff;
     display: flex;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 1.5625rem;
 } 
 
 
@@ -294,28 +277,14 @@ display: block;
 const Dt = styled.dt `
 display: flex;
 justify-content: center;
-margin-bottom: 5px;
+margin-bottom: 0.3125rem;
 height: 100%;
 
-@media ${(props) => props.theme.device.mobile} {
-  /* font-size: 1rem; */
-  
-  
-}
-
-@media ${(props) => props.theme.device.tablet} {
-  /* font-size: 2rem; */
-}
-
-@media ${(props) => props.theme.device.laptop} {
-    /* height: 200px; */
-    
-  }
   `;
   const Img = styled.img`
-   /* display: block; */
+
   width: auto;
-  /* height: 100%; */
+
   object-fit: contain;
   max-width: 100%;
   height: 100%;
@@ -324,8 +293,11 @@ height: 100%;
   `;
 const Dd = styled.dd `
 overflow: hidden;
+text-decoration: none;
+border: none;
+color: black;
 -webkit-line-clamp: 1;
-height: 15px;
+height: 0.9375rem;
 text-align: center;
 `;
 
@@ -337,24 +309,19 @@ height: 70%;
 
 
 const BookCover = styled.div `
-  /* background-color: purple; */
-  padding-left: 30px;
-  padding-right: 30px;
+
+  padding-left: 1.875rem;
+  padding-right: 1.875rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 1.5625rem;
   height: 100%;
   width: auto;
 
 
-@media ${(props) => props.theme.device.mobile} {
-/* margin-top: 0px;
-margin-bottom: 0px; */
 
-
-}
 `;
 
 const StackDiggingSection = styled.section`
@@ -366,14 +333,11 @@ border-top: 0.15rem solid var(--bs-black-400);
   border-bottom: 0.15rem solid var(--bs-black-400);
   @media ${(props) => props.theme.device.tablet} {
     flex-direction: column-reverse;
-    /* align-items: start;
-    padding: 2.5rem 0; */
+
   }
 
   @media ${(props) => props.theme.device.mobile} {
     flex-direction: column-reverse;
-    /* align-items: start;
-    gap: 1.875rem;
-    padding: 1.875rem 0; */
+  
   }
 `;

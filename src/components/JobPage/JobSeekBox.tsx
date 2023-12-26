@@ -1,7 +1,7 @@
-import useDataStore from '@/store/useDataStore';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { getPbImageURL } from '@/store/getPbImageURL';
+import useDataStore from '@store/useDataStore';
+import { getPbImageURL } from '@store/getPbImageURL';
 
 interface DataType {
   id: number | string;

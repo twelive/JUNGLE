@@ -8,7 +8,7 @@ export default function RootLayout() {
 
   return (
     <>
-      {pathname !== '/' && (pathname === '/main' ? <MainHeader /> : <Header />)}
+      {pathname !== '/' && (pathname.includes('/main') ? <MainHeader /> : <Header />)}
       <Outlet />
       {pathname !== '/' && <Footer />}
     </>

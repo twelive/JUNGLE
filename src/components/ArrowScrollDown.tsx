@@ -1,5 +1,3 @@
-/* width="4.0621rem" height="4.375rem" */
-
 function ArrowScrollDown({
   width = '1.7409rem',
   height = '1.875rem',

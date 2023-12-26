@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import EnterButton from '../Button/EnterButton';
-import Logo from '@/assets/landing/landing-logo.svg';
 import { useRef, useState } from 'react';
-import LoginModal from '../LoginModal';
+import styled from 'styled-components';
+import EnterButton from '@components/Button/EnterButton';
+import LoginModal from '@components/LoginModal';
+import Logo from '@assets/landing/landing-logo.svg';
 
 function LandingHeader() {
   const modalRef = useRef<HTMLDivElement>(null);

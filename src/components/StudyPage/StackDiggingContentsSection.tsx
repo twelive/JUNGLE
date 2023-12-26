@@ -1,17 +1,17 @@
 import styled from 'styled-components';
-import StackDiggingItem from './StackDiggingItem';
+import StackDiggingItem from '@components/StudyPage/StackDiggingItem';
 
 function StackDiggingContentsSection() {
   return (
     
-    // <PointBox>
+
     <List>
       <StackDiggingItem />
       <StackDiggingItem />
       <StackDiggingItem />
       <StackDiggingItem />
     </List>
-    // </PointBox>
+
   );
 }
 
@@ -20,7 +20,6 @@ export default StackDiggingContentsSection;
 
 const List = styled.div`
   display: flex;
-  /* 추후 swiper 구현 예정 */
   overflow-x: auto;
   gap: 1.875rem;
   padding: 3.125rem 0 3.125rem 3.125rem;

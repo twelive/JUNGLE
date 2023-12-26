@@ -1,12 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-import JobHeaderItem from '@/components/JobPage/JobHeaderItem';
-import JobSeekBox from '@/components/JobPage/JobSeekBox';
-
+import JobHeaderItem from '@components/JobPage/JobHeaderItem';
+import JobSeekBox from '@components/JobPage/JobSeekBox';
+import SwiperComponent from '@components/SwiperComponet';
 import banner1 from '@assets/job/job-banner1.svg';
 import banner2 from '@assets/job/job-banner2.svg';
 import banner3 from '@assets/job/job-banner3.svg';
-import SwiperComponent from '@/components/SwiperComponet';
 
 type ImageArray = Array<string>;
 

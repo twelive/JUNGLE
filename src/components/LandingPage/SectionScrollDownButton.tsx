@@ -1,6 +1,7 @@
 import { Link } from 'react-scroll';
-import DownButton from '@/assets/landing/landing-scroll-down.svg';
+
 import styled from 'styled-components';
+import DownButton from '@assets/landing/landing-scroll-down.svg';
 
 interface Button {
   sectionId: string;

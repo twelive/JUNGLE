@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion';
-import LandingHeader from './LandingHeader';
-import styled from 'styled-components';
 import { Element } from 'react-scroll';
-import People from '@/assets/landing/landing-people.svg';
-import useLandingStore from '@/store/useLandingStore';
-import SectionScrollDownButton from './SectionScrollDownButton';
-import createChildVariants from '@/utils/createChildVariants';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
+import LandingHeader from '@components/LandingPage/LandingHeader';
+import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownButton';
+import useLandingStore from '@store/useLandingStore';
+import createChildVariants from '@utils/createChildVariants';
+import People from '@assets/landing/landing-people.svg';
 
 const SectionComponentTwo = () => {
   const showAnimationOne = useLandingStore(

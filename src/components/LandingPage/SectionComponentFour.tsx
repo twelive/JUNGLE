@@ -1,11 +1,11 @@
 import { Element } from 'react-scroll';
-import styled from 'styled-components';
-import test from '@/assets/landing/landing-test.svg';
 import { motion } from 'framer-motion';
-import useLandingStore from '@/store/useLandingStore';
-import LandingHeader from './LandingHeader';
-import SectionScrollDownButton from './SectionScrollDownButton';
-import createChildVariants from '@/utils/createChildVariants';
+import styled from 'styled-components';
+import LandingHeader from '@components/LandingPage/LandingHeader';
+import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownButton';
+import useLandingStore from '@store/useLandingStore';
+import createChildVariants from '@utils/createChildVariants';
+import test from '@assets/landing/landing-test.svg';
 
 const SectionComponentFour = () => {
   const animations = useLandingStore((state) => state.animations);

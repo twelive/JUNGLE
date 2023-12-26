@@ -1,6 +1,6 @@
 import { Link } from 'react-scroll';
-import TopButton from '@/assets/landing/landing-scroll-up.svg';
 import styled from 'styled-components';
+import TopButton from '@assets/landing/landing-scroll-up.svg';
 
 interface Button {
   sectionId: string;
