@@ -37,7 +37,7 @@ const SectionComponentFour = () => {
               <Text>원하시는걸 고른 후 이력서를 작성해보세요!</Text>
             </TextBox>
             <ImgDiv>
-              <img src={test} alt="이력서" />
+              <Img src={test} alt="이력서" />
             </ImgDiv>
           </motion.div>
         </MainBox>
@@ -74,8 +74,22 @@ const Text = styled.p`
   font-size: 40px;
   text-align: center;
   line-height: 80px;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 2rem;
+    line-height: 70px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1.125rem;
+    line-height: 50px;
+  }
 `;
 
 const ImgDiv = styled.div`
   text-align: center;
+`;
+
+const Img = styled.img`
+  width: 90%;
 `;

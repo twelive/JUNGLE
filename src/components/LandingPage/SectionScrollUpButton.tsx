@@ -16,7 +16,7 @@ const SectionScrollUpButton = ({ sectionId, handleButtonClick }: Button) => {
         duration={700}
         onClick={handleButtonClick}
       >
-        <img src={TopButton} alt="스크롤 버튼" />
+        <ButtonImg src={TopButton} alt="스크롤 버튼" />
       </Link>
     </ScrollDownButton>
   );
@@ -31,4 +31,16 @@ const ScrollDownButton = styled.button`
   position: absolute;
   bottom: 30px;
   right: 50px;
+`;
+
+const ButtonImg = styled.img`
+  @media ${(props) => props.theme.device.tablet} {
+    width: 64px;
+    height: 50px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    width: 54px;
+    height: 40px;
+  }
 `;
