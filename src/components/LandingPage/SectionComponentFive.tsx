@@ -116,7 +116,7 @@ const LogoImg = styled.img`
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    width: 500px;
+    width: 350px;
   }
 `;
 
