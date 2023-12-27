@@ -34,7 +34,7 @@ const SectionComponentTwo = () => {
               </FirstSpan>
             </FirstDiv>
             <div>
-              <img src={People} alt="사람들" />
+              <PeopleImg src={People} alt="사람들" />
             </div>
           </motion.div>
         </MainDiv>
@@ -74,4 +74,24 @@ const FirstDiv = styled.div`
 const FirstSpan = styled.span`
   font-size: 50px;
   font-weight: 900;
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 45px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 35px;
+  }
+`;
+
+const PeopleImg = styled.img`
+  width: 100%;
+  height: 100%;
+
+  @media ${(props) => props.theme.device.tablet} {
+    width: 80%;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    width: 70%;
+  }
 `;

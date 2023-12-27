@@ -19,9 +19,9 @@ function LandingHeader() {
   return (
     <MainBox>
       <ImgBox>
-        <img src={Logo} alt="JUNGLE 로고 이미지" />
+        <LogoImg src={Logo} alt="JUNGLE 로고 이미지" />
       </ImgBox>
-      <BtnBox>
+      <div>
         <EnterButton
           onClick={() => {
             setAllSizeModalShow(true);
@@ -33,7 +33,7 @@ function LandingHeader() {
             modalOutSideClick={modalOutSideClick}
           />
         )}
-      </BtnBox>
+      </div>
     </MainBox>
   );
 }
@@ -52,4 +52,8 @@ const ImgBox = styled.div`
   display: flex;
 `;
 
-const BtnBox = styled.div``;
+const LogoImg = styled.img`
+  @media ${(props) => props.theme.device.mobile} {
+    width: 50%;
+  }
+`;

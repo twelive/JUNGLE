@@ -29,7 +29,7 @@ const SectionThreeImgBox = ({
 
     @media ${(props) => props.theme.device.mobile} {
       width: 200px;
-      height: 350px;
+      height: 100px;
     }
   `;
 
@@ -54,7 +54,10 @@ const ImgBoxTitle = styled.p`
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 30px;
+    padding-top: 10px;
+    font-size: 25px;
+    font-weight: 500;
+    padding-bottom: 5px;
   }
 `;
 
@@ -69,5 +72,7 @@ const ImgBoxText = styled.p`
 
   @media ${(props) => props.theme.device.mobile} {
     font-size: 25px;
+    line-height: 30px;
+    font-size: 20px;
   }
 `;

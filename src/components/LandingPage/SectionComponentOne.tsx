@@ -79,16 +79,19 @@ const TextBox = styled.div`
   bottom: 70px;
   left: 50px;
   color: white;
-  font-size: 3em;
+  font-size: 3rem;
   font-weight: 500;
-  z-index: 10;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 2em;
+    font-size: 2rem;
+    bottom: 50px;
+    left: 30px;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 1.5em;
+    font-size: 1.125rem;
+    bottom: 40px;
+    left: 30px;
   }
 `;
 

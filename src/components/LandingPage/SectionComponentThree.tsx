@@ -99,10 +99,25 @@ const TextStyle = styled.p`
   font-size: 40px;
   font-weight: 800;
   padding-bottom: 120px;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 30px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 20px;
+    padding-bottom: 40px;
+  }
 `;
 
 const ImgBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 90px;
+
+  @media ${(props) => props.theme.device.mobile} {
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
 `;
