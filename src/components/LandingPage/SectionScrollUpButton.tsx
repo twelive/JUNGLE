@@ -31,6 +31,15 @@ const ScrollDownButton = styled.button`
   position: absolute;
   bottom: 30px;
   right: 50px;
+
+  @media ${(props) => props.theme.device.tablet} {
+    right: 30px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    bottom: 25px;
+    right: 20px;
+  }
 `;
 
 const ButtonImg = styled.img`

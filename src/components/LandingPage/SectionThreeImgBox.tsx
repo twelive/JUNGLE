@@ -50,7 +50,7 @@ const ImgBoxTitle = styled.p`
   padding-top: 20px;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 40px;
+    font-size: 35px;
   }
 
   @media ${(props) => props.theme.device.mobile} {

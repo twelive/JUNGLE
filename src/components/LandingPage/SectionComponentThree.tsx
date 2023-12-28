@@ -89,6 +89,13 @@ const MainSection = styled.div`
 
 const MainDiv = styled.div`
   padding-top: 120px;
+  @media ${(props) => props.theme.device.tablet} {
+    padding-top: 80px;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    padding-top: 60px;
+  }
 `;
 
 const TextBox = styled.div`
