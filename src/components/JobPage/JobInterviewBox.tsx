@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import InterviewBookmark from '@components/JobPage/InterviewBookmark';
+import JobInterviewBookmark from '@components/JobPage/JobInterviewBookmark';
 import { useAuthStore } from '@store/useAuthStore';
 import useDataStore from '@store/useDataStore';
 import notbookmark from '@assets/common/bookmarkwhite.svg';
@@ -37,12 +37,12 @@ function JobInterviewBox() {
               <DateBox>{extractDate(item.created_at)}</DateBox>
               <UserName>{item.name}</UserName>
             </SubBox>
-            <InterviewBookmark
+            <JobInterviewBookmark
               notBookmarkImg={notbookmark}
               itemId={item.id}
               userId={userId}
               itemType="stack"
-            ></InterviewBookmark>
+            ></JobInterviewBookmark>
           </MainBox>
         </StyledLink>
       ))}

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import AddComment from '@components/JobPage/AddComment';
-import CommentSaveBox from '@components/JobPage/CommentSaveBox';
+import JobInterviewAddComment from '@components/JobPage/JobInterviewAddComment';
+import JobInterviewCommentSaveBox from '@components/JobPage/JobInterviewCommentSaveBox';
 import NavButton from '@components/JobPage/NavButton';
 import ItemDeleteButton from '@components/JobPage/ItemDeleteButton';
 import useDataStore from '@store/useDataStore';
@@ -48,10 +48,14 @@ function JobInterviewItemPage() {
             redirectPath="/job/interview"
           />
           <CommentBox>
-            <AddComment currentInterviewitemId={parseInt(item.id.toString())} />
+            <JobInterviewAddComment
+              currentInterviewitemId={parseInt(item.id.toString())}
+            />
           </CommentBox>
           <div>
-            <CommentSaveBox currentInterviewId={parseInt(item.id.toString())} />
+            <JobInterviewCommentSaveBox
+              currentInterviewId={parseInt(item.id.toString())}
+            />
           </div>
         </MainBox>
       ))}

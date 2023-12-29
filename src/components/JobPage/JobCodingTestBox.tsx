@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import CodingTestBookmark from '@components/JobPage/CodingTestBookmark';
+import JobCodingTestBookmark from '@components/JobPage/JobCodingTestBookmark';
 import { useAuthStore } from '@store/useAuthStore';
 import useDataStore from '@store/useDataStore';
 import notbookmark from '@assets/common/bookmarkwhite.svg';
@@ -44,12 +44,12 @@ function JobCodingTestBox() {
               <DateBox>{extractDate(item.created_at)}</DateBox>
               <UserName>{item.name}</UserName>
             </SubBox>
-            <CodingTestBookmark
+            <JobCodingTestBookmark
               notBookmarkImg={notbookmark}
               itemId={item.id}
               userId={userId}
               itemType="stack"
-            ></CodingTestBookmark>
+            ></JobCodingTestBookmark>
           </MainBox>
         </StyledLink>
       ))}
