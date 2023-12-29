@@ -42,7 +42,11 @@ function JobInterviewItemPage() {
               <Info>{item.info}</Info>
             </InfoBox>
           </FirstBox>
-          <ItemDeleteButton itemId={parseInt(item.id.toString())} />
+          <ItemDeleteButton
+            itemId={parseInt(item.id.toString())}
+            itemType="job_interview"
+            redirectPath="/job/interview"
+          />
           <CommentBox>
             <AddComment currentInterviewitemId={parseInt(item.id.toString())} />
           </CommentBox>

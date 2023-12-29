@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import NavButton from '@components/JobPage/NavButton';
 import JobCodingAddComment from '@components/JobPage/JobCodingAddComment';
 import JobCodingCommentSaveBox from '@components/JobPage/JobCodingCommentSaveBox';
-import JobCodingTestItemDeleteButton from '@pages/JobPage/JobCodingTestItemDeleteButton';
 import useDataStore from '@store/useDataStore';
+import ItemDeleteButton from '@/components/JobPage/ItemDeleteButton';
 
 interface CodingItemType {
   id: number | string;
@@ -40,8 +40,10 @@ function JobCodingTestItemPage() {
               <Info>{item.info}</Info>
             </InfoBox>
           </FirstBox>
-          <JobCodingTestItemDeleteButton
+          <ItemDeleteButton
             itemId={parseInt(item.id.toString())}
+            itemType="job_codingtest"
+            redirectPath="/job/codingTest"
           />
 
           <CommentBox>
