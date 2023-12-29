@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { supabase } from '@/client';
 import { useAuthStore } from '@store/useAuthStore';
-import useCommentStore from '@store/useCommentStore';
+import useInterviewCommentStore from '@store/useInterviewCommentStore';
 
 const AddComment = ({
   currentInterviewitemId,
@@ -16,7 +16,7 @@ const AddComment = ({
   const [userEmail, setUserEmail] = useState('');
 
   const user = useAuthStore((state) => state.user);
-  const addComment = useCommentStore((state) => state.addComment);
+  const addComment = useInterviewCommentStore((state) => state.addComment);
 
   useEffect(() => {
     const fetchUserEmail = async () => {

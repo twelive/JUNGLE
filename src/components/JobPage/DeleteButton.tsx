@@ -1,12 +1,14 @@
 import styled from 'styled-components';
-import useCommentStore from '@store/useCommentStore';
+import useInterviewCommentStore from '@store/useInterviewCommentStore';
 
 interface DeleteButtonProps {
   id: number | undefined;
 }
 
 const DeleteButton = ({ id }: DeleteButtonProps) => {
-  const deleteComment = useCommentStore((state) => state.deleteComment);
+  const deleteComment = useInterviewCommentStore(
+    (state) => state.deleteComment
+  );
 
   const handleDelete = async () => {
     try {

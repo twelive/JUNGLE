@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import DeleteButton from '@components/JobPage/DeleteButton';
-import useCommentStore from '@store/useCommentStore';
+import useInterviewCommentStore from '@store/useInterviewCommentStore';
 
 interface CommentSaveBoxProps {
   currentInterviewId: number;
@@ -9,7 +9,7 @@ interface CommentSaveBoxProps {
 const CommentSaveBox: React.FC<CommentSaveBoxProps> = ({
   currentInterviewId,
 }) => {
-  const commentBox = useCommentStore((state) => state.comments);
+  const commentBox = useInterviewCommentStore((state) => state.comments);
   const filteredComments = commentBox.filter(
     (comment) => comment.interviewId === currentInterviewId
   );
