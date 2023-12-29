@@ -45,7 +45,7 @@ const MainBox = styled.div`
   border: 0.063rem solid black;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 5rem;
+  gap: 4.5rem;
   place-items: center;
   padding: 3.125rem 2.5rem;
 

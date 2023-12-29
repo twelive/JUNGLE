@@ -62,7 +62,6 @@ const hoverAnimation = keyframes`
 `;
 
 const MainBox = styled.div`
-  width: 25rem;
   border: 0.063rem solid black;
   border-radius: 0.625rem;
   padding: 0 0.938rem;
@@ -83,25 +82,33 @@ const MainBox = styled.div`
 const TitleBox = styled.div`
   display: block;
   border-bottom: 0.063rem solid black;
-  height: 10.625rem;
+  height: 6.625rem;
   position: relative;
+  max-width: 20rem;
+  min-width: 20rem;
+  overflow: hidden;
 `;
 
 const Title = styled.p`
-  font-size: 2.1875rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  padding: 3.125rem 0;
+  padding-top: 2.125rem;
   margin: 0;
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 1.5rem;
+  }
 `;
 
 const SubBox = styled.div`
   display: flex;
   padding: 1.25rem 0;
+  max-width: 20rem;
+  overflow: hidden;
 `;
 
 const DateBox = styled.div`
   border-right: 0.063rem solid black;
-  font-size: 1.4375rem;
+  font-size: 1.25rem;
   padding: 0 0.938rem;
 
   @media ${(props) => props.theme.device.tablet} {
@@ -110,7 +117,7 @@ const DateBox = styled.div`
 `;
 
 const UserName = styled.div`
-  font-size: 1.5625rem;
+  font-size: 1.25rem;
   padding-left: 0.938rem;
 
   @media ${(props) => props.theme.device.tablet} {
