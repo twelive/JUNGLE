@@ -14,14 +14,6 @@ interface InterviewType {
   name: string;
 }
 
-const hoverAnimation = keyframes`
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-  }
-`;
 function JobInterviewBox() {
   const { data, getListData } = useDataStore();
   useEffect(() => {
@@ -60,11 +52,20 @@ function JobInterviewBox() {
 
 export default JobInterviewBox;
 
+const hoverAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0.625rem 0.313rem rgba(0, 0, 0, 0.3); 
+  }
+`;
+
 const MainBox = styled.div`
-  width: 400px;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 0 15px;
+  width: 25rem;
+  border: 0.063rem solid black;
+  border-radius: 0.625rem;
+  padding: 0 0.938rem;
   cursor: pointer;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   transition: box-shadow 0.3s ease-in-out;
@@ -75,48 +76,45 @@ const MainBox = styled.div`
   }
 
   @media ${(props) => props.theme.device.tablet} {
-    width: 300px;
+    width: 18.75rem;
   }
 `;
 
 const TitleBox = styled.div`
   display: block;
-  border-bottom: 1px solid black;
-  height: 170px;
+  border-bottom: 0.063rem solid black;
+  height: 10.625rem;
   position: relative;
 `;
 
 const Title = styled.p`
-  font-size: 35px;
+  font-size: 2.1875rem;
   font-weight: 700;
-  padding: 50px 0;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 28px;
-  }
+  padding: 3.125rem 0;
+  margin: 0;
 `;
 
 const SubBox = styled.div`
   display: flex;
-  padding: 20px 0;
+  padding: 1.25rem 0;
 `;
 
 const DateBox = styled.div`
-  border-right: 1px solid black;
-  font-size: 23px;
-  padding: 0 15px;
+  border-right: 0.063rem solid black;
+  font-size: 1.4375rem;
+  padding: 0 0.938rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 `;
 
 const UserName = styled.div`
-  font-size: 25px;
-  padding-left: 15px;
+  font-size: 1.5625rem;
+  padding-left: 0.938rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 `;
 
