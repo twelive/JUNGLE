@@ -88,13 +88,13 @@ const MainSection = styled.div`
 `;
 
 const MainDiv = styled.div`
-  padding-top: 120px;
+  padding-top: 7.5rem;
   @media ${(props) => props.theme.device.tablet} {
-    padding-top: 80px;
+    padding-top: 5rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    padding-top: 60px;
+    padding-top: 3.75rem;
   }
 `;
 
@@ -103,28 +103,28 @@ const TextBox = styled.div`
 `;
 
 const TextStyle = styled.p`
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 800;
-  padding-bottom: 120px;
+  padding-bottom: 7.5rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 20px;
-    padding-bottom: 40px;
+    font-size: 1.25rem;
+    padding-bottom: 2.5rem;
   }
 `;
 
 const ImgBox = styled.div`
   display: flex;
   justify-content: center;
-  gap: 90px;
+  gap: 5.625rem;
 
   @media ${(props) => props.theme.device.mobile} {
     flex-direction: column;
     align-items: center;
-    gap: 60px;
+    gap: 3.75rem;
   }
 `;
