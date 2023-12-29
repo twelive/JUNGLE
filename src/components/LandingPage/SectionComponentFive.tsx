@@ -101,36 +101,36 @@ const MainBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  gap: 3.125rem;
 `;
 
 const LogoBox = styled.div`
-  padding-top: 200px;
+  padding-top: 12.5rem;
 `;
 
 const LogoImg = styled.img`
-  width: 1000px;
+  width: 62.5rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    width: 700px;
+    width: 43.75rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    width: 350px;
+    width: 21.875rem;
   }
 `;
 
 const TextBox = styled.div`
-  padding-top: 50px;
+  padding-top: 3.125rem;
 `;
 
 const Text = styled.p`
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 500;
   text-align: center;
 `;
 
 const ButtonBox = styled.div`
-  padding-top: 50px;
+  padding-top: 3.125rem;
   text-align: center;
 `;

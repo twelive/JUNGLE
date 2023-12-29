@@ -15,7 +15,7 @@ const JobCodingCommentSaveBox: React.FC<CommentSaveBoxProps> = ({
   );
   console.log(filteredComments);
   return (
-    <CommentList>
+    <div>
       <UserDivBox>댓글박스</UserDivBox>
       {filteredComments.map((comment) => (
         <CommentItem key={comment.id}>
@@ -24,25 +24,23 @@ const JobCodingCommentSaveBox: React.FC<CommentSaveBoxProps> = ({
           <JobCodingDeleteButton id={comment.commentId} />
         </CommentItem>
       ))}
-    </CommentList>
+    </div>
   );
 };
 
 export default JobCodingCommentSaveBox;
 
-const CommentList = styled.div``;
-
 const UserDivBox = styled.div`
-  margin-bottom: 50px;
-  font-size: 40px;
+  margin-bottom: 3.125rem;
+  font-size: 2.5rem;
   font-weight: 600;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 `;
 
@@ -51,37 +49,35 @@ const CommentItem = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 100px;
-  border-bottom: 5px solid black;
+  gap: 1.25rem;
+  margin-bottom: 4.375rem;
+  border-bottom: 0.313rem solid black;
 `;
 
 const UserText = styled.p`
-  font-size: 30px;
-  margin: 0;
-  padding-bottom: 10px;
+  font-size: 1.875rem;
+  padding-bottom: 0.625rem;
   white-space: nowrap;
   font-weight: 500;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 23px;
+    font-size: 1.438rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 `;
 
 const Text = styled.p`
-  font-size: 30px;
-  margin-bottom: 0;
-  padding-bottom: 10px;
+  font-size: 1.875rem;
+  padding-bottom: 0.625rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 `;

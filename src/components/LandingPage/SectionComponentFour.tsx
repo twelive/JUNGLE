@@ -67,22 +67,22 @@ const MainBox = styled.div`
 `;
 
 const TextBox = styled.div`
-  padding-top: 50px;
+  padding-top: 3.125rem;
 `;
 
 const Text = styled.p`
-  font-size: 40px;
+  font-size: 2.5rem;
   text-align: center;
-  line-height: 80px;
+  line-height: 5rem;
 
   @media ${(props) => props.theme.device.tablet} {
     font-size: 2rem;
-    line-height: 70px;
+    line-height: 4.375rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
     font-size: 1.125rem;
-    line-height: 50px;
+    line-height: 3.125rem;
   }
 `;
 

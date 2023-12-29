@@ -42,7 +42,7 @@ const MainBox = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-left: 20px;
+  margin-left: 1.25rem;
   transition: all 0.3s ease-in-out;
 
   &:hover {
@@ -50,29 +50,29 @@ const MainBox = styled.div`
   }
 
   @media ${(props) => props.theme.device.tablet} {
-    width: 80%;
+    width: 80%; /* 변경 없음 */
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    width: 70%;
+    width: 70%; /* 변경 없음 */
   }
 `;
 
 const LogoBox = styled.div`
   display: flex;
   background-color: white;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border-bottom: 1px solid black;
+  border-top-right-radius: 1.25rem;
+  border-top-left-radius: 1.25rem;
+  border-bottom: 0.063rem solid black;
 `;
 
 const NameBox = styled.div`
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 30px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  font-size: 1.875rem;
   background-color: white;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 1.25rem;
+  border-bottom-left-radius: 1.25rem;
 
   @media ${(props) => props.theme.device.tablet} {
     font-size: 0.938rem;
@@ -85,8 +85,8 @@ const NameBox = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+  border-top-right-radius: 1.25rem;
+  border-top-left-radius: 1.25rem;
 `;
 
 const Ancer = styled.a`

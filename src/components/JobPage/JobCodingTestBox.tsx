@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import CodingTestBookmark from '@components/JobPage/CodingTestBookmark';
+import JobCodingTestBookmark from '@components/JobPage/JobCodingTestBookmark';
 import { useAuthStore } from '@store/useAuthStore';
 import useDataStore from '@store/useDataStore';
 import notbookmark from '@assets/common/bookmarkwhite.svg';
 
 interface CodingTestType {
-
   id: number | string;
   [key: string]: number | string;
   title: string;
@@ -45,12 +44,12 @@ function JobCodingTestBox() {
               <DateBox>{extractDate(item.created_at)}</DateBox>
               <UserName>{item.name}</UserName>
             </SubBox>
-            <CodingTestBookmark
+            <JobCodingTestBookmark
               notBookmarkImg={notbookmark}
               itemId={item.id}
               userId={userId}
               itemType="stack"
-            ></CodingTestBookmark>
+            ></JobCodingTestBookmark>
           </MainBox>
         </StyledLink>
       ))}
@@ -61,10 +60,10 @@ function JobCodingTestBox() {
 export default JobCodingTestBox;
 
 const MainBox = styled.div`
-  width: 400px;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 0 15px;
+  width: 25rem;
+  border: 0.063rem solid black;
+  border-radius: 0.625rem;
+  padding: 0 0.938rem;
   cursor: pointer;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   transition: box-shadow 0.3s ease-in-out;
@@ -75,47 +74,46 @@ const MainBox = styled.div`
   }
 
   @media ${(props) => props.theme.device.tablet} {
-    width: 300px;
+    width: 18.75rem;
   }
 `;
 
 const TitleBox = styled.div`
   display: block;
-  height: 170px;
-  border-bottom: 1px solid black;
+  height: 10.625rem;
+  border-bottom: 0.063rem solid black;
 `;
 
 const Title = styled.p`
-  font-size: 35px;
+  font-size: 2.1875rem;
   font-weight: 700;
-  padding: 50px 0;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 28px;
-  }
+  padding: 3.125rem 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const SubBox = styled.div`
   display: flex;
-  padding: 20px 0;
+  padding: 1.25rem 0;
 `;
 
 const DateBox = styled.div`
-  border-right: 1px solid black;
-  font-size: 25px;
-  padding: 0 15px;
+  border-right: 0.063rem solid black;
+  font-size: 1.4375rem;
+  padding: 0 0.938rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 `;
 
 const UserName = styled.div`
-  font-size: 25px;
-  padding-left: 15px;
+  font-size: 1.5625rem;
+  padding-left: 0.938rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 `;
 

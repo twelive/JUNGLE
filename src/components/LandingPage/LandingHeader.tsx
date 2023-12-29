@@ -43,9 +43,9 @@ export default LandingHeader;
 const MainBox = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-top: 33px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 2.063rem;
+
+  padding: 0, 1.25rem;
 `;
 
 const ImgBox = styled.div`

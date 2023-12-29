@@ -63,23 +63,23 @@ const MainDiv = styled.div`
   position: relative;
   align-items: center;
   text-align: center;
-  line-height: 70px;
-  gap: 120px;
+  line-height: 4.375rem;
+  gap: 7.5rem;
 `;
 
 const FirstDiv = styled.div`
-  padding-top: 150px;
+  padding-top: 9.375rem;
 `;
 
 const FirstSpan = styled.span`
-  font-size: 50px;
+  font-size: 3.125rem;
   font-weight: 900;
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 45px;
+    font-size: 2.813rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 35px;
+    font-size: 2.188rem;
   }
 `;
 

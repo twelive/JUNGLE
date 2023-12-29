@@ -55,7 +55,6 @@ const StyledLink = styled(Link)<{ $isActive?: boolean }>`
   font-size: 2rem;
   font-weight: 600;
   color: ${(props) => (props.$isActive ? 'black' : 'var(--bs-black-600)')};
-  /* 애니메이션 CSS 추가 */
   position: relative;
 
   @media ${(props) => props.theme.device.tablet} {

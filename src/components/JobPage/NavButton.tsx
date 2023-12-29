@@ -16,7 +16,7 @@ export default NavButton;
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   position: fixed;
   right: 4%;
   bottom: 50%;

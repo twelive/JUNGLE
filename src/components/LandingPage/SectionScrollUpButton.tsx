@@ -29,27 +29,27 @@ const ScrollDownButton = styled.button`
   border: none;
   cursor: pointer;
   position: absolute;
-  bottom: 30px;
-  right: 50px;
+  bottom: 1.875rem;
+  right: 3.125rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    right: 30px;
+    right: 1.875rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    bottom: 25px;
-    right: 20px;
+    bottom: 1.563rem;
+    right: 1.25rem;
   }
 `;
 
 const ButtonImg = styled.img`
   @media ${(props) => props.theme.device.tablet} {
-    width: 64px;
-    height: 50px;
+    width: 4rem;
+    height: 3.125rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    width: 54px;
-    height: 40px;
+    width: 3.375rem;
+    height: 2.5rem;
   }
 `;
