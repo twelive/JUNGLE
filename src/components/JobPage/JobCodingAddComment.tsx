@@ -14,6 +14,7 @@ const JobCodingAddComment = ({
   });
 
   const [userEmail, setUserEmail] = useState('');
+
   const user = useAuthStore((state) => state.user);
   const addComment = useCodingCommentStore((state) => state.addComment);
 
@@ -45,18 +46,20 @@ const JobCodingAddComment = ({
     setNewComment({ ...newComment, [name]: value });
   };
 
+  const resetCommentState = () => {
+    setNewComment({ name: '', text: '' });
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newComment.text.trim() !== '') {
+    const trimmedText = newComment.text.trim();
+    if (trimmedText !== '') {
       addComment({
-        name: userEmail,
-        text: newComment.text,
+        name: userEmail.split('@')[0],
+        text: trimmedText,
         codingtestId: currentCodingTestItemId,
       });
-      setNewComment({
-        name: '',
-        text: '',
-      });
+      resetCommentState();
     }
   };
 

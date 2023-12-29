@@ -14,6 +14,7 @@ const AddComment = ({
     text: '',
   });
   const [userEmail, setUserEmail] = useState('');
+
   const user = useAuthStore((state) => state.user);
   const addComment = useCommentStore((state) => state.addComment);
 
@@ -42,19 +43,20 @@ const AddComment = ({
     setNewComment((prevComment) => ({ ...prevComment, [name]: value }));
   };
 
+  const resetCommentState = () => {
+    setNewComment({ name: '', text: '' });
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const trimmedText = newComment.text.trim();
-    if (newComment.text.trim() !== '') {
+    if (trimmedText !== '') {
       addComment({
-        name: userEmail,
+        name: userEmail.split('@')[0],
         text: trimmedText,
         interviewId: currentInterviewitemId,
       });
-      setNewComment({
-        name: '',
-        text: '',
-      });
+      resetCommentState();
     }
   };
 
