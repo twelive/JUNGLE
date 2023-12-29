@@ -80,39 +80,39 @@ const CommentForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 20px;
+  gap: 1.25rem;
   width: 100%;
 `;
 
 const CommentInput = styled.input`
   width: 100%;
-  height: 70px;
-  margin-top: 50px;
-  margin-bottom: 20px;
-  font-size: 30px;
-  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+  height: 4.375rem;
+  margin-top: 3.125rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.875rem;
+  box-shadow: 0.188rem 0.188rem 0.125rem 0.063rem rgba(137, 137, 138, 0.2);
 `;
 
 const AddButton = styled.button`
   background-color: white;
   font-weight: 700;
-  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+  box-shadow: 0.188rem 0.188rem 0.125rem 0.063rem rgba(137, 137, 138, 0.2);
   width: 10%;
   border: none;
-  padding: 15px;
-  border-radius: 10px;
-  margin-right: 5px;
-  border: 0.5px solid var(--bs-black-500);
+  padding: 0.938rem;
+  border-radius: 0.625rem;
+  margin-right: 0.313rem;
+  border: 0.031rem solid var(--bs-black-500);
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.25rem;
   align-self: end;
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 14px;
-    padding: 10px;
+    font-size: 0.875rem;
+    padding: 0.625rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 9px;
-    padding: 8px;
+    font-size: 0.563rem;
+    padding: 0.5rem;
   }
 `;
