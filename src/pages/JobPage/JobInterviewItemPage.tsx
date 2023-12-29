@@ -50,9 +50,9 @@ function JobInterviewItemPage() {
           <CommentBox>
             <AddComment currentInterviewitemId={parseInt(item.id.toString())} />
           </CommentBox>
-          <UserBox>
+          <div>
             <CommentSaveBox currentInterviewId={parseInt(item.id.toString())} />
-          </UserBox>
+          </div>
         </MainBox>
       ))}
     </>
@@ -62,44 +62,44 @@ function JobInterviewItemPage() {
 export default JobInterviewItemPage;
 
 const MainBox = styled.div`
-  padding: 50px;
+  padding: 3.125rem;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   position: relative;
 `;
 
 const FirstBox = styled.div`
-  border: 2px solid black;
-  border-radius: 20px;
-  padding: 20px;
+  border: 0.125rem solid black;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
 `;
 
 const TitleBox = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 `;
 
 const Title = styled.div`
-  font-size: 60px;
+  font-size: 3.75rem;
 `;
 
 const SubBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
-  gap: 20px;
+  margin-bottom: 6.25rem;
+  gap: 1.25rem;
 `;
 
 const SubText = styled.p`
-  font-size: 35px;
+  font-size: 2.188rem;
   font-weight: 500;
 `;
 
 const InfoBox = styled.div``;
 
 const Info = styled.div`
-  font-size: 35px;
-  margin-bottom: 50px;
+  font-size: 2.188rem;
+  margin-bottom: 3.125rem;
   word-break: break-all;
   white-space: pre-wrap;
 `;
@@ -108,7 +108,5 @@ const CommentBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 20px;
+  gap: 1.25rem;
 `;
-
-const UserBox = styled.div``;

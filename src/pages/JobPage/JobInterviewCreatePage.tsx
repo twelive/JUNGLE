@@ -71,43 +71,40 @@ const Container = styled.div`
 
 const EditorSection = styled.div`
   width: 50%;
-  padding: 20px;
-  margin-bottom: 50px;
+  padding: 1.25rem;
+  margin-bottom: 3.125rem;
 `;
 
 const TitleArea = styled.input`
   width: 100%;
   height: 10%;
-  margin-bottom: 30px;
-  border-radius: 5px;
+  margin-bottom: 1.875rem;
+  border-radius: 0.313rem;
 `;
 
 const TextArea = styled.textarea`
   width: 100%;
-  height: 700px;
-  font-size: 16px;
-  border: 1px solid black;
-  border-radius: 5px;
+  height: 43.75rem;
+  font-size: 1rem;
+  border: 0.063rem solid black;
+  border-radius: 0.313rem;
   resize: vertical;
 `;
 
 const PreviewSection = styled.div`
   width: 50%;
-  border: 1px solid black;
-  border-radius: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 15px;
+  border: 0.063rem solid black;
+  border-radius: 1.25rem;
+  margin: 1.25rem, 0;
+  padding: 0.938rem, 0, 1.25rem, 1.25rem;
 `;
 
 const PreviewTitle = styled.p`
-  margin-bottom: 50px;
-  font-size: 20px;
+  margin-bottom: 3.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
 `;
 
 const PreviewContent = styled.p`
-  font-size: 20px;
+  font-size: 1.25rem;
 `;
