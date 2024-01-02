@@ -6,7 +6,7 @@ interface ScrollAnimationProps {
   setAnimation: (key: string, value: boolean) => void;
 }
 
-const ScrollAnimationLogic: React.FC<ScrollAnimationProps> = ({
+const ScrollSection: React.FC<ScrollAnimationProps> = ({
   targetSectionId,
   animationKey,
   setAnimation,
@@ -35,4 +35,4 @@ const ScrollAnimationLogic: React.FC<ScrollAnimationProps> = ({
   return null;
 };
 
-export default ScrollAnimationLogic;
+export default ScrollSection;
