@@ -37,25 +37,25 @@ const MainSection = styled.section`
 `;
 
 const MenuBox = styled.div`
-  padding: 50px;
-  border: 1px solid black;
+  padding: 3.125rem;
+  border: 0.063rem solid black;
 `;
 
 const MainBox = styled.div`
-  border: 1px solid black;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  border: 0.063rem solid black;
+  padding-top: 3.125rem;
+  padding-bottom: 3.125rem;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 60px;
+  gap: 3.75rem;
 
   @media ${(props) => props.theme.device.tablet} {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 40px;
+    gap: 2.5rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 30px;
+    gap: 1.875rem;
   }
 `;

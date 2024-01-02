@@ -76,22 +76,22 @@ const VideoBox = styled.video`
 
 const TextBox = styled.div`
   position: absolute;
-  bottom: 70px;
-  left: 50px;
+  bottom: 4.375rem;
+  left: 3.125rem;
   color: white;
   font-size: 3rem;
   font-weight: 500;
 
   @media ${(props) => props.theme.device.tablet} {
     font-size: 2rem;
-    bottom: 50px;
-    left: 30px;
+    bottom: 3.125rem;
+    left: 1.875rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
     font-size: 1.125rem;
-    bottom: 40px;
-    left: 30px;
+    bottom: 2.5rem;
+    left: 1.875rem;
   }
 `;
 
