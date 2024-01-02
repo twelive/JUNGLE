@@ -8,6 +8,7 @@ import useLandingStore from '@store/useLandingStore';
 import Job from '@assets/landing/landing-job.svg';
 import Study from '@assets/landing/landing-study.svg';
 import Community from '@assets/landing/landing-community.svg';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 const SectionComponentThree = () => {
   const animations = useLandingStore((state) => state.animations);
@@ -35,6 +36,11 @@ const SectionComponentThree = () => {
 
   return (
     <Element name="section3">
+      <SectionScroll
+        targetSectionId="section3"
+        animationKey="sectionThree"
+        setAnimation={setAnimation}
+      />
       <MainSection>
         <LandingHeader />
         <MainDiv>

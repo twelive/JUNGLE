@@ -3,6 +3,7 @@ import { Element } from 'react-scroll';
 import styled from 'styled-components';
 import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownButton';
 import useLandingStore from '@store/useLandingStore';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 interface TypingAnimationProps {
   text: string;
@@ -44,6 +45,11 @@ const SectionComponentOne: React.FC<VideoWithTypingAnimationProps> = ({
 
   return (
     <Element name="section1">
+      <SectionScroll
+        targetSectionId="section1"
+        animationKey="sectionOne"
+        setAnimation={setAnimation}
+      />
       <VideoContainer>
         <VideoBox src={videoSource} autoPlay loop muted />
         <TextBox>

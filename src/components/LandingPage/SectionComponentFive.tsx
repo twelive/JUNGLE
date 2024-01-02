@@ -9,6 +9,7 @@ import MotionComponent from '@components/LandingPage/SectionMotionDiv';
 import useLandingStore from '@store/useLandingStore';
 import createChildVariants from '@utils/createChildVariants';
 import Logo from '@assets/landing/landing-logo.svg';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 const SectionComponentFive = () => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -41,6 +42,11 @@ const SectionComponentFive = () => {
 
   return (
     <Element name="section5">
+      <SectionScroll
+        targetSectionId="section5"
+        animationKey="sectionFive"
+        setAnimation={setAnimation}
+      />
       <MainSection>
         <MainBox>
           <MotionComponent
