@@ -6,7 +6,7 @@ import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownBu
 import useLandingStore from '@store/useLandingStore';
 import createChildVariants from '@utils/createChildVariants';
 import People from '@assets/landing/landing-people.svg';
-import ScrollAnimationLogic from './\bSectionScroll';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 const SectionComponentTwo = () => {
   const showAnimationOne = useLandingStore(
@@ -21,7 +21,7 @@ const SectionComponentTwo = () => {
 
   return (
     <Element name="section2">
-      <ScrollAnimationLogic
+      <SectionScroll
         targetSectionId="section2"
         animationKey="sectionTwo"
         setAnimation={setAnimation}
