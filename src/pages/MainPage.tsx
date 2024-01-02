@@ -3,11 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import CategorySection from '@components/MainPage/CategorySection';
 import ArrowScrollDown from '@/components/ArrowScrollDown';
-import gitLogo from '@assets/common/gitlogo.svg'
-import figmaLogo from '@assets/common/figmalogo.svg'
+import gitLogo from '@assets/common/gitlogo.svg';
+import figmaLogo from '@assets/common/figmalogo.svg';
 
 function MainPage() {
-
   return (
     <>
       <Helmet>
@@ -19,7 +18,7 @@ function MainPage() {
         <IntroductionBox>
           취업을 헤쳐나가는 용감한 사자들, JUNGLER
           <div>
-            <Link to={"/introduction"}>
+            <Link to={'/introduction'}>
               <ArrowScrollDown color="var(--bs-black-400)" />
             </Link>
           </div>
@@ -27,11 +26,24 @@ function MainPage() {
         <TeamBox>
           <TeamTitle>JUNGLE</TeamTitle>
           <TeamContent>
-            <Button type="button" onClick={() =>  window.open("https://github.com/twelive/JUNGLE", '_blank')}>
-              <img src={gitLogo} alt='git' />
+            <Button
+              type="button"
+              onClick={() =>
+                window.open('https://github.com/twelive/JUNGLE', '_blank')
+              }
+            >
+              <img src={gitLogo} alt="git" />
             </Button>
-            <Button type="button" onClick={() =>  window.open("https://www.figma.com/file/lrcTq4IIk5FnHrfkC7AUej/Jungle_%EB%94%94%EC%9E%90%EC%9D%B8?type=design&node-id=552%3A824&mode=design&t=kMP4debZb4H7EBaZ-1", '_blank')}>
-              <img src={figmaLogo} alt='figma' />
+            <Button
+              type="button"
+              onClick={() =>
+                window.open(
+                  'https://www.figma.com/file/lrcTq4IIk5FnHrfkC7AUej/Jungle_%EB%94%94%EC%9E%90%EC%9D%B8?type=design&node-id=552%3A824&mode=design&t=kMP4debZb4H7EBaZ-1',
+                  '_blank'
+                )
+              }
+            >
+              <img src={figmaLogo} alt="figma" />
             </Button>
           </TeamContent>
         </TeamBox>
@@ -103,16 +115,16 @@ const TeamBox = styled.div`
   width: 60%;
   padding-left: 3.125rem;
   border-left: 0.15rem solid var(--bs-black-400);
-  
+
   @media ${(props) => props.theme.device.tablet} {
     padding-left: 2.5rem;
   }
   @media ${(props) => props.theme.device.mobile} {
+    width: 100%;
     border-left: none;
     padding: 1.875rem 0 0;
   }
 `;
-
 
 const TeamTitle = styled.span`
   font-size: 3rem;
