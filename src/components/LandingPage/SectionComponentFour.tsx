@@ -6,6 +6,7 @@ import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownBu
 import useLandingStore from '@store/useLandingStore';
 import createChildVariants from '@utils/createChildVariants';
 import test from '@assets/landing/landing-test.svg';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 const SectionComponentFour = () => {
   const animations = useLandingStore((state) => state.animations);
@@ -24,6 +25,11 @@ const SectionComponentFour = () => {
 
   return (
     <Element name="section4">
+      <SectionScroll
+        targetSectionId="section4"
+        animationKey="sectionFour"
+        setAnimation={setAnimation}
+      />
       <MainSection>
         <LandingHeader />
         <MainBox>
@@ -37,7 +43,7 @@ const SectionComponentFour = () => {
               <Text>원하시는걸 고른 후 이력서를 작성해보세요!</Text>
             </TextBox>
             <ImgDiv>
-              <img src={test} alt="이력서" />
+              <Img src={test} alt="이력서" />
             </ImgDiv>
           </motion.div>
         </MainBox>
@@ -67,15 +73,29 @@ const MainBox = styled.div`
 `;
 
 const TextBox = styled.div`
-  padding-top: 50px;
+  padding-top: 3.125rem;
 `;
 
 const Text = styled.p`
-  font-size: 40px;
+  font-size: 2.5rem;
   text-align: center;
-  line-height: 80px;
+  line-height: 5rem;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 2rem;
+    line-height: 4.375rem;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 1.125rem;
+    line-height: 3.125rem;
+  }
 `;
 
 const ImgDiv = styled.div`
   text-align: center;
+`;
+
+const Img = styled.img`
+  width: 90%;
 `;

@@ -22,7 +22,7 @@ interface CommentStore {
   deleteComment: (id: number) => Promise<void>;
 }
 
-const useCommentStore = create<CommentStore>((set) => {
+const useInterviewCommentStore = create<CommentStore>((set) => {
   const savedComments = localStorage.getItem(LOCAL_STORAGE_KEY);
   const initialComments = savedComments ? JSON.parse(savedComments) : [];
   let commentIdCounter = 1;
@@ -67,4 +67,4 @@ const useCommentStore = create<CommentStore>((set) => {
   };
 });
 
-export default useCommentStore;
+export default useInterviewCommentStore;

@@ -6,6 +6,7 @@ import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownBu
 import useLandingStore from '@store/useLandingStore';
 import createChildVariants from '@utils/createChildVariants';
 import People from '@assets/landing/landing-people.svg';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 const SectionComponentTwo = () => {
   const showAnimationOne = useLandingStore(
@@ -20,6 +21,11 @@ const SectionComponentTwo = () => {
 
   return (
     <Element name="section2">
+      <SectionScroll
+        targetSectionId="section2"
+        animationKey="sectionTwo"
+        setAnimation={setAnimation}
+      />
       <MainSection>
         <LandingHeader />
         <MainDiv>
@@ -34,7 +40,7 @@ const SectionComponentTwo = () => {
               </FirstSpan>
             </FirstDiv>
             <div>
-              <img src={People} alt="사람들" />
+              <PeopleImg src={People} alt="사람들" />
             </div>
           </motion.div>
         </MainDiv>
@@ -63,15 +69,35 @@ const MainDiv = styled.div`
   position: relative;
   align-items: center;
   text-align: center;
-  line-height: 70px;
-  gap: 120px;
+  line-height: 4.375rem;
+  gap: 7.5rem;
 `;
 
 const FirstDiv = styled.div`
-  padding-top: 150px;
+  padding-top: 9.375rem;
 `;
 
 const FirstSpan = styled.span`
-  font-size: 50px;
+  font-size: 3.125rem;
   font-weight: 900;
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 2.813rem;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 2.188rem;
+  }
+`;
+
+const PeopleImg = styled.img`
+  width: 100%;
+  height: 100%;
+
+  @media ${(props) => props.theme.device.tablet} {
+    width: 80%;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    width: 70%;
+  }
 `;
