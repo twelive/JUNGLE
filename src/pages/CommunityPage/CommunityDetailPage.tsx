@@ -263,8 +263,8 @@ const Wrapper = styled.div`
   height: 100%;
   margin: 1.875rem auto;
   background-color: white;
-  border-radius: 30px;
-  border: 1px solid #000;
+  border-radius: 1.875rem;
+  border: 0.0625rem solid #000;
 `;
 
 const Contents = styled.div`
@@ -274,7 +274,7 @@ const Contents = styled.div`
   scrollbar-width: none;
   overflow-x: hidden;
   overflow-y: hidden;
-  padding-top: 20px;
+  padding-top: 1.25rem;
 `;
 
 const Title = styled.div`
@@ -282,7 +282,7 @@ const Title = styled.div`
   justify-content: center; 
   align-items: center;
   font-size: 100%;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
   `;
 
 const CreaterWrapper = styled.div`
@@ -312,21 +312,21 @@ const Stack = styled.div`
 
 const People = styled.div`
   font-size: 100%;
-  padding-right: 10px;
+  padding-right: 0.625rem;
 `;
 
 const Intro = styled.div`
-  font-size: 30px;
-  border-bottom: 1px solid gray;
-  padding-bottom: 10px;
-  padding-top: 30px;
+  font-size: 1.875rem;
+  border-bottom: 0.0625rem solid gray;
+  padding-bottom: 0.625rem;
+  padding-top: 1.875rem;
 `;
 
 const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  padding-top: 10px;
+  padding-top: 0.625rem;
   margin-left: 30%;
   margin-right: 30%;
 `;
@@ -337,10 +337,10 @@ const StackWrapper = styled.div`
   align-items: center;
 `;
 const Img = styled.img`
-  padding-left: 10px;
+  padding-left: 0.625rem;
   width: 80%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
   `;
 const Button = styled.button`
   width: 20%;
@@ -349,15 +349,15 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
-  padding: 5px 15px;
-  border-radius: 10px;
-  margin: 5px;
+  padding: 0.3125rem 0.9375rem;
+  border-radius: 0.625rem;
+  margin: 0.3125rem;
   border: 0.5px solid var(--bs-black-500);
   box-sizing: border-box;
   font-weight: 700;
-  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+  box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2);
   background-color: #fff;
-  `;
+`;
 
   const ButtonWrapper = styled.div`
     display: flex;
