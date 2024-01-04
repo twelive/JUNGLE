@@ -30,7 +30,7 @@ const TypingAnimationLogic: React.FC<TypingAnimationProps> = ({ text }) => {
     return () => clearInterval(intervalId);
   }, [text]);
 
-  return <Ani>{displayText}</Ani>;
+  return <StyledAni>{displayText}</StyledAni>;
 };
 
 const SectionComponentOne: React.FC<VideoWithTypingAnimationProps> = ({
@@ -50,28 +50,28 @@ const SectionComponentOne: React.FC<VideoWithTypingAnimationProps> = ({
         animationKey="sectionOne"
         setAnimation={setAnimation}
       />
-      <VideoContainer>
-        <VideoBox src={videoSource} autoPlay loop muted />
-        <TextBox>
+      <StyledVideoSection>
+        <StyledVideoContainer src={videoSource} autoPlay loop muted />
+        <StyledTextContainer>
           <TypingAnimationLogic text={text} />
-        </TextBox>
+        </StyledTextContainer>
         <SectionScrollDownButton
           sectionId={'section2'}
           handleButtonClick={handleButtonClick}
         />
-      </VideoContainer>
+      </StyledVideoSection>
     </Element>
   );
 };
 
 export default SectionComponentOne;
 
-const VideoContainer = styled.div`
+const StyledVideoSection = styled.div`
   position: relative;
   width: 100%;
 `;
 
-const VideoBox = styled.video`
+const StyledVideoContainer = styled.video`
   width: 100%;
 
   @media ${(props) => props.theme.device.laptop} {
@@ -80,7 +80,7 @@ const VideoBox = styled.video`
   }
 `;
 
-const TextBox = styled.div`
+const StyledTextContainer = styled.div`
   position: absolute;
   bottom: 4.375rem;
   left: 3.125rem;
@@ -101,6 +101,6 @@ const TextBox = styled.div`
   }
 `;
 
-const Ani = styled.div`
+const StyledAni = styled.div`
   white-space: pre-line;
 `;

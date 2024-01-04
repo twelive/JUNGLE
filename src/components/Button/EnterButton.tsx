@@ -22,8 +22,8 @@ const ButtonDiv = styled.button`
   cursor: pointer;
   &:hover {
     box-shadow:
-      rgba(255, 255, 255, 0.317) 0px 0.125rem 0.25rem 0px,
-      rgba(255, 255, 255, 0.595) 0px 0.125rem 1rem 0px;
+      rgba(255, 255, 255, 0.317) 0px 2px 4px 0px,
+      rgba(255, 255, 255, 0.595) 0px 2px 16px 0px;
   }
 
   @media ${(props) => props.theme.device.tablet} {
