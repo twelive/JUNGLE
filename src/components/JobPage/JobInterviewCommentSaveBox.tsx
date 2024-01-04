@@ -15,13 +15,13 @@ const CommentSaveBox: React.FC<CommentSaveBoxProps> = ({
   );
   return (
     <div>
-      <UserDivBox>댓글박스</UserDivBox>
+      <StyledUserContaier>댓글박스</StyledUserContaier>
       {filteredComments.map((comment) => (
-        <CommentItem key={comment.commentId}>
-          <UserText>{comment.name}</UserText>
-          <Text>{comment.text}</Text>
+        <StyledCommentOuter key={comment.commentId}>
+          <StyledUserText>{comment.name}</StyledUserText>
+          <StyledText>{comment.text}</StyledText>
           <DeleteButton id={comment.commentId} />
-        </CommentItem>
+        </StyledCommentOuter>
       ))}
     </div>
   );
@@ -29,7 +29,7 @@ const CommentSaveBox: React.FC<CommentSaveBoxProps> = ({
 
 export default CommentSaveBox;
 
-const UserDivBox = styled.div`
+const StyledUserContaier = styled.div`
   margin-bottom: 3.125rem;
   font-size: 2.5rem;
   font-weight: 600;
@@ -43,7 +43,7 @@ const UserDivBox = styled.div`
   }
 `;
 
-const CommentItem = styled.div`
+const StyledCommentOuter = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -53,7 +53,7 @@ const CommentItem = styled.div`
   border-bottom: 0.313rem solid black;
 `;
 
-const UserText = styled.p`
+const StyledUserText = styled.p`
   font-size: 1.875rem;
   padding-bottom: 0.625rem;
   white-space: nowrap;
@@ -68,7 +68,7 @@ const UserText = styled.p`
   }
 `;
 
-const Text = styled.p`
+const StyledText = styled.p`
   font-size: 1.875rem;
   padding-bottom: 0.625rem;
 

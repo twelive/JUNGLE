@@ -16,33 +16,33 @@ function JobSeekPage() {
       <Helmet>
         <title>Seek - JUNGLE</title>
       </Helmet>
-      <MainSection>
+      <StyledMainSection>
         <SwiperComponent slides={slides} />
-        <MenuBox>
+        <StyledMenuContainer>
           <JobHeaderItem />
-        </MenuBox>
-        <MainBox>
+        </StyledMenuContainer>
+        <StyledMainContainer>
           <JobSeekBox />
-        </MainBox>
-      </MainSection>
+        </StyledMainContainer>
+      </StyledMainSection>
     </>
   );
 }
 
 export default JobSeekPage;
 
-const MainSection = styled.section`
+const StyledMainSection = styled.section`
   width: 100%;
   height: 100%;
 `;
 
-const MenuBox = styled.div`
+const StyledMenuContainer = styled.div`
   padding: 3.125rem;
-  border: 0.063rem solid black;
+  border: 1px solid black;
 `;
 
-const MainBox = styled.div`
-  border: 0.063rem solid black;
+const StyledMainContainer = styled.div`
+  border: 1px solid black;
   padding-top: 3.125rem;
   padding-bottom: 3.125rem;
   display: grid;

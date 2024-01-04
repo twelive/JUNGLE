@@ -41,18 +41,18 @@ const SectionComponentThree = () => {
         animationKey="sectionThree"
         setAnimation={setAnimation}
       />
-      <MainSection>
+      <StyledMainSection>
         <LandingHeader />
-        <MainDiv>
-          <TextBox>
-            <TextStyle>많은 정보를 제공해 드릴게요. 함께 성장해요!</TextStyle>
-          </TextBox>
+        <StyledMainOuter>
+          <StyledTextContainer>
+            <StyledText>많은 정보를 제공해 드릴게요. 함께 성장해요!</StyledText>
+          </StyledTextContainer>
           <motion.div
             variants={shakeVariants}
             initial="hidden"
             animate={animations.sectionTwo ? 'visible' : 'hidden'}
           >
-            <ImgBox>
+            <StyledImgContainer>
               <SectionThreeImgBox
                 imageUrl={Job}
                 title="Job"
@@ -71,21 +71,21 @@ const SectionComponentThree = () => {
                 text1="스터디"
                 text2="프로젝트"
               />
-            </ImgBox>
+            </StyledImgContainer>
           </motion.div>
-        </MainDiv>
+        </StyledMainOuter>
         <SectionScrollDownButton
           sectionId={'section4'}
           handleButtonClick={handleButtonClick}
         />
-      </MainSection>
+      </StyledMainSection>
     </Element>
   );
 };
 
 export default SectionComponentThree;
 
-const MainSection = styled.div`
+const StyledMainSection = styled.div`
   background-color: black;
   color: white;
   width: 100%;
@@ -93,7 +93,7 @@ const MainSection = styled.div`
   position: relative;
 `;
 
-const MainDiv = styled.div`
+const StyledMainOuter = styled.div`
   padding-top: 7.5rem;
   @media ${(props) => props.theme.device.tablet} {
     padding-top: 5rem;
@@ -104,11 +104,11 @@ const MainDiv = styled.div`
   }
 `;
 
-const TextBox = styled.div`
+const StyledTextContainer = styled.div`
   text-align: center;
 `;
 
-const TextStyle = styled.p`
+const StyledText = styled.p`
   font-size: 2.5rem;
   font-weight: 800;
   padding-bottom: 7.5rem;
@@ -123,7 +123,7 @@ const TextStyle = styled.p`
   }
 `;
 
-const ImgBox = styled.div`
+const StyledImgContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 5.625rem;

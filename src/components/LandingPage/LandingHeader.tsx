@@ -17,10 +17,10 @@ function LandingHeader() {
   };
 
   return (
-    <MainBox>
-      <ImgBox>
-        <LogoImg src={Logo} alt="JUNGLE 로고 이미지" />
-      </ImgBox>
+    <StyledMainSection>
+      <StyledMainOuter>
+        <StyledLogo src={Logo} alt="JUNGLE 로고 이미지" />
+      </StyledMainOuter>
       <div>
         <EnterButton
           onClick={() => {
@@ -34,13 +34,13 @@ function LandingHeader() {
           />
         )}
       </div>
-    </MainBox>
+    </StyledMainSection>
   );
 }
 
 export default LandingHeader;
 
-const MainBox = styled.div`
+const StyledMainSection = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 2.063rem;
@@ -48,11 +48,11 @@ const MainBox = styled.div`
   padding: 0, 1.25rem;
 `;
 
-const ImgBox = styled.div`
+const StyledMainOuter = styled.div`
   display: flex;
 `;
 
-const LogoImg = styled.img`
+const StyledLogo = styled.img`
   @media ${(props) => props.theme.device.mobile} {
     width: 50%;
   }

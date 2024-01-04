@@ -39,7 +39,7 @@ const StyledButton = styled.button`
 
   &:hover,
   &:active {
-    box-shadow: 0.188rem 0.188rem 0.188rem 0.188rem rgba(137, 137, 138, 0.2);
+    box-shadow: 3px 3px 3px 3px rgba(137, 137, 138, 0.2);
   }
 
   @media ${(props) => props.theme.device.tablet} {

@@ -9,15 +9,15 @@ const ScrollToTopButton = () => {
 
   return (
     <div>
-      <Button onClick={scrollToTop}>
+      <StyledButton onClick={scrollToTop}>
         <img src={up} alt="맨 위로 올라가기" />
-      </Button>
+      </StyledButton>
     </div>
   );
 };
 
 export default ScrollToTopButton;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   border: none;
 `;
