@@ -29,21 +29,23 @@ function JobInterviewBox() {
     <>
       {data.map((item: InterviewType) => (
         <StyledLink to={`/job/interview/${item.id}`} key={item.id}>
-          <MainBox>
-            <TitleBox>
-              <Title>{item.title}</Title>
-            </TitleBox>
-            <SubBox>
-              <DateBox>{extractDate(item.created_at)}</DateBox>
-              <UserName>{item.name}</UserName>
-            </SubBox>
+          <StyledMainSection>
+            <StyledTitleContainer>
+              <StyledTitle>{item.title}</StyledTitle>
+            </StyledTitleContainer>
+            <StyledSubContainer>
+              <StyledDateWrapper>
+                {extractDate(item.created_at)}
+              </StyledDateWrapper>
+              <StyledUserName>{item.name}</StyledUserName>
+            </StyledSubContainer>
             <JobInterviewBookmark
               notBookmarkImg={notbookmark}
               itemId={item.id}
               userId={userId}
               itemType="stack"
             ></JobInterviewBookmark>
-          </MainBox>
+          </StyledMainSection>
         </StyledLink>
       ))}
     </>
@@ -52,7 +54,7 @@ function JobInterviewBox() {
 
 export default JobInterviewBox;
 
-const hoverAnimation = keyframes`
+const StyledhoverAnimation = keyframes`
   0% {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
@@ -61,8 +63,8 @@ const hoverAnimation = keyframes`
   }
 `;
 
-const MainBox = styled.div`
-  border: 0.063rem solid black;
+const StyledMainSection = styled.div`
+  border: 1px solid black;
   border-radius: 0.625rem;
   padding: 0 0.938rem;
   cursor: pointer;
@@ -71,7 +73,7 @@ const MainBox = styled.div`
   position: relative;
 
   &:hover {
-    animation: ${hoverAnimation} 0.3s ease-in-out forwards;
+    animation: ${StyledhoverAnimation} 0.3s ease-in-out forwards;
   }
 
   @media ${(props) => props.theme.device.tablet} {
@@ -79,7 +81,7 @@ const MainBox = styled.div`
   }
 `;
 
-const TitleBox = styled.div`
+const StyledTitleContainer = styled.div`
   display: block;
   border-bottom: 0.063rem solid black;
   height: 6.625rem;
@@ -89,7 +91,7 @@ const TitleBox = styled.div`
   overflow: hidden;
 `;
 
-const Title = styled.p`
+const StyledTitle = styled.p`
   font-size: 1.5rem;
   font-weight: 700;
   padding-top: 2.125rem;
@@ -99,14 +101,14 @@ const Title = styled.p`
   }
 `;
 
-const SubBox = styled.div`
+const StyledSubContainer = styled.div`
   display: flex;
   padding: 1.25rem 0;
   max-width: 20rem;
   overflow: hidden;
 `;
 
-const DateBox = styled.div`
+const StyledDateWrapper = styled.div`
   border-right: 0.063rem solid black;
   font-size: 1.25rem;
   padding: 0 0.938rem;
@@ -116,7 +118,7 @@ const DateBox = styled.div`
   }
 `;
 
-const UserName = styled.div`
+const StyledUserName = styled.div`
   font-size: 1.25rem;
   padding-left: 0.938rem;
 
