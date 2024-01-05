@@ -20,20 +20,20 @@ function BackButton() {
   };
 
   return (
-    <Button
+    <StyledButton
       type="button"
       onClick={handleBack}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <CustomArrowBack fill={isHovered ? 'white' : 'black'} />
-    </Button>
+      <StyledArrowBack fill={isHovered ? 'white' : 'black'} />
+    </StyledButton>
   );
 }
 
 export default BackButton;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   /* reset CSS */
   background-color: transparent;
   border: none;
@@ -47,6 +47,6 @@ const Button = styled.button`
   }
 `;
 
-const CustomArrowBack = styled(ArrowBack)`
+const StyledArrowBack = styled(ArrowBack)`
   fill: ${({ fill }) => fill};
 `;

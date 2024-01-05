@@ -7,11 +7,11 @@ function HeaderButton({
   children = 'HeaderButton',
   onClick,
 }: {
-  borderWeight?: string,
-  backgroundColor?: string,
-  color?: string,
-  children?: React.ReactNode,
-  onClick?: React.MouseEventHandler<HTMLButtonElement>, 
+  borderWeight?: string;
+  backgroundColor?: string;
+  color?: string;
+  children?: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <StyledButton

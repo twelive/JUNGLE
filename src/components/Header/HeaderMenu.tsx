@@ -21,7 +21,7 @@ const IntroductionMenu = [
 function HeaderMenu() {
   const { pathname } = useLocation();
   const { currentMenu } = useHeaderMenuStore();
-  const {userEmail} = useAuthStore();
+  const { userEmail } = useAuthStore();
 
   const handleToggleMenu = (pageTitle: string) => {
     if (pageTitle === '프로젝트 소개') pageTitle = '프로젝트';
@@ -29,43 +29,46 @@ function HeaderMenu() {
   };
 
   return (
-    <MenuSection>
-      <FlexBox>
+    <StyledMenuContainer>
+      <StyledLeftWrapper>
         {(getPathName(pathname) !== '/introduction'
           ? DefaultMenu
           : IntroductionMenu
         ).map((item, index) => (
           <HeaderMenuItem
             key={index}
-            path={item.path !== '/mypage' ? item.path : `/mypage/${getUserName(userEmail)}`}
+            path={
+              item.path !== '/mypage'
+                ? item.path
+                : `/mypage/${getUserName(userEmail)}`
+            }
             isEvent={handleToggleMenu(item.children) || false}
           >
             {item.children}
           </HeaderMenuItem>
         ))}
-      </FlexBox>
+      </StyledLeftWrapper>
       {getPathName(pathname) !== '/introduction' && (
         <HeaderMenuItem path="/introduction">소개</HeaderMenuItem>
       )}
-    </MenuSection>
+    </StyledMenuContainer>
   );
 }
 
 export default HeaderMenu;
 
-const MenuSection = styled.nav`
+const StyledMenuContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
 `;
 
-const FlexBox = styled.div`
+const StyledLeftWrapper = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 1.875rem;
 
-  
   @media ${(props) => props.theme.device.tablet} {
     gap: 1.25rem;
   }

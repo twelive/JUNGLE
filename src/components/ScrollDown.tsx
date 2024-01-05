@@ -7,16 +7,16 @@ function ScrollDown() {
   };
 
   return (
-    <FlexButton type="button" onClick={handleScrollDown}>
+    <StyledButtonBox type="button" onClick={handleScrollDown}>
       <ArrowScrollDown color="var(--bs-black-400)" />
-      <Text>Scroll Down</Text>
-    </FlexButton>
+      <StyledSpan>Scroll Down</StyledSpan>
+    </StyledButtonBox>
   );
 }
 
 export default ScrollDown;
 
-const FlexButton = styled.button`
+const StyledButtonBox = styled.button`
   /* reset CSS */
   background-color: transparent;
   /* CSS Style */
@@ -35,7 +35,7 @@ const FlexButton = styled.button`
   }
 `;
 
-const Text = styled.span`
+const StyledSpan = styled.span`
   width: 100%;
   color: var(--bs-black-400);
   text-align: center;

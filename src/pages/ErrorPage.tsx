@@ -3,13 +3,13 @@ import Error404 from '@assets/common/error.webp'
 
 function ErrorPage() {
   return (
-    <ErrorImg src={Error404} alt="에러가 발생하였습니다."/>
+    <StyledErrorImg src={Error404} alt="에러가 발생하였습니다."/>
   )
 }
 
 export default ErrorPage
 
-const ErrorImg = styled.img`
+const StyledErrorImg = styled.img`
   position: absolute;
   top: 0;
   left: -1.25rem;
