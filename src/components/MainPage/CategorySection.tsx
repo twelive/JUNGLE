@@ -84,7 +84,7 @@ const StyledBottomOuter = styled(CommonLayout)`
   }
 `;
 
-const StyledTopOuter = styled(Layout)`
+const StyledTopOuter = styled(StyledBottomOuter)`
   padding-top: 0rem;
   padding-bottom: 3.125rem;
   border-bottom: 0.15rem solid var(--bs-black-400);
