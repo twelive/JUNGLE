@@ -16,45 +16,45 @@ function JobCodingTestPage() {
       <Helmet>
         <title>Interview - JUNGLE</title>
       </Helmet>
-      <MainSection>
+      <StyledMainSection>
         <SwiperComponent slides={slides} />
-        <MenuBox>
+        <StyledMenuContainer>
           <JobHeaderItem />
-        </MenuBox>
-        <MainBox>
+        </StyledMenuContainer>
+        <StyledMainContainer>
           <JobCodingTestBox />
-        </MainBox>
-      </MainSection>
+        </StyledMainContainer>
+      </StyledMainSection>
     </>
   );
 }
 
 export default JobCodingTestPage;
 
-const MainSection = styled.section`
+const StyledMainSection = styled.section`
   width: 100%;
 `;
 
-const MenuBox = styled.div`
-  padding: 50px;
+const StyledMenuContainer = styled.div`
+  padding: 3.125rem;
   border: 1px solid black;
 `;
 
-const MainBox = styled.div`
+const StyledMainContainer = styled.div`
   border: 1px solid black;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 80px;
+  gap: 5rem;
   place-items: center;
-  padding: 50px 40px;
+  padding: 3.125rem 2.5rem;
 
   @media ${(props) => props.theme.device.tablet} {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 70px;
+    gap: 4.375rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 50px;
+    gap: 3.125rem;
   }
 `;

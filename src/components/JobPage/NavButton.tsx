@@ -4,19 +4,19 @@ import ScrollToTopButton from '@components/JobPage/ScrollTopButton';
 
 function NavButton() {
   return (
-    <Box>
+    <StyledContainer>
       <ScrollToTopButton />
       <ScrollToBottomButton />
-    </Box>
+    </StyledContainer>
   );
 }
 
 export default NavButton;
 
-const Box = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   position: fixed;
   right: 4%;
   bottom: 50%;

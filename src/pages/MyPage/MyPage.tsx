@@ -100,6 +100,7 @@ const BottomSection = styled(FlexLayout)`
   }
 
   @media ${(props) => props.theme.device.mobile} {
+    overflow: hidden;
     flex-direction: column;
   }
 `;

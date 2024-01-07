@@ -10,14 +10,14 @@ interface BookMarkButtonProps {
   notBookmarkImg: string;
 }
 
-function CodingTestBookmark({
+function InterviewBookmark({
   itemId,
   userId,
   itemType,
   notBookmarkImg,
 }: BookMarkButtonProps) {
   const initialBookMarks = JSON.parse(
-    localStorage.getItem(`job_codingtest_bookmark-${itemId}`) || 'false'
+    localStorage.getItem(`job_interview_bookmark-${itemId}`) || 'false'
   );
 
   const [toggle, setToggle] = useState(initialBookMarks);
@@ -27,7 +27,7 @@ function CodingTestBookmark({
     e.preventDefault();
     if (toggle) {
       const { error } = await supabase
-        .from('job_codingtest_bookmark')
+        .from('job_interview_bookmark')
         .delete()
         .match({
           user_id: userId as string,
@@ -41,7 +41,7 @@ function CodingTestBookmark({
         localStorage.setItem(`bookmark-${itemId}`, JSON.stringify(!toggle));
       }
     } else {
-      const { error } = await supabase.from('job_codingtest_bookmark').upsert({
+      const { error } = await supabase.from('job_interview_bookmark').upsert({
         user_id: userId as string,
         [`${itemType}_id`]: itemId,
       });
@@ -59,7 +59,7 @@ function CodingTestBookmark({
     const fetchBookMarksData = async () => {
       if (userId) {
         const { data, error } = await supabase
-          .from('job_codingtest_bookmark')
+          .from('job_interview_bookmark')
           .select('user_id')
           .eq('user_id', userId)
           .eq(`${itemType}_id`, itemId);
@@ -75,21 +75,21 @@ function CodingTestBookmark({
     fetchBookMarksData();
   }, [userId, itemId, itemType]);
   return (
-    <Button onClick={updateBookMarks}>
+    <StyledButton onClick={updateBookMarks}>
       <img
         src={toggle ? bookmark : notBookmarkImg}
         alt={toggle ? '북마크' : '북마크 취소'}
       ></img>
-    </Button>
+    </StyledButton>
   );
 }
 
-export default CodingTestBookmark;
+export default InterviewBookmark;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   background: transparent;
   border: none;
   position: absolute;
-  top: 10px;
-  right: 7px;
+  top: 0.625rem;
+  right: 0.438rem;
 `;

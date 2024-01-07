@@ -13,49 +13,47 @@ function JobHeaderItem() {
   const isInterviewOrCoding =
     pathname === '/job/interview' || pathname === '/job/codingTest';
   return (
-    <MenuSection>
-      <FlexBox>
+    <StyledMenuSection>
+      <StyledMenuOuter>
         {DefaultMenu.map((item, index) => (
-          <StyledLink
+          <StyledLinkContainer
             to={item.path}
             key={index}
             $isActive={pathname === item.path}
           >
             <div>{item.children}</div>
-          </StyledLink>
+          </StyledLinkContainer>
         ))}
-      </FlexBox>
+      </StyledMenuOuter>
       {isInterviewOrCoding && (
         <JobHeaderCreateButton title="생성하기" type="button" />
       )}
-    </MenuSection>
+    </StyledMenuSection>
   );
 }
 
 export default JobHeaderItem;
 
-const MenuSection = styled.nav`
+const StyledMenuSection = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   align-self: stretch;
 `;
 
-const FlexBox = styled.div`
+const StyledMenuOuter = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 1.875rem;
 `;
 
-const StyledLink = styled(Link)<{ $isActive?: boolean }>`
+const StyledLinkContainer = styled(Link)<{ $isActive?: boolean }>`
   text-decoration: none;
   padding: 0.125rem;
-  border-bottom: ${(props) =>
-    props.$isActive ? '0.3125rem solid black' : 'none'};
+  border-bottom: ${(props) => (props.$isActive ? '5px solid black' : 'none')};
   font-size: 2rem;
   font-weight: 600;
   color: ${(props) => (props.$isActive ? 'black' : 'var(--bs-black-600)')};
-  /* 애니메이션 CSS 추가 */
   position: relative;
 
   @media ${(props) => props.theme.device.tablet} {

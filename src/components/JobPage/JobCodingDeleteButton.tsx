@@ -28,13 +28,12 @@ export default JobCodingDeleteButton;
 const StyledButton = styled.button`
   background-color: transparent;
   font-weight: 700;
-  box-shadow: none;
   border: none;
-  padding: 15px;
-  border-radius: 10px;
-  margin-right: 5px;
+  padding: 0.938rem;
+  border-radius: 0.625rem;
+  margin-right: 0.313rem;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.25rem;
   align-self: center;
   white-space: nowrap;
 
@@ -44,12 +43,12 @@ const StyledButton = styled.button`
   }
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 15px;
-    padding: 10px;
+    font-size: 0.938rem;
+    padding: 0.625rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 10px;
-    padding: 8px;
+    font-size: 0.625rem;
+    padding: 0.5rem;
   }
 `;

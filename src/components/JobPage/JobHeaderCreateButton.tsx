@@ -25,36 +25,36 @@ function JobHeaderCreateButton({
   }
   return (
     <Link to={path}>
-      <TagButton $isActive={$isActive} onClick={onClick} type={type}>
+      <StyledButton $isActive={$isActive} onClick={onClick} type={type}>
         {title}
         {children}
-      </TagButton>
+      </StyledButton>
     </Link>
   );
 }
 
 export default JobHeaderCreateButton;
 
-const TagButton = styled.button<{ $isActive?: boolean }>`
+const StyledButton = styled.button<{ $isActive?: boolean }>`
   ${(props) =>
     props.$isActive
       ? 'background-color: white; font-weight: 700; box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2); '
       : 'background-color: black; color: white;'}
   width :100%;
   border: none;
-  padding: 15px;
-  border-radius: 10px;
-  margin-right: 5px;
+  padding: 0.938rem;
+  border-radius: 0.625rem;
+  margin-right: 0.313rem;
   border: 0.5px solid var(--bs-black-500);
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.25rem;
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 15px;
-    padding: 10px;
+    font-size: 0.938rem;
+    padding: 0.625rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 10px;
-    padding: 8px;
+    font-size: 0.625rem;
+    padding: 0.5rem;
   }
 `;

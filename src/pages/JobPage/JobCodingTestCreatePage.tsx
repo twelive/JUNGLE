@@ -41,76 +41,73 @@ const JobCodingTestCreatePage: React.FC = () => {
   };
 
   return (
-    <Container>
-      <EditorSection>
-        <TitleArea
+    <StyledMainSection>
+      <StyledMainWrapper>
+        <StyledTitleInput
           type="text"
           placeholder="제목을 입력하세요"
           value={title}
           onChange={handleTitleChange}
         />
-        <TextArea
+        <StyledTextArea
           placeholder="내용을 입력하세요"
           value={content}
           onChange={handleContentChange}
         />
-      </EditorSection>
-      <PreviewSection>
-        <PreviewTitle>{title}</PreviewTitle>
-        <PreviewContent>{content}</PreviewContent>
-      </PreviewSection>
+      </StyledMainWrapper>
+      <StyledPreviewWrapper>
+        <StyledPreviewTitle>{title}</StyledPreviewTitle>
+        <StyledPreviewText>{content}</StyledPreviewText>
+      </StyledPreviewWrapper>
       <CreateButton onClick={createCodingTest} />
-    </Container>
+    </StyledMainSection>
   );
 };
 
 export default JobCodingTestCreatePage;
 
-const Container = styled.div`
+const StyledMainSection = styled.div`
   display: flex;
   width: 100%;
   position: relative;
 `;
 
-const EditorSection = styled.div`
+const StyledMainWrapper = styled.div`
   width: 50%;
-  padding: 20px;
-  margin-bottom: 50px;
+  padding: 1.25rem;
+  margin-bottom: 3.125rem;
 `;
 
-const TitleArea = styled.input`
+const StyledTitleInput = styled.input`
   width: 100%;
   height: 10%;
-  margin-bottom: 30px;
-  border-radius: 5px;
+  margin-bottom: 1.875rem;
+  border-radius: 0.313rem;
 `;
 
-const TextArea = styled.textarea`
+const StyledTextArea = styled.textarea`
   width: 100%;
-  height: 700px;
-  font-size: 16px;
+  height: 43.75rem;
+  font-size: 1rem;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 0.313rem;
   resize: vertical;
 `;
 
-const PreviewSection = styled.div`
+const StyledPreviewWrapper = styled.div`
   width: 50%;
   border: 1px solid black;
-  border-radius: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 15px;
+  border-radius: 1.25rem;
+  margin: 1.25rem, 0;
+  padding: 0.938rem, 0, 1.25rem, 1.25rem;
 `;
 
-const PreviewTitle = styled.p`
-  margin-bottom: 50px;
-  font-size: 20px;
+const StyledPreviewTitle = styled.p`
+  margin-bottom: 3.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
 `;
 
-const PreviewContent = styled.p`
-  font-size: 20px;
+const StyledPreviewText = styled.p`
+  font-size: 1.25rem;
 `;

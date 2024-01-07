@@ -321,19 +321,19 @@ const FormContainer = styled.div`
 `;
 
 const StyledForm = styled.form`
-  font-size: 26px;
+  font-size: 1.625rem;
 `;
 
 const StyledInput = styled.input`
   width: 100%;
-  height: 30px;
-  font-size: 22px;
+  height: 1.875rem;
+  font-size: 1.375rem;
 `;
 
 const Li = styled.li`
   width: 80%;
   height: 40%;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
   padding-right: 10%;
 `;
 
@@ -353,12 +353,12 @@ const Srlegend = styled.legend`
 const Styledtextarea = styled.textarea`
   width: 100%;
   height: 100px;
-  font-size: 20px;
+  font-size: 1.25rem;
 `;
 
 const Firstwrapper = styled.div`
   display: flex;
-  padding-top: 10px;
+  padding-top: 0.625rem;
   `;
 
 const Secondwrapper = styled.div`
@@ -374,24 +374,24 @@ const Fourthwrapper = styled.div`
 `;
 
 const Datewrapper = styled.div`
-  padding-top: 10px;
+  padding-top: 0.625rem;
 `;
 
 const Select = styled.select`
   width: 100%;
-  height: 40px;
+  height: 2.5rem;
   text-align: center;
 `;
 
 const Info = styled.div`
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
   border-bottom: 1px solid #d8d8d8;
 `;
 
 const Label = styled.label`
   display: block;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding-bottom: 0.625rem;
+  padding-top: 0.625rem;
 `;
 
 const StyledDatePicker = styled(DatePicker)`
@@ -401,20 +401,20 @@ const StyledDatePicker = styled(DatePicker)`
 `;
 
   const Submit = styled.button`
-  width: 10%;
-  height: 40px;
-  display: flex;
-  justify-content:center;
-  align-items: center;
-  border: none;
-  padding: 5px 15px;
-  border-radius: 10px;
-  margin: 5px;
-  border: 0.5px solid var(--bs-black-500);
-  box-sizing: border-box;
-  font-weight: 700;
-  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
-  background-color: #fff;
+    width: 10%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 0.3125rem 0.9375rem;
+    border-radius: 0.625rem;
+    margin: 0.3125rem;
+    border: 0.5px solid var(--bs-black-500);
+    box-sizing: border-box;
+    font-weight: 700;
+    box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2);
+    background-color: #fff;
   `;
 
   const SubmitWrapper = styled.div`

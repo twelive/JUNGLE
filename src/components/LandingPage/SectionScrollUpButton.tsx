@@ -9,26 +9,47 @@ interface Button {
 
 const SectionScrollUpButton = ({ sectionId, handleButtonClick }: Button) => {
   return (
-    <ScrollDownButton>
+    <StyledButton>
       <Link
         to={sectionId}
         smooth={true}
         duration={700}
         onClick={handleButtonClick}
       >
-        <img src={TopButton} alt="스크롤 버튼" />
+        <StyledImg src={TopButton} alt="스크롤 버튼" />
       </Link>
-    </ScrollDownButton>
+    </StyledButton>
   );
 };
 
 export default SectionScrollUpButton;
 
-const ScrollDownButton = styled.button`
+const StyledButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
   position: absolute;
-  bottom: 30px;
-  right: 50px;
+  bottom: 1.875rem;
+  right: 3.125rem;
+
+  @media ${(props) => props.theme.device.tablet} {
+    right: 1.875rem;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    bottom: 1.563rem;
+    right: 1.25rem;
+  }
+`;
+
+const StyledImg = styled.img`
+  @media ${(props) => props.theme.device.tablet} {
+    width: 4rem;
+    height: 3.125rem;
+  }
+
+  @media ${(props) => props.theme.device.mobile} {
+    width: 3.375rem;
+    height: 2.5rem;
+  }
 `;

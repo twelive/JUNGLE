@@ -3,6 +3,7 @@ import { Element } from 'react-scroll';
 import styled from 'styled-components';
 import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownButton';
 import useLandingStore from '@store/useLandingStore';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 interface TypingAnimationProps {
   text: string;
@@ -29,7 +30,7 @@ const TypingAnimationLogic: React.FC<TypingAnimationProps> = ({ text }) => {
     return () => clearInterval(intervalId);
   }, [text]);
 
-  return <Ani>{displayText}</Ani>;
+  return <StyledAni>{displayText}</StyledAni>;
 };
 
 const SectionComponentOne: React.FC<VideoWithTypingAnimationProps> = ({
@@ -44,28 +45,33 @@ const SectionComponentOne: React.FC<VideoWithTypingAnimationProps> = ({
 
   return (
     <Element name="section1">
-      <VideoContainer>
-        <VideoBox src={videoSource} autoPlay loop muted />
-        <TextBox>
+      <SectionScroll
+        targetSectionId="section1"
+        animationKey="sectionOne"
+        setAnimation={setAnimation}
+      />
+      <StyledVideoSection>
+        <StyledVideoContainer src={videoSource} autoPlay loop muted />
+        <StyledTextContainer>
           <TypingAnimationLogic text={text} />
-        </TextBox>
+        </StyledTextContainer>
         <SectionScrollDownButton
           sectionId={'section2'}
           handleButtonClick={handleButtonClick}
         />
-      </VideoContainer>
+      </StyledVideoSection>
     </Element>
   );
 };
 
 export default SectionComponentOne;
 
-const VideoContainer = styled.div`
+const StyledVideoSection = styled.div`
   position: relative;
   width: 100%;
 `;
 
-const VideoBox = styled.video`
+const StyledVideoContainer = styled.video`
   width: 100%;
 
   @media ${(props) => props.theme.device.laptop} {
@@ -74,24 +80,27 @@ const VideoBox = styled.video`
   }
 `;
 
-const TextBox = styled.div`
+const StyledTextContainer = styled.div`
   position: absolute;
-  bottom: 70px;
-  left: 50px;
+  bottom: 4.375rem;
+  left: 3.125rem;
   color: white;
-  font-size: 3em;
+  font-size: 3rem;
   font-weight: 500;
-  z-index: 10;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 2em;
+    font-size: 2rem;
+    bottom: 3.125rem;
+    left: 1.875rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 1.5em;
+    font-size: 1.125rem;
+    bottom: 2.5rem;
+    left: 1.875rem;
   }
 `;
 
-const Ani = styled.div`
+const StyledAni = styled.div`
   white-space: pre-line;
 `;

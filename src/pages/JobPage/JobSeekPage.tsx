@@ -16,46 +16,46 @@ function JobSeekPage() {
       <Helmet>
         <title>Seek - JUNGLE</title>
       </Helmet>
-      <MainSection>
+      <StyledMainSection>
         <SwiperComponent slides={slides} />
-        <MenuBox>
+        <StyledMenuContainer>
           <JobHeaderItem />
-        </MenuBox>
-        <MainBox>
+        </StyledMenuContainer>
+        <StyledMainContainer>
           <JobSeekBox />
-        </MainBox>
-      </MainSection>
+        </StyledMainContainer>
+      </StyledMainSection>
     </>
   );
 }
 
 export default JobSeekPage;
 
-const MainSection = styled.section`
+const StyledMainSection = styled.section`
   width: 100%;
   height: 100%;
 `;
 
-const MenuBox = styled.div`
-  padding: 50px;
+const StyledMenuContainer = styled.div`
+  padding: 3.125rem;
   border: 1px solid black;
 `;
 
-const MainBox = styled.div`
+const StyledMainContainer = styled.div`
   border: 1px solid black;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 3.125rem;
+  padding-bottom: 3.125rem;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 60px;
+  gap: 3.75rem;
 
   @media ${(props) => props.theme.device.tablet} {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 40px;
+    gap: 2.5rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 30px;
+    gap: 1.875rem;
   }
 `;

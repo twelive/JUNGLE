@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import NavButton from '@components/JobPage/NavButton';
 import JobCodingAddComment from '@components/JobPage/JobCodingAddComment';
 import JobCodingCommentSaveBox from '@components/JobPage/JobCodingCommentSaveBox';
-import JobCodingTestItemDeleteButton from '@pages/JobPage/JobCodingTestItemDeleteButton';
 import useDataStore from '@store/useDataStore';
+import ItemDeleteButton from '@/components/JobPage/ItemDeleteButton';
 
 interface CodingItemType {
   id: number | string;
@@ -27,34 +27,36 @@ function JobCodingTestItemPage() {
   return (
     <>
       {filteredData.map((item: CodingItemType) => (
-        <MainBox key={item.id}>
+        <StyledMainSection key={item.id}>
           <NavButton />
-          <FirstBox>
-            <TitleBox>
-              <Title>{item.title}</Title>
-            </TitleBox>
-            <SubBox>
-              <SubText>{item.name}</SubText>
-            </SubBox>
-            <InfoBox>
-              <Info>{item.info}</Info>
-            </InfoBox>
-          </FirstBox>
-          <JobCodingTestItemDeleteButton
+          <StyledMainWrapper>
+            <StyledTitleContainer>
+              <StyledTitle>{item.title}</StyledTitle>
+            </StyledTitleContainer>
+            <StyledSubContainer>
+              <StyledSubText>{item.name}</StyledSubText>
+            </StyledSubContainer>
+            <div>
+              <StyledInfoContainer>{item.info}</StyledInfoContainer>
+            </div>
+          </StyledMainWrapper>
+          <ItemDeleteButton
             itemId={parseInt(item.id.toString())}
+            itemType="job_codingtest"
+            redirectPath="/job/codingTest"
           />
 
-          <CommentBox>
+          <StyledCommentContainer>
             <JobCodingAddComment
               currentCodingTestItemId={parseInt(item.id.toString())}
             />
-          </CommentBox>
-          <UserBox>
+          </StyledCommentContainer>
+          <div>
             <JobCodingCommentSaveBox
               currentCodingTestId={parseInt(item.id.toString())}
             />
-          </UserBox>
-        </MainBox>
+          </div>
+        </StyledMainSection>
       ))}
     </>
   );
@@ -62,52 +64,48 @@ function JobCodingTestItemPage() {
 
 export default JobCodingTestItemPage;
 
-const MainBox = styled.div`
-  padding: 50px;
+const StyledMainSection = styled.div`
+  padding: 3.125rem;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
 `;
 
-const FirstBox = styled.div`
+const StyledMainWrapper = styled.div`
   border: 2px solid black;
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
 `;
 
-const TitleBox = styled.div`
-  margin-bottom: 40px;
+const StyledTitleContainer = styled.div`
+  margin-bottom: 2.5rem;
 `;
 
-const Title = styled.div`
-  font-size: 60px;
+const StyledTitle = styled.div`
+  font-size: 3.75rem;
 `;
 
-const SubBox = styled.div`
+const StyledSubContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
-  gap: 20px;
+  margin-bottom: 1.875rem;
+  gap: 1.25rem;
 `;
 
-const SubText = styled.p`
-  font-size: 30px;
+const StyledSubText = styled.p`
+  font-size: 1.875rem;
 `;
 
-const InfoBox = styled.div``;
-
-const Info = styled.div`
-  font-size: 35px;
-  margin-bottom: 50px;
+const StyledInfoContainer = styled.div`
+  font-size: 2.188rem;
+  margin-bottom: 3.125rem;
   word-break: break-all;
   white-space: pre-wrap;
 `;
 
-const CommentBox = styled.div`
+const StyledCommentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 20px;
+  gap: 1.25rem;
 `;
-
-const UserBox = styled.div``;

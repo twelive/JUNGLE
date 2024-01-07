@@ -13,7 +13,7 @@ const SectionThreeImgBox = ({
   text2,
   imageUrl,
 }: SectionProps) => {
-  const ImgDiv = styled.div`
+  const StyledImgContainer = styled.div`
     background-image: url(${imageUrl});
     border: 5px solid white;
     background-size: cover;
@@ -29,45 +29,50 @@ const SectionThreeImgBox = ({
 
     @media ${(props) => props.theme.device.mobile} {
       width: 200px;
-      height: 350px;
+      height: 100px;
     }
   `;
 
   return (
-    <ImgDiv>
-      <ImgBoxTitle>{title}</ImgBoxTitle>
-      <ImgBoxText>{text1}</ImgBoxText>
-      <ImgBoxText>{text2}</ImgBoxText>
-    </ImgDiv>
+    <StyledImgContainer>
+      <StyledImgTitle>{title}</StyledImgTitle>
+      <StyledImgText>{text1}</StyledImgText>
+      <StyledImgText>{text2}</StyledImgText>
+    </StyledImgContainer>
   );
 };
 
 export default SectionThreeImgBox;
 
-const ImgBoxTitle = styled.p`
-  font-size: 50px;
+const StyledImgTitle = styled.p`
+  font-size: 3.125rem;
   font-weight: 600;
-  padding-top: 20px;
+  padding-top: 1.25rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 40px;
+    font-size: 2.188rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 30px;
+    padding-top: 0.625rem;
+    font-size: 1.563rem;
+    font-weight: 500;
+    padding-bottom: 0.313rem;
   }
 `;
 
-const ImgBoxText = styled.p`
-  font-size: 40px;
-  line-height: 150px;
+const StyledImgText = styled.p`
+  font-size: 2.5rem;
+  line-height: 9.375rem;
   font-weight: 400;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 25px;
+    font-size: 1.563rem;
+    line-height: 1.875rem;
+    font-size: 1.25rem;
   }
 `;

@@ -223,25 +223,24 @@ const SecondSwiperContainer = styled.div`
 const SecondSwiper = styled(ReactSwiper)`
   width: 100%;
   height: 100%;
-  
+
   .swiper-wrapper {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); 
-    grid-template-rows: repeat(2, 1fr); 
-    gap: 40px; 
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2.5rem;
     justify-items: center;
     margin: 0 auto;
-    
   }
-  `;
+`;
 
 const SecondSlide = styled.div`
   text-align: center;
-  font-size: 18px;
+  font-size: 1.125rem;
   background: #fff;
   width: 100%;
   max-width: 100%;
-  height: 300px;
+  height: 18.75rem;
   flex-direction: column;
   margin: 0;
   overflow: hidden;
@@ -249,7 +248,7 @@ const SecondSlide = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: normal;
-  border-radius: 20px;
+  border-radius: 1.25rem;
  
   .swiper-slide {
     margin: 0 !important;
@@ -258,20 +257,20 @@ const SecondSlide = styled.div`
 
 
 const CustomSwiperSlide = styled(SwiperSlideDefault)`
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
 `;
 
 
 const Img = styled.img`
-  width: 50px;
+  width: 3.125rem;
   height: auto;
-  padding-right: 10px;
-  `;
+  padding-right: 0.625rem;
+`;
 
 const H2 = styled.h2`
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis; 
@@ -280,26 +279,26 @@ const H2 = styled.h2`
 const P = styled.p`
   color: gray;
   text-align: left;
-  padding-left: 10px;
+  padding-left: 0.625rem;
 `;
 
 const Contents = styled.p`
   text-align: left;
-  padding-left: 10px;
+  padding-left: 0.625rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-top: 20px;
-  height: 35px; 
+  padding-top: 1.25rem;
+  height: 2.1875rem; 
 `;
 
 const Imgwrapper = styled.div`
   display: flex;
-  padding-left: 10px;
-  padding-top: 20px;
-  padding-bottom: 10px;
+  padding-left: 0.625rem;
+  padding-top: 1.25rem;
+  padding-bottom: 0.625rem;
 
   `;
 
@@ -317,10 +316,10 @@ const StyledLink = styled(Link)`
     `;
 
     const Maincontents = styled.div`
-      height: 240px; 
+      height: 15rem; 
       overflow: hidden;
       text-overflow: ellipsis;
-      border-bottom: 1px solid gray;
+      border-bottom: 0.0625rem solid gray;
       `;
     
     const ButtonWrapper = styled.div`
@@ -336,13 +335,13 @@ const StyledLink = styled(Link)`
       justify-content: center;
       align-items: center;
       border: none;
-      padding: 5px 15px;
-      border-radius: 10px;
-      margin: 5px;
+      padding: 0.3125rem 0.9375rem;
+      border-radius: 0.625rem;
+      margin: 0.3125rem;
       border: 0.5px solid var(--bs-black-500);
       box-sizing: border-box;
       font-weight: 700;
-      box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+      box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2);
       background-color: #000;
       `;
 
@@ -357,12 +356,12 @@ const CreateLink = styled(Link)`
   const ToggleButton = styled.button`
     background-color: white;
     border: none;
-    padding: 5px 15px;
-    border-radius: 10px;
-    margin: 5px;
+    padding: 0.3125rem 0.9375rem;
+    border-radius: 0.625rem;
+    margin: 0.3125rem;
     box-sizing: border-box;
     font-weight: 700;
-    box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+    box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2);
   `;
     
 
