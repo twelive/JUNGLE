@@ -1,24 +1,24 @@
 import styled from 'styled-components';
 import StackDiggingItem from '@components/StudyPage/StackDiggingItem';
 
-function StackDiggingContentsSection() {
+function StackDiggingContentsContainer() {
   return (
     
 
-    <List>
+    <StyledListWrapper>
       <StackDiggingItem />
       <StackDiggingItem />
       <StackDiggingItem />
       <StackDiggingItem />
-    </List>
+    </StyledListWrapper>
 
   );
 }
 
-export default StackDiggingContentsSection;
+export default StackDiggingContentsContainer;
 
 
-const List = styled.div`
+const StyledListWrapper = styled.div`
   display: flex;
   overflow-x: auto;
   gap: 1.875rem;

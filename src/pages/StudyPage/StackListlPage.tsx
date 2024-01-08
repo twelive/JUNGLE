@@ -283,7 +283,7 @@ const BottomBox = styled.div`
 const CommentCounter = styled.p`
 color: white;
 font-size: 1rem;
-border: 0.0625rem solid white;
+border: 1px solid white;
 border-radius: 0.3125rem;
 padding-left: 0.3125rem;
 padding-right: 0.3125rem;
@@ -304,7 +304,7 @@ flex-direction: row;
 gap: 0.625rem;
 padding-top: 3.125rem;
 padding-bottom: 3.125rem;
-border-bottom: 0.0625rem solid black;
+border-bottom: 1px solid black;
 @media ${(props) => props.theme.device.mobile} {
 flex-direction: column;
   padding-top: 1.875rem;
@@ -343,7 +343,7 @@ text-decoration: none;
   height: 1.25rem;
   border-radius: 0.625rem;
   margin: 0.3125rem;
-  border: 0.0313rem solid var(--bs-black-500);
+  border: 0.5008px solid var(--bs-black-500);
   box-sizing: border-box;
   max-width: 12.5rem;
   overflow: hidden; 
