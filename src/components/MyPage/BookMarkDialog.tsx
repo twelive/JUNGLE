@@ -8,7 +8,7 @@ function BookMarkDialog() {
   const [isHovered, setIsHovered] = useState(false);
   const { setIsBookMark } = useBookMarkStore();
 
-  const handleClickModal = () => {  
+  const handleClickModal = () => {
     setIsBookMark();
     document.body.style.overflow = 'auto';
   };
@@ -22,36 +22,39 @@ function BookMarkDialog() {
   };
 
   return (
-  <>
-    <Dimmed onClick={handleClickModal} />
-    <Modal>
-      <h2>북마크 목록</h2>
-      <CancelButton onClick={handleClickModal} onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
-        <CancelImg fill={isHovered ? 'black' : '#666'} />
-      </CancelButton>
-      <List>
-        <BookMarkListData />
-      </List>
-    </Modal>
-  </>
-  )
+    <>
+      <Dimmed onClick={handleClickModal} />
+      <StyledModalOuter>
+        <h2>북마크 목록</h2>
+        <StyledCancelButtonContainer
+          onClick={handleClickModal}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <CancelImg fill={isHovered ? 'black' : '#666'} />
+        </StyledCancelButtonContainer>
+        <StyledBookMarkListWrapper>
+          <BookMarkListData />
+        </StyledBookMarkListWrapper>
+      </StyledModalOuter>
+    </>
+  );
 }
 
 export default BookMarkDialog;
 
 const Dimmed = styled.div`
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: black;
-z-index: 1;
-opacity: 0.8;
-`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1;
+  opacity: 0.8;
+`;
 
-const Modal = styled.div`
+const StyledModalOuter = styled.div`
   /* 중앙 정렬 */
   position: absolute;
   top: 15vh;
@@ -85,25 +88,25 @@ const Modal = styled.div`
   }
 
   @media ${(props) => props.theme.device.tablet} {
-      top: 20vh;
-      width: 100%;
-      height: 37.5rem;
-      padding: 2.5rem;
-    }
+    top: 20vh;
+    width: 100%;
+    height: 37.5rem;
+    padding: 2.5rem;
+  }
 
-    @media ${(props) => props.theme.device.mobile} {
-      top: 20vh;
-      width: 100%;
-      height: 25rem;
-      padding: 1.875rem;
-    }
+  @media ${(props) => props.theme.device.mobile} {
+    top: 20vh;
+    width: 100%;
+    height: 25rem;
+    padding: 1.875rem;
+  }
 
   h2 {
     width: 100%;
-  text-align: center;
-  color: var(--bs-black-300);
+    text-align: center;
+    color: var(--bs-black-300);
 
-  @media ${(props) => props.theme.device.tablet} {
+    @media ${(props) => props.theme.device.tablet} {
       font-size: 2.375rem;
     }
 
@@ -113,7 +116,7 @@ const Modal = styled.div`
   }
 `;
 
-const CancelButton = styled.button`
+const StyledCancelButtonContainer = styled.button`
   /* Reset CSS */
   border: none;
   background-color: transparent;
@@ -136,11 +139,11 @@ const CancelButton = styled.button`
       right: -0.625rem;
     }
   }
-`
+`;
 
-const List = styled.div`
+const StyledBookMarkListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 1rem;
-`
+`;

@@ -10,30 +10,30 @@ import useHeaderMenuStore from '@store/useHeaderMenuStore';
 
 function Header({ isMenu = true, isBorder = true, isBack = true }) {
   const { currentMenu, setCurrentMenu } = useHeaderMenuStore();
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    setCurrentMenu(pathname)
+    setCurrentMenu(pathname);
   }, [pathname]);
 
   return (
-    <HeaderSecton $isBorder={isBorder}>
-      <FlexBox>
-        <LeftFlexBox>
+    <StyledHeaderSecton $isBorder={isBorder}>
+      <StyledFlexContainer>
+        <StyledLeftWrapper>
           {isBack && <BackButton />}
           <Logo href="/main" isPoint={false} size="small" />
-        </LeftFlexBox>
+        </StyledLeftWrapper>
         <HeaderButtonGroup />
-      </FlexBox>
+      </StyledFlexContainer>
       <HeaderTitle>{currentMenu}</HeaderTitle>
       {isMenu && <HeaderMenu />}
-    </HeaderSecton>
+    </StyledHeaderSecton>
   );
 }
 
 export default Header;
 
-const HeaderSecton = styled.header<{ $isBorder: boolean }>`
+const StyledHeaderSecton = styled.header<{ $isBorder: boolean }>`
   display: flex;
   width: 100%;
   padding-bottom: 3.125rem;
@@ -53,13 +53,13 @@ const HeaderSecton = styled.header<{ $isBorder: boolean }>`
   }
 `;
 
-const FlexBox = styled.div`
+const StyledFlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
 `;
 
-const LeftFlexBox = styled(FlexBox)`
+const StyledLeftWrapper = styled(StyledFlexContainer)`
   gap: 1.25rem;
 `;

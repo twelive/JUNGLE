@@ -1,14 +1,14 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const Loading = () => {
   return (
-    <Layout>
-      <Container>
+    <StyledLoadingContainer>
+      <StyledTextWrapper>
         Load&nbsp;ng
         <Before />
         <After />
-      </Container>
-    </Layout>
+      </StyledTextWrapper>
+    </StyledLoadingContainer>
   );
 };
 
@@ -53,7 +53,7 @@ const animloader_1 = keyframes`
   }
 `;
 
-const Layout = styled.div`
+const StyledLoadingContainer = styled.div`
   position: absolute;
   top: 45%;
   left: 50%;
@@ -61,9 +61,24 @@ const Layout = styled.div`
   z-index: 2;
 `;
 
-const Container = styled.span`
+const StyledTextWrapper = styled.span`
   // Reset CSS
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
   // Layout
   position: relative;
   display: inline-block;
@@ -73,7 +88,7 @@ const Container = styled.span`
 `;
 
 const Before = styled.div`
-  content: '';  
+  content: '';
   position: absolute;
   right: 8.375rem;
   bottom: 1.125rem;
