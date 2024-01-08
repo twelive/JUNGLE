@@ -13,31 +13,36 @@ function BookMarkItem({
   content = '내용',
   created = '#',
 }) {
-  const {user} = useAuthStore();
+  const { user } = useAuthStore();
 
   return (
-    <Box to={src}>
-      <BookMarkButtonWrapper>
-        <BookMarkButton notBookmarkImg={notbookmark} itemId={ItemId} userId={user} itemType='stack' />
-      </BookMarkButtonWrapper>
+    <StyledBookMarkItemWrapper to={src}>
+      <StyledButtonBox>
+        <BookMarkButton
+          notBookmarkImg={notbookmark}
+          itemId={ItemId}
+          userId={user}
+          itemType="stack"
+        />
+      </StyledButtonBox>
       <div>
-        <Title>{title}</Title>
+        <StyledTitleSpan>{title}</StyledTitleSpan>
       </div>
-      <Author>{author}</Author>
-      <TextBox>
-        <Content>{content}</Content>
-      </TextBox>
-      <BottomBox>
+      <StyledAuthorBox>{author}</StyledAuthorBox>
+      <StyledTextBox>
+        <StyledContentSpan>{content}</StyledContentSpan>
+      </StyledTextBox>
+      <StyledBottomBox>
         <span>{new Date(created).toISOString().split('T')[0]}</span>
-        <ArrowScrollDown width="1rem" height='1rem' color="white" />
-      </BottomBox>
-    </Box>
+        <ArrowScrollDown width="1rem" height="1rem" color="white" />
+      </StyledBottomBox>
+    </StyledBookMarkItemWrapper>
   );
 }
 
 export default BookMarkItem;
 
-const Box = styled(Link)`
+const StyledBookMarkItemWrapper = styled(Link)`
   text-decoration-line: none;
   position: relative;
   display: flex;
@@ -55,25 +60,25 @@ const Box = styled(Link)`
     width: 15rem;
     min-width: 15rem;
     height: 15rem;
-    padding: 1.25rem
+    padding: 1.25rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
     width: 12.5rem;
     min-width: 12.5rem;
     height: 12.5rem;
-    padding: 1.25rem
+    padding: 1.25rem;
   }
 `;
 
-const BookMarkButtonWrapper = styled.div`
+const StyledButtonBox = styled.div`
   z-index: 1;
   position: absolute;
   right: 0.3125rem;
   top: 0.75rem;
 `;
 
-const Title = styled.span`
+const StyledTitleSpan = styled.span`
   display: block;
   font-size: 2rem;
   font-weight: 600;
@@ -90,17 +95,17 @@ const Title = styled.span`
   }
 `;
 
-const Author = styled.div`
+const StyledAuthorBox = styled.div`
   width: 100%;
   line-clamp: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   padding-top: 0.875rem;
-  padding-bottom: 0.875rem
+  padding-bottom: 0.875rem;
 `;
 
-const TextBox = styled.div`
+const StyledTextBox = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -111,7 +116,7 @@ const TextBox = styled.div`
   align-self: center;
 `;
 
-const Content = styled.span`
+const StyledContentSpan = styled.span`
   display: block;
   font-size: 1.5rem;
 
@@ -124,7 +129,7 @@ const Content = styled.span`
   }
 `;
 
-const BottomBox = styled.div`
+const StyledBottomBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

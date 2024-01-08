@@ -3,41 +3,43 @@ import useWrittingData from '@/api/useWrittingData';
 import Category from '@components/MainPage/Category';
 
 function WritingCategory() {
-  const {data} = useWrittingData();
+  const { data } = useWrittingData();
 
   return (
     <>
       <h2 className="sr-only">작성글</h2>
-      <Layout>
-        {data && data.map((category, index) => (
-          <CategoryBox key={index}>
-            <Category
-              href={`/study/stack/detail/${category.id}`}
-              title={category.title || undefined}
-              context={category.text || undefined}
-              height={'19.375rem'} />
-          </CategoryBox>
-        ))}
-      </Layout>
+      <StyledWritingContainer>
+        {data &&
+          data.map((category, index) => (
+            <StyledWritingWrapper key={index}>
+              <Category
+                href={`/study/stack/detail/${category.id}`}
+                title={category.title || undefined}
+                context={category.text || undefined}
+                height={'19.375rem'}
+              />
+            </StyledWritingWrapper>
+          ))}
+      </StyledWritingContainer>
     </>
   );
 }
 
 export default WritingCategory;
 
-const Layout = styled.div<{ $isBorder?: boolean }>`
- display: flex;
- min-width: 40.625rem;
- overflow-x: scroll;
- border-bottom: ${(props) =>
+const StyledWritingContainer = styled.div<{ $isBorder?: boolean }>`
+  display: flex;
+  min-width: 40.625rem;
+  overflow-x: scroll;
+  border-bottom: ${(props) =>
     props.$isBorder ? `0.15rem solid var(--bs-black-400)` : 'none'};
 
-    @media ${(props) => props.theme.device.mobile} {
-      gap: 0.625rem;
-    }
+  @media ${(props) => props.theme.device.mobile} {
+    gap: 0.625rem;
+  }
 `;
 
-const CategoryBox = styled.div`
+const StyledWritingWrapper = styled.div`
   min-width: 17.5rem;
   width: 17.5rem;
   margin: 1.5625rem 3.125rem 1.5625rem 0;
