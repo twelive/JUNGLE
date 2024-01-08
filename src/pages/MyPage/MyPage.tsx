@@ -17,29 +17,29 @@ function MyPage() {
       <Helmet>
         <title>MyPage - JUNGLE</title>
       </Helmet>
-      <Section>
+      <StyledMySection>
         <h1 className="sr-only">내 활동</h1>
-        <TopSection>
+        <StyledTopOuter>
           <ProfileSection />
           <PointSection />
-        </TopSection>
-        <BookMarkSection>
+        </StyledTopOuter>
+        <StyledBookMarkOuter>
           <BookMarkLink />
           <BookMarkList />
-        </BookMarkSection>
-        <BottomSection>
+        </StyledBookMarkOuter>
+        <StyledBottomOuter>
           <WritingCategory />
           <ResumeLink />
-        </BottomSection>
+        </StyledBottomOuter>
         {isBookMark && <BookMarkDialog />}
-      </Section>
+      </StyledMySection>
     </>
   );
 }
 
 export default MyPage;
 
-const Section = styled.section`
+const StyledMySection = styled.section`
   position: relative;
 
   h2 {
@@ -60,7 +60,7 @@ const FlexLayout = styled.div`
   display: flex;
 `;
 
-const TopSection = styled(FlexLayout)`
+const StyledTopOuter = styled(FlexLayout)`
   align-items: center;
   gap: 40px;
   padding: 3.125rem 0;
@@ -79,12 +79,12 @@ const TopSection = styled(FlexLayout)`
   }
 `;
 
-const BookMarkSection = styled(FlexLayout)`
+const StyledBookMarkOuter = styled(FlexLayout)`
   width: 100%;
   flex-direction: row;
   border-top: 0.15rem solid var(--bs-black-400);
   border-bottom: 0.15rem solid var(--bs-black-400);
-  
+
   @media ${(props) => props.theme.device.tablet} {
     flex-direction: column;
   }
@@ -94,7 +94,7 @@ const BookMarkSection = styled(FlexLayout)`
   }
 `;
 
-const BottomSection = styled(FlexLayout)`
+const StyledBottomOuter = styled(FlexLayout)`
   @media ${(props) => props.theme.device.tablet} {
     flex-direction: column;
   }

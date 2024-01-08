@@ -20,9 +20,8 @@ function HeaderMenuItem({
     setCurrentMenu(url);
   };
 
-
   return (
-    <FlexBox>
+    <StyledFlexWrapper>
       {isEvent && <HeaderMenuItemEvent />}
       <StyledLink
         to={path}
@@ -31,13 +30,13 @@ function HeaderMenuItem({
       >
         {children}
       </StyledLink>
-    </FlexBox>
+    </StyledFlexWrapper>
   );
 }
 
 export default HeaderMenuItem;
 
-const FlexBox = styled.div`
+const StyledFlexWrapper = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;
@@ -56,13 +55,12 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
   /* 애니메이션 CSS 추가 */
   position: relative;
 
-  
   @media ${(props) => props.theme.device.tablet} {
     font-size: 1.75rem;
   }
   @media ${(props) => props.theme.device.mobile} {
     border-bottom: ${(props) =>
-    props.$event ? '0.25rem solid black' : 'none'};
+      props.$event ? '0.25rem solid black' : 'none'};
     font-size: 1rem;
   }
 
