@@ -5,21 +5,21 @@ import getUserName from '@utils/getUserName';
 import ArrowClickLink from '@assets/common/arrow-clickLink.svg';
 
 function ResumeLink() {
-  const {userEmail} = useAuthStore();
+  const { userEmail } = useAuthStore();
 
   return (
-    <FlexBox>
+    <StyledResumeContainer>
       <h2>이력서</h2>
       <Link to={`/mypage/${getUserName(userEmail)}/resume`}>
         <img src={ArrowClickLink} />
       </Link>
-    </FlexBox>
+    </StyledResumeContainer>
   );
 }
 
 export default ResumeLink;
 
-const FlexBox = styled.div`
+const StyledResumeContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

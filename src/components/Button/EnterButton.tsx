@@ -6,15 +6,15 @@ interface enterButtonProps {
 
 function EnterButton({ onClick }: enterButtonProps) {
   return (
-    <ButtonDiv type="button" onClick={onClick}>
-      <ButtonText>Join</ButtonText>
-    </ButtonDiv>
+    <StyledButtonBox type="button" onClick={onClick}>
+      <StyledSpan>Join</StyledSpan>
+    </StyledButtonBox>
   );
 }
 
 export default EnterButton;
 
-const ButtonDiv = styled.button`
+const StyledButtonBox = styled.button`
   width: 12.5rem;
   height: 3.125rem;
   border-radius: 0.938rem;
@@ -35,7 +35,7 @@ const ButtonDiv = styled.button`
   }
 `;
 
-const ButtonText = styled.span`
+const StyledSpan = styled.span`
   font-size: 1.5rem;
   color: white;
 `;
