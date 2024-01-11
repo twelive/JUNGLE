@@ -72,7 +72,7 @@ const StyledMainSection = styled.div`
   transition: box-shadow 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
-
+  background-color: #fff;
   &:hover {
     animation: ${StyledhoverAnimation} 0.3s ease-in-out forwards;
   }
