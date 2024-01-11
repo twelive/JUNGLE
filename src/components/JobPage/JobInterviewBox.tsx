@@ -71,24 +71,20 @@ const StyledMainSection = styled.div`
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   transition: box-shadow 0.3s ease-in-out;
   position: relative;
+  overflow: hidden;
 
   &:hover {
     animation: ${StyledhoverAnimation} 0.3s ease-in-out forwards;
-  }
-
-  @media ${(props) => props.theme.device.tablet} {
-    width: 18.75rem;
   }
 `;
 
 const StyledTitleContainer = styled.div`
   display: block;
-  border-bottom: 0.063rem solid black;
   height: 6.625rem;
   position: relative;
-  max-width: 20rem;
-  min-width: 20rem;
+  min-width: 18rem;
   overflow: hidden;
+  overflow-wrap: break-word;
 `;
 
 const StyledTitle = styled.p`
@@ -96,9 +92,12 @@ const StyledTitle = styled.p`
   font-weight: 700;
   padding-top: 2.125rem;
   margin: 0;
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.5rem;
-  }
+  width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: hidden;
+  line-height: 1.5;
+  text-overflow: ellipsis;
 `;
 
 const StyledSubContainer = styled.div`
@@ -112,23 +111,21 @@ const StyledDateWrapper = styled.div`
   border-right: 0.063rem solid black;
   font-size: 1.25rem;
   padding: 0 0.938rem;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.25rem;
-  }
+  width: 100%;
+  white-space: nowrap;
 `;
 
 const StyledUserName = styled.div`
   font-size: 1.25rem;
   padding-left: 0.938rem;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.25rem;
-  }
+  width: 100%;
+  white-space: nowrap;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  width: 100%;
+
   color: inherit;
   cursor: pointer;
 
