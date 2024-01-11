@@ -15,43 +15,43 @@ function StudyTitleGroup({ studyTitle, tagTitle, studymobiletitle,
   children, children2 }:TagButtonProps){
 
 return (
-<StudyButtonGroup>
-<StudyTitleWrapper>
+<StyledStudyButtonContainer>
+<StyledStudyTitleWrapper>
 
-  <StudyTitle>
+  <StyledStudyTitleBox>
     {studyTitle}
-  </StudyTitle>
-  <TagTitle>
+  </StyledStudyTitleBox>
+  <StyledTagTitleBox>
     {tagTitle}
-  </TagTitle>
+  </StyledTagTitleBox>
 
-  </StudyTitleWrapper>
-  <ContentWrapper>
-    <StudyMobileWrapper>
-  <StudyMobile>
+  </StyledStudyTitleWrapper>
+  <div>
+    <StyledStudyMobileBox>
+  <StyledStudyMobileP>
   {studymobiletitle}
 
 
-</StudyMobile>
-  <TagButtonGroup>
+</StyledStudyMobileP>
+  <StyledTagButtonDiv>
 {children2}
-  </TagButtonGroup>
-  </StudyMobileWrapper>
-  <ContentContainer>
+  </StyledTagButtonDiv>
+  </StyledStudyMobileBox>
+  <StyledContentBox>
 {children}
-  </ContentContainer>
+  </StyledContentBox>
   
-  </ContentWrapper>
-</StudyButtonGroup>
+  </div>
+</StyledStudyButtonContainer>
 );
 
 }
 
 export default StudyTitleGroup
 
-const StudyTitleWrapper = styled.div`
+const StyledStudyTitleWrapper = styled.div`
 
-border-right: 0.0625rem solid var(--bs-black-500);
+border-right: 1px solid var(--bs-black-500);
 
 
 display: flex;
@@ -59,15 +59,11 @@ flex-direction: column;
 justify-content: space-between;
 width: 17.5rem;
 padding-right: 3.125rem;
-@media ${(props) => props.theme.device.tablet}    
-{
 
-
-}
 
 `;
 
-const StudyButtonGroup = styled.div `
+const StyledStudyButtonContainer = styled.div `
 
 display: flex;
 flex-direction: row;
@@ -83,13 +79,13 @@ width: 100%;
 
 @media ${(props) => props.theme.device.mobile} {
 display: block;
-& > ${StudyTitleWrapper} {
+& > ${StyledStudyTitleWrapper} {
 display: none;
 }}
 
 `;
 
-const TagButtonGroup = styled(StudyButtonGroup)`
+const StyledTagButtonDiv = styled(StyledStudyButtonContainer)`
 border: none;
 margin-left: 1.25rem;
 @media ${(props) => props.theme.device.mobile} {
@@ -99,7 +95,7 @@ margin-left: 0rem;
 
 `;
 
-const StudyTitle = styled.p`
+const StyledStudyTitleBox = styled.p`
 padding-top: 0.625rem;
 font-size: 2.8125rem;
 font-weight: 700;
@@ -109,7 +105,7 @@ width: 12.5rem;
 }
 `; 
 
-const TagTitle = styled.p`
+const StyledTagTitleBox = styled.p`
 font-size: 1.875rem;
 font-weight: 600;
 padding: 0.9375rem;
@@ -117,30 +113,18 @@ text-align: end;
 
 `;
 
-const ContentWrapper = styled.div `
 
 
-@media ${(props) => props.theme.device.mobile} {
-    
-    
-  }
-
-`;
-
-const ContentContainer = styled.div`
+const StyledContentBox = styled.div`
 height: 30vh;
 
 display: grid;
 
 
-@media ${(props) => props.theme.device.mobile} {
-
-
-}
 
 `;
 
-const StudyMobile = styled.p `
+const StyledStudyMobileP = styled.p `
 font-size: 2.8125rem;
 font-weight: 700;
 white-space: nowrap;
@@ -156,7 +140,7 @@ height: 0.625rem;
 
 `;
 
-const StudyMobileWrapper = styled.div `
+const StyledStudyMobileBox = styled.div `
 display: flex;   
 flex-direction: column;
 gap: 0.625rem;

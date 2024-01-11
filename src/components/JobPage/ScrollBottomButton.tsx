@@ -9,15 +9,15 @@ const ScrollToBottomButton = () => {
 
   return (
     <div>
-      <Button onClick={scrollToBottom}>
+      <StyledButton onClick={scrollToBottom}>
         <img src={down} alt="맨 아래로 내려가기 버튼" />
-      </Button>
+      </StyledButton>
     </div>
   );
 };
 
 export default ScrollToBottomButton;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   border: none;
 `;

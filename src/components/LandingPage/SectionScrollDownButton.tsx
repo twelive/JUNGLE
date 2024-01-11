@@ -17,7 +17,7 @@ const SectionScrollDownButton = ({ sectionId, handleButtonClick }: Button) => {
         duration={700}
         onClick={handleButtonClick}
       >
-        <ButtonImg src={DownButton} alt="스크롤 버튼" />
+        <StyledImg src={DownButton} alt="스크롤 버튼" />
       </Link>
     </ScrollDownButton>
   );
@@ -43,7 +43,7 @@ const ScrollDownButton = styled.button`
   }
 `;
 
-const ButtonImg = styled.img`
+const StyledImg = styled.img`
   @media ${(props) => props.theme.device.tablet} {
     width: 4rem;
     height: 3.125rem;

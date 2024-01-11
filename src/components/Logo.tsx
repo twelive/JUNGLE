@@ -15,8 +15,8 @@ function Logo({ href, isPoint = true, size = 'default' }: LogoProps) {
 
   return (
     <ComponentName to={href} $size={size}>
-      <ImgBox src={logoTitle} $size={size} />
-      {isPoint && <ImgBox src={logoBorder} $size={size} />}
+      <StyledImg src={logoTitle} $size={size} />
+      {isPoint && <StyledImg src={logoBorder} $size={size} />}
     </ComponentName>
   );
 }
@@ -48,13 +48,13 @@ const FlexBox = styled.div<{ $size: string }>`
   }
 `;
 
-const ImgBox = styled.img<{ $size: string }>`
+const StyledImg = styled.img<{ $size: string }>`
   width: ${(props) => (props.$size === 'default' ? '36rem' : '12rem')};
-  
+
   @media ${(props) => props.theme.device.tablet} {
-    width:  ${(props) => (props.$size === 'default' ? '27.5rem' : '10.3rem')};
+    width: ${(props) => (props.$size === 'default' ? '27.5rem' : '10.3rem')};
   }
   @media ${(props) => props.theme.device.mobile} {
-    width:  ${(props) => (props.$size === 'default' ? '16.125rem' : '8.75rem')};
+    width: ${(props) => (props.$size === 'default' ? '16.125rem' : '8.75rem')};
   }
 `;

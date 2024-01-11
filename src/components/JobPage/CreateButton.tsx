@@ -7,16 +7,16 @@ interface CreateButtonProps {
 function CreateButton({ onClick }: CreateButtonProps) {
   return (
     <div>
-      <StyleButton type="button" onClick={onClick}>
+      <StyledButton type="button" onClick={onClick}>
         출간하기
-      </StyleButton>
+      </StyledButton>
     </div>
   );
 }
 
 export default CreateButton;
 
-const StyleButton = styled.button<{ $isActive?: boolean }>`
+const StyledButton = styled.button<{ $isActive?: boolean }>`
   ${(props) =>
     props.$isActive
       ? 'background-color: white; font-weight: 700; box-shadow: 0.188rem 0.188rem 0.125rem 0.063rem rgba(137, 137, 138, 0.2); '

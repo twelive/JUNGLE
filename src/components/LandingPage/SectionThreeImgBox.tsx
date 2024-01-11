@@ -13,7 +13,7 @@ const SectionThreeImgBox = ({
   text2,
   imageUrl,
 }: SectionProps) => {
-  const ImgDiv = styled.div`
+  const StyledImgContainer = styled.div`
     background-image: url(${imageUrl});
     border: 5px solid white;
     background-size: cover;
@@ -34,17 +34,17 @@ const SectionThreeImgBox = ({
   `;
 
   return (
-    <ImgDiv>
-      <ImgBoxTitle>{title}</ImgBoxTitle>
-      <ImgBoxText>{text1}</ImgBoxText>
-      <ImgBoxText>{text2}</ImgBoxText>
-    </ImgDiv>
+    <StyledImgContainer>
+      <StyledImgTitle>{title}</StyledImgTitle>
+      <StyledImgText>{text1}</StyledImgText>
+      <StyledImgText>{text2}</StyledImgText>
+    </StyledImgContainer>
   );
 };
 
 export default SectionThreeImgBox;
 
-const ImgBoxTitle = styled.p`
+const StyledImgTitle = styled.p`
   font-size: 3.125rem;
   font-weight: 600;
   padding-top: 1.25rem;
@@ -61,7 +61,7 @@ const ImgBoxTitle = styled.p`
   }
 `;
 
-const ImgBoxText = styled.p`
+const StyledImgText = styled.p`
   font-size: 2.5rem;
   line-height: 9.375rem;
   font-weight: 400;

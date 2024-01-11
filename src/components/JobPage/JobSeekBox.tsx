@@ -21,23 +21,23 @@ function JobSeekBox() {
   return (
     <>
       {data.map((item: DataType) => (
-        <Ancer href={`${item.URL}`} key={item.id} target="_blank">
-          <MainBox>
-            <LogoBox>
-              <Img
+        <StyledAncer href={`${item.URL}`} key={item.id} target="_blank">
+          <StyledMainSection>
+            <StyledLogoContainer>
+              <StyledLogo
                 src={getPbImageURL('job_img', `${item.tag}.svg`, 'company')}
               />
-            </LogoBox>
-            <NameBox>{item.title}</NameBox>
-          </MainBox>
-        </Ancer>
+            </StyledLogoContainer>
+            <StyledNameContainer>{item.title}</StyledNameContainer>
+          </StyledMainSection>
+        </StyledAncer>
       ))}
     </>
   );
 }
 export default JobSeekBox;
 
-const MainBox = styled.div`
+const StyledMainSection = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -50,15 +50,15 @@ const MainBox = styled.div`
   }
 
   @media ${(props) => props.theme.device.tablet} {
-    width: 80%; /* 변경 없음 */
+    width: 80%;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    width: 70%; /* 변경 없음 */
+    width: 70%;
   }
 `;
 
-const LogoBox = styled.div`
+const StyledLogoContainer = styled.div`
   display: flex;
   background-color: white;
   border-top-right-radius: 1.25rem;
@@ -66,7 +66,13 @@ const LogoBox = styled.div`
   border-bottom: 0.063rem solid black;
 `;
 
-const NameBox = styled.div`
+const StyledLogo = styled.img`
+  width: 100%;
+  border-top-right-radius: 1.25rem;
+  border-top-left-radius: 1.25rem;
+`;
+
+const StyledNameContainer = styled.div`
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
   font-size: 1.875rem;
@@ -83,13 +89,7 @@ const NameBox = styled.div`
   }
 `;
 
-const Img = styled.img`
-  width: 100%;
-  border-top-right-radius: 1.25rem;
-  border-top-left-radius: 1.25rem;
-`;
-
-const Ancer = styled.a`
+const StyledAncer = styled.a`
   text-decoration: none;
   color: black;
 `;

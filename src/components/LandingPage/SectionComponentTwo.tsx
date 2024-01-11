@@ -26,36 +26,36 @@ const SectionComponentTwo = () => {
         animationKey="sectionTwo"
         setAnimation={setAnimation}
       />
-      <MainSection>
+      <StyledMainSection>
         <LandingHeader />
-        <MainDiv>
+        <StyledMainOuter>
           <motion.div
             variants={childVariants}
             initial="hidden"
             animate={showAnimationOne ? 'visible' : 'hidden'}
           >
-            <FirstDiv>
-              <FirstSpan>
+            <StyledTextContainer>
+              <StyledText>
                 시작과 마지막을 <br /> JUNGLE과 함께 하세요
-              </FirstSpan>
-            </FirstDiv>
+              </StyledText>
+            </StyledTextContainer>
             <div>
-              <PeopleImg src={People} alt="사람들" />
+              <StyledImg src={People} alt="사람들" />
             </div>
           </motion.div>
-        </MainDiv>
+        </StyledMainOuter>
         <SectionScrollDownButton
           sectionId={'section3'}
           handleButtonClick={handleButtonClick}
         />
-      </MainSection>
+      </StyledMainSection>
     </Element>
   );
 };
 
 export default SectionComponentTwo;
 
-const MainSection = styled.div`
+const StyledMainSection = styled.div`
   background-color: black;
   color: white;
   width: 100%;
@@ -63,7 +63,7 @@ const MainSection = styled.div`
   position: relative;
 `;
 
-const MainDiv = styled.div`
+const StyledMainOuter = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -73,11 +73,11 @@ const MainDiv = styled.div`
   gap: 7.5rem;
 `;
 
-const FirstDiv = styled.div`
+const StyledTextContainer = styled.div`
   padding-top: 9.375rem;
 `;
 
-const FirstSpan = styled.span`
+const StyledText = styled.span`
   font-size: 3.125rem;
   font-weight: 900;
   @media ${(props) => props.theme.device.tablet} {
@@ -89,7 +89,7 @@ const FirstSpan = styled.span`
   }
 `;
 
-const PeopleImg = styled.img`
+const StyledImg = styled.img`
   width: 100%;
   height: 100%;
 

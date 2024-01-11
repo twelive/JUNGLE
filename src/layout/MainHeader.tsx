@@ -5,19 +5,19 @@ import ScrollDown from '@components/ScrollDown';
 
 function MainHeader() {
   return (
-    <Header>
+    <StyledHeaderSection>
       <Logo />
-      <ButtonLayout>
+      <StyledButtonContainer>
         <HeaderButtonGroup />
         <ScrollDown />
-      </ButtonLayout>
-    </Header>
+      </StyledButtonContainer>
+    </StyledHeaderSection>
   );
 }
 
 export default MainHeader;
 
-const Header = styled.header`
+const StyledHeaderSection = styled.header`
   display: flex;
   height: 18.75rem;
   padding-bottom: 3.125rem;
@@ -34,7 +34,7 @@ const Header = styled.header`
   }
 `;
 
-const ButtonLayout = styled.div`
+const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

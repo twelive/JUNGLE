@@ -1,21 +1,27 @@
-import { Link } from "react-router-dom"
-import styled from "styled-components"
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-function GithubLink({href = '#', isVisibility = false}) {  
-
+function GithubLink({ href = '#', isVisibility = false }) {
   return (
-    <Github to={href} target="_blank" rel="noopener noreferrer" $isVisibility={isVisibility}>GithubLink</Github>
-  )
+    <StyledLink
+      to={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      $isVisibility={isVisibility}
+    >
+      GithubLink
+    </StyledLink>
+  );
 }
 
-export default GithubLink
+export default GithubLink;
 
-const Github = styled(Link)<{$isVisibility: boolean}>`
+const StyledLink = styled(Link)<{ $isVisibility: boolean }>`
   /* reset CSS */
   text-decoration: none;
   /* position */
   position: absolute;
-  visibility: ${(props) => props.$isVisibility ? 'visible' : 'hidden'};
+  visibility: ${(props) => (props.$isVisibility ? 'visible' : 'hidden')};
   top: 40%;
   left: 50%;
   z-index: 1;
@@ -32,4 +38,4 @@ const Github = styled(Link)<{$isVisibility: boolean}>`
   @media ${(props) => props.theme.device.mobile} {
     font-size: 1rem;
   }
-`
+`;

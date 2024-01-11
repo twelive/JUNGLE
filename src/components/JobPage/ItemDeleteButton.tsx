@@ -32,24 +32,24 @@ const ItemDeleteButton = ({
   };
 
   return (
-    <DeleteButton type="button" onClick={handleDelete}>
+    <StyledButton type="button" onClick={handleDelete}>
       삭제
-    </DeleteButton>
+    </StyledButton>
   );
 };
 
 export default ItemDeleteButton;
 
-const DeleteButton = styled.button`
+const StyledButton = styled.button`
   background-color: white;
   font-weight: 700;
-  box-shadow: 0.188rem 0.188rem 0.125rem 0.063rem rgba(137, 137, 138, 0.2);
+  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
   width: 10%;
   border: none;
   padding: 0.938rem;
   border-radius: 0.625rem;
   margin-right: 0.313rem;
-  border: 0.031rem solid var(--bs-black-500);
+  border: 0.5px solid var(--bs-black-500);
   box-sizing: border-box;
   font-size: 1.25rem;
   align-self: end;

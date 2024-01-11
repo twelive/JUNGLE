@@ -7,9 +7,9 @@ type FooterMenu = {
 
 const FooterName: FooterMenu[] = [
   { '/mypage': 'MyPage' },
-  { '/job': 'JobSeeking' },
-  { '/job/interview': 'JobInterview' },
-  { '/job/coding': 'JobCodingTest' },
+  { '/job': 'Job' },
+  { '/job/interview': 'Job' },
+  { '/job/codingTest': 'Job' },
   { '/community': 'Community' },
   { '/study': 'Study' },
 ];
@@ -22,30 +22,30 @@ function Footer() {
   const CurrentName = foundMenu ? foundMenu[pathname] : 'JUNGLE';
 
   return (
-    <AnimationFooter>
-      <AnimationTrack>
-        <FooterSection>
-          <Text aria-hidden>{CurrentName}</Text>
-          <Text aria-hidden>{CurrentName}</Text>
-          <Text aria-hidden>{CurrentName}</Text>
-          <Text aria-hidden>{CurrentName}</Text>
-          <Text aria-hidden>{CurrentName}</Text>
-          <Text aria-hidden>{CurrentName}</Text>
-        </FooterSection>
-      </AnimationTrack>
-    </AnimationFooter>
+    <StyledAniFooterSection>
+      <StyledAnimationContainer>
+        <StyledFooterWrapper>
+          <StyledSpan aria-hidden>{CurrentName}</StyledSpan>
+          <StyledSpan aria-hidden>{CurrentName}</StyledSpan>
+          <StyledSpan aria-hidden>{CurrentName}</StyledSpan>
+          <StyledSpan aria-hidden>{CurrentName}</StyledSpan>
+          <StyledSpan aria-hidden>{CurrentName}</StyledSpan>
+          <StyledSpan aria-hidden>{CurrentName}</StyledSpan>
+        </StyledFooterWrapper>
+      </StyledAnimationContainer>
+    </StyledAniFooterSection>
   );
 }
 
 export default Footer;
 
-const AnimationFooter = styled.footer`
+const StyledAniFooterSection = styled.footer`
   width: 100%;
   padding-top: 3.125rem;
   padding-bottom: 1rem;
   overflow: hidden;
   border-top: 0.15rem solid var(--bs-black-500);
-  
+
   @media ${(props) => props.theme.device.tablet} {
     padding-top: 2.5rem;
   }
@@ -54,7 +54,7 @@ const AnimationFooter = styled.footer`
   }
 `;
 
-const AnimationTrack = styled.div`
+const StyledAnimationContainer = styled.div`
   will-change: transform;
   animation: marquee 20s linear infinite;
 
@@ -68,7 +68,7 @@ const AnimationTrack = styled.div`
   }
 `;
 
-const FooterSection = styled.div`
+const StyledFooterWrapper = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +82,7 @@ const FooterSection = styled.div`
   }
 `;
 
-const Text = styled.span`
+const StyledSpan = styled.span`
   color: black;
   text-align: center;
   font-size: 10rem;
