@@ -20,8 +20,7 @@ const CommunityDetailPage = () => {
       <Helmet>
         <title>CommunityDetailPage - JUNGLE</title>
       </Helmet>
-      <section>
-        <MainWrapper>
+        <StyledDetailBox>
           {data.map((item) => (
             <DetailItem
               key={item.id}
@@ -33,15 +32,14 @@ const CommunityDetailPage = () => {
               handleDelete={handleDelete}
             />
           ))}
-        </MainWrapper>
-      </section>
+        </StyledDetailBox>
     </>
   );
 };
 
 export default CommunityDetailPage;
 
-const MainWrapper = styled.div`
+const StyledDetailBox = styled.div`
   width: 80%;
   height: 80%;
   margin: 0 auto;

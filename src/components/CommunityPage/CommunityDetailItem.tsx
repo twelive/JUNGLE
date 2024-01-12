@@ -36,67 +36,67 @@ const DetailItem: React.FC<DetailItemProps> = ({
 }) => {
   return (
     <>
-      <section>
-        <div key={item.id}>
-          <div>
-            {isAuthor && (
-              <ButtonWrapper>
-                <Button
-                  onClick={() => handleUpdate(currentDataType, String(item.id))}
-                >
-                  수정
-                </Button>
-                <Button
-                  onClick={() => handleDelete(currentDataType, String(item.id))}
-                >
-                  삭제
-                </Button>
-              </ButtonWrapper>
-            )}
-          </div>
-          <Wrapper>
-            <Title>제목: {item.title}</Title>
-            <CreaterWrapper>
-              <Creater>
-                <div>
-                  작성자
-                  <div>
-                    {item.user_id ? getUserEmail(String(item.user_id)) : ''}
-                  </div>
-                </div>
-              </Creater>
-              <CreateDate>
-                <div>작성일자</div>
-                <div>{item.created_at.slice(0, 10)}</div>
-              </CreateDate>
-            </CreaterWrapper>
-            <InfoWrapper>
-              <People>모집인원: {item.people}</People>
-              <Progress>진행방식: {item.progress}</Progress>
-            </InfoWrapper>
-            <StackWrapper>
-              <Stack>사용언어: </Stack>
-              {[item.tag1, item.tag2, item.tag3].map(
-                (tag, index) =>
-                  tag && (
-                    <div key={index}>
-                      <Img src={getPbImageURL('community_img', `${tag}.svg`)} />
-                    </div>
-                  )
-              )}
-            </StackWrapper>
-          </Wrapper>
-          <Intro>소개</Intro>
-          <Contents>내용: {item.contents}</Contents>
+      <div key={item.id}>
+        <div>
+          {isAuthor && (
+            <StyledButtonBox>
+              <StyledButton
+                onClick={() => handleUpdate(currentDataType, String(item.id))}
+              >
+                수정
+              </StyledButton>
+              <StyledButton
+                onClick={() => handleDelete(currentDataType, String(item.id))}
+              >
+                삭제
+              </StyledButton>
+            </StyledButtonBox>
+          )}
         </div>
-      </section>
+        <StyledMainContainer>
+          <StyledTitle>제목: {item.title}</StyledTitle>
+          <StyledCreaterWrapper>
+            <StyledCreaterBox>
+              <div>
+                작성자
+                <div>
+                  {item.user_id ? getUserEmail(String(item.user_id)) : ''}
+                </div>
+              </div>
+            </StyledCreaterBox>
+            <StyledCreateDateBox>
+              <div>작성일자</div>
+              <div>{item.created_at.slice(0, 10)}</div>
+            </StyledCreateDateBox>
+          </StyledCreaterWrapper>
+          <StyledInfoBox>
+            <StyledPeople>모집인원: {item.people}</StyledPeople>
+            <StyledProgress>진행방식: {item.progress}</StyledProgress>
+          </StyledInfoBox>
+          <StyledStackBox>
+            <StyledStack>사용언어: </StyledStack>
+            {[item.tag1, item.tag2, item.tag3].map(
+              (tag, index) =>
+                tag && (
+                  <div key={index}>
+                    <StyledImg
+                      src={getPbImageURL('community_img', `${tag}.svg`)}
+                    />
+                  </div>
+                )
+            )}
+          </StyledStackBox>
+        </StyledMainContainer>
+        <StyledIntro>소개</StyledIntro>
+        <StyledContents>내용: {item.contents}</StyledContents>
+      </div>
     </>
   );
 };
 
 export default DetailItem;
 
-const Wrapper = styled.div`
+const StyledMainContainer = styled.div`
   width: 100%;
   height: 100%;
   margin: 1.875rem auto;
@@ -105,7 +105,7 @@ const Wrapper = styled.div`
   border: 1px solid #000;
 `;
 
-const Contents = styled.div`
+const StyledContents = styled.div`
   width: 80%;
   white-space: pre-wrap;
   word-break: break-all;
@@ -115,7 +115,7 @@ const Contents = styled.div`
   padding-top: 1.25rem;
 `;
 
-const Title = styled.div`
+const StyledTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,7 +123,7 @@ const Title = styled.div`
   padding-bottom: 1.25rem;
 `;
 
-const CreaterWrapper = styled.div`
+const StyledCreaterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,36 +131,36 @@ const CreaterWrapper = styled.div`
   margin-right: 30%;
 `;
 
-const Creater = styled.div`
+const StyledCreaterBox = styled.div`
   font-size: 100%;
 `;
 
-const CreateDate = styled.div`
+const StyledCreateDateBox = styled.div`
   padding-right: 5%;
   font-size: 100%;
 `;
 
-const Progress = styled.div`
+const StyledProgress = styled.div`
   font-size: 100%;
 `;
 
-const Stack = styled.div`
+const StyledStack = styled.div`
   font-size: 100%;
 `;
 
-const People = styled.div`
+const StyledPeople = styled.div`
   font-size: 100%;
   padding-right: 0.625rem;
 `;
 
-const Intro = styled.div`
+const StyledIntro = styled.div`
   font-size: 1.875rem;
   border-bottom: 0.0625rem solid gray;
   padding-bottom: 0.625rem;
   padding-top: 1.875rem;
 `;
 
-const InfoWrapper = styled.div`
+const StyledInfoBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -169,18 +169,18 @@ const InfoWrapper = styled.div`
   margin-right: 30%;
 `;
 
-const StackWrapper = styled.div`
+const StyledStackBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-const Img = styled.img`
+const StyledImg = styled.img`
   padding-left: 0.625rem;
   width: 80%;
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 `;
-const Button = styled.button`
+const StyledButton = styled.button`
   width: 20%;
   height: 20%;
   display: flex;
@@ -197,7 +197,7 @@ const Button = styled.button`
   background-color: #fff;
 `;
 
-const ButtonWrapper = styled.div`
+const StyledButtonBox = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
