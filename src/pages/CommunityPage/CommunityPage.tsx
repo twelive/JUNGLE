@@ -41,22 +41,22 @@ function CommunityPage() {
         <title>Community - JUNGLE</title>
       </Helmet>
       <section>
-        <FirstSwiperContainer>
+        <StyledFirstSwiperContainer>
           <SwiperComponent slides={slides} />
-        </FirstSwiperContainer>
+        </StyledFirstSwiperContainer>
       </section>
       <section>
-        <ButtonWrapper>
+        <StyledButtonContainer>
           <div>
-            <ToggleButton onClick={handleProjectClick}>프로젝트</ToggleButton>
-            <ToggleButton onClick={handleStudyClick}>스터디</ToggleButton>
+            <StyledToggleButton onClick={handleProjectClick}>프로젝트</StyledToggleButton>
+            <StyledToggleButton onClick={handleStudyClick}>스터디</StyledToggleButton>
           </div>
-          <LinkWrapper>
-            <CreateLink to="communitycreate">모집하기</CreateLink>
-          </LinkWrapper>
-        </ButtonWrapper>
-        <SecondSwiperContainer>
-          <SecondSwiper
+          <StyledLinkWrapper>
+            <StyledCreateLink to="communitycreate">모집하기</StyledCreateLink>
+          </StyledLinkWrapper>
+        </StyledButtonContainer>
+        <StyledSecondSwiperContainer>
+          <StyledSecondSwiperWrapper 
             slidesPerView={3}
             grid={{
               rows: 2,
@@ -70,17 +70,17 @@ function CommunityPage() {
             {projects &&
               studys &&
               (dataType === 'project' ? projects : studys).map((item) => (
-                <CustomSwiperSlide key={item.id}>
+                <StyledCustomSwiperSlideBox key={item.id}>
                 <ItemCard
                   key={item.id}
                   item={item}
                   dataType={dataType}
                   getUserEmail={getUserEmail}
                   />
-                  </CustomSwiperSlide>
+                  </StyledCustomSwiperSlideBox>
               ))}
-          </SecondSwiper>
-        </SecondSwiperContainer>
+          </StyledSecondSwiperWrapper>
+        </StyledSecondSwiperContainer>
       </section>
     </>
   );
@@ -88,24 +88,24 @@ function CommunityPage() {
 
 export default CommunityPage;
 
-const FirstSwiperContainer = styled.div`
+const StyledFirstSwiperContainer = styled.div`
   margin: 0 auto;
   width: 100%;
   height: 100%;
 `;
 
-const SecondSwiperContainer = styled.div`
+const StyledSecondSwiperContainer = styled.div`
   width: 80%;
   height: 80%;
   margin: 0 auto;
-  `;
+`;
 
-const CustomSwiperSlide = styled(SwiperSlideDefault)`
+const StyledCustomSwiperSlideBox = styled(SwiperSlideDefault)`
   width: 3.125rem;
   height: 3.125rem;
 `;
 
-const SecondSwiper = styled(ReactSwiper)`
+const StyledSecondSwiperWrapper = styled(ReactSwiper)`
   width: 100%;
   height: 100%;
 
@@ -117,16 +117,16 @@ const SecondSwiper = styled(ReactSwiper)`
     justify-items: center;
     margin: 0 auto;
   }
-  `;
+`;
 
-  const ButtonWrapper = styled.div`
+  const StyledButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin-left: 10%;
     margin-right: 10%;
-    `;
+  `;
 
-  const LinkWrapper = styled.div`
+  const StyledLinkWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,19 +137,19 @@ const SecondSwiper = styled(ReactSwiper)`
     border: 0.5px solid var(--bs-black-500);
     box-sizing: border-box;
     font-weight: 700;
-    box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2);
+    box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
     background-color: #000;
-    `;
+  `;
 
-  const CreateLink = styled(Link)`
-    text-decoration: none; 
-    color: black; 
+  const StyledCreateLink = styled(Link)`
+    text-decoration: none;
+    color: black;
     &:visited {
       color: white;
-   }
-    `;
+    }
+  `;
 
-  const ToggleButton = styled.button`
+  const StyledToggleButton = styled.button`
     background-color: white;
     border: none;
     padding: 0.3125rem 0.9375rem;
@@ -157,7 +157,7 @@ const SecondSwiper = styled(ReactSwiper)`
     margin: 0.3125rem;
     box-sizing: border-box;
     font-weight: 700;
-    box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2);
+    box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
   `;
     
 

@@ -28,40 +28,40 @@ function ItemCard({
   getUserEmail: (userId: string) => string;
 }) {
   return (
-    
-      <StyledLink to={`/detailPage/${dataType}/${item.id}`}>
-        <SecondSlide>
-          <Maincontents>
-            <H2>{item.title}</H2>
-            <P>모집 마감일 : {item.deadline}</P>
-            <Contents>{item.contents}</Contents>
-            <Imgwrapper>
-              {[item.tag1, item.tag2, item.tag3].map((tag, index) =>
-                tag ? (
-                  <div key={index}>
-                    <Img src={getPbImageURL('community_img', `${tag}.svg`)} />
-                  </div>
-                ) : null
-              )}
-            </Imgwrapper>
-          </Maincontents>
-          <div>작성자: {getUserEmail(item.user_id || '')}</div>
-        </SecondSlide>
-      </StyledLink>
-
+    <StyledLinkSection to={`/detailPage/${dataType}/${item.id}`}>
+      <StyledSecondSlideContainer>
+        <StyledMainWrapper>
+          <StyledH2>{item.title}</StyledH2>
+          <StyledP>모집 마감일 : {item.deadline}</StyledP>
+          <StyledContents>{item.contents}</StyledContents>
+          <StyledImgBox>
+            {[item.tag1, item.tag2, item.tag3].map((tag, index) =>
+              tag ? (
+                <div key={index}>
+                  <StyledImg
+                    src={getPbImageURL('community_img', `${tag}.svg`)}
+                  />
+                </div>
+              ) : null
+            )}
+          </StyledImgBox>
+        </StyledMainWrapper>
+        <div>작성자: {getUserEmail(item.user_id || '')}</div>
+      </StyledSecondSlideContainer>
+    </StyledLinkSection>
   );
 }
 
 export default ItemCard;
 
 
-const Img = styled.img`
+const StyledImg = styled.img`
   width: 3.125rem;
   height: auto;
   padding-right: 0.625rem;
 `;
 
-const H2 = styled.h2`
+const StyledH2 = styled.h2`
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   white-space: nowrap;
@@ -69,13 +69,13 @@ const H2 = styled.h2`
   text-overflow: ellipsis;
 `;
 
-const P = styled.p`
+const StyledP = styled.p`
   color: gray;
   text-align: left;
   padding-left: 0.625rem;
 `;
 
-const Contents = styled.p`
+const StyledContents = styled.p`
   text-align: left;
   padding-left: 0.625rem;
   display: -webkit-box;
@@ -87,14 +87,14 @@ const Contents = styled.p`
   height: 2.1875rem;
 `;
 
-const Imgwrapper = styled.div`
+const StyledImgBox = styled.div`
   display: flex;
   padding-left: 0.625rem;
   padding-top: 1.25rem;
   padding-bottom: 0.625rem;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLinkSection = styled(Link)`
   text-decoration: none;
   color: black;
   &:visited {
@@ -105,7 +105,7 @@ const StyledLink = styled(Link)`
     color: black;
   }
 `;
-const SecondSlide = styled.div`
+const StyledSecondSlideContainer = styled.div`
   text-align: center;
   font-size: 1.125rem;
   background: #fff;
@@ -125,10 +125,10 @@ const SecondSlide = styled.div`
     margin: 0 !important;
   }
 `;
- const Maincontents = styled.div`
+ const StyledMainWrapper = styled.div`
    height: 15rem;
    overflow: hidden;
    text-overflow: ellipsis;
-   border-bottom: 0.0625rem solid gray;
+   border-bottom: 1px solid gray;
  `;
     
