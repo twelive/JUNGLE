@@ -11,8 +11,8 @@ const CommunityCreateDeadline: React.FC<DeadlineSectionProps> = ({
   deadline,
   setDeadline,
 }) => (
-  <Li>
-    <Datewrapper>
+  <StyledLiWrapper>
+    <StyledDateBox>
       <label>마감일 </label>
       <StyledDatePicker
         selected={deadline}
@@ -20,19 +20,19 @@ const CommunityCreateDeadline: React.FC<DeadlineSectionProps> = ({
         dateFormat="yyyy-MM-dd"
         placeholderText="Select a date"
       />
-    </Datewrapper>
-  </Li>
+    </StyledDateBox>
+  </StyledLiWrapper>
 );
 
 export default CommunityCreateDeadline;
-const Li = styled.li`
+const StyledLiWrapper = styled.li`
   width: 80%;
   height: 40%;
   padding-bottom: 1.25rem;
   padding-right: 10%;
 `;
 
-const Datewrapper = styled.div`
+const StyledDateBox = styled.div`
   padding-top: 0.625rem;
 `;
 

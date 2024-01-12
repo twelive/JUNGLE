@@ -33,10 +33,6 @@ function CommunityCreatePage() {
   const [tag3, setStack3] = useState('');
   const [deadline, setDeadline] = useState<Date | null >(null);
   const navigate = useNavigate();
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
  
   const createPost = useMutation(async (data: CreateData) => {
     const currentDate = new Date().toISOString();
@@ -95,24 +91,15 @@ function CommunityCreatePage() {
       <Helmet>
         <title>CommunityCreate - JUNGLE</title>
       </Helmet>
-      <section>
-        <div>
-          <FormContainer>
+          <StyledFormContainer>
             <fieldset>
               <div className="sr-only">
-                <StyledInput
-                  type="text"
-                  value={title}
-                  onChange={handleTitleChange}
-                />
+                <StyledSrlegend>프로젝트/스터디 모집 작성 폼</StyledSrlegend>
               </div>
-              <div className="sr-only">
-                <Srlegend>프로젝트/스터디 모집 작성 폼</Srlegend>
-              </div>
-              <StyledForm onSubmit={handleSubmit}>
+              <StyledFormWrapper onSubmit={handleSubmit}>
                 <ul>
                   <div>
-                    <Info>✏프로젝트 기본 정보를 입력해주세요.</Info>
+                    <StyledInfo>✏프로젝트 기본 정보를 입력해주세요.</StyledInfo>
                     <CommunityCreateAuthorInfo userEmail={userEmail} />
                     <CommunityCreateDetail
                       division={division}
@@ -129,13 +116,13 @@ function CommunityCreatePage() {
                       setStack3={setStack3}
                     />
                   </div>
-                  <Li>
+                  <StyledLiBox>
                     <CommunityCreateDeadline
                       deadline={deadline}
                       setDeadline={setDeadline}
                     />
-                  </Li>
-                  <Info>👩‍💻프로젝트에 대해 소개해주세요.</Info>
+                  </StyledLiBox>
+                  <StyledInfo>👩‍💻프로젝트에 대해 소개해주세요.</StyledInfo>
                   <CommunityCreateIntroduction
                     title={title}
                     setTitle={setTitle}
@@ -143,42 +130,34 @@ function CommunityCreatePage() {
                     setContents={setContents}
                   />
                 </ul>
-                <SubmitWrapper>
-                  <Submit type="submit">작성 완료</Submit>
-                </SubmitWrapper>
-              </StyledForm>
+                <StyledSubmitBox>
+                  <StyledSubmit type="submit">작성 완료</StyledSubmit>
+                </StyledSubmitBox>
+              </StyledFormWrapper>
             </fieldset>
-          </FormContainer>
-        </div>
-      </section>
+          </StyledFormContainer>
     </>
   );
 }
 export default CommunityCreatePage;
 
-const FormContainer = styled.div`
+const StyledFormContainer = styled.div`
   margin: 0 auto;
   align-items: center;
 `;
 
-const StyledForm = styled.form`
+const StyledFormWrapper = styled.form`
   font-size: 1.625rem;
 `;
 
-const StyledInput = styled.input`
-  width: 100%;
-  height: 1.875rem;
-  font-size: 1.375rem;
-`;
-
-const Li = styled.li`
+const StyledLiBox = styled.li`
   width: 80%;
   height: 40%;
   padding-bottom: 1.25rem;
   padding-right: 10%;
 `;
 
-const Srlegend = styled.legend`
+const StyledSrlegend = styled.legend`
   .sr-only {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
@@ -191,12 +170,12 @@ const Srlegend = styled.legend`
   }
 `;
 
-const Info = styled.div`
+const StyledInfo = styled.div`
   padding-bottom: 1.25rem;
   border-bottom: 1px solid #d8d8d8;
 `;
 
-  const Submit = styled.button`
+  const StyledSubmit = styled.button`
     width: 10%;
     height: 2.5rem;
     display: flex;
@@ -209,12 +188,12 @@ const Info = styled.div`
     border: 0.5px solid var(--bs-black-500);
     box-sizing: border-box;
     font-weight: 700;
-    box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2);
+    box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
     background-color: #fff;
   `;
 
-  const SubmitWrapper = styled.div`
+  const StyledSubmitBox = styled.div`
     display: flex;
     justify-content: end;
-   `;
+  `;
   

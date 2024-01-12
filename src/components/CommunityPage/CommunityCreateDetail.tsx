@@ -49,23 +49,22 @@ const CommunityCreateDetail: React.FC<CommunityCreateDetailProps> = ({
   };
 
   return (
-    <div>
       <div>
-        <Secondwrapper>
-          <Li>
+        <StyledSecondContainer>
+          <StyledLiWrapper>
             <p>구분</p>
-            <Select
+            <StyledSelectbox
               defaultValue="프로젝트/스터디"
               onChange={handleDivisionChange}
             >
               <option disabled>프로젝트/스터디</option>
               <option>프로젝트</option>
               <option>스터디</option>
-            </Select>
-          </Li>
-          <Li>
+            </StyledSelectbox>
+          </StyledLiWrapper>
+          <StyledLiWrapper>
             <p>모집인원</p>
-            <Select defaultValue="모집인원" onChange={handlePeopleChange}>
+            <StyledSelectbox defaultValue="모집인원" onChange={handlePeopleChange}>
               <option disabled>모집인원</option>
               <option>1 명</option>
               <option>2 명</option>
@@ -73,21 +72,21 @@ const CommunityCreateDetail: React.FC<CommunityCreateDetailProps> = ({
               <option>4 명</option>
               <option>5 명</option>
               <option>인원 수 제한없음</option>
-            </Select>
-          </Li>
-        </Secondwrapper>
-        <Thirdwrapper>
-          <Li>
+            </StyledSelectbox>
+          </StyledLiWrapper>
+        </StyledSecondContainer>
+        <StyledThirdContainer>
+          <StyledLiWrapper>
             <p>진행방식</p>
-            <Select defaultValue="진행방식" onChange={handleProgressChange}>
+            <StyledSelectbox defaultValue="진행방식" onChange={handleProgressChange}>
               <option disabled>진행방식</option>
               <option>온라인</option>
               <option>오프라인</option>
-            </Select>
-          </Li>
-          <Li>
+            </StyledSelectbox>
+          </StyledLiWrapper>
+          <StyledLiWrapper>
             <p>사용언어</p>
-            <Select defaultValue="사용언어" onChange={handleTag1Change}>
+            <StyledSelectbox defaultValue="사용언어" onChange={handleTag1Change}>
               <option disabled>사용언어</option>
               <option value="javascript">javascript</option>
               <option value="react">react</option>
@@ -95,13 +94,13 @@ const CommunityCreateDetail: React.FC<CommunityCreateDetailProps> = ({
               <option value="next.js">next.js</option>
               <option value="vue">vue</option>
               <option value="svelte">svelte</option>
-            </Select>
-          </Li>
-        </Thirdwrapper>
-        <Fourthwrapper>
-          <Li>
+            </StyledSelectbox>
+          </StyledLiWrapper>
+        </StyledThirdContainer>
+        <StyledFourthContainer>
+          <StyledLiWrapper>
             <p>사용언어</p>
-            <Select defaultValue="사용언어" onChange={handleTag2Change}>
+            <StyledSelectbox defaultValue="사용언어" onChange={handleTag2Change}>
               <option disabled>사용언어</option>
               <option value="javascript">javascript</option>
               <option value="react">react</option>
@@ -109,11 +108,11 @@ const CommunityCreateDetail: React.FC<CommunityCreateDetailProps> = ({
               <option value="next.js">next.js</option>
               <option value="vue">vue</option>
               <option value="svelte">svelte</option>
-            </Select>
-          </Li>
-          <Li>
+            </StyledSelectbox>
+          </StyledLiWrapper>
+          <StyledLiWrapper>
             <p>사용언어</p>
-            <Select defaultValue="사용언어" onChange={handleTag3Change}>
+            <StyledSelectbox defaultValue="사용언어" onChange={handleTag3Change}>
               <option disabled>사용언어</option>
               <option value="javascript">javascript</option>
               <option value="react">react</option>
@@ -121,36 +120,34 @@ const CommunityCreateDetail: React.FC<CommunityCreateDetailProps> = ({
               <option value="next.js">next.js</option>
               <option value="vue">vue</option>
               <option value="svelte">svelte</option>
-            </Select>
-          </Li>
-        </Fourthwrapper>
+            </StyledSelectbox>
+          </StyledLiWrapper>
+        </StyledFourthContainer>
       </div>
-      {/* ... */}
-    </div>
   );
 };
 
 export default CommunityCreateDetail;
-const Li = styled.li`
+const StyledLiWrapper = styled.li`
   width: 80%;
   height: 40%;
   padding-bottom: 1.25rem;
   padding-right: 10%;
 `;
 
-const Secondwrapper = styled.div`
+const StyledSecondContainer = styled.div`
   display: flex;
 `;
 
-const Thirdwrapper = styled.div`
+const StyledThirdContainer = styled.div`
   display: flex;
 `;
 
-const Fourthwrapper = styled.div`
+const StyledFourthContainer = styled.div`
   display: flex;
 `;
 
-const Select = styled.select`
+const StyledSelectbox = styled.select`
   width: 100%;
   height: 2.5rem;
   text-align: center;

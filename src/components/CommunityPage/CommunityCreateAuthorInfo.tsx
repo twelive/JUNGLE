@@ -35,27 +35,27 @@ const CommunityCreateAuthorInfo: React.FC<AuthorInfoProps> = ({
   }, [user]);
 
   return (
-    <Firstwrapper>
-      <Li>
+    <StyledFirstwrapper>
+      <StyledLiBox>
         <label>작성자</label>
         <div>{fetchedUserEmail || userEmail}</div>
-      </Li>
-      <Li>
+      </StyledLiBox>
+      <StyledLiBox>
         <label>작성일자</label>
         <div>{new Date().toISOString().slice(0, 10)}</div>
-      </Li>
-    </Firstwrapper>
+      </StyledLiBox>
+    </StyledFirstwrapper>
   );
 };
 
 export default CommunityCreateAuthorInfo;
 
-const Firstwrapper = styled.div`
+const StyledFirstwrapper = styled.div`
   display: flex;
   padding-top: 0.625rem;
 `;
 
-const Li = styled.li`
+const StyledLiBox = styled.li`
   width: 80%;
   height: 40%;
   padding-bottom: 1.25rem;

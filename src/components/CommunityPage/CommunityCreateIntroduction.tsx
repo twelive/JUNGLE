@@ -23,23 +23,23 @@ const CommunityCreateIntroduction: React.FC<CommunityCreateIntroductionProps> = 
     
   return (
     <div>
-      <Li>
-        <Label>제목</Label>
+      <StyledLibox>
+        <StyledLabel>제목</StyledLabel>
         <StyledInput
           type="text"
           value={title}
           onChange={handleTitleChange}
           placeholder="JUNGLE을 이용해 주셔서 감사합니다. 제목을 입력해 주세요."
         />
-      </Li>
-      <Li>
-        <Label>내용</Label>
+      </StyledLibox>
+      <StyledLibox>
+        <StyledLabel>내용</StyledLabel>
         <Styledtextarea
           value={contents}
           onChange={handleContentChange}
           placeholder="JUNGLE을 이용해 주셔서 감사합니다. 모집 내용을 입력해 주세요."
         />
-      </Li>
+      </StyledLibox>
     </div>
   );
 };
@@ -51,13 +51,13 @@ const StyledInput = styled.input`
   font-size: 1.375rem;
 `;
 
-const Li = styled.li`
+const StyledLibox = styled.li`
   width: 80%;
   height: 40%;
   padding-bottom: 1.25rem;
   padding-right: 10%;
 `;
-const Label = styled.label`
+const StyledLabel = styled.label`
   display: block;
   padding-bottom: 0.625rem;
   padding-top: 0.625rem;
