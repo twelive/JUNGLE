@@ -3,16 +3,16 @@ import Profile from '@components/MyPage/Profile';
 import { useAuthStore } from '@store/useAuthStore';
 import getUserName from '@utils/getUserName';
 
-
 function ProfileSection() {
-  const {userEmail} = useAuthStore();
+  const { userEmail } = useAuthStore();
 
   return (
     <ProfileBox>
       <h2 className="sr-only">프로필</h2>
       <Profile />
       <ProfileText>
-        어서오세요 {getUserName(userEmail)}님! <br /> 지금까지의 활동내역을 보여드립니다.
+        어서오세요 {getUserName(userEmail)}님! <br /> 지금까지의 활동내역을
+        보여드립니다.
       </ProfileText>
     </ProfileBox>
   );
@@ -26,7 +26,7 @@ const ProfileBox = styled.div`
   gap: 1.875rem;
   width: 70%;
   padding-right: 1.875rem;
-  border-right: 0.15rem solid var(--bs-black-400);
+  border-right: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     width: 100%;
@@ -47,7 +47,7 @@ const ProfileText = styled.p`
   font-size: 2.125rem;
   font-weight: 600;
   line-height: 5rem;
-  
+
   @media ${(props) => props.theme.device.tablet} {
     font-size: 2rem;
     line-height: 3.75rem;

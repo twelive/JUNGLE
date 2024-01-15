@@ -1,13 +1,11 @@
-import styled from 'styled-components'
-import Error404 from '@assets/common/error.webp'
+import styled from 'styled-components';
+import Error404 from '@assets/common/error.webp';
 
 function ErrorPage() {
-  return (
-    <ErrorImg src={Error404} alt="에러가 발생하였습니다."/>
-  )
+  return <ErrorImg src={Error404} alt="에러가 발생하였습니다." />;
 }
 
-export default ErrorPage
+export default ErrorPage;
 
 const ErrorImg = styled.img`
   position: absolute;

@@ -27,14 +27,13 @@ const PointBox = styled.div`
   @media ${(props) => props.theme.device.tablet} {
     width: 100%;
     padding-top: 2.5rem;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
   }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
     padding-top: 1.875rem;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
   }
-
 `;
 
 const PointContainer = styled.div`
@@ -86,7 +85,7 @@ const PointText = styled(Text)`
   font-size: 3.75rem;
   font-weight: 600;
   letter-spacing: -0.125rem;
-  border-bottom: 0.4375rem solid black;
+  border-bottom: 7px solid black;
 
   @media ${(props) => props.theme.device.tablet} {
     font-size: 3.5rem;

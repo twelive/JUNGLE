@@ -20,7 +20,6 @@ function HeaderMenuItem({
     setCurrentMenu(url);
   };
 
-
   return (
     <FlexBox>
       {isEvent && <HeaderMenuItemEvent />}
@@ -48,21 +47,18 @@ const StyledLink = styled(Link)<{ $event?: boolean }>`
   text-decoration: none;
   /* Styling */
   padding: 0.125rem;
-  border-bottom: ${(props) =>
-    props.$event ? '0.3125rem solid black' : 'none'};
+  border-bottom: ${(props) => (props.$event ? '5px solid black' : 'none')};
   font-size: 2rem;
   font-weight: 600;
   color: ${(props) => (props.$event ? 'black' : 'var(--bs-black-600)')};
   /* 애니메이션 CSS 추가 */
   position: relative;
 
-  
   @media ${(props) => props.theme.device.tablet} {
     font-size: 1.75rem;
   }
   @media ${(props) => props.theme.device.mobile} {
-    border-bottom: ${(props) =>
-    props.$event ? '0.25rem solid black' : 'none'};
+    border-bottom: ${(props) => (props.$event ? '4px solid black' : 'none')};
     font-size: 1rem;
   }
 

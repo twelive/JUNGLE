@@ -22,12 +22,11 @@ function Profile() {
     try {
       setImageUrl(URL.createObjectURL(avatarFile));
 
-      const { data, error } = await supabase
-        .storage
+      const { data, error } = await supabase.storage
         .from('profile')
         .upload(user, avatarFile, {
           contentType: 'image/*',
-          upsert: true
+          upsert: true,
         });
 
       if (error) {
@@ -38,14 +37,14 @@ function Profile() {
       setImageUrl(imageUrl);
 
       toast.success('업로드 완료! 잠시 후 반영됩니다.', {
-        position: "top-center",
+        position: 'top-center',
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: 'light',
       });
 
       queryClient.setQueryData(['profileImageUrl', 'profile', user], imageUrl);
@@ -53,14 +52,14 @@ function Profile() {
       return data;
     } catch (error) {
       toast.error('사진 업로드 중 에러가 발생하였습니다.', {
-        position: "top-center",
+        position: 'top-center',
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: 'dark',
       });
 
       return null;
@@ -87,7 +86,12 @@ function Profile() {
   return (
     <Circle>
       <Image src={imageUrl} alt="profile" />
-      <Input type="file" accept="image/*" ref={profileRef} onChange={uploadFile} />
+      <Input
+        type="file"
+        accept="image/*"
+        ref={profileRef}
+        onChange={uploadFile}
+      />
       <EditButton onClick={handleSelectProfile} />
       <ToastContainer
         position="top-center"

@@ -13,12 +13,17 @@ function BookMarkItem({
   content = '내용',
   created = '#',
 }) {
-  const {user} = useAuthStore();
+  const { user } = useAuthStore();
 
   return (
     <Box to={src}>
       <BookMarkButtonWrapper>
-        <BookMarkButton notBookmarkImg={notbookmark} itemId={ItemId} userId={user} itemType='stack' />
+        <BookMarkButton
+          notBookmarkImg={notbookmark}
+          itemId={ItemId}
+          userId={user}
+          itemType="stack"
+        />
       </BookMarkButtonWrapper>
       <div>
         <Title>{title}</Title>
@@ -29,7 +34,7 @@ function BookMarkItem({
       </TextBox>
       <BottomBox>
         <span>{new Date(created).toISOString().split('T')[0]}</span>
-        <ArrowScrollDown width="1rem" height='1rem' color="white" />
+        <ArrowScrollDown width="1rem" height="1rem" color="white" />
       </BottomBox>
     </Box>
   );
@@ -47,7 +52,7 @@ const Box = styled(Link)`
   min-width: 16.25rem;
   height: 16.25rem;
   padding: 1.875rem;
-  border-radius: 0.9375rem;
+  border-radius: 15px;
   background: var(--bs-black-300);
   color: white;
 
@@ -55,14 +60,14 @@ const Box = styled(Link)`
     width: 15rem;
     min-width: 15rem;
     height: 15rem;
-    padding: 1.25rem
+    padding: 1.25rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
     width: 12.5rem;
     min-width: 12.5rem;
     height: 12.5rem;
-    padding: 1.25rem
+    padding: 1.25rem;
   }
 `;
 
@@ -97,7 +102,7 @@ const Author = styled.div`
   white-space: nowrap;
   overflow: hidden;
   padding-top: 0.875rem;
-  padding-bottom: 0.875rem
+  padding-bottom: 0.875rem;
 `;
 
 const TextBox = styled.div`

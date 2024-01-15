@@ -1,13 +1,12 @@
 import useBookmarksData from '@/api/useBookmarksData';
 import BookMarkItem from '@components/MyPage/BookMarkItem';
 
-
 function BookMarkListData() {
   const { data } = useBookmarksData();
 
   return (
     <>
-       {data &&
+      {data &&
         data.map((item) => (
           <BookMarkItem
             key={item.stack_digging.id}
@@ -20,7 +19,7 @@ function BookMarkListData() {
           />
         ))}
     </>
-  )
+  );
 }
 
-export default BookMarkListData
+export default BookMarkListData;

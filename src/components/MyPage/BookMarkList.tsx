@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import BookMarkListData from '@components/MyPage/BookMarkListData';
 
 function BookMarkList() {
-
-return (
+  return (
     <List>
       <BookMarkListData />
     </List>
@@ -18,10 +17,9 @@ const List = styled.div`
   gap: 1.875rem;
   padding: 3.125rem 0 3.125rem 3.125rem;
 
-  
   @media ${(props) => props.theme.device.tablet} {
     gap: 2.5rem;
-    padding: 0 0  2.5rem 2.5rem;
+    padding: 0 0 2.5rem 2.5rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
@@ -34,12 +32,12 @@ const List = styled.div`
 
   &::-webkit-scrollbar-thumb {
     background: var(--bs-black-900);
-    border-radius: 0.9375rem;
+    border-radius: 15px;
   }
 
   &::-webkit-scrollbar-track {
     background: #ddd;
-    border-radius: 0.9375rem;
+    border-radius: 15px;
     margin-top: 0.625rem;
   }
 `;

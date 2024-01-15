@@ -1,7 +1,5 @@
 function MyResumeDetailPage() {
-  return (
-    <div>MyResumeDetailPage</div>
-  )
+  return <div>MyResumeDetailPage</div>;
 }
 
-export default MyResumeDetailPage
+export default MyResumeDetailPage;

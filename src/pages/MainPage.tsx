@@ -86,7 +86,7 @@ const StyledIntroduction = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     padding: 0 0 1.875rem 0;
-    border-bottom: 0.15rem solid var(--bs-black-400);
+    border-bottom: 2.4px solid var(--bs-black-400);
     font-size: 3rem;
   }
 
@@ -114,7 +114,7 @@ const StyledTeamBox = styled.div`
   gap: 1.875rem;
   width: 60%;
   padding-left: 3.125rem;
-  border-left: 0.15rem solid var(--bs-black-400);
+  border-left: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     padding-left: 2.5rem;

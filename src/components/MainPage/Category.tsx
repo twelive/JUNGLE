@@ -23,7 +23,7 @@ function Category({
 
     if (categoryLink) {
       const pathname = categoryLink.href.slice(21);
-      setCurrentMenu(pathname);     
+      setCurrentMenu(pathname);
     }
   };
 
@@ -44,7 +44,7 @@ export default Category;
 
 const CommonLayout = styled.div`
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 `;
 
 const CategorySection = styled(CommonLayout)<{ $height: string }>`

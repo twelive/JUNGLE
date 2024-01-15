@@ -5,7 +5,7 @@ import getUserName from '@utils/getUserName';
 import ArrowClickLink from '@assets/common/arrow-clickLink.svg';
 
 function ResumeLink() {
-  const {userEmail} = useAuthStore();
+  const { userEmail } = useAuthStore();
 
   return (
     <FlexBox>
@@ -27,7 +27,7 @@ const FlexBox = styled.div`
   margin: 3.125rem 0;
   margin-left: auto;
   padding-left: 1.875rem;
-  border-left: 0.15rem solid var(--bs-black-400);
+  border-left: 2.4px solid var(--bs-black-400);
 
   h2 {
     min-width: 7.8125rem;
@@ -43,7 +43,7 @@ const FlexBox = styled.div`
     width: 100%;
     margin: 0;
     padding: 2.5rem 0;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
     border-left: none;
   }
 
@@ -53,7 +53,7 @@ const FlexBox = styled.div`
     width: 100%;
     margin: 0;
     padding: 1.875rem 0;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
     border-left: none;
   }
 `;

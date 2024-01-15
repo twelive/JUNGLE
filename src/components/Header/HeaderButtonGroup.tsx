@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import HeaderButton from '@components/Button/HeaderButton';
 import { useAuthStore } from '@store/useAuthStore';
 
-
 function HeaderButtonGroup() {
   const { handleLogout } = useAuthStore();
   return (
     <FlexBox>
       <HeaderButton
-        borderWeight="0.1875rem"
+        borderWeight="3px"
         backgroundColor="white"
         color="var(--bs-black-500)"
       >
@@ -27,7 +26,6 @@ const FlexBox = styled.div`
   align-items: center;
   gap: 1.25rem;
 
-  
   @media ${(props) => props.theme.device.tablet} {
     gap: 0.9375rem;
   }
