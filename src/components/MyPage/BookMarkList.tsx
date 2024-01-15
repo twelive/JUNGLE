@@ -19,7 +19,7 @@ const StyledBookMarkListContainer = styled.div`
 
   @media ${(props) => props.theme.device.tablet} {
     gap: 2.5rem;
-    padding: 0 0 2.5rem 2.5rem;
+    padding: 0 0 2rem 2rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {

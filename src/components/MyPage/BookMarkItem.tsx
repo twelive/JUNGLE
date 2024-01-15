@@ -53,8 +53,8 @@ const StyledBookMarkItemWrapper = styled(Link)`
   height: 16.25rem;
   padding: 1.875rem;
   border-radius: 0.9375rem;
-  background: var(--bs-black-300);
-  color: white;
+  background: white;
+  color: black;
 
   @media ${(props) => props.theme.device.tablet} {
     width: 15rem;
@@ -135,4 +135,8 @@ const StyledBottomBox = styled.div`
   align-items: center;
   text-align: center;
   margin-top: 0.9375rem;
+
+  span {
+    color: gray;
+  }
 `;
