@@ -20,7 +20,7 @@ function Profile() {
     if (!avatarFile) return null;
 
     try {
-      setImageUrl(user);
+      setImageUrl(URL.createObjectURL(avatarFile));
 
       const { data, error } = await supabase.storage
         .from('profile')
@@ -35,8 +35,6 @@ function Profile() {
 
       const imageUrl = getPbImageURL('profile', user);
       setImageUrl(imageUrl);
-
-      queryClient.setQueryData(['profileImageUrl', 'profile', user], imageUrl);
 
       toast.success('업로드 완료! 잠시 후 반영됩니다.', {
         position: 'top-center',
@@ -69,7 +67,7 @@ function Profile() {
     ['profileImageUrl', 'profile', user],
     () => getPbImageURL('profile', user),
     {
-      staleTime: 1000 * 60 * 5, // 5분
+      staleTime: 0,
       onSuccess: (data) => {
         setImageUrl(data);
       },
@@ -77,9 +75,9 @@ function Profile() {
   );
 
   return (
-    <Circle>
+    <StyledProfileWrapper>
       <Image src={imageUrl} alt="profile" />
-      <Input
+      <StyledInput
         type="file"
         accept="image/*"
         ref={profileRef}
@@ -87,13 +85,13 @@ function Profile() {
       />
       <EditButton onClick={handleSelectProfile} />
       <ToastContainer position="top-center" autoClose={3000} />
-    </Circle>
+    </StyledProfileWrapper>
   );
 }
 
 export default Profile;
 
-const Circle = styled.div`
+const StyledProfileWrapper = styled.div`
   position: relative;
   min-width: 15rem;
   min-height: 15rem;
@@ -132,6 +130,6 @@ const Image = styled.img`
   }
 `;
 
-const Input = styled.input`
+const StyledInput = styled.input`
   display: none;
 `;
