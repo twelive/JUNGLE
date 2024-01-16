@@ -20,7 +20,7 @@ function Profile() {
     if (!avatarFile) return null;
 
     try {
-      setImageUrl(URL.createObjectURL(avatarFile));
+      setImageUrl(URL.createObjectURL(avatarFile) || avatarFile.name);
 
       const { data, error } = await supabase.storage
         .from('profile')
@@ -33,8 +33,7 @@ function Profile() {
         throw new Error('storage 에러 발생');
       }
 
-      const imageUrl = getPbImageURL('profile', user);
-      setImageUrl(imageUrl);
+      setImageUrl(getPbImageURL('profile', user));
 
       toast.success('업로드 완료! 잠시 후 반영됩니다.', {
         position: 'top-center',

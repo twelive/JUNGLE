@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-interface TagButtonComponentProps {
-  title: string;
+interface WritingCategoryTagProps {
   key?: string;
   type?: 'button' | 'submit' | 'reset';
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -9,22 +8,20 @@ interface TagButtonComponentProps {
   children?: React.ReactNode;
 }
 
-function TagButtonComponent({
+function WritingCategoryTag({
   $isActive,
-  title,
   type = 'button',
   onClick,
   children,
-}: TagButtonComponentProps) {
+}: WritingCategoryTagProps) {
   return (
     <StyledTagButton $isActive={$isActive} onClick={onClick} type={type}>
-      {title}
       {children}
     </StyledTagButton>
   );
 }
 
-export default TagButtonComponent;
+export default WritingCategoryTag;
 
 const StyledTagButton = styled.button<{ $isActive?: boolean }>`
   ${(props) =>
@@ -35,6 +32,7 @@ const StyledTagButton = styled.button<{ $isActive?: boolean }>`
   padding-left: 0.9375rem;
   padding-right: 0.9375rem;
   height: 1.25rem;
+  width: 100%;
   border-radius: 0.625rem;
   margin: 0.3125rem;
   border: 0.5008px solid var(--bs-black-500);

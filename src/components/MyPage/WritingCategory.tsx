@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import useWrittingData from '@/api/useWrittingData';
 import ResumeCategory from '@components/MyPage/ResumeCategory';
+import WritingCategoryTag from '@components/MyPage/WritingCategoryTag';
 
 function WritingCategory() {
   const { data } = useWrittingData();
 
   return (
     <>
-      <h2 className="sr-only">작성글</h2>
+      <StyledHeading>작성글</StyledHeading>
+      <WritingCategoryTag>취업</WritingCategoryTag>
+      <WritingCategoryTag>기술디깅</WritingCategoryTag>
+      <WritingCategoryTag>커뮤니티</WritingCategoryTag>
       <StyledWritingContainer>
         {data &&
           data.map((category, index) => (
@@ -59,5 +63,14 @@ const StyledWritingWrapper = styled.div`
     height: 15rem;
     margin: 1rem 0.5rem;
     padding: 0.75rem;
+  }
+`;
+
+const StyledHeading = styled.h2`
+  margin-top: 2.25rem;
+
+  @media ${(props) => props.theme.device.mobile} {
+    margin-top: 1.875rem;
+    margin-bottom: 0.6rem;
   }
 `;
