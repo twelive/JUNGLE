@@ -7,17 +7,17 @@ function MyResumePage() {
     <>
       <Helmet>MyResumePage - JUNGLE</Helmet>
       <h1 className="sr-only">JUNGLE - 이력서 목록 페이지</h1>
-      <Layout>
+      <StyledMyResumeSection>
         <span>😿아직 준비되지 않은 페이지입니다.</span>
         <StyledLink to={'/main'}>메인으로 이동</StyledLink>
-      </Layout>
+      </StyledMyResumeSection>
     </>
   );
 }
 
 export default MyResumePage;
 
-const Layout = styled.section`
+const StyledMyResumeSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1.875rem;

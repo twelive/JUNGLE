@@ -8,26 +8,26 @@ function WritingCategory() {
   return (
     <>
       <h2 className="sr-only">작성글</h2>
-      <Layout>
+      <StyledWritingContainer>
         {data &&
           data.map((category, index) => (
-            <CategoryBox key={index}>
+            <StyledWritingWrapper key={index}>
               <Category
                 href={`/study/stack/detail/${category.id}`}
                 title={category.title || undefined}
                 context={category.text || undefined}
                 height={'19.375rem'}
               />
-            </CategoryBox>
+            </StyledWritingWrapper>
           ))}
-      </Layout>
+      </StyledWritingContainer>
     </>
   );
 }
 
 export default WritingCategory;
 
-const Layout = styled.div<{ $isBorder?: boolean }>`
+const StyledWritingContainer = styled.div<{ $isBorder?: boolean }>`
   display: flex;
   min-width: 40.625rem;
   overflow-x: scroll;
@@ -39,7 +39,7 @@ const Layout = styled.div<{ $isBorder?: boolean }>`
   }
 `;
 
-const CategoryBox = styled.div`
+const StyledWritingWrapper = styled.div`
   min-width: 17.5rem;
   width: 17.5rem;
   margin: 1.5625rem 3.125rem 1.5625rem 0;

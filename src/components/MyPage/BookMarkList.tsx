@@ -3,15 +3,15 @@ import BookMarkListData from '@components/MyPage/BookMarkListData';
 
 function BookMarkList() {
   return (
-    <List>
+    <StyledBookMarkListContainer>
       <BookMarkListData />
-    </List>
+    </StyledBookMarkListContainer>
   );
 }
 
 export default BookMarkList;
 
-const List = styled.div`
+const StyledBookMarkListContainer = styled.div`
   display: flex;
   overflow-x: auto;
   gap: 1.875rem;
@@ -32,12 +32,12 @@ const List = styled.div`
 
   &::-webkit-scrollbar-thumb {
     background: var(--bs-black-900);
-    border-radius: 15px;
+    border-radius: 0.9375rem;
   }
 
   &::-webkit-scrollbar-track {
     background: #ddd;
-    border-radius: 15px;
+    border-radius: 0.9375rem;
     margin-top: 0.625rem;
   }
 `;

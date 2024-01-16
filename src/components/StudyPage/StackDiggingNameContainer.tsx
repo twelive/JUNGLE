@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ArrowScrollDown from '@components/ArrowScrollDown';
 
 
-function StackDiggingNameSection({ src = '/study/stack/ListTable', length = 0 }) {
+function StackDiggingNameContainer({ src = '/study/stack/ListTable', length = 0 }) {
   
 
   return (
@@ -21,7 +21,7 @@ function StackDiggingNameSection({ src = '/study/stack/ListTable', length = 0 })
   );
 }
 
-export default StackDiggingNameSection;
+export default StackDiggingNameContainer;
 
 const ProfileBox = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const ProfileBox = styled.div`
   min-width: 13.75rem;
   margin: 3.125rem 0;
   padding-left: 2rem;
-  border-left: 0.15rem solid var(--bs-black-400);
+  border-left: 2.4px solid var(--bs-black-400);
 
 
 

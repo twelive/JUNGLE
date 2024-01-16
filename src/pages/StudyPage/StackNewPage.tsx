@@ -150,7 +150,7 @@ padding-right: 0;
 }
 
 select {
-  border: 0.0625rem solid black;
+  border: 1px solid black;
 
 
 }
@@ -160,7 +160,7 @@ const FormArea = styled.form`
 margin: 5%;
   display: flex;
   flex-direction: column;
-  border: 0.0625rem solid black; 
+  border: 1px solid black; 
   border-radius: 2.1875rem;
   padding: 1.25rem;
 min-height: 25rem;
@@ -209,7 +209,7 @@ const Input = styled.input`
 width: 100%;
  margin-top: 0.3125rem;
     padding: 0.3125rem;
-    border: 0.0625rem solid black;
+    border: 1px solid black;
      @media ${(props) => props.theme.device.mobile} {
     padding: 0rem;
 
@@ -225,7 +225,7 @@ resize: none;
 box-sizing: border-box;
  margin-top: 0.3125rem;
     padding: 0.3125rem;
-    border: 0.0625rem solid black;
+    border: 1px solid black;
     padding: 0.625rem;
 
 `;
@@ -248,7 +248,7 @@ const ButtonArea = styled.div`
 `;
 const Button = styled.button`
 margin: 0.125rem;
-border: 0.0625rem solid black;
+border: 1px solid black;
 padding-top: 0.5%;
 padding-bottom: 0.5%;
 border-radius: 0.3125rem;

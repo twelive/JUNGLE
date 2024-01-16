@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 function HeaderTitle({ children = '헤더타이틀.' }) {
-  return <Title>{children}</Title>;
+  return <StyledHeading>{children}</StyledHeading>;
 }
 
 export default HeaderTitle;
 
-const Title = styled.h1`
+const StyledHeading = styled.h1`
   margin: 0;
   font-size: 7.5rem;
   font-weight: bold;

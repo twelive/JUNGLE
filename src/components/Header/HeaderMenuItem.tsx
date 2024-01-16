@@ -21,7 +21,7 @@ function HeaderMenuItem({
   };
 
   return (
-    <FlexBox>
+    <StyledFlexWrapper>
       {isEvent && <HeaderMenuItemEvent />}
       <StyledLink
         to={path}
@@ -30,13 +30,13 @@ function HeaderMenuItem({
       >
         {children}
       </StyledLink>
-    </FlexBox>
+    </StyledFlexWrapper>
   );
 }
 
 export default HeaderMenuItem;
 
-const FlexBox = styled.div`
+const StyledFlexWrapper = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;

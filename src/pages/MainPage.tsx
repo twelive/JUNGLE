@@ -15,17 +15,17 @@ function MainPage() {
       <h1 className="sr-only">JUNGLE</h1>
       <CategorySection />
       <StyledIntroductionSection>
-        <StyledIntroduction>
+        <StyledIntroductionContainer>
           취업을 헤쳐나가는 용감한 사자들, JUNGLER
           <div>
             <Link to={'/introduction'}>
               <ArrowScrollDown color="var(--bs-black-400)" />
             </Link>
           </div>
-        </StyledIntroduction>
-        <StyledTeamBox>
-          <StyledTeamTitle>JUNGLE</StyledTeamTitle>
-          <StyledTeamContent>
+        </StyledIntroductionContainer>
+        <StyledTeamContainter>
+          <StyledSpan>JUNGLE</StyledSpan>
+          <StyledTeamWrapper>
             <StyledButton
               type="button"
               onClick={() =>
@@ -45,8 +45,8 @@ function MainPage() {
             >
               <img src={figmaLogo} alt="figma" />
             </StyledButton>
-          </StyledTeamContent>
-        </StyledTeamBox>
+          </StyledTeamWrapper>
+        </StyledTeamContainter>
       </StyledIntroductionSection>
     </>
   );
@@ -70,7 +70,7 @@ const StyledIntroductionSection = styled.div`
   }
 `;
 
-const StyledIntroduction = styled.div`
+const StyledIntroductionContainer = styled.div`
   position: relative;
   width: 100%;
   align-self: center;
@@ -107,7 +107,7 @@ const StyledIntroduction = styled.div`
   }
 `;
 
-const StyledTeamBox = styled.div`
+const StyledTeamContainter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -126,12 +126,12 @@ const StyledTeamBox = styled.div`
   }
 `;
 
-const StyledTeamTitle = styled.span`
+const StyledSpan = styled.span`
   font-size: 3rem;
   font-weight: 600;
 `;
 
-const StyledTeamContent = styled.p`
+const StyledTeamWrapper = styled.p`
   margin-left: auto;
   font-size: 2rem;
 `;

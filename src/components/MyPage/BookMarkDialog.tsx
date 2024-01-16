@@ -24,19 +24,19 @@ function BookMarkDialog() {
   return (
     <>
       <Dimmed onClick={handleClickModal} />
-      <Modal>
+      <StyledModalOuter>
         <h2>북마크 목록</h2>
-        <CancelButton
+        <StyledCancelButtonContainer
           onClick={handleClickModal}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           <CancelImg fill={isHovered ? 'black' : '#666'} />
-        </CancelButton>
-        <List>
+        </StyledCancelButtonContainer>
+        <StyledBookMarkListWrapper>
           <BookMarkListData />
-        </List>
-      </Modal>
+        </StyledBookMarkListWrapper>
+      </StyledModalOuter>
     </>
   );
 }
@@ -54,7 +54,7 @@ const Dimmed = styled.div`
   opacity: 0.8;
 `;
 
-const Modal = styled.div`
+const StyledModalOuter = styled.div`
   /* 중앙 정렬 */
   position: absolute;
   top: 15vh;
@@ -79,11 +79,11 @@ const Modal = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     background: var(--bs-black-900);
-    border-radius: 15px;
+    border-radius: 0.9375rem;
   }
   &::-webkit-scrollbar-track {
     background: #ddd;
-    border-radius: 15px;
+    border-radius: 0.9375rem;
     margin: 1.875rem;
   }
 
@@ -116,7 +116,7 @@ const Modal = styled.div`
   }
 `;
 
-const CancelButton = styled.button`
+const StyledCancelButtonContainer = styled.button`
   /* Reset CSS */
   border: none;
   background-color: transparent;
@@ -141,7 +141,7 @@ const CancelButton = styled.button`
   }
 `;
 
-const List = styled.div`
+const StyledBookMarkListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

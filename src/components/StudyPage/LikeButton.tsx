@@ -74,12 +74,12 @@ localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
   }, [userId, itemId, itemType]);
 
   return (
-    <LikesWrapper>
-      <Button onClick={updateLikes}>
-        <Img src={toggle ? likes : dislikes} alt={toggle ? '좋아요' : '좋아요 취소'}></Img>
-      </Button>
-      <Likes>{likeCounter}</Likes>
-    </LikesWrapper>
+    <StyledLikesDiv>
+      <StyledLikeClickButton onClick={updateLikes}>
+        <StyledLikeImg src={toggle ? likes : dislikes} alt={toggle ? '좋아요' : '좋아요 취소'}></StyledLikeImg>
+      </StyledLikeClickButton>
+      <StyledLikesCountP>{likeCounter}</StyledLikesCountP>
+    </StyledLikesDiv>
   )
 }
 
@@ -87,7 +87,7 @@ localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
 
 export default LikeButton
 
-const LikesWrapper = styled.div`
+const StyledLikesDiv = styled.div`
 display: flex;
 flex-direction: row;
 gap: 0.3125rem;
@@ -97,7 +97,7 @@ align-items: center;
 `;
 
 
-const Button = styled.button`
+const StyledLikeClickButton = styled.button`
   width: auto;
   height: auto;
   border: none;
@@ -106,11 +106,11 @@ const Button = styled.button`
 
 `;
 
-const Img = styled.img`
+const StyledLikeImg = styled.img`
   width: 0.9375rem;
   height: 0.9375rem;
 `;
 
-const Likes = styled.p`
+const StyledLikesCountP = styled.p`
   font-size: small;
 `;

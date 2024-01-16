@@ -8,18 +8,18 @@ function ResumeLink() {
   const { userEmail } = useAuthStore();
 
   return (
-    <FlexBox>
+    <StyledResumeContainer>
       <h2>이력서</h2>
       <Link to={`/mypage/${getUserName(userEmail)}/resume`}>
         <img src={ArrowClickLink} />
       </Link>
-    </FlexBox>
+    </StyledResumeContainer>
   );
 }
 
 export default ResumeLink;
 
-const FlexBox = styled.div`
+const StyledResumeContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,7 +27,7 @@ const FlexBox = styled.div`
   margin: 3.125rem 0;
   margin-left: auto;
   padding-left: 1.875rem;
-  border-left: 2.4px solid var(--bs-black-400);
+  border-left: 0.15rem solid var(--bs-black-400);
 
   h2 {
     min-width: 7.8125rem;

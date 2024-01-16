@@ -33,10 +33,10 @@ function IntroductionProjectPage() {
       </Helmet>
       <section>
         <h1 className="sr-only">프로젝트 소개 페이지</h1>
-        <TeamSection>
-          <TeamName>Twelive</TeamName>
-          <Content>취업이라는 JUNGLE을 헤쳐나가는 용감한 사자들.</Content>
-        </TeamSection>
+        <StyledTeamContainer>
+          <StyledHeading>Twelive</StyledHeading>
+          <StyledSpan>취업이라는 JUNGLE을 헤쳐나가는 용감한 사자들.</StyledSpan>
+        </StyledTeamContainer>
         {projectData.map((project) => (
           <ProjectExplanation
             src={project.src}
@@ -60,12 +60,12 @@ function IntroductionProjectPage() {
 
 export default IntroductionProjectPage;
 
-const TeamSection = styled.div`
+const StyledTeamContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.875rem;
   padding: 3.125rem 0;
-  border-bottom: 2.4px solid var(--bs-black-400);
+  border-bottom: 0.15rem solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     padding: 2.5rem 0;
@@ -75,7 +75,7 @@ const TeamSection = styled.div`
   }
 `;
 
-const TeamName = styled.h2`
+const StyledHeading = styled.h2`
   font-size: 6.25rem;
   font-weight: bold;
   letter-spacing: 0.9375rem;
@@ -88,7 +88,7 @@ const TeamName = styled.h2`
   }
 `;
 
-const Content = styled.span`
+const StyledSpan = styled.span`
   font-size: 2rem;
 
   @media ${(props) => props.theme.device.tablet} {

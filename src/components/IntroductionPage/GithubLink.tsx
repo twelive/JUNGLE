@@ -3,20 +3,20 @@ import styled from 'styled-components';
 
 function GithubLink({ href = '#', isVisibility = false }) {
   return (
-    <Github
+    <StyledLink
       to={href}
       target="_blank"
       rel="noopener noreferrer"
       $isVisibility={isVisibility}
     >
       GithubLink
-    </Github>
+    </StyledLink>
   );
 }
 
 export default GithubLink;
 
-const Github = styled(Link)<{ $isVisibility: boolean }>`
+const StyledLink = styled(Link)<{ $isVisibility: boolean }>`
   /* reset CSS */
   text-decoration: none;
   /* position */

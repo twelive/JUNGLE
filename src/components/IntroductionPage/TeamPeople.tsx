@@ -20,24 +20,24 @@ function TeamPeople({
   };
 
   return (
-    <Member>
+    <StyledMemberWrapper>
       <button
         type="button"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-        <MemberImg src={src} />
-        <MemberName>{name}</MemberName>
-        <MemberIntroduction>{introduction}</MemberIntroduction>
+        <StyledImg src={src} />
+        <StyledStrong>{name}</StyledStrong>
+        <StyledP>{introduction}</StyledP>
       </button>
       <GithubLink href={getGithubLink(src)} isVisibility={isHoverd} />
-    </Member>
+    </StyledMemberWrapper>
   );
 }
 
 export default TeamPeople;
 
-const Member = styled.li`
+const StyledMemberWrapper = styled.li`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +60,7 @@ const Member = styled.li`
   }
 `;
 
-const MemberImg = styled.img`
+const StyledImg = styled.img`
   width: 100%;
   object-fit: contain;
 
@@ -72,7 +72,7 @@ const MemberImg = styled.img`
   }
 `;
 
-const MemberName = styled.strong`
+const StyledStrong = styled.strong`
   display: inline-block;
   padding: 0.6875rem 1.125rem;
   border-radius: 1.875rem;
@@ -90,7 +90,7 @@ const MemberName = styled.strong`
   }
 `;
 
-const MemberIntroduction = styled.p`
+const StyledP = styled.p`
   margin-top: 1.875rem;
   color: var(--bs-black-200);
   text-align: center;

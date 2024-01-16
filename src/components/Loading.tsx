@@ -2,13 +2,13 @@ import styled, { keyframes } from 'styled-components';
 
 const Loading = () => {
   return (
-    <Layout>
-      <Container>
+    <StyledLoadingContainer>
+      <StyledTextWrapper>
         Load&nbsp;ng
         <Before />
         <After />
-      </Container>
-    </Layout>
+      </StyledTextWrapper>
+    </StyledLoadingContainer>
   );
 };
 
@@ -53,7 +53,7 @@ const animloader_1 = keyframes`
   }
 `;
 
-const Layout = styled.div`
+const StyledLoadingContainer = styled.div`
   position: absolute;
   top: 45%;
   left: 50%;
@@ -61,7 +61,7 @@ const Layout = styled.div`
   z-index: 2;
 `;
 
-const Container = styled.span`
+const StyledTextWrapper = styled.span`
   // Reset CSS
   font-family:
     'Pretendard Variable',

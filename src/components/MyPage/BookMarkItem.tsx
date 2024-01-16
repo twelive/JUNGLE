@@ -16,33 +16,33 @@ function BookMarkItem({
   const { user } = useAuthStore();
 
   return (
-    <Box to={src}>
-      <BookMarkButtonWrapper>
+    <StyledBookMarkItemWrapper to={src}>
+      <StyledButtonBox>
         <BookMarkButton
           notBookmarkImg={notbookmark}
           itemId={ItemId}
           userId={user}
           itemType="stack"
         />
-      </BookMarkButtonWrapper>
+      </StyledButtonBox>
       <div>
-        <Title>{title}</Title>
+        <StyledTitleSpan>{title}</StyledTitleSpan>
       </div>
-      <Author>{author}</Author>
-      <TextBox>
-        <Content>{content}</Content>
-      </TextBox>
-      <BottomBox>
+      <StyledAuthorBox>{author}</StyledAuthorBox>
+      <StyledTextBox>
+        <StyledContentSpan>{content}</StyledContentSpan>
+      </StyledTextBox>
+      <StyledBottomBox>
         <span>{new Date(created).toISOString().split('T')[0]}</span>
         <ArrowScrollDown width="1rem" height="1rem" color="white" />
-      </BottomBox>
-    </Box>
+      </StyledBottomBox>
+    </StyledBookMarkItemWrapper>
   );
 }
 
 export default BookMarkItem;
 
-const Box = styled(Link)`
+const StyledBookMarkItemWrapper = styled(Link)`
   text-decoration-line: none;
   position: relative;
   display: flex;
@@ -52,7 +52,7 @@ const Box = styled(Link)`
   min-width: 16.25rem;
   height: 16.25rem;
   padding: 1.875rem;
-  border-radius: 15px;
+  border-radius: 0.9375rem;
   background: var(--bs-black-300);
   color: white;
 
@@ -71,14 +71,14 @@ const Box = styled(Link)`
   }
 `;
 
-const BookMarkButtonWrapper = styled.div`
+const StyledButtonBox = styled.div`
   z-index: 1;
   position: absolute;
   right: 0.3125rem;
   top: 0.75rem;
 `;
 
-const Title = styled.span`
+const StyledTitleSpan = styled.span`
   display: block;
   font-size: 2rem;
   font-weight: 600;
@@ -95,7 +95,7 @@ const Title = styled.span`
   }
 `;
 
-const Author = styled.div`
+const StyledAuthorBox = styled.div`
   width: 100%;
   line-clamp: 1;
   text-overflow: ellipsis;
@@ -105,7 +105,7 @@ const Author = styled.div`
   padding-bottom: 0.875rem;
 `;
 
-const TextBox = styled.div`
+const StyledTextBox = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -116,7 +116,7 @@ const TextBox = styled.div`
   align-self: center;
 `;
 
-const Content = styled.span`
+const StyledContentSpan = styled.span`
   display: block;
   font-size: 1.5rem;
 
@@ -129,7 +129,7 @@ const Content = styled.span`
   }
 `;
 
-const BottomBox = styled.div`
+const StyledBottomBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

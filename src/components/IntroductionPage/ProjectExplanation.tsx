@@ -9,34 +9,34 @@ function ProjectExplanation({
   plus = '추후 구현하고 싶은 기능',
 }) {
   return (
-    <Layout>
-      <ProjectImg src={src} />
+    <StyledExplanationWrapper>
+      <StyledImg src={src} />
       <div>
-        <ProjectName>{projectName}</ProjectName>
-        <Content>
+        <StyledHeading>{projectName}</StyledHeading>
+        <StyledContentBox>
           <dt>기획 기간</dt>
           <dd>{planningDate}</dd>
-        </Content>
-        <Content>
+        </StyledContentBox>
+        <StyledContentBox>
           <dt>개발 기간</dt>
           <dd>{developingDate}</dd>
-        </Content>
-        <Content>
+        </StyledContentBox>
+        <StyledContentBox>
           <dt>소개</dt>
           <dd>{review}</dd>
-        </Content>
-        <Content>
+        </StyledContentBox>
+        <StyledContentBox>
           <dt>추후 계획</dt>
           <dd>{plus}</dd>
-        </Content>
+        </StyledContentBox>
       </div>
-    </Layout>
+    </StyledExplanationWrapper>
   );
 }
 
 export default ProjectExplanation;
 
-const Layout = styled.div`
+const StyledExplanationWrapper = styled.div`
   display: flex;
   gap: 1.875rem;
   align-items: center;
@@ -58,7 +58,7 @@ const Layout = styled.div`
   }
 `;
 
-const ProjectImg = styled.img`
+const StyledImg = styled.img`
   width: 40%;
   max-width: 15.625rem;
   margin-bottom: auto;
@@ -73,7 +73,7 @@ const ProjectImg = styled.img`
   }
 `;
 
-const ProjectName = styled.h3`
+const StyledHeading = styled.h3`
   margin-bottom: 1.875rem;
   font-size: 2.5rem;
   font-weight: 600;
@@ -88,7 +88,7 @@ const ProjectName = styled.h3`
   }
 `;
 
-const Content = styled.dl`
+const StyledContentBox = styled.dl`
   margin: 1rem 0;
   font-size: 2rem;
 

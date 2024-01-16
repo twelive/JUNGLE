@@ -2,22 +2,22 @@ import styled from 'styled-components';
 
 function PointSection({ point = 0 }) {
   return (
-    <PointBox>
+    <StyledPointContainer>
       <h2>활동 포인트</h2>
-      <PointContainer>
-        <Text>POINT</Text>
-        <InnerBox>
-          <PointText>{point}</PointText>
-          <Text>P</Text>
-        </InnerBox>
-      </PointContainer>
-    </PointBox>
+      <StyledPointWrapper>
+        <StyledSpan>POINT</StyledSpan>
+        <StyledInnerBox>
+          <StyledPointSpan>{point}</StyledPointSpan>
+          <StyledSpan>P</StyledSpan>
+        </StyledInnerBox>
+      </StyledPointWrapper>
+    </StyledPointContainer>
   );
 }
 
 export default PointSection;
 
-const PointBox = styled.div`
+const StyledPointContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -36,7 +36,7 @@ const PointBox = styled.div`
   }
 `;
 
-const PointContainer = styled.div`
+const StyledPointWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -54,7 +54,7 @@ const PointContainer = styled.div`
   }
 `;
 
-const InnerBox = styled.div`
+const StyledInnerBox = styled.div`
   display: flex;
   padding-left: 1.25rem;
   align-items: center;
@@ -65,7 +65,7 @@ const InnerBox = styled.div`
   }
 `;
 
-const Text = styled.span`
+const StyledSpan = styled.span`
   text-align: center;
   font-size: 4.375rem;
   font-weight: 700;
@@ -80,7 +80,7 @@ const Text = styled.span`
   }
 `;
 
-const PointText = styled(Text)`
+const StyledPointSpan = styled(StyledSpan)`
   text-align: center;
   font-size: 3.75rem;
   font-weight: 600;

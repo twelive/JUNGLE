@@ -7,15 +7,15 @@ function Schedule({
 }) {
   return (
     <>
-      <Heading $isBorder={isBorder}>{title}</Heading>
-      <Text>{children}</Text>
+      <StyledHeading $isBorder={isBorder}>{title}</StyledHeading>
+      <StyledP>{children}</StyledP>
     </>
   );
 }
 
 export default Schedule;
 
-const Heading = styled.h2<{ $isBorder: boolean }>`
+const StyledHeading = styled.h2<{ $isBorder: boolean }>`
   font-size: 2.75rem;
   font-weight: 600;
   padding: 3.125rem 0;
@@ -32,7 +32,7 @@ const Heading = styled.h2<{ $isBorder: boolean }>`
   }
 `;
 
-const Text = styled.p`
+const StyledP = styled.p`
   font-size: 2rem;
   margin-bottom: 3.125rem;
   line-height: 180%;

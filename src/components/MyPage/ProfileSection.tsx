@@ -7,20 +7,20 @@ function ProfileSection() {
   const { userEmail } = useAuthStore();
 
   return (
-    <ProfileBox>
+    <StyledProfileContainer>
       <h2 className="sr-only">프로필</h2>
       <Profile />
-      <ProfileText>
+      <StyledP>
         어서오세요 {getUserName(userEmail)}님! <br /> 지금까지의 활동내역을
         보여드립니다.
-      </ProfileText>
-    </ProfileBox>
+      </StyledP>
+    </StyledProfileContainer>
   );
 }
 
 export default ProfileSection;
 
-const ProfileBox = styled.div`
+const StyledProfileContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.875rem;
@@ -42,7 +42,7 @@ const ProfileBox = styled.div`
   }
 `;
 
-const ProfileText = styled.p`
+const StyledP = styled.p`
   min-width: 290px;
   font-size: 2.125rem;
   font-weight: 600;

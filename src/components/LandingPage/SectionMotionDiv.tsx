@@ -7,7 +7,7 @@ interface MotionComponentProps {
   animation: boolean;
 }
 
-const MotionComponent = ({
+const SectionMotionDiv = ({
   variants,
   children,
   animation,
@@ -21,4 +21,4 @@ const MotionComponent = ({
   </motion.div>
 );
 
-export default MotionComponent;
+export default SectionMotionDiv;

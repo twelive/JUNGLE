@@ -7,9 +7,9 @@ function CategorySection() {
   const { userEmail } = useAuthStore();
 
   return (
-    <CategoryBox>
-      <TopLayout>
-        <RightLayout>
+    <StyledCategorySection>
+      <StyledTopOuter>
+        <StyledRightContainer>
           <Category
             href={`/mypage/${getUserName(userEmail)}`}
             title="내 활동"
@@ -17,28 +17,28 @@ function CategorySection() {
               userEmail
             )}님! 지금까지의 활동내역을 보여드립니다.`}
           />
-        </RightLayout>
+        </StyledRightContainer>
         <Category
           href="/job"
           title="취업"
           context="취업이 걱정되시나요? 취업·면접·코딩 테스트로 대비하세요."
         />
-      </TopLayout>
-      <Layout>
-        <RightLayout>
+      </StyledTopOuter>
+      <StyledBottomOuter>
+        <StyledRightContainer>
           <Category
             href="/community"
             title="커뮤니티"
             context="혼자 준비하기 막막하시나요? 프로젝트·스터디로 함께해요."
           />
-        </RightLayout>
+        </StyledRightContainer>
         <Category
           href="/study"
           title="공부"
           context="도서 추천과 기술디깅을 통해 정보를 쌓아봐요."
         />
-      </Layout>
-    </CategoryBox>
+      </StyledBottomOuter>
+    </StyledCategorySection>
   );
 }
 
@@ -48,7 +48,7 @@ const CommonLayout = styled.div`
   display: flex;
 `;
 
-const CategoryBox = styled(CommonLayout)`
+const StyledCategorySection = styled(CommonLayout)`
   padding: 3.125rem 0;
   flex-direction: column;
   justify-content: space-between;
@@ -65,7 +65,7 @@ const CategoryBox = styled(CommonLayout)`
   }
 `;
 
-const Layout = styled(CommonLayout)`
+const StyledBottomOuter = styled(CommonLayout)`
   height: 18.75rem;
   justify-content: center;
   align-items: flex-start;
@@ -84,7 +84,7 @@ const Layout = styled(CommonLayout)`
   }
 `;
 
-const TopLayout = styled(Layout)`
+const StyledTopOuter = styled(StyledBottomOuter)`
   padding-top: 0rem;
   padding-bottom: 3.125rem;
   border-bottom: 2.4px solid var(--bs-black-400);
@@ -97,7 +97,7 @@ const TopLayout = styled(Layout)`
   }
 `;
 
-const RightLayout = styled(CommonLayout)`
+const StyledRightContainer = styled(CommonLayout)`
   padding-right: 3.125rem;
   width: 100%;
   gap: 0.625rem;

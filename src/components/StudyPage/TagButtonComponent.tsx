@@ -24,10 +24,10 @@ function TagButtonComponent({
      
 
 
-      <TagButton $isActive={$isActive} onClick={onClick} type={type}>
+      <StyledTagButton $isActive={$isActive} onClick={onClick} type={type}>
         {title}
         {children}
-      </TagButton>
+      </StyledTagButton>
 
      
    
@@ -41,7 +41,7 @@ function TagButtonComponent({
 
 export default TagButtonComponent
 
-const TagButton = styled.button<{ $isActive?: boolean }> `
+const StyledTagButton = styled.button<{ $isActive?: boolean }> `
   ${props => props.$isActive ? 'background-color: white; font-weight: 700; box-shadow: 0.1875rem 0.1875rem 0.125rem 0.0625rem rgba(137, 137, 138, 0.2); ' : 'background-color: black; color: white;'}
   border: none;
     padding-left: 0.9375rem;
@@ -49,7 +49,7 @@ const TagButton = styled.button<{ $isActive?: boolean }> `
   height: 1.25rem;
   border-radius: 0.625rem;
   margin: 0.3125rem;
-  border: 0.0313rem solid var(--bs-black-500);
+  border: 0.5008px solid var(--bs-black-500);
   box-sizing: border-box;
   @media ${(props) => props.theme.device.mobile} { 
     font-size: 0.5rem;
