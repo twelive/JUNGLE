@@ -47,75 +47,7 @@ const JobInterviewCreatePage: React.FC = () => {
           value={title}
           onChange={handleTitleChange}
         />
-        <FontAwecomeStyles />
-        <StyledOptionSection className="options">
-          <StyledOptionWrapper className="option-box">
-            <StyledOptionButton id="bold" className="option-button format">
-              <i className="fa-solid fa-bold"></i>
-            </StyledOptionButton>
-            <StyledOptionButton
-              id="insertOrderedList"
-              className="option-button"
-            >
-              <div className="fa-solid fa-list-ol"></div>
-            </StyledOptionButton>
-            <StyledOptionButton
-              id="insertUnorderedList"
-              className="option-button"
-            >
-              <i className="fa-solid fa-list"></i>
-            </StyledOptionButton>
-          </StyledOptionWrapper>
 
-          <StyledOptionWrapper className="option-box">
-            <StyledOptionButton
-              id="justifyLeft"
-              className="option-button align"
-            >
-              <i className="fa-solid fa-align-left"></i>
-            </StyledOptionButton>
-            <StyledOptionButton
-              id="justifyCenter"
-              className="option-button align"
-            >
-              <i className="fa-solid fa-align-center"></i>
-            </StyledOptionButton>
-            <StyledOptionButton
-              id="justifyRight"
-              className="option-button align"
-            >
-              <i className="fa-solid fa-align-right"></i>
-            </StyledOptionButton>
-            <StyledOptionButton
-              id="justifyFull"
-              className="option-button align"
-            >
-              <i className="fa-solid fa-align-justify"></i>
-            </StyledOptionButton>
-            <StyledOptionButton id="indent" className="option-button spacing">
-              <i className="fa-solid fa-indent"></i>
-            </StyledOptionButton>
-            <StyledOptionButton id="outdent" className="option-button spacing">
-              <i className="fa-solid fa-outdent"></i>
-            </StyledOptionButton>
-          </StyledOptionWrapper>
-          <StyledOptionWrapper className="option-box">
-            <div className="input-wrapper">
-              <StyledOptionInput
-                type="color"
-                id="foreColor"
-                className="adv-option-button"
-              />
-            </div>
-            <div className="input-wrapper">
-              <StyledOptionInput
-                type="color"
-                id="backColor"
-                className="adv-option-button"
-              />
-            </div>
-          </StyledOptionWrapper>
-        </StyledOptionSection>
         <StyledTextArea
           placeholder="내용을 입력하세요"
           value={content}
@@ -132,11 +64,6 @@ const JobInterviewCreatePage: React.FC = () => {
 };
 
 export default JobInterviewCreatePage;
-
-const FontAwecomeStyles = styled.link.attrs({
-  rel: 'stylesheet',
-  href: 'http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-})``;
 
 const StyledMainSection = styled.div`
   display: flex;
@@ -182,41 +109,4 @@ const StyledPreviewTitle = styled.p`
 
 const StyledPreviewText = styled.p`
   font-size: 1.25rem;
-`;
-
-const StyledOptionSection = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  gap: 15px;
-`;
-
-const StyledOptionWrapper = styled.div`
-  display: flex;
-  gap: 15px;
-`;
-
-const StyledOptionButton = styled.button`
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 3px;
-  border: none;
-  background-color: #fff;
-  outline: none;
-  color: #020929;
-  cursor: pointer;
-`;
-
-const StyledOptionInput = styled.input`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: transparent;
-  width: 40px;
-  height: 28px;
-  border: none;
-  cursor: pointer;
 `;
