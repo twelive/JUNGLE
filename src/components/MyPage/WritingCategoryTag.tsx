@@ -32,7 +32,6 @@ const StyledTagButton = styled.button<{ $isActive?: boolean }>`
   padding-left: 0.9375rem;
   padding-right: 0.9375rem;
   height: 1.25rem;
-  width: 100%;
   border-radius: 0.625rem;
   margin: 0.3125rem;
   border: 0.5008px solid var(--bs-black-500);
