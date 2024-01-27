@@ -28,6 +28,9 @@ const JobInterviewCreatePage = lazy(
 const StudyPage = lazy(() => import('@pages/StudyPage/StudyPage'));
 const MyPage = lazy(() => import('@pages/MyPage/MyPage'));
 const MyResumePage = lazy(() => import('@pages/MyPage/MyResumePage'));
+const MyResumeDetailPage = lazy(
+  () => import('@pages/MyPage/MyResumeDetailPage')
+);
 const CommunityPage = lazy(() => import('@pages/CommunityPage/CommunityPage'));
 const CommunityCreatePage = lazy(
   () => import('@/pages/CommunityPage/CommunityCreatePage')
@@ -45,8 +48,6 @@ const ErrorPage = lazy(() => import('@pages/ErrorPage'));
 const StackDetailPage = lazy(() => import('@pages/StudyPage/StackDetailPage'));
 const StackListlPage = lazy(() => import('@pages/StudyPage/StackListlPage'));
 const StackNewPage = lazy(() => import('@pages/StudyPage/StackNewPage'));
-
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -70,6 +71,7 @@ const router = createBrowserRouter(
       <Route path="study" element={<StudyPage />} />
       <Route path="mypage/:userId" element={<MyPage />} />
       <Route path="mypage/:userId/resume" element={<MyResumePage />} />
+      <Route path="/mypage/resume/newpage" element={<MyResumeDetailPage />} />
       <Route path="community" element={<CommunityPage />} />
       <Route
         path="community/communitycreate"
