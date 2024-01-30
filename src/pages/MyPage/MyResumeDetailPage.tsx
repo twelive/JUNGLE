@@ -37,7 +37,9 @@ function MyResumeDetailPage() {
   };
 
   const titleRef = useRef<HTMLInputElement>(null);
-  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const portfolioRef = useRef<HTMLInputElement>(null);
+  const projectRef = useRef<HTMLTextAreaElement>(null);
+  const activitiesRef = useRef<HTMLTextAreaElement>(null);
   const SecureEmail = userEmail.replace(/@.*/, '');
   const debouncedSetTitle = debounce((value: string) => setTitle(value), 50);
   const debouncedSetContent = debounce(
@@ -47,21 +49,25 @@ function MyResumeDetailPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const title = titleRef.current?.value;
-    const content = contentRef.current?.value;
+    const portfolio = portfolioRef.current?.value;
+    const project = projectRef.current?.value;
+    const activities = activitiesRef.current?.value;
 
-    if (title && content && userId && userEmail) {
+    if (title && portfolio && userId && userEmail) {
       const data = {
         title,
-        text: content,
+        portfolio,
+        project,
+        activities,
         user_id: userId,
         user_email: userEmail,
       };
 
       try {
-        await createData('stack_digging', data);
-        toast.success('작성 완료 👌');
+        await createData('resume', data);
+        toast.success(`작성 완료 👌 ${stack}`);
         setTimeout(() => {
-          navigate(`/study/stack/ListTable`);
+          navigate(`/mypage/${SecureEmail}/resume`);
         }, 3000);
       } catch (error) {
         toast.error('작성 실패 😞');
@@ -71,14 +77,16 @@ function MyResumeDetailPage() {
 
   const handleReset = () => {
     titleRef.current!.value = '';
-    contentRef.current!.value = '';
+    portfolioRef.current!.value = '';
+    projectRef.current!.value = '';
+    activitiesRef.current!.value = '';
   };
 
   return (
     <>
       <Helmet>createNew ResumePage</Helmet>
       <NewOuter>
-        <TitleArea>새글 작성</TitleArea>
+        <TitleArea>이력서 작성</TitleArea>
         <FormArea onSubmit={handleSubmit}>
           <Label>
             <AnyTextBox>
@@ -90,13 +98,21 @@ function MyResumeDetailPage() {
               />
             </AnyTextBox>
           </Label>
+          <Label>
+            <AnyTextBox>
+              <Author>포트폴리오</Author>
+              <Input
+                type="text"
+                ref={titleRef}
+                onChange={(e) => debouncedSetTitle(e.target.value)}
+              />
+            </AnyTextBox>
+            <StyledAddButton type="button">+ 추가</StyledAddButton>
+          </Label>
 
           <Label>
             <StyledToggleButton onClick={handleStackClick}>
               주요 기술 스택
-            </StyledToggleButton>
-            <StyledToggleButton onClick={handleStackClick}>
-              포트폴리오
             </StyledToggleButton>
             <StyledToggleButton onClick={handleStackClick}>
               자격증/외국어
@@ -112,14 +128,14 @@ function MyResumeDetailPage() {
           <Label>
             <div>주요 프로젝트</div>
             <Textarea
-              ref={contentRef}
+              ref={projectRef}
               onChange={(e) => debouncedSetContent(e.target.value)}
             />
           </Label>
           <Label>
             <div>활동</div>
             <Textarea
-              ref={contentRef}
+              ref={activitiesRef}
               onChange={(e) => debouncedSetContent(e.target.value)}
             />
           </Label>
@@ -130,7 +146,6 @@ function MyResumeDetailPage() {
             </Button>
           </ButtonArea>
         </FormArea>
-        <CommentArea></CommentArea>
       </NewOuter>
     </>
   );
@@ -172,8 +187,6 @@ const Author = styled.div`
 `;
 
 const Email = styled.p``;
-
-const CommentArea = styled.div``;
 
 const AnyTextBox = styled.div`
   width: 100%;
@@ -254,4 +267,15 @@ const StyledToggleButton = styled.button`
   box-sizing: border-box;
   font-weight: 700;
   box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
+`;
+
+const StyledAddButton = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 0.3125rem 0.9375rem;
+  border-radius: 0.625rem;
+  margin: 0.3125rem;
+  box-sizing: border-box;
+  font-weight: 700;
+  cursor: pointer;
 `;
