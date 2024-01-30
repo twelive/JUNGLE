@@ -43,7 +43,7 @@ const StyledExplanationWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 3.125rem 0;
-  border-bottom: 0.15rem solid var(--bs-black-400);
+  border-bottom: 2.4px solid var(--bs-black-400);
 
   div {
     min-height: 10.1875rem;
@@ -63,7 +63,7 @@ const StyledImg = styled.img`
   max-width: 15.625rem;
   margin-bottom: auto;
   object-fit: cover;
-  border-radius: 0.9375rem;
+  border-radius: 15px;
 
   @media ${(props) => props.theme.device.tablet} {
     max-width: 12.5rem;

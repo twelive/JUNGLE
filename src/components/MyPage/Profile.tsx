@@ -38,12 +38,7 @@ function Profile() {
       toast.success('업로드 완료! 잠시 후 반영됩니다.', {
         position: 'top-center',
         autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
         progress: undefined,
-        theme: 'light',
       });
 
       queryClient.setQueryData(['profileImageUrl', 'profile', user], imageUrl);
@@ -53,10 +48,6 @@ function Profile() {
       toast.error('사진 업로드 중 에러가 발생하였습니다.', {
         position: 'top-center',
         autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
         progress: undefined,
         theme: 'dark',
       });
@@ -92,18 +83,7 @@ function Profile() {
         onChange={uploadFile}
       />
       <EditButton onClick={handleSelectProfile} />
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <ToastContainer position="top-center" autoClose={3000} />
     </StyledProfileWrapper>
   );
 }
