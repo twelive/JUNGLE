@@ -41,8 +41,8 @@ const StyledMyResumeSection = styled.section`
 const StyledLink = styled(Link)`
   text-decoration: none;
   padding: 0.75rem 1.25rem;
-  border: 0.0625rem solid var(--bs-black-500);
-  border-radius: 0.5625rem;
+  border: 1px solid var(--bs-black-500);
+  border-radius: 9px;
   background-color: var(--bs-black-100);
   color: var(--main-bgColor);
   font-weight: 500;

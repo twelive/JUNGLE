@@ -20,7 +20,7 @@ const StyledHeading = styled.h2<{ $isBorder: boolean }>`
   font-weight: 600;
   padding: 3.125rem 0;
   border-top: ${(props) =>
-    props.$isBorder ? '0.15rem solid var(--bs-black-400)' : 'none'};
+    props.$isBorder ? '2.4px solid var(--bs-black-400)' : 'none'};
 
   @media ${(props) => props.theme.device.tablet} {
     font-size: 2.5rem;

@@ -37,7 +37,7 @@ const StyledBookMarkLinkContainer = styled.div`
   min-width: 13.75rem;
   margin: 3.125rem 0;
   padding-right: 3.125rem;
-  border-right: 0.15rem solid var(--bs-black-400);
+  border-right: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     flex-direction: row;
