@@ -7,11 +7,14 @@ function WritingCategory() {
   const { data } = useWrittingData();
 
   return (
-    <>
+    <FlexWrapper>
       <StyledHeading>작성글</StyledHeading>
-      <WritingCategoryTag>취업</WritingCategoryTag>
-      <WritingCategoryTag>기술디깅</WritingCategoryTag>
-      <WritingCategoryTag>커뮤니티</WritingCategoryTag>
+      <StyledNavContainer>
+        <WritingCategoryTag>etc</WritingCategoryTag>
+        <WritingCategoryTag>취업</WritingCategoryTag>
+        <WritingCategoryTag>기술디깅</WritingCategoryTag>
+        <WritingCategoryTag>커뮤니티</WritingCategoryTag>
+      </StyledNavContainer>
       <StyledWritingContainer>
         {data &&
           data.map((category, index) => (
@@ -29,16 +32,25 @@ function WritingCategory() {
             </StyledWritingWrapper>
           ))}
       </StyledWritingContainer>
-    </>
+    </FlexWrapper>
   );
 }
 
 export default WritingCategory;
 
+const FlexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+`;
+const StyledNavContainer = styled.div`
+  display: flex;
+  margin-top: auto;
+`;
+
 const StyledWritingContainer = styled.div<{ $isBorder?: boolean }>`
   display: flex;
   min-width: 40.625rem;
-  overflow-x: scroll;
   border-bottom: ${(props) =>
     props.$isBorder ? `2.4px solid var(--bs-black-400)` : 'none'};
 
@@ -59,7 +71,7 @@ const StyledWritingWrapper = styled.div`
   @media ${(props) => props.theme.device.mobile} {
     min-width: 12.5rem;
     width: 12.5rem;
-    height: 15rem;
+    /* height: 15rem; */
     margin: 1rem 0.5rem;
     padding: 0.75rem;
   }

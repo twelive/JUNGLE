@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { useQuery, useQueryClient } from 'react-query';
+import { useState, useRef, useEffect } from 'react';
+import { useQueryClient } from 'react-query';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
@@ -7,33 +7,36 @@ import styled from 'styled-components';
 import { supabase } from '@/client';
 import EditButton from '@components/Button/EditButton';
 import { useAuthStore } from '@store/useAuthStore';
-import { getPbImageURL } from '@store/getPbImageURL';
+import { getPbImageURL } from '@api/getImageUrlRealtimeUpload';
 
 function Profile() {
   const { user } = useAuthStore();
   const profileRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
-  const [imageUrl, setImageUrl] = useState('');
+  const [profileImageUrl, setProfileImageUrl] = useState('');
 
   const uploadFile = async () => {
     const avatarFile = profileRef.current?.files?.[0];
     if (!avatarFile) return null;
 
     try {
-      setImageUrl(URL.createObjectURL(avatarFile) || avatarFile.name);
+      const { data: deleteData } = await supabase.storage
+        .from('profile')
+        .remove([user]);
+
+      if (!deleteData) {
+        throw new Error(
+          'storage 에러 발생: 기존 프로필이 삭제되지 않았습니다.'
+        );
+      }
 
       const { data, error } = await supabase.storage
         .from('profile')
-        .upload(user, avatarFile, {
-          contentType: 'image/*',
-          upsert: true,
-        });
+        .upload(user, avatarFile);
 
       if (error) {
         throw new Error('storage 에러 발생');
       }
-
-      setImageUrl(getPbImageURL('profile', user));
 
       toast.success('업로드 완료! 잠시 후 반영됩니다.', {
         position: 'top-center',
@@ -41,7 +44,11 @@ function Profile() {
         progress: undefined,
       });
 
-      queryClient.setQueryData(['profileImageUrl', 'profile', user], imageUrl);
+      setProfileImageUrl(getPbImageURL('profile', user));
+      queryClient.setQueryData(
+        ['profileImageUrl', 'profile', user],
+        profileImageUrl
+      );
 
       return data;
     } catch (error) {
@@ -54,28 +61,20 @@ function Profile() {
 
       return null;
     }
+    //return useQuery(['profileImageUrl', 'profile', user], profileImageUrl);
   };
+
+  useEffect(() => {
+    setProfileImageUrl(getPbImageURL('profile', user));
+  }, []);
 
   const handleSelectProfile = () => {
-    if (profileRef.current) {
-      profileRef.current.click();
-    }
+    profileRef?.current?.click();
   };
-
-  useQuery(
-    ['profileImageUrl', 'profile', user],
-    () => getPbImageURL('profile', user),
-    {
-      staleTime: 0,
-      onSuccess: (data) => {
-        setImageUrl(data);
-      },
-    }
-  );
 
   return (
     <StyledProfileWrapper>
-      <Image src={imageUrl} alt="profile" />
+      <Image src={profileImageUrl} alt="profile" />
       <StyledInput
         type="file"
         accept="image/*"
