@@ -13,21 +13,28 @@ export interface Database {
         Row: {
           created_at: string;
           id: number;
-          text: string | null;
           title: string;
           updated_at: string | null;
           user_email: string | null;
           user_id: string;
+          portfolio: Json | null;
+          teck_stack: Json | null;
+          certificate: Json | null;
+          project: string | null;
+          activities: string | null;
         };
         Insert: {
           created_at?: string;
           id?: number;
-          text?: string | null;
           title?: string;
           updated_at?: string | null;
           user_email?: string | null;
           user_id?: string;
-        };
+          portfolio?: Json | null;
+          teck_stack?: Json | null;
+          certificate?: Json | null;
+          project?: string | null;
+          activities?: string | null;
         };
         Update: {
           created_at?: string;
@@ -37,6 +44,11 @@ export interface Database {
           updated_at?: string | null;
           user_email?: string | null;
           user_id?: string;
+          portfolio?: Json | null;
+          teck_stack?: Json | null;
+          certificate?: Json | null;
+          project?: string | null;
+          activities?: string | null;
         };
         Relationships: [
           {
