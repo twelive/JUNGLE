@@ -59,7 +59,7 @@ function MyResumeDetailPage() {
 
       try {
         await createData('stack_digging', data);
-        toast.success('작성 완료 👌');
+        toast.success(`작성 완료 🌟 ${stack}`);
         setTimeout(() => {
           navigate(`/study/stack/ListTable`);
         }, 3000);
