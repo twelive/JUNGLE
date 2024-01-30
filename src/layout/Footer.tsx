@@ -45,7 +45,7 @@ const StyledAniFooterSection = styled.footer`
   padding-top: 3.125rem;
   padding-bottom: 1rem;
   overflow: hidden;
-  border-top: 0.15rem solid var(--bs-black-500);
+  border-top: 2.4px solid var(--bs-black-500);
 
   @media ${(props) => props.theme.device.tablet} {
     padding-top: 2.5rem;

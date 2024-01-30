@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 function HeaderButton({
-  borderWeight = '0.0625rem',
+  borderWeight = '1px',
   backgroundColor = 'black',
   color = 'white',
   children = 'HeaderButton',

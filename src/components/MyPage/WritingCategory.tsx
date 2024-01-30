@@ -32,7 +32,7 @@ const StyledWritingContainer = styled.div<{ $isBorder?: boolean }>`
   min-width: 40.625rem;
   overflow-x: scroll;
   border-bottom: ${(props) =>
-    props.$isBorder ? `0.15rem solid var(--bs-black-400)` : 'none'};
+    props.$isBorder ? `2.4px solid var(--bs-black-400)` : 'none'};
 
   @media ${(props) => props.theme.device.mobile} {
     gap: 0.625rem;
@@ -44,7 +44,7 @@ const StyledWritingWrapper = styled.div`
   width: 17.5rem;
   margin: 1.5625rem 3.125rem 1.5625rem 0;
   padding: 1.875rem;
-  border-radius: 0.9375rem;
+  border-radius: 15px;
   background: white;
 
   @media ${(props) => props.theme.device.tablet} {

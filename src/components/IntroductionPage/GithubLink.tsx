@@ -28,7 +28,7 @@ const StyledLink = styled(Link)<{ $isVisibility: boolean }>`
   /* Style CSS */
   padding: 0.625rem 0.9375rem;
   background-color: var(--bs-black-200);
-  border-radius: 0.625rem;
+  border-radius: 10px;
   color: white;
   font-size: 1.5rem;
   text-align: center;

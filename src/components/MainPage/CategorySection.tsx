@@ -54,8 +54,8 @@ const StyledCategorySection = styled(CommonLayout)`
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  border-top: 0.15rem solid var(--bs-black-400);
-  border-bottom: 0.15rem solid var(--bs-black-400);
+  border-top: 2.4px solid var(--bs-black-400);
+  border-bottom: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     padding: 2.5rem 0;
@@ -87,7 +87,7 @@ const StyledBottomOuter = styled(CommonLayout)`
 const StyledTopOuter = styled(StyledBottomOuter)`
   padding-top: 0rem;
   padding-bottom: 3.125rem;
-  border-bottom: 0.15rem solid var(--bs-black-400);
+  border-bottom: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     padding-bottom: 2.5rem;
@@ -101,7 +101,7 @@ const StyledRightContainer = styled(CommonLayout)`
   padding-right: 3.125rem;
   width: 100%;
   gap: 0.625rem;
-  border-right: 0.15rem solid var(--bs-black-400);
+  border-right: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     padding-right: 2.5rem;
@@ -110,6 +110,6 @@ const StyledRightContainer = styled(CommonLayout)`
     padding-right: 0;
     padding-bottom: 1.875rem;
     border-right: none;
-    border-bottom: 0.15rem solid var(--bs-black-400);
+    border-bottom: 2.4px solid var(--bs-black-400);
   }
 `;

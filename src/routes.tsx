@@ -46,8 +46,6 @@ const StackDetailPage = lazy(() => import('@pages/StudyPage/StackDetailPage'));
 const StackListlPage = lazy(() => import('@pages/StudyPage/StackListlPage'));
 const StackNewPage = lazy(() => import('@pages/StudyPage/StackNewPage'));
 
-
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>

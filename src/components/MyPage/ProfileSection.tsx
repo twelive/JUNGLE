@@ -26,7 +26,7 @@ const StyledProfileContainer = styled.div`
   gap: 1.875rem;
   width: 70%;
   padding-right: 1.875rem;
-  border-right: 0.15rem solid var(--bs-black-400);
+  border-right: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     width: 100%;

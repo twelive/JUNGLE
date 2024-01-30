@@ -7,7 +7,7 @@ function HeaderButtonGroup() {
   return (
     <StyledHeaderButtonWrapper>
       <HeaderButton
-        borderWeight="0.1875rem"
+        borderWeight="3px"
         backgroundColor="white"
         color="var(--bs-black-500)"
       >

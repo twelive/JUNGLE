@@ -43,7 +43,7 @@ const StyledResumeContainer = styled.div`
     width: 100%;
     margin: 0;
     padding: 2.5rem 0;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
     border-left: none;
   }
 
@@ -53,7 +53,7 @@ const StyledResumeContainer = styled.div`
     width: 100%;
     margin: 0;
     padding: 1.875rem 0;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
     border-left: none;
   }
 `;
