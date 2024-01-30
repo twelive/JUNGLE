@@ -53,8 +53,8 @@ const StyledBookMarkItemWrapper = styled(Link)`
   height: 16.25rem;
   padding: 1.875rem;
   border-radius: 0.9375rem;
-  background: var(--bs-black-300);
-  color: white;
+  background: white;
+  color: var(--bs-black-200);
 
   @media ${(props) => props.theme.device.tablet} {
     width: 15rem;
@@ -80,18 +80,18 @@ const StyledButtonBox = styled.div`
 
 const StyledTitleSpan = styled.span`
   display: block;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.75rem;
+    font-size: 1.375rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 `;
 
@@ -118,14 +118,14 @@ const StyledTextBox = styled.div`
 
 const StyledContentSpan = styled.span`
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 
   @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -135,4 +135,12 @@ const StyledBottomBox = styled.div`
   align-items: center;
   text-align: center;
   margin-top: 0.9375rem;
+
+  span {
+    color: gray;
+
+    @media ${(props) => props.theme.device.mobile} {
+      font-size: 0.75rem;
+    }
+  }
 `;

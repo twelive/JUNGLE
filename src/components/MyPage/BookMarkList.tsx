@@ -13,13 +13,15 @@ export default BookMarkList;
 
 const StyledBookMarkListContainer = styled.div`
   display: flex;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  height: 32.5rem;
+  overflow-y: auto;
   gap: 1.875rem;
   padding: 3.125rem 0 3.125rem 3.125rem;
 
   @media ${(props) => props.theme.device.tablet} {
     gap: 2.5rem;
-    padding: 0 0 2.5rem 2.5rem;
+    padding: 0 0 2rem 2rem;
   }
 
   @media ${(props) => props.theme.device.mobile} {
@@ -28,6 +30,7 @@ const StyledBookMarkListContainer = styled.div`
 
   &::-webkit-scrollbar {
     height: 1.25rem;
+    width: 0.9rem;
   }
 
   &::-webkit-scrollbar-thumb {
