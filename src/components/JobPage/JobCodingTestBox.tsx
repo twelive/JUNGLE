@@ -14,14 +14,6 @@ interface CodingTestType {
   name: string;
 }
 
-const hoverAnimation = keyframes`
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-  }
-`;
 function JobCodingTestBox() {
   const { data, getListData } = useDataStore();
   useEffect(() => {
@@ -61,66 +53,77 @@ function JobCodingTestBox() {
 
 export default JobCodingTestBox;
 
+const StyledhoverAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+  }
+`;
+
 const StyledMainSection = styled.div`
-  width: 25rem;
-  border: 0.5px solid black;
+  border: 1px solid black;
   border-radius: 0.625rem;
   padding: 0 0.938rem;
   cursor: pointer;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   transition: box-shadow 0.3s ease-in-out;
   position: relative;
-
+  overflow: hidden;
+  background-color: #fff;
   &:hover {
-    animation: ${hoverAnimation} 0.3s ease-in-out forwards;
-  }
-
-  @media ${(props) => props.theme.device.tablet} {
-    width: 18.75rem;
+    animation: ${StyledhoverAnimation} 0.3s ease-in-out forwards;
   }
 `;
 
 const StyledTitleContainer = styled.div`
   display: block;
-  height: 10.625rem;
-  border-bottom: 0.5px solid black;
+  height: 6.625rem;
+  position: relative;
+  min-width: 18rem;
+  overflow: hidden;
+  overflow-wrap: break-word;
 `;
 
 const StyledTitle = styled.p`
-  font-size: 2.1875rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  padding: 3.125rem 0;
+  padding-top: 2.125rem;
   margin: 0;
+  width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
   overflow: hidden;
+  line-height: 1.5;
   text-overflow: ellipsis;
 `;
 
 const StyledSubContainer = styled.div`
   display: flex;
   padding: 1.25rem 0;
+  max-width: 20rem;
+  overflow: hidden;
 `;
 
 const StyledDateWrapper = styled.div`
   border-right: 0.063rem solid black;
-  font-size: 1.4375rem;
+  font-size: 1.25rem;
   padding: 0 0.938rem;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.25rem;
-  }
+  width: 100%;
+  white-space: nowrap;
 `;
-
 const StyledUserName = styled.div`
-  font-size: 1.5625rem;
+  font-size: 1.25rem;
   padding-left: 0.938rem;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.25rem;
-  }
+  width: 100%;
+  white-space: nowrap;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  width: 100%;
+
   color: inherit;
   cursor: pointer;
 

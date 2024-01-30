@@ -7,10 +7,11 @@ type FooterMenu = {
 
 const FooterName: FooterMenu[] = [
   { '/mypage': 'MyPage' },
-  { '/job': 'JobSeeking' },
-  { '/job/interview': 'JobInterview' },
-  { '/job/coding': 'JobCodingTest' },
+  { '/job': 'Job' },
+  { '/job/interview': 'Job' },
+  { '/job/codingTest': 'Job' },
   { '/community': 'Community' },
+  { '/community/communitycreate': 'Community' },
   { '/study': 'Study' },
 ];
 
