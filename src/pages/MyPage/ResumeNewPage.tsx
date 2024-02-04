@@ -21,7 +21,7 @@ const createData: (
   return insertedData;
 };
 
-function MyResumeDetailPage() {
+function ResumeNewPage() {
   const userId = useAuthStore((state) => state.user);
   const userEmail = useAuthStore((state) => state.userEmail);
   const navigate = useNavigate();
@@ -151,7 +151,7 @@ function MyResumeDetailPage() {
   );
 }
 
-export default MyResumeDetailPage;
+export default ResumeNewPage;
 
 const NewOuter = styled.section`
   padding: 3.125rem;
