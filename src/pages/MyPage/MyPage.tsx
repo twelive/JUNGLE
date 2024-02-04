@@ -82,8 +82,8 @@ const StyledTopOuter = styled(FlexLayout)`
 const StyledBookMarkOuter = styled(FlexLayout)`
   width: 100%;
   flex-direction: row;
-  border-top: 0.15rem solid var(--bs-black-400);
-  border-bottom: 0.15rem solid var(--bs-black-400);
+  border-top: 2.4px solid var(--bs-black-400);
+  border-bottom: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     flex-direction: column;

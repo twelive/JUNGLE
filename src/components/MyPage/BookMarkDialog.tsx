@@ -65,7 +65,7 @@ const StyledModalOuter = styled.div`
   width: 80%;
   height: 43.75rem;
   padding: 3.125rem;
-  border: 0.5rem solid var(--bs-black-600);
+  border: 8px solid var(--bs-black-600);
   border-radius: 3.125rem;
   background-color: var(--main-bgColor);
   z-index: 2;

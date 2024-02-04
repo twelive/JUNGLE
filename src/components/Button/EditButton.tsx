@@ -23,7 +23,7 @@ const StyledButton = styled.button`
   height: 2.5rem;
   background: white;
   border-radius: 3.125rem;
-  border: 0.25rem solid black;
+  border: 4px solid black;
   cursor: pointer;
   transform: translate(-50%, -50%);
 
