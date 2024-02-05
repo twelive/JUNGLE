@@ -6,11 +6,11 @@ import styled from 'styled-components';
 
 import { supabase } from '@/client';
 import { StackDiggingDTO } from '@/types/StackDiggingDTO';
-import BookMarkButton from '@components/StudyPage/BookMarkButton';
 import TagButtonComponent from '@components/StudyPage/TagButtonComponent';
 import { useAuthStore } from '@store/useAuthStore';
 import useTagStore from '@store/useTagStore';
-import notbookmark from '@assets/common/bookmarkwhite.svg';
+import notbookmark from '@assets/common/bookmarkblack.svg';
+import QueryBookMarkButton from '@/components/StudyPage/QueryBookMarkButton';
 
 
 
@@ -109,7 +109,7 @@ const StackListPage = ({ comment = '0' }) => {
     <Box to={`/study/stack/detail/${item.id}`} key={item.id}>
       <BookMarkButtonWrapper>
 
-      <BookMarkButton notBookmarkImg={notbookmark} itemId={item.id} userId={userId} itemType='stack' ></BookMarkButton>
+      <QueryBookMarkButton notBookmarkImg={notbookmark} itemId={item.id} userId={userId} itemType='stack' ></QueryBookMarkButton>
 
       </BookMarkButtonWrapper>
       <TitleBox>
@@ -162,8 +162,8 @@ const OutGrid = styled.section`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-auto-flow: row; 
-  column-gap: 0.3125rem;
-  row-gap: 0.3125rem;
+  column-gap: 0.9375rem;
+  row-gap: 0.9375rem;
 
   @media ${(props) => props.theme.device.tablet} {
     grid-template-columns: repeat(3, 1fr);
@@ -174,6 +174,8 @@ const OutGrid = styled.section`
     grid-template-columns: repeat(2, 1fr);
     grid-auto-flow: row; 
     width: 100%;
+    column-gap: 0.5rem;
+  row-gap: 0.5rem;
   }
 
 
@@ -192,7 +194,11 @@ const Box = styled(Link)`
   height: 16.25rem;
   padding: 1.875rem;
   border-radius: 0.9375rem;
-  background: var(--bs-black-300);
+  background: white;
+    @media ${(props) => props.theme.device.mobile} {
+  padding: 0.9375rem;
+    
+  }
 
 `;
 
@@ -202,7 +208,7 @@ width: 100%;
 
 const Title = styled.span`
   display: block;
-  color: white;
+  color: var(--bs-black-300);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -224,11 +230,11 @@ white-space: nowrap;
 overflow: hidden;
 padding-top: 0.875rem;
 padding-bottom: 0.875rem;
-color: white;
+color: var(--bs-black-300);
 `;
 
 const Content = styled.span`
-  color: white;
+  color: var(--bs-black-300);
   text-align: right;
   font-size: 1.5rem;
   padding-top: 0.75rem;
@@ -265,7 +271,7 @@ overflow: hidden;
 
 const Created = styled.div`
 
-  color: white;
+  color: var(--bs-black-300);
   
 `;
 
@@ -281,7 +287,7 @@ const BottomBox = styled.div`
 `;
 
 const CommentCounter = styled.p`
-color: white;
+color: var(--bs-black-300);
 font-size: 1rem;
 border: 1px solid white;
 border-radius: 0.3125rem;
