@@ -8,6 +8,7 @@ import { supabase } from "@/client";
 import debounce from "@utils/debounce";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CommentItem from "@/components/StudyPage/CommentItem";
 
 
 
@@ -256,6 +257,7 @@ const debouncedSetTitle = debounce((value: string) => setTitle(value), 50);
 
 
         </NewOuter>
+        <CommentItem></CommentItem>
       </>
     );
   };

@@ -484,6 +484,7 @@ const ButtonArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;
+  gap: 0.625rem;
   height: 1.875rem;
 `;
 
