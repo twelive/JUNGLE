@@ -8,7 +8,12 @@ export default function RootLayout() {
 
   return (
     <>
-      {pathname !== '/' && (pathname.includes('/main') ? <MainHeader /> : <Header />)}
+      {pathname !== '/' &&
+        (pathname.includes('/main') ? (
+          <MainHeader />
+        ) : (
+          <Header isMenu={pathname.includes('resume') ? false : true} />
+        ))}
       <Outlet />
       {pathname !== '/' && <Footer />}
     </>

@@ -1,16 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuthStore } from '@store/useAuthStore';
-import getUserName from '@utils/getUserName';
 import ArrowClickLink from '@assets/common/arrow-clickLink.svg';
 
 function ResumeLink() {
-  const { userEmail } = useAuthStore();
-
   return (
     <StyledResumeContainer>
       <h2>이력서</h2>
-      <Link to={`/mypage/${getUserName(userEmail)}/resume`}>
+      <Link to={`/mypage/resume`}>
         <img src={ArrowClickLink} />
       </Link>
     </StyledResumeContainer>
