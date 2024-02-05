@@ -37,10 +37,13 @@ function ResumeNewPage() {
   const [, setBlog] = useState('');
   const [, setLink] = useState('');
   const [linkCount, setLinkCount] = useState(0);
+  const [, setActivity] = useState('');
   const [, setContent] = useState('');
+  const [, setIntroduce] = useState('');
   const [stack, setStack] = useState<
     'Javascript' | 'TypeScirpt' | 'React' | 'Next.js'
   >('Javascript');
+  const [portfolioCount, setPortfolioCount] = useState(0);
 
   const titleRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -50,7 +53,9 @@ function ResumeNewPage() {
   const githubRef = useRef<HTMLInputElement>(null);
   const blogRef = useRef<HTMLInputElement>(null);
   const linkRef = useRef<HTMLInputElement>(null);
+  const activityRef = useRef<HTMLTextAreaElement>(null);
   const projectRef = useRef<HTMLTextAreaElement>(null);
+  const introduceRef = useRef<HTMLTextAreaElement>(null);
   const SecureEmail = userEmail.replace(/@.*/, '');
 
   const debouncedSetTitle = debounce((value: string) => setTitle(value), 500);
@@ -61,8 +66,16 @@ function ResumeNewPage() {
   const debouncedSetGithub = debounce((value: string) => setGithub(value), 500);
   const debouncedSetBlog = debounce((value: string) => setBlog(value), 500);
   const debouncedSetLink = debounce((value: string) => setLink(value), 500);
+  const debouncedSetActivity = debounce(
+    (value: string) => setActivity(value),
+    500
+  );
   const debouncedSetContent = debounce(
     (value: string) => setContent(value),
+    500
+  );
+  const debouncedSetIntroduce = debounce(
+    (value: string) => setIntroduce(value),
     500
   );
 
@@ -95,6 +108,11 @@ function ResumeNewPage() {
     setStack('React');
   };
 
+  const handlePlusPortfolio = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setPortfolioCount((prevLinks) => prevLinks + 1);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const title = titleRef.current?.value;
@@ -105,7 +123,9 @@ function ResumeNewPage() {
     const github = githubRef.current?.value;
     const blog = blogRef.current?.value;
     const link = linkRef.current?.value;
+    const activity = activityRef.current?.value;
     const project = projectRef.current?.value;
+    const introduce = introduceRef.current?.value;
 
     if (title && name && job && userId) {
       const data = {
@@ -117,7 +137,9 @@ function ResumeNewPage() {
         github,
         blog,
         link,
+        activity,
         project,
+        introduce,
         user_id: userId,
       };
 
@@ -160,7 +182,7 @@ function ResumeNewPage() {
           onChange={(e) => debouncedSetTitle(e.target.value)}
         />
         <ResumeSubheading essential>기본 정보</ResumeSubheading>
-        <StyledSection className="information">
+        <StyledSection>
           <StyledInfoInput
             type="text"
             placeholder="이름을 입력해주세요."
@@ -243,16 +265,48 @@ function ResumeNewPage() {
             기술 스택 추가
           </StyledPlusButton>
         </StyledSection>
-        <ResumeSubheading>경험/활동/교육</ResumeSubheading>
+        <label>
+          <ResumeSubheading>경험/활동/교육</ResumeSubheading>
+          <StyledTextarea
+            ref={activityRef}
+            onChange={(e) => debouncedSetActivity(e.target.value)}
+          />
+        </label>
         <label>
           <ResumeSubheading>프로젝트</ResumeSubheading>
-          <Textarea
+          <StyledTextarea
             ref={projectRef}
             onChange={(e) => debouncedSetContent(e.target.value)}
           />
         </label>
-        <ResumeSubheading>자기소개</ResumeSubheading>
+        <label>
+          <ResumeSubheading>자기소개</ResumeSubheading>
+          <StyledTextarea
+            ref={introduceRef}
+            onChange={(e) => debouncedSetIntroduce(e.target.value)}
+          />
+        </label>
         <ResumeSubheading>포트폴리오</ResumeSubheading>
+        <StyledSection>
+          {Array(portfolioCount)
+            .fill(null)
+            .map((_, index) => (
+              <StyledLabel>
+                <ResumeInfoIcon />
+                <StyledPersonalInput
+                  key={index}
+                  type="url"
+                  placeholder="추가 링크 주소를 입력해주세요."
+                  ref={linkRef}
+                  onChange={(e) => debouncedSetLink(e.target.value)}
+                />
+              </StyledLabel>
+            ))}
+          <StyledPlusButton onClick={handlePlusPortfolio}>
+            <ResumeInfoIcon />
+            포트폴리오 추가 (링크)
+          </StyledPlusButton>
+        </StyledSection>
         <ButtonArea>
           <Button type="button" onClick={handleTemporary}>
             임시저장
@@ -400,9 +454,14 @@ const StyledPlusButton = styled.button`
   background: white;
   font-weight: 700;
   cursor: pointer;
+
+  &:hover {
+    background-color: #111;
+    color: white;
+  }
 `;
 
-const Textarea = styled.textarea`
+const StyledTextarea = styled.textarea`
   width: 100%;
   min-height: 18.75rem;
   resize: none;
@@ -411,6 +470,14 @@ const Textarea = styled.textarea`
   padding: 0.3125rem;
   border: 1px solid black;
   padding: 0.625rem;
+  font-size: 1.5rem;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 1.25rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 0.875rem;
+  }
 `;
 
 const ButtonArea = styled.div`
@@ -419,19 +486,31 @@ const ButtonArea = styled.div`
   justify-content: end;
   height: 1.875rem;
 `;
+
 const Button = styled.button`
+  width: fit-content;
+  height: fit-content;
   margin: 0.125rem;
   border: 1px solid black;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
   border-radius: 0.3125rem;
   box-sizing: border-box;
+  background-color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
 
   &:hover {
     background-color: #111;
     color: white;
+    font-weight: 600;
   }
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 1.25rem;
+  }
+
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 0.625rem;
+    font-size: 0.875rem;
   }
 `;
