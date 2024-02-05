@@ -8,7 +8,6 @@ import { supabase } from "@/client";
 import debounce from "@utils/debounce";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CommentItem from "@/components/StudyPage/CommentItem";
 
 
 
@@ -233,13 +232,13 @@ const debouncedSetTitle = debounce((value: string) => setTitle(value), 50);
               
 
               
-              <div>
+              <DateArea>
   {
     stackData.updated_at && typeof stackData.updated_at === 'string'
       ? `${stackData.updated_at.slice(0, 10)} - 수정됨`
       : null
   }
-</div>
+</DateArea>
 
             {stackData.user_id === userId && (
               <ButtonArea>
@@ -257,7 +256,6 @@ const debouncedSetTitle = debounce((value: string) => setTitle(value), 50);
 
 
         </NewOuter>
-        <CommentItem></CommentItem>
       </>
     );
   };
@@ -394,6 +392,10 @@ font-size: 0.625rem;
 }
 `;
 
+
+  const DateArea = styled.div`
+  
+  `;
 
 const BottomBox = styled.div`
 display: flex;
