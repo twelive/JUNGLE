@@ -42,6 +42,9 @@ const IntroductionTeamPage = lazy(
 const CommunityDetailPage = lazy(
   () => import('@pages/CommunityPage/CommunityDetailPage')
 );
+const CommunityEditPage = lazy(
+  () => import('@pages/CommunityPage/CommunityEditPage')
+);
 const ErrorPage = lazy(() => import('@pages/ErrorPage'));
 const StackDetailPage = lazy(() => import('@pages/StudyPage/StackDetailPage'));
 const StackListlPage = lazy(() => import('@pages/StudyPage/StackListlPage'));
@@ -78,6 +81,10 @@ const router = createBrowserRouter(
       <Route
         path="/detailPage/:dataType/:itemId"
         element={<CommunityDetailPage />}
+      />
+       <Route
+        path="/detailPage/communityedit/:dataType/:itemId"
+        element={<CommunityEditPage />}
       />
       <Route path="introduction" element={<IntroductionProjectPage />} />
       <Route path="introduction/team" element={<IntroductionTeamPage />} />

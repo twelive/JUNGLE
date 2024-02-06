@@ -1,4 +1,4 @@
-// useDataFetching.js
+
 
 import { CommunityProject } from '@/types/CommunityProject';
 import { CommunityStudy } from '@/types/CommunityStudy';

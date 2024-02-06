@@ -1,28 +1,34 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from 'react-query';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useMutation, useQuery } from 'react-query';
 import { Helmet } from 'react-helmet-async';
 import 'react-datepicker/dist/react-datepicker.css';
 import styled from 'styled-components';
 
 import { supabase } from '@/client';
-import { useAuthStore } from '@store/useAuthStore';
-// import useCreateStore from '@store/useCreateStore';
 import CommunityCreateDetail from '@/components/CommunityPage/CommunityCreateDetail';
 import CommunityCreateIntroduction from '@/components/CommunityPage/CommunityCreateIntroduction';
 import CommunityCreateAuthorInfo from '@components/CommunityPage/CommunityCreateAuthorInfo';
 import CommunityCreateDeadline from '@components/CommunityPage/CommunityCreateDeadline';
 
-interface CreateData {
+interface EditData {
   title: string;
   contents: string;
-  user_id: string | number;
+  division: string;
+  people: string;
+  progress: string;
+  tag1: string;
+  tag2: string;
+  tag3: string;
+  deadline: Date | null;
 }
 
-function CommunityCreatePage() {
-  const user = useAuthStore((state) => state.user);
+function CommunityEditPage() {
+  const { itemId, dataType } = useParams();
+  console.log('Type:', dataType);
+
+
   const [userEmail] = useState<string>('');
-  // const { addComment } = useCreateStore();
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
   const [people, setPeople] = useState('');
@@ -31,59 +37,98 @@ function CommunityCreatePage() {
   const [tag1, setStack1] = useState('');
   const [tag2, setStack2] = useState('');
   const [tag3, setStack3] = useState('');
-  const [deadline, setDeadline] = useState<Date | null >(null);
+  const [deadline, setDeadline] = useState<Date | null>(null);
   const navigate = useNavigate();
+  
+
+  const { data: initialData } = useQuery(['item', itemId], async () => {
+    if (!itemId) {
+
+      return null;
+    }
+    const targetTable = dataType === 'project' ? 'community_project' : 'community_study';
+    console.log('Target Table:', targetTable);
+
+    const { data, error } = await supabase
+      .from(targetTable)
+      .select('*')
+      .eq('id', itemId)
+      .single();
+
+    if (error) {
+      console.error('Error fetching initial data:', error);
+    }
+  console.log('Fetched Data:', data);
+
+    return data;
+  });
  
-  const createPost = useMutation(async (data: CreateData) => {
-    const currentDate = new Date().toISOString();
-    const targetTable =
-      division === '프로젝트' ? 'community_project' : 'community_study';
-    try {
-      const { error } = await supabase.from(targetTable).insert([
-        {
-          title: data.title,
-          contents: data.contents,
-          user_id: user,
-          created_at: currentDate,
-          division: division,
-          people: people,
-          progress: progress,
-          tag1: tag1,
-          tag2: tag2,
-          tag3: tag3,
-          deadline: deadline?.toISOString().split('T')[0],
-        },
-      ]);
-      if (error) {
-         console.error('Error creating post. Error details:', error);
-        throw new Error('Error creating post');
+
+  useEffect(() => {
+    if (initialData) {
+      setTitle(initialData.title || '');
+      setContents(initialData.contents || '');
+      setPeople(initialData.people || '');
+      setDivision(initialData.division || '');
+      setProgress(initialData.progress || '');
+      setStack1(initialData.tag1 || '');
+      setStack2(initialData.tag2 || '');
+      setStack3(initialData.tag3 || '');
+      setDeadline(initialData.deadline ? new Date(initialData.deadline) : null);
+    }
+     console.log('Initial Data:', initialData);
+  }, [initialData]);
+
+  const updatePost = useMutation(
+    async (data: EditData) => {
+      try {
+         if (itemId === undefined) {
+        return;
+        }
+        const targetTable = dataType === 'project' ? 'community_project' : 'community_study';
+        const { error } = await supabase
+          .from(targetTable)
+          .update({
+            title: data.title,
+            contents: data.contents,
+            division: data.division,
+            people: data.people,
+            progress: data.progress,
+            tag1: data.tag1,
+            tag2: data.tag2,
+            tag3: data.tag3,
+            deadline: data.deadline?.toISOString(), // Convert Date to string
+          })
+          .eq('id', itemId);
+
+        if (error) {
+          console.error('Error updating post. Error details:', error);
+          throw new Error('Error updating post');
+        }
+      } catch (error) {
+        console.error('Error updating post:', error);
       }
-      
-    } catch (error) {
-      console.error('Error creating post:', error);
+    },
+    {
+      onSuccess: () => {
+        navigate('/community'); // Redirect to the community page after a successful update
+      },
     }
-     },
-    );
-    
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-    // const user_id = user;
-    createPost.mutate({ title, contents, user_id: user });
-    if (title.trim() !== '' && contents.trim() !== '') {
-      // addComment({
-      //   title: 'Title',
-      //   contents: 'Content',
-      //   division: 'Division',
-      //   people: 'People',
-      //   progress: 'Progress',
-      //   tag1: 'Tag1',
-      //   tag2: 'Tag2',
-      //   tag3: 'Tag3',
-      //   user_id: user_id,
-        
-      // });
-      navigate('/community'); 
-    }
+  );
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    updatePost.mutate({
+      title,
+      contents,
+      division,
+      people,
+      progress,
+      tag1,
+      tag2,
+      tag3,
+      deadline,
+    });
   };
  
   return (
@@ -131,7 +176,7 @@ function CommunityCreatePage() {
                   />
                 </ul>
                 <StyledSubmitBox>
-                  <StyledSubmit type="submit">작성 완료</StyledSubmit>
+                  <StyledSubmit type="submit">수정 완료</StyledSubmit>
                 </StyledSubmitBox>
               </StyledFormWrapper>
             </fieldset>
@@ -139,7 +184,7 @@ function CommunityCreatePage() {
     </>
   );
 }
-export default CommunityCreatePage;
+export default CommunityEditPage;
 
 const StyledFormContainer = styled.div`
   margin: 0 auto;
