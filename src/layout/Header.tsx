@@ -41,7 +41,7 @@ const StyledHeaderSecton = styled.header<{ $isBorder: boolean }>`
   align-items: flex-start;
   gap: 3.125rem;
   border-bottom: ${(props) =>
-    props.$isBorder ? '0.15rem solid var(--bs-black-400)' : 'none'};
+    props.$isBorder ? '2.4px solid var(--bs-black-400)' : 'none'};
 
   @media ${(props) => props.theme.device.tablet} {
     gap: 2.5rem;

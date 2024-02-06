@@ -9,6 +9,57 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      resume: {
+        Row: {
+          created_at: string;
+          id: number;
+          title: string;
+          updated_at: string | null;
+          user_email: string | null;
+          user_id: string;
+          portfolio: Json | null;
+          teck_stack: Json | null;
+          certificate: Json | null;
+          project: string | null;
+          activities: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          title?: string;
+          updated_at?: string | null;
+          user_email?: string | null;
+          user_id?: string;
+          portfolio?: Json | null;
+          teck_stack?: Json | null;
+          certificate?: Json | null;
+          project?: string | null;
+          activities?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          text?: string | null;
+          title?: string;
+          updated_at?: string | null;
+          user_email?: string | null;
+          user_id?: string;
+          portfolio?: Json | null;
+          teck_stack?: Json | null;
+          certificate?: Json | null;
+          project?: string | null;
+          activities?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'resume_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       book: {
         Row: {
           anonymous_book_id: string;

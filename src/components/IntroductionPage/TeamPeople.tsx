@@ -76,7 +76,7 @@ const StyledStrong = styled.strong`
   display: inline-block;
   padding: 0.6875rem 1.125rem;
   border-radius: 1.875rem;
-  border: 0.0625rem solid var(--bs-black-200);
+  border: 1px solid var(--bs-black-200);
   color: var(--bs-black-200);
   text-align: center;
   font-size: 2rem;

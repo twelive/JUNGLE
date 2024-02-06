@@ -2,20 +2,20 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-function MyResumePage() {
+function ResumeListPage() {
   return (
     <>
       <Helmet>MyResumePage - JUNGLE</Helmet>
       <h1 className="sr-only">JUNGLE - 이력서 목록 페이지</h1>
       <StyledMyResumeSection>
-        <span>😿아직 준비되지 않은 페이지입니다.</span>
+        <StyledLink to={'/mypage/resume/new'}>글 작성</StyledLink>
         <StyledLink to={'/main'}>메인으로 이동</StyledLink>
       </StyledMyResumeSection>
     </>
   );
 }
 
-export default MyResumePage;
+export default ResumeListPage;
 
 const StyledMyResumeSection = styled.section`
   display: flex;
@@ -41,8 +41,8 @@ const StyledMyResumeSection = styled.section`
 const StyledLink = styled(Link)`
   text-decoration: none;
   padding: 0.75rem 1.25rem;
-  border: 0.0625rem solid var(--bs-black-500);
-  border-radius: 0.5625rem;
+  border: 1px solid var(--bs-black-500);
+  border-radius: 9px;
   background-color: var(--bs-black-100);
   color: var(--main-bgColor);
   font-weight: 500;

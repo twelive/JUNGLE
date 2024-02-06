@@ -66,6 +66,10 @@ const handleButtonClick = (tag: string) => {
 setSelectedTag(tag);
 };
   
+  const moveAlertClick = () => {
+    alert('구매 링크로 이동됩니다');
+  }; 
+  
 
 return (
 <>
@@ -122,7 +126,7 @@ return (
         <StyledSwiperSlider key={item.anonymous_book_id}>
   <StyledBookDiv>
 
-    <StyledBookLink to={`${item.URL}`}>
+            <StyledBookLink to={`${item.URL}`} onClick={moveAlertClick}>
     <StyledBookDl>
       <StyledBookDt>
   <StyledBookImg src={getPbImageURL('book',`${item.anonymous_book_id}.webp`)} alt="/" />
