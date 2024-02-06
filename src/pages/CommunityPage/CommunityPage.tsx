@@ -143,7 +143,7 @@ const StyledSecondSwiperWrapper = styled(ReactSwiper)`
 
   const StyledCreateLink = styled(Link)`
     text-decoration: none;
-    color: black;
+    color: white;
     &:visited {
       color: white;
     }
