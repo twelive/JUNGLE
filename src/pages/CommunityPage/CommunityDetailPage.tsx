@@ -1,10 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-// import { getPbImageURL } from '@store/getPbImageURL';
 import CommunityDetailLogic from '@/components/CommunityPage/CommunityDetailLogic';
 import {useGetUsers} from '@hooks/useDataFetching';
 import DetailItem from '@/components/CommunityPage/CommunityDetailItem';
-
+import CommunityDetailComment from '@/components/CommunityPage/CommunityDetailComment';
 const CommunityDetailPage = () => {
   const { data: users } = useGetUsers();
   const { data, isAuthor, handleUpdate, handleDelete, currentDataType } =
@@ -31,7 +30,8 @@ const CommunityDetailPage = () => {
               handleUpdate={handleUpdate}
               handleDelete={handleDelete}
             />
-          ))}
+            ))}
+            <CommunityDetailComment />
         </StyledDetailBox>
     </>
   );
