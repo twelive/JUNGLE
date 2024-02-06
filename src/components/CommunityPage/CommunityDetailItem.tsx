@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { getPbImageURL } from '@store/getPbImageURL';
+import { useNavigate } from 'react-router-dom';
 
 type DataType = {
   contents?: string;
@@ -34,6 +35,8 @@ const DetailItem: React.FC<DetailItemProps> = ({
   handleUpdate,
   handleDelete,
 }) => {
+    const navigate = useNavigate();
+
   return (
     <>
       <div key={item.id}>
@@ -41,7 +44,11 @@ const DetailItem: React.FC<DetailItemProps> = ({
           {isAuthor && (
             <StyledButtonBox>
               <StyledButton
-                onClick={() => handleUpdate(currentDataType, String(item.id))}
+               onClick={() => {
+                  handleUpdate(currentDataType, String(item.id));
+                  // 수정 버튼 클릭 시 네비게이션을 사용하여 페이지 이동
+                  navigate(`/detailPage/communityedit/${currentDataType}/${item.id}`);
+                }}
               >
                 수정
               </StyledButton>
