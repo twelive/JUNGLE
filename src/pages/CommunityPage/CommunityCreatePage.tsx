@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import { supabase } from '@/client';
 import { useAuthStore } from '@store/useAuthStore';
-import useCreateStore from '@store/useCreateStore';
+// import useCreateStore from '@store/useCreateStore';
 import CommunityCreateDetail from '@/components/CommunityPage/CommunityCreateDetail';
 import CommunityCreateIntroduction from '@/components/CommunityPage/CommunityCreateIntroduction';
 import CommunityCreateAuthorInfo from '@components/CommunityPage/CommunityCreateAuthorInfo';
@@ -22,7 +22,7 @@ interface CreateData {
 function CommunityCreatePage() {
   const user = useAuthStore((state) => state.user);
   const [userEmail] = useState<string>('');
-  const { addComment } = useCreateStore();
+  // const { addComment } = useCreateStore();
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
   const [people, setPeople] = useState('');
@@ -67,21 +67,21 @@ function CommunityCreatePage() {
     
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-    const user_id = user;
+    // const user_id = user;
     createPost.mutate({ title, contents, user_id: user });
     if (title.trim() !== '' && contents.trim() !== '') {
-      addComment({
-        title: 'Title',
-        contents: 'Content',
-        division: 'Division',
-        people: 'People',
-        progress: 'Progress',
-        tag1: 'Tag1',
-        tag2: 'Tag2',
-        tag3: 'Tag3',
-        user_id: user_id,
+      // addComment({
+      //   title: 'Title',
+      //   contents: 'Content',
+      //   division: 'Division',
+      //   people: 'People',
+      //   progress: 'Progress',
+      //   tag1: 'Tag1',
+      //   tag2: 'Tag2',
+      //   tag3: 'Tag3',
+      //   user_id: user_id,
         
-      });
+      // });
       navigate('/community'); 
     }
   };
