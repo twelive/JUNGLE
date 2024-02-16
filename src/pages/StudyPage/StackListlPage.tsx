@@ -10,7 +10,7 @@ import BookMarkButton from '@components/StudyPage/BookMarkButton';
 import TagButtonComponent from '@components/StudyPage/TagButtonComponent';
 import { useAuthStore } from '@store/useAuthStore';
 import useTagStore from '@store/useTagStore';
-import notbookmark from '@assets/common/bookmarkwhite.svg';
+import notbookmark from '@assets/common/bookmarkblack.svg';
 
 
 
@@ -184,7 +184,7 @@ const Box = styled(Link)`
   text-decoration-line: none;
 
   position: relative;
-
+  border: 2px black solid;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -192,7 +192,8 @@ const Box = styled(Link)`
   height: 16.25rem;
   padding: 1.875rem;
   border-radius: 0.9375rem;
-  background: var(--bs-black-300);
+  background: white;
+
 
 `;
 
@@ -202,7 +203,8 @@ width: 100%;
 
 const Title = styled.span`
   display: block;
-  color: white;
+  color: var(--bs-black-300);
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -224,11 +226,13 @@ white-space: nowrap;
 overflow: hidden;
 padding-top: 0.875rem;
 padding-bottom: 0.875rem;
-color: white;
+  color: var(--bs-black-300);
+
 `;
 
 const Content = styled.span`
-  color: white;
+  color: var(--bs-black-300);
+
   text-align: right;
   font-size: 1.5rem;
   padding-top: 0.75rem;
@@ -265,7 +269,8 @@ overflow: hidden;
 
 const Created = styled.div`
 
-  color: white;
+  color: var(--bs-black-300);
+
   
 `;
 
@@ -281,7 +286,8 @@ const BottomBox = styled.div`
 `;
 
 const CommentCounter = styled.p`
-color: white;
+  color: var(--bs-black-300);
+
 font-size: 1rem;
 border: 1px solid white;
 border-radius: 0.3125rem;
@@ -338,6 +344,7 @@ display: flex;
 text-decoration: none;
   padding-left: 0.9375rem;
   background-color: #666; 
+  color: var(--bs-black-300);
   color: white;
   padding-right: 0.9375rem;
   height: 1.25rem;
