@@ -55,6 +55,7 @@ const StyledBookMarkItemWrapper = styled(Link)`
   border-radius: 0.9375rem;
   background: white;
   color: var(--bs-black-200);
+  border: 2px black solid;
 
   @media ${(props) => props.theme.device.tablet} {
     width: 15rem;

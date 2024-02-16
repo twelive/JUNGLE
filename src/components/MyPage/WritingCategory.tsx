@@ -67,6 +67,7 @@ const StyledWritingWrapper = styled.div`
   border-radius: 15px;
   background: white;
   color: var(--bs-black-200);
+  border: 2px black solid;
 
   @media ${(props) => props.theme.device.mobile} {
     min-width: 12.5rem;
