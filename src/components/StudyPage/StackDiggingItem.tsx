@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { supabase } from '@/client';
 import { StackDiggingDTO } from '@/types/StackDiggingDTO';
-import BookMarkButton from '@components/StudyPage/BookMarkButton';
 import { useAuthStore } from '@store/useAuthStore';
-import notbookmark from '@assets/common/bookmarkwhite.svg';
+import notbookmark from '@assets/common/bookmarkblack.svg';
+import QueryBookMarkButton from './QueryBookMarkButton';
 
 const getListData: () => Promise<StackDiggingDTO[] | null> = async () => {
   const { data } = await supabase
@@ -35,7 +35,7 @@ function StackDiggingItem({  comment = '0' }) {
     <StyledListBox to={`/study/stack/detail/${item.id}`} key={item.id}>
       <StyledBookMarkButtonDiv>
 
-      <BookMarkButton notBookmarkImg={notbookmark} itemId={item.id} userId={userId} itemType='stack' ></BookMarkButton>
+      <QueryBookMarkButton notBookmarkImg={notbookmark} itemId={item.id} userId={userId} itemType='stack' ></QueryBookMarkButton>
 
       </StyledBookMarkButtonDiv>
       <StyledTitleDiv>
@@ -74,8 +74,9 @@ const StyledListBox = styled(Link)`
   min-width: 16.25rem;
   height: 16.25rem;
   padding: 1.875rem;
+  border: 2px black solid;
   border-radius: 0.9375rem;
-  background: var(--bs-black-300);
+  background: white;
 
   @media ${(props) => props.theme.device.tablet} {
     min-width: 15rem;
@@ -90,7 +91,7 @@ width: 100%;
 
 const StyledTitleSpan = styled.span`
   display: block;
-  color: white;
+  color: var(--bs-black-300);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -112,11 +113,11 @@ white-space: nowrap;
 overflow: hidden;
 padding-top: 0.875rem;
 padding-bottom: 0.875rem;
-color: white;
+color: var(--bs-black-300);
 `;
 
 const StyledContentSpan = styled.span`
-  color: white;
+  color: var(--bs-black-300);
   text-align: right;
   font-size: 1.5rem;
   padding-top: 0.75rem;
@@ -152,7 +153,7 @@ overflow: hidden;
 `;
 
 const StyledCreatedDiv = styled.div`
-  color: white;
+  color: var(--bs-black-300);
   
 `;
 
@@ -168,7 +169,7 @@ const StyledBottomDiv = styled.div`
 `;
 
 const StyledCommentCountP = styled.p`
-color: white;
+color: var(--bs-black-300);
 font-size: 1rem;
 border: 1px solid white;
 border-radius: 0.3125rem;
