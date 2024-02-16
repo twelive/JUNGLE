@@ -240,7 +240,7 @@ border-bottom: 1px solid var(--bs-black-300);
 }
 .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
   bottom: var(--swiper-pagination-bottom, -2px);
-//이거때문에 좋아요 버튼 잘 안눌리는거 해결
+
 }
 
 

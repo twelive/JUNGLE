@@ -13,6 +13,7 @@ type StackDiggingCommentDTO = {
   stack_id?: number | null;
   text?: string | null;
   user_id: string;
+  created_at?: string | null | undefined;
 };
 
 
@@ -238,16 +239,13 @@ const handleEditClick = (commentId: string | number) => {
     <CommentInfo>
                 
         <h1>댓글{comments.length}개</h1>
-        {/* {comments.length} */}
                 <CommentsSort>
-          {/* <SortIcon></SortIcon> */}
-          {/* src={currentImages.sort} */}
-                  <SortBy>분류</SortBy>
+                  {/* <SortBy>분류</SortBy> */}
                 </CommentsSort>
               </CommentInfo>
     <div>
                 <ul>
-                  <CommentFormArea>
+          <CommentFormArea>
             {/* <Commenter></Commenter> */}
             {/* src={profile} */}
             <CommentForm id='comment' onSubmit={handleSubmitClick}>
@@ -283,10 +281,13 @@ const handleEditClick = (commentId: string | number) => {
               ) : (
                 <CommentText>{comment.text}</CommentText>
               )}
-            </CommenterBox>
+                </CommenterBox>
+                <CommentBottom>
+                  <Commenter>{comment.email}</Commenter>
+
                      <CommentButtonContainer>
-                <UpdatedAt></UpdatedAt>
-                {/* {comment.created_at.slice(2,10)} */}
+                <UpdatedAt> {comment?.created_at?.slice(2,10)}</UpdatedAt>
+                {/* */}
                   {comment.user_id === userId && (
                     <>
                       {!editModes[comment.id!] && <CommentEdit type="button" onClick={() => handleEditClick(comment.id!)}>
@@ -304,6 +305,8 @@ const handleEditClick = (commentId: string | number) => {
 
                  )} 
                      </CommentButtonContainer>
+
+                </CommentBottom>
                
                    </CommentList>
       ))}
@@ -361,9 +364,9 @@ display: flex;
 // const SortIcon = styled.img `
 
 // `;
-const SortBy = styled.p `
+// const SortBy = styled.p `
   
-`;
+// `;
 
 
 // const Commenter = styled.img `
@@ -537,4 +540,22 @@ const CommentListWrapper = styled.div `
     
   }
 
+`;
+
+const CommentBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media ${(props) => props.theme.mobile} {
+  flex-direction: column;
+   
+  }
+
+`;
+
+const Commenter = styled.p`
+font-size: 10px;
 `;
