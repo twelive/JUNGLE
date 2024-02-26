@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import edit from '@assets/common/edit.svg';
 
 interface State {
+  position0?: boolean;
   onClick: () => void;
 }
 
-function EditButton({ onClick }: State) {
+function EditButton({ position0 = false, onClick }: State) {
   return (
-    <StyledButton type="button" onClick={onClick}>
+    <StyledButton type="button" onClick={onClick} $position0={position0}>
       <img src={edit} alt="수정" />
     </StyledButton>
   );
@@ -15,10 +16,10 @@ function EditButton({ onClick }: State) {
 
 export default EditButton;
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ $position0: boolean }>`
   position: absolute;
-  top: 9%;
-  left: 75%;
+  top: ${(props) => (props.$position0 ? 0 : '9%')};
+  left: ${(props) => (props.$position0 ? '100%' : '75%')};
   width: 2.5rem;
   height: 2.5rem;
   background: white;
