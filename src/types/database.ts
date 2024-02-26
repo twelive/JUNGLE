@@ -11,44 +11,58 @@ export interface Database {
     Tables: {
       resume: {
         Row: {
-          created_at: string;
           id: number;
-          title: string;
+          created_at: string;
           updated_at: string | null;
-          user_email: string | null;
+          title: string;
+          info_name: string;
+          info_job: string;
           user_id: string;
-          portfolio: Json | null;
-          teck_stack: Json | null;
-          certificate: Json | null;
-          project: string | null;
-          activities: string | null;
+          info_phone: string | null;
+          info_mail: string | null;
+          info_github: string | null;
+          info_blog: string | null;
+          info_link: string | null;
+          portfolio: string | null;
+          project: (string | undefined)[];
+          activity: (string | undefined)[];
+          introduce: (string | undefined)[];
         };
         Insert: {
-          created_at?: string;
           id?: number;
-          title?: string;
+          created_at?: string;
           updated_at?: string | null;
-          user_email?: string | null;
+          title?: string;
+          info_name?: string;
+          info_job?: string;
           user_id?: string;
-          portfolio?: Json | null;
-          teck_stack?: Json | null;
-          certificate?: Json | null;
-          project?: string | null;
-          activities?: string | null;
+          info_phone?: string | null;
+          info_mail?: string | null;
+          info_github?: string | null;
+          info_blog?: string | null;
+          info_link?: string | null;
+          portfolio?: string | null;
+          project?: (string | undefined)[];
+          activity?: (string | undefined)[];
+          introduce?: (string | undefined)[];
         };
         Update: {
-          created_at?: string;
           id?: number;
-          text?: string | null;
-          title?: string;
+          created_at?: string;
           updated_at?: string | null;
-          user_email?: string | null;
+          title?: string;
+          info_name?: string;
+          info_job?: string;
           user_id?: string;
-          portfolio?: Json | null;
-          teck_stack?: Json | null;
-          certificate?: Json | null;
-          project?: string | null;
-          activities?: string | null;
+          info_phone?: string | null;
+          info_mail?: string | null;
+          info_github?: string | null;
+          info_blog?: string | null;
+          info_link?: string | null;
+          portfolio?: string | null;
+          project?: (string | undefined)[];
+          activity?: (string | undefined)[];
+          introduce?: (string | undefined)[];
         };
         Relationships: [
           {
