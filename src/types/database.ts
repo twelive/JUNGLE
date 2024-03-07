@@ -500,14 +500,14 @@ export interface Database {
           created_at?: string;
           id?: number;
           job_id?: number | null;
-          user_id?: string | null;
+          user_id?: string | number | undefined | null;
         };
         Update: {
           book_id?: number | null;
           created_at?: string;
           id?: number;
           job_id?: number | null;
-          user_id?: string | null;
+          user_id?: string | number | undefined | null;
         };
         Relationships: [
           {
