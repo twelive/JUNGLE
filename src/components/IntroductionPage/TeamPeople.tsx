@@ -1,10 +1,14 @@
-import { useState } from "react";
-import styled from "styled-components"
-import GithubLink from "@components/IntroductionPage/GithubLink";
-import getGithubLink from "@utils/getGithubLink";
-import debounce from "@utils/debounce";
+import { useState } from 'react';
+import styled from 'styled-components';
+import GithubLink from '@components/IntroductionPage/GithubLink';
+import getGithubLink from '@utils/getGithubLink';
+import debounce from '@utils/debounce';
 
-function TeamPeople({src = '#', name = '조원소개', introduction= '조원소개글'}) {
+function TeamPeople({
+  src = '#',
+  name = '조원소개',
+  introduction = '조원소개글',
+}) {
   const [isHoverd, setIsHovered] = useState(false);
 
   const handleMouseOver = () => {
@@ -13,23 +17,27 @@ function TeamPeople({src = '#', name = '조원소개', introduction= '조원소�
 
   const handleMouseOut = () => {
     debounce(() => setIsHovered(false), 1000)();
-  }
+  };
 
   return (
-    <Member>
-      <button type='button' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        <MemberImg src={src} />
-        <MemberName>{name}</MemberName>
-        <MemberIntroduction>{introduction}</MemberIntroduction>
+    <StyledMemberWrapper>
+      <button
+        type="button"
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+      >
+        <StyledImg src={src} />
+        <StyledStrong>{name}</StyledStrong>
+        <StyledP>{introduction}</StyledP>
       </button>
       <GithubLink href={getGithubLink(src)} isVisibility={isHoverd} />
-    </Member>
-  )
+    </StyledMemberWrapper>
+  );
 }
 
-export default TeamPeople
+export default TeamPeople;
 
-const Member = styled.li`
+const StyledMemberWrapper = styled.li`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -50,13 +58,13 @@ const Member = styled.li`
   @media ${(props) => props.theme.device.mobile} {
     min-height: 15.375rem;
   }
-`
+`;
 
-const MemberImg = styled.img`
+const StyledImg = styled.img`
   width: 100%;
   object-fit: contain;
 
-  @media ${(props) => props.theme.device.tablet} {     
+  @media ${(props) => props.theme.device.tablet} {
     width: 80%;
   }
   @media ${(props) => props.theme.device.mobile} {
@@ -64,17 +72,17 @@ const MemberImg = styled.img`
   }
 `;
 
-const MemberName = styled.strong`
+const StyledStrong = styled.strong`
   display: inline-block;
   padding: 0.6875rem 1.125rem;
   border-radius: 1.875rem;
-  border: 0.0625rem solid var(--bs-black-200);
+  border: 1px solid var(--bs-black-200);
   color: var(--bs-black-200);
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
 
-  @media ${(props) => props.theme.device.tablet} {     
+  @media ${(props) => props.theme.device.tablet} {
     font-size: 1.75rem;
   }
   @media ${(props) => props.theme.device.mobile} {
@@ -82,18 +90,18 @@ const MemberName = styled.strong`
   }
 `;
 
-const MemberIntroduction = styled.p`
+const StyledP = styled.p`
   margin-top: 1.875rem;
   color: var(--bs-black-200);
   text-align: center;
   font-size: 2rem;
   white-space: pre-wrap;
 
-  @media ${(props) => props.theme.device.tablet} {    
+  @media ${(props) => props.theme.device.tablet} {
     font-size: 1.75rem;
   }
   @media ${(props) => props.theme.device.mobile} {
     margin-top: 0.625rem;
     font-size: 1rem;
   }
-`
+`;

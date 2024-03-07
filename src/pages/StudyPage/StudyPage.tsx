@@ -8,7 +8,7 @@ import { getPbImageURL } from '@store/getPbImageURL';
 
 import StudyTitleGroup from '@components/StudyPage/StudyTitleGroup';
 import TagButtonComponent from '@components/StudyPage/TagButtonComponent';
-import StackDiggingNameSection from '@components/StudyPage/StackDiggingNameSection';
+import StackDiggingNameContainer from '@/components/StudyPage/StackDiggingNameContainer';
 import useDataStore from '@store/useDataStore';
 import useStorageStore from '@store/useStorageStore';
 import useTagStore from '@store/useTagStore';
@@ -29,7 +29,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import styled from 'styled-components';
 import LikeButton from '@components/StudyPage/LikeButton';
 import { useAuthStore } from '@store/useAuthStore';
-import StackDiggingContentsSection from '@components/StudyPage/StackDiggingContentsSection';
+import StackDiggingContentsContainer from '@components/StudyPage/StackDiggingContentsContainer';
 
 
 
@@ -42,7 +42,7 @@ const { data: bookData,  getListData } = useDataStore();
 
   const { selectedTag, setSelectedTag } = useTagStore();
   const  userId   = useAuthStore((state) => (state.user));
-
+  
   
   const { getAllList } = useStorageStore();
   const itemType = `book`;
@@ -66,15 +66,19 @@ const handleButtonClick = (tag: string) => {
 setSelectedTag(tag);
 };
   
+  const moveAlertClick = () => {
+    alert('구매 링크로 이동됩니다');
+  }; 
+  
 
 return (
 <>
 <Helmet>
 <title>Study - JUNGLE</title>
 </Helmet>
-<OutGrid>
 
-            <BookGroup>
+
+            <StyledBookSection>
 
 
       <StudyTitleGroup studyTitle='도서 추천' tagTitle={selectedTag as string} studymobiletitle='도서추천' children2={tags.map(tag => (
@@ -85,7 +89,7 @@ return (
 
 
   
-       <SwiperOut
+       <StyledSwiper
         slidesPerView={3}
             spaceBetween={0}
             slidesPerGroup={3}
@@ -119,55 +123,54 @@ return (
 
       {bookData.filter(item => !selectedTag || item.tag === selectedTag).map((item)=> (
     
-        <SwiperSlider key={item.anonymous_book_id}>
-  <BookCover>
+        <StyledSwiperSlider key={item.anonymous_book_id}>
+  <StyledBookDiv>
 
-    <BookLinker to={`${item.URL}`}>
-    <Dl>
-      <Dt>
-  <Img src={getPbImageURL('book',`${item.anonymous_book_id}.webp`)} alt="/" />
+            <StyledBookLink to={`${item.URL}`} onClick={moveAlertClick}>
+    <StyledBookDl>
+      <StyledBookDt>
+  <StyledBookImg src={getPbImageURL('book',`${item.anonymous_book_id}.webp`)} alt="/" />
   
-      </Dt>
-      <Dd>
+      </StyledBookDt>
+      <StyledBookDd>
         {item.title}
-      </Dd>
+      </StyledBookDd>
 
   
-    </Dl>
+    </StyledBookDl>
   
-            </BookLinker>
+            </StyledBookLink>
 
             
             <LikeButton itemId={item.id} userId={userId} itemType={itemType} likeCounter={item.book_like_counter}></LikeButton>
-  </BookCover>
-    </SwiperSlider>
+  </StyledBookDiv>
+    </StyledSwiperSlider>
 
       ))}
  
       
-      </SwiperOut>
+      </StyledSwiper>
 
 
       
       </StudyTitleGroup>
 
 
-      </BookGroup>
+      </StyledBookSection>
       
-      <StackDiggingSection>
-        <StackDiggingContentsSection></StackDiggingContentsSection>
-        <StackDiggingNameSection></StackDiggingNameSection>
+      <StyledStackDiggingSection>
+        <StackDiggingContentsContainer></StackDiggingContentsContainer>
+        <StackDiggingNameContainer></StackDiggingNameContainer>
 
-      </StackDiggingSection>
-
-
+      </StyledStackDiggingSection>
 
 
- 
-  </OutGrid>
+
+
+
 
   <section>
-      <h2>로드맵</h2>
+    
 
   </section>
 </>
@@ -176,20 +179,14 @@ return (
 
 export default StudyPage;
 
-const OutGrid = styled.section`
 
 
-display: block;
-
-
-`;
-
-const BookGroup = styled.div` 
+const StyledBookSection = styled.section` 
 width: 100%; 
 display: block; 
 padding-top: 3.125rem;
 padding-bottom: 3.125rem;
-border-bottom: 0.0625rem solid var(--bs-black-300);
+border-bottom: 1px solid var(--bs-black-300);
 
 
 
@@ -199,7 +196,7 @@ border-bottom: 0.0625rem solid var(--bs-black-300);
 
 
 
- const SwiperOut = styled(Swiper)`
+ const StyledSwiper = styled(Swiper)`
     width: 100%;
   height: 100%;
   padding: 3.125rem;
@@ -235,12 +232,16 @@ border-bottom: 0.0625rem solid var(--bs-black-300);
 .swiper .swiper-pagination {
   position: absolute;
   bottom: 0; 
+    
 }
 .swiper-pagination-bullet {
   background-color: var(--bs-black-100);
   margin: 0 0.625rem;
 }
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, -2px);
 
+}
 
 
 
@@ -249,7 +250,7 @@ border-bottom: 0.0625rem solid var(--bs-black-300);
 
   `;
 
-const SwiperSlider = styled(SwiperSlide) `
+const StyledSwiperSlider = styled(SwiperSlide) `
     overflow: hidden;
 
   
@@ -269,19 +270,19 @@ const SwiperSlider = styled(SwiperSlide) `
 
 `;
 
-const Dl = styled.dl `
+const StyledBookDl = styled.dl `
 height: 100%;
 width: auto;
 display: block;
 `;
-const Dt = styled.dt `
+const StyledBookDt = styled.dt `
 display: flex;
 justify-content: center;
 margin-bottom: 0.3125rem;
 height: 100%;
 
   `;
-  const Img = styled.img`
+  const StyledBookImg = styled.img`
 
   width: auto;
 
@@ -291,7 +292,7 @@ height: 100%;
   display: block;
   
   `;
-const Dd = styled.dd `
+const StyledBookDd = styled.dd `
 overflow: hidden;
 text-decoration: none;
 border: none;
@@ -301,14 +302,14 @@ height: 0.9375rem;
 text-align: center;
 `;
 
-const BookLinker = styled(Link)`
+const StyledBookLink = styled(Link)`
 display: block;
 height: 70%;
 
 `;
 
 
-const BookCover = styled.div `
+const StyledBookDiv = styled.div `
 
   padding-left: 1.875rem;
   padding-right: 1.875rem;
@@ -324,13 +325,13 @@ const BookCover = styled.div `
 
 `;
 
-const StackDiggingSection = styled.section`
+const StyledStackDiggingSection = styled.section`
  display: flex;
  width: 100%;
   flex-direction: row;
  
-border-top: 0.15rem solid var(--bs-black-400);
-  border-bottom: 0.15rem solid var(--bs-black-400);
+border-top: 2.4px solid var(--bs-black-400);
+  border-bottom: 2.4px solid var(--bs-black-400);
   @media ${(props) => props.theme.device.tablet} {
     flex-direction: column-reverse;
 

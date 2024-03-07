@@ -29,35 +29,35 @@ function JobInterviewItemPage() {
   return (
     <>
       {filteredData.map((item: InterviewItemType) => (
-        <MainBox key={item.id}>
+        <StyledMainSection key={item.id}>
           <NavButton />
-          <FirstBox>
-            <TitleBox>
-              <Title>{item.title}</Title>
-            </TitleBox>
-            <SubBox>
-              <SubText>{item.name}</SubText>
-            </SubBox>
-            <InfoBox>
-              <Info>{item.info}</Info>
-            </InfoBox>
-          </FirstBox>
+          <StyledMainWrapper>
+            <StyledTitleContainer>
+              <StyledTitle>{item.title}</StyledTitle>
+            </StyledTitleContainer>
+            <StyledSubContainer>
+              <StyledSubText>{item.name}</StyledSubText>
+            </StyledSubContainer>
+            <div>
+              <StyledInfoContainer>{item.info}</StyledInfoContainer>
+            </div>
+          </StyledMainWrapper>
           <ItemDeleteButton
             itemId={parseInt(item.id.toString())}
             itemType="job_interview"
             redirectPath="/job/interview"
           />
-          <CommentBox>
+          <StyledCommentContainer>
             <JobInterviewAddComment
               currentInterviewitemId={parseInt(item.id.toString())}
             />
-          </CommentBox>
+          </StyledCommentContainer>
           <div>
             <JobInterviewCommentSaveBox
               currentInterviewId={parseInt(item.id.toString())}
             />
           </div>
-        </MainBox>
+        </StyledMainSection>
       ))}
     </>
   );
@@ -65,50 +65,46 @@ function JobInterviewItemPage() {
 
 export default JobInterviewItemPage;
 
-const MainBox = styled.div`
+const StyledMainSection = styled.div`
   padding: 3.125rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  position: relative;
 `;
 
-const FirstBox = styled.div`
-  border: 0.125rem solid black;
+const StyledMainWrapper = styled.div`
+  border: 2px solid black;
   border-radius: 1.25rem;
   padding: 1.25rem;
 `;
 
-const TitleBox = styled.div`
+const StyledTitleContainer = styled.div`
   margin-bottom: 2.5rem;
 `;
 
-const Title = styled.div`
+const StyledTitle = styled.div`
   font-size: 3.75rem;
 `;
 
-const SubBox = styled.div`
+const StyledSubContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 6.25rem;
+  margin-bottom: 1.875rem;
   gap: 1.25rem;
 `;
 
-const SubText = styled.p`
-  font-size: 2.188rem;
-  font-weight: 500;
+const StyledSubText = styled.p`
+  font-size: 1.875rem;
 `;
 
-const InfoBox = styled.div``;
-
-const Info = styled.div`
+const StyledInfoContainer = styled.div`
   font-size: 2.188rem;
   margin-bottom: 3.125rem;
   word-break: break-all;
   white-space: pre-wrap;
 `;
 
-const CommentBox = styled.div`
+const StyledCommentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;

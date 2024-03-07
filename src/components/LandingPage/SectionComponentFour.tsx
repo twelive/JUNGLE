@@ -6,6 +6,7 @@ import SectionScrollDownButton from '@components/LandingPage/SectionScrollDownBu
 import useLandingStore from '@store/useLandingStore';
 import createChildVariants from '@utils/createChildVariants';
 import test from '@assets/landing/landing-test.svg';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 const SectionComponentFour = () => {
   const animations = useLandingStore((state) => state.animations);
@@ -24,35 +25,40 @@ const SectionComponentFour = () => {
 
   return (
     <Element name="section4">
-      <MainSection>
+      <SectionScroll
+        targetSectionId="section4"
+        animationKey="sectionFour"
+        setAnimation={setAnimation}
+      />
+      <StyledMainSection>
         <LandingHeader />
-        <MainBox>
+        <StyledMainOuter>
           <motion.div
             variants={childVariants}
             initial="hidden"
             animate={animations.sectionThree ? 'visible' : 'hidden'}
           >
-            <TextBox>
-              <Text>다양한 이력서 템플릿을 제공해드려요!</Text>
-              <Text>원하시는걸 고른 후 이력서를 작성해보세요!</Text>
-            </TextBox>
-            <ImgDiv>
-              <Img src={test} alt="이력서" />
-            </ImgDiv>
+            <StyledTextContainer>
+              <StyledText>다양한 이력서 템플릿을 제공해드려요!</StyledText>
+              <StyledText>원하시는걸 고른 후 이력서를 작성해보세요!</StyledText>
+            </StyledTextContainer>
+            <StyledImgContainer>
+              <StyledImg src={test} alt="이력서" />
+            </StyledImgContainer>
           </motion.div>
-        </MainBox>
+        </StyledMainOuter>
         <SectionScrollDownButton
           sectionId={'section5'}
           handleButtonClick={handleButtonClick}
         />
-      </MainSection>
+      </StyledMainSection>
     </Element>
   );
 };
 
 export default SectionComponentFour;
 
-const MainSection = styled.div`
+const StyledMainSection = styled.div`
   background-color: black;
   color: white;
   width: 100%;
@@ -60,17 +66,17 @@ const MainSection = styled.div`
   position: relative;
 `;
 
-const MainBox = styled.div`
+const StyledMainOuter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const TextBox = styled.div`
+const StyledTextContainer = styled.div`
   padding-top: 3.125rem;
 `;
 
-const Text = styled.p`
+const StyledText = styled.p`
   font-size: 2.5rem;
   text-align: center;
   line-height: 5rem;
@@ -86,10 +92,10 @@ const Text = styled.p`
   }
 `;
 
-const ImgDiv = styled.div`
+const StyledImgContainer = styled.div`
   text-align: center;
 `;
 
-const Img = styled.img`
+const StyledImg = styled.img`
   width: 90%;
 `;

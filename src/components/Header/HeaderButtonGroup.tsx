@@ -2,32 +2,30 @@ import styled from 'styled-components';
 import HeaderButton from '@components/Button/HeaderButton';
 import { useAuthStore } from '@store/useAuthStore';
 
-
 function HeaderButtonGroup() {
   const { handleLogout } = useAuthStore();
   return (
-    <FlexBox>
+    <StyledHeaderButtonWrapper>
       <HeaderButton
-        borderWeight="0.1875rem"
+        borderWeight="3px"
         backgroundColor="white"
         color="var(--bs-black-500)"
       >
         알림
       </HeaderButton>
       <HeaderButton onClick={handleLogout}>로그아웃</HeaderButton>
-    </FlexBox>
+    </StyledHeaderButtonWrapper>
   );
 }
 
 export default HeaderButtonGroup;
 
-const FlexBox = styled.div`
+const StyledHeaderButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1.25rem;
 
-  
   @media ${(props) => props.theme.device.tablet} {
     gap: 0.9375rem;
   }

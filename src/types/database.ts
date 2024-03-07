@@ -9,6 +9,71 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      resume: {
+        Row: {
+          id: number;
+          created_at: string;
+          updated_at: string | null;
+          title: string;
+          info_name: string;
+          info_job: string;
+          user_id: string;
+          info_phone: string | null;
+          info_mail: string | null;
+          info_github: string | null;
+          info_blog: string | null;
+          info_link: string | null;
+          portfolio: string | null;
+          project: (string | undefined)[];
+          activity: (string | undefined)[];
+          introduce: (string | undefined)[];
+        };
+        Insert: {
+          id?: number;
+          created_at?: string;
+          updated_at?: string | null;
+          title?: string;
+          info_name?: string;
+          info_job?: string;
+          user_id?: string;
+          info_phone?: string | null;
+          info_mail?: string | null;
+          info_github?: string | null;
+          info_blog?: string | null;
+          info_link?: string | null;
+          portfolio?: string | null;
+          project?: (string | undefined)[];
+          activity?: (string | undefined)[];
+          introduce?: (string | undefined)[];
+        };
+        Update: {
+          id?: number;
+          created_at?: string;
+          updated_at?: string | null;
+          title?: string;
+          info_name?: string;
+          info_job?: string;
+          user_id?: string;
+          info_phone?: string | null;
+          info_mail?: string | null;
+          info_github?: string | null;
+          info_blog?: string | null;
+          info_link?: string | null;
+          portfolio?: string | null;
+          project?: (string | undefined)[];
+          activity?: (string | undefined)[];
+          introduce?: (string | undefined)[];
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'resume_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       book: {
         Row: {
           anonymous_book_id: string;
@@ -449,14 +514,14 @@ export interface Database {
           created_at?: string;
           id?: number;
           job_id?: number | null;
-          user_id?: string | null;
+          user_id?: string | number | undefined | null;
         };
         Update: {
           book_id?: number | null;
           created_at?: string;
           id?: number;
           job_id?: number | null;
-          user_id?: string | null;
+          user_id?: string | number | undefined | null;
         };
         Relationships: [
           {

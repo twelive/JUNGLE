@@ -14,42 +14,47 @@ interface LikeButtonProps {
 
 
 function LikeButton({ itemId, userId, itemType, likeCounter}:LikeButtonProps) {
-const initialLikes = JSON.parse(localStorage.getItem(`likes-${itemId}`) || 'false');
+
+  const initialLikes = localStorage.getItem(`likes-${itemId}`) === 'true';
 
 
 const [toggle, setToggle] = useState(initialLikes);
 
-const updateLikes = async () => {
-  if (toggle) {
-    const { error } = await supabase
-      .from('likes')
-      .delete()
-      .match({
-        user_id: userId,
-        [`${itemType}_id`]: itemId
-      });
+  const updateLikes = async () => {
+  
+    try { 
 
-    if (error) {
-      console.error('Error deleting like:', error.message);
-    } else {
-      setToggle(!toggle);
-localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
-    }
-  } else {
-    const { error } = await supabase
-      .from('likes')
-      .upsert({
-        [`${itemType}_id`]: itemId,
-      });
+      if (toggle) {
+        await supabase
+          .from('likes')
+          .delete()
+          .match({
+            user_id: String(userId),
+            [`${itemType}_id`]: itemId
+          });
+    
+ 
+      } else {
+        await supabase
+          .from('likes')
+          .insert({
+            user_id:  String(userId),
+            [`${itemType}_id`]: itemId,
+          });
+      }
 
-    if (error) {
-      console.error('Error updating likes:', error.message);
-    } else {
-      setToggle(!toggle);
+   
       localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
+      setToggle(!toggle);
     }
-  }
-};
+    catch (error) {
+      console.error('Error updating likes:');
+      
+      setToggle(!toggle);
+
+    }
+  };
+
 
 
 
@@ -74,12 +79,12 @@ localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
   }, [userId, itemId, itemType]);
 
   return (
-    <LikesWrapper>
-      <Button onClick={updateLikes}>
-        <Img src={toggle ? likes : dislikes} alt={toggle ? '좋아요' : '좋아요 취소'}></Img>
-      </Button>
-      <Likes>{likeCounter}</Likes>
-    </LikesWrapper>
+    <StyledLikesDiv>
+      <StyledLikeClickButton onClick={updateLikes}>
+        <StyledLikeImg src={toggle ? likes : dislikes} alt={toggle ? '좋아요' : '좋아요 취소'}></StyledLikeImg>
+      </StyledLikeClickButton>
+      <StyledLikesCountP>{likeCounter}</StyledLikesCountP>
+    </StyledLikesDiv>
   )
 }
 
@@ -87,7 +92,7 @@ localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
 
 export default LikeButton
 
-const LikesWrapper = styled.div`
+const StyledLikesDiv = styled.div`
 display: flex;
 flex-direction: row;
 gap: 0.3125rem;
@@ -97,7 +102,7 @@ align-items: center;
 `;
 
 
-const Button = styled.button`
+const StyledLikeClickButton = styled.button`
   width: auto;
   height: auto;
   border: none;
@@ -106,11 +111,11 @@ const Button = styled.button`
 
 `;
 
-const Img = styled.img`
+const StyledLikeImg = styled.img`
   width: 0.9375rem;
   height: 0.9375rem;
 `;
 
-const Likes = styled.p`
+const StyledLikesCountP = styled.p`
   font-size: small;
 `;

@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
 function HeaderButton({
-  borderWeight = '0.0625rem',
+  borderWeight = '1px',
   backgroundColor = 'black',
   color = 'white',
   children = 'HeaderButton',
   onClick,
 }: {
-  borderWeight?: string,
-  backgroundColor?: string,
-  color?: string,
-  children?: React.ReactNode,
-  onClick?: React.MouseEventHandler<HTMLButtonElement>, 
+  borderWeight?: string;
+  backgroundColor?: string;
+  color?: string;
+  children?: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <StyledButton

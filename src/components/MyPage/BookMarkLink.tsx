@@ -15,21 +15,21 @@ function BookMarkLink() {
   };
 
   return (
-    <BookMarkLinkBox>
-      <InnerBox>
+    <StyledBookMarkLinkContainer>
+      <StyledInnerWrapper>
         <h2>북마크</h2>
-        <BookMarkButton type="button" onClick={handleModal}>
+        <StyledButtonBox type="button" onClick={handleModal}>
           <ArrowScrollDown color="var(--bs-black-400)" />
-        </BookMarkButton>
-      </InnerBox>
-      <CountText>{bookmarkCount}개</CountText>
-    </BookMarkLinkBox>
+        </StyledButtonBox>
+      </StyledInnerWrapper>
+      <StyledSpan>{bookmarkCount}개</StyledSpan>
+    </StyledBookMarkLinkContainer>
   );
 }
 
 export default BookMarkLink;
 
-const BookMarkLinkBox = styled.div`
+const StyledBookMarkLinkContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,7 +37,7 @@ const BookMarkLinkBox = styled.div`
   min-width: 13.75rem;
   margin: 3.125rem 0;
   padding-right: 3.125rem;
-  border-right: 0.15rem solid var(--bs-black-400);
+  border-right: 2.4px solid var(--bs-black-400);
 
   @media ${(props) => props.theme.device.tablet} {
     flex-direction: row;
@@ -57,10 +57,10 @@ const BookMarkLinkBox = styled.div`
   }
 `;
 
-const InnerBox = styled.div`
+const StyledInnerWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  
+
   @media ${(props) => props.theme.device.tablet} {
     gap: 2.5rem;
   }
@@ -72,7 +72,7 @@ const InnerBox = styled.div`
   }
 `;
 
-const BookMarkButton = styled.button`
+const StyledButtonBox = styled.button`
   /* reset CSS */
   border: none;
   background-color: transparent;
@@ -80,7 +80,7 @@ const BookMarkButton = styled.button`
   cursor: pointer;
 `;
 
-const CountText = styled.span`
+const StyledSpan = styled.span`
   align-self: stretch;
   text-align: right;
   font-size: 2rem;

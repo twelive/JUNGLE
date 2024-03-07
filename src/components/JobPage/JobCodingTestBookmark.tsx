@@ -75,21 +75,21 @@ function CodingTestBookmark({
     fetchBookMarksData();
   }, [userId, itemId, itemType]);
   return (
-    <Button onClick={updateBookMarks}>
+    <StyledButton onClick={updateBookMarks}>
       <img
         src={toggle ? bookmark : notBookmarkImg}
         alt={toggle ? '북마크' : '북마크 취소'}
       ></img>
-    </Button>
+    </StyledButton>
   );
 }
 
 export default CodingTestBookmark;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   background: transparent;
   border: none;
   position: absolute;
-  top: 10px;
-  right: 7px;
+  top: 0.625rem;
+  right: 0.438rem;
 `;

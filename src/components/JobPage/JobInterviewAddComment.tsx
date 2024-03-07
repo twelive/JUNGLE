@@ -61,22 +61,22 @@ const JobInterviewAddComment = ({
   };
 
   return (
-    <CommentForm onSubmit={handleSubmit}>
-      <CommentInput
+    <StyledCommentForm onSubmit={handleSubmit}>
+      <StyledCommentInput
         type="text"
         name="text"
         value={newComment.text}
         onChange={handleInputChange}
         placeholder="댓글을 입력해주세요."
       />
-      <AddButton type="submit">댓글 추가</AddButton>
-    </CommentForm>
+      <StyledButton type="submit">댓글 추가</StyledButton>
+    </StyledCommentForm>
   );
 };
 
 export default JobInterviewAddComment;
 
-const CommentForm = styled.form`
+const StyledCommentForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -84,25 +84,25 @@ const CommentForm = styled.form`
   width: 100%;
 `;
 
-const CommentInput = styled.input`
+const StyledCommentInput = styled.input`
   width: 100%;
   height: 4.375rem;
   margin-top: 3.125rem;
   margin-bottom: 1.25rem;
   font-size: 1.875rem;
-  box-shadow: 0.188rem 0.188rem 0.125rem 0.063rem rgba(137, 137, 138, 0.2);
+  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
 `;
 
-const AddButton = styled.button`
+const StyledButton = styled.button`
   background-color: white;
   font-weight: 700;
-  box-shadow: 0.188rem 0.188rem 0.125rem 0.063rem rgba(137, 137, 138, 0.2);
+  box-shadow: 3px 3px 2px 1px rgba(137, 137, 138, 0.2);
   width: 10%;
   border: none;
   padding: 0.938rem;
   border-radius: 0.625rem;
   margin-right: 0.313rem;
-  border: 0.031rem solid var(--bs-black-500);
+  border: 0.5px solid var(--bs-black-500);
   box-sizing: border-box;
   font-size: 1.25rem;
   align-self: end;

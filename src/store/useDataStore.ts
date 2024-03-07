@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { supabase } from '@/client';
 import { User } from '@supabase/supabase-js';
 

@@ -11,7 +11,7 @@ function LandingPage() {
 
   return (
     <>
-      <GlobalStyles />
+      <StyledGlobalStyles />
       <SectionComponentOne videoSource={LandingVideo} text={text} />
       <SectionComponentTwo />
       <SectionComponentThree />
@@ -23,7 +23,7 @@ function LandingPage() {
 
 export default LandingPage;
 
-const GlobalStyles = createGlobalStyle`
+const StyledGlobalStyles = createGlobalStyle`
   body {
     overflow: auto;
     margin : 0 !important;

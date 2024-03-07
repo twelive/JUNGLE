@@ -23,20 +23,20 @@ function Category({
 
     if (categoryLink) {
       const pathname = categoryLink.href.slice(21);
-      setCurrentMenu(pathname);     
+      setCurrentMenu(pathname);
     }
   };
 
   return (
-    <CategorySection $height={height}>
-      <CategoryTextBox>
-        <Title>{title}</Title>
-        <Context>{context}</Context>
-      </CategoryTextBox>
-      <LinkBox to={href} onClick={handleCategoryLink}>
+    <SyledCategoryWrapper $height={height}>
+      <StyledTextBox>
+        <StyledHeading>{title}</StyledHeading>
+        <StyledP>{context}</StyledP>
+      </StyledTextBox>
+      <StyledLinkBox to={href} onClick={handleCategoryLink}>
         <ArrowScrollDown color="var(--bs-black-400)" />
-      </LinkBox>
-    </CategorySection>
+      </StyledLinkBox>
+    </SyledCategoryWrapper>
   );
 }
 
@@ -44,10 +44,10 @@ export default Category;
 
 const CommonLayout = styled.div`
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 `;
 
-const CategorySection = styled(CommonLayout)<{ $height: string }>`
+const SyledCategoryWrapper = styled(CommonLayout)<{ $height: string }>`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -64,7 +64,7 @@ const CategorySection = styled(CommonLayout)<{ $height: string }>`
   }
 `;
 
-const CategoryTextBox = styled(CommonLayout)`
+const StyledTextBox = styled(CommonLayout)`
   justify-content: center;
   gap: 1.875rem;
 
@@ -76,19 +76,19 @@ const CategoryTextBox = styled(CommonLayout)`
   }
 `;
 
-const LinkBox = styled(Link)`
+const StyledLinkBox = styled(Link)`
   position: absolute;
   right: 0;
   bottom: 0;
   z-index: 1;
 `;
 
-const Title = styled.h2`
+const StyledHeading = styled.h2`
   font-size: 3rem;
   font-weight: 600;
 `;
 
-const Context = styled.p`
+const StyledP = styled.p`
   font-size: 2rem;
   font-weight: 500;
   white-space: pre-line;

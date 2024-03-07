@@ -6,15 +6,15 @@ interface enterButtonProps {
 
 function EnterButton({ onClick }: enterButtonProps) {
   return (
-    <ButtonDiv type="button" onClick={onClick}>
-      <ButtonText>Join</ButtonText>
-    </ButtonDiv>
+    <StyledButtonBox type="button" onClick={onClick}>
+      <StyledSpan>Join</StyledSpan>
+    </StyledButtonBox>
   );
 }
 
 export default EnterButton;
 
-const ButtonDiv = styled.button`
+const StyledButtonBox = styled.button`
   width: 12.5rem;
   height: 3.125rem;
   border-radius: 0.938rem;
@@ -22,8 +22,8 @@ const ButtonDiv = styled.button`
   cursor: pointer;
   &:hover {
     box-shadow:
-      rgba(255, 255, 255, 0.317) 0px 0.125rem 0.25rem 0px,
-      rgba(255, 255, 255, 0.595) 0px 0.125rem 1rem 0px;
+      rgba(255, 255, 255, 0.317) 0px 2px 4px 0px,
+      rgba(255, 255, 255, 0.595) 0px 2px 16px 0px;
   }
 
   @media ${(props) => props.theme.device.tablet} {
@@ -35,7 +35,7 @@ const ButtonDiv = styled.button`
   }
 `;
 
-const ButtonText = styled.span`
+const StyledSpan = styled.span`
   font-size: 1.5rem;
   color: white;
 `;

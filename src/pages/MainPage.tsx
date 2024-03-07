@@ -3,11 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import CategorySection from '@components/MainPage/CategorySection';
 import ArrowScrollDown from '@/components/ArrowScrollDown';
-import gitLogo from '@assets/common/gitlogo.svg'
-import figmaLogo from '@assets/common/figmalogo.svg'
+import gitLogo from '@assets/common/gitlogo.svg';
+import figmaLogo from '@assets/common/figmalogo.svg';
 
 function MainPage() {
-
   return (
     <>
       <Helmet>
@@ -15,34 +14,47 @@ function MainPage() {
       </Helmet>
       <h1 className="sr-only">JUNGLE</h1>
       <CategorySection />
-      <IntroductionSection>
-        <IntroductionBox>
+      <StyledIntroductionSection>
+        <StyledIntroductionContainer>
           취업을 헤쳐나가는 용감한 사자들, JUNGLER
           <div>
-            <Link to={"/introduction"}>
+            <Link to={'/introduction'}>
               <ArrowScrollDown color="var(--bs-black-400)" />
             </Link>
           </div>
-        </IntroductionBox>
-        <TeamBox>
-          <TeamTitle>JUNGLE</TeamTitle>
-          <TeamContent>
-            <Button type="button" onClick={() =>  window.open("https://github.com/twelive/JUNGLE", '_blank')}>
-              <img src={gitLogo} alt='git' />
-            </Button>
-            <Button type="button" onClick={() =>  window.open("https://www.figma.com/file/lrcTq4IIk5FnHrfkC7AUej/Jungle_%EB%94%94%EC%9E%90%EC%9D%B8?type=design&node-id=552%3A824&mode=design&t=kMP4debZb4H7EBaZ-1", '_blank')}>
-              <img src={figmaLogo} alt='figma' />
-            </Button>
-          </TeamContent>
-        </TeamBox>
-      </IntroductionSection>
+        </StyledIntroductionContainer>
+        <StyledTeamContainter>
+          <StyledSpan>JUNGLE</StyledSpan>
+          <StyledTeamWrapper>
+            <StyledButton
+              type="button"
+              onClick={() =>
+                window.open('https://github.com/twelive/JUNGLE', '_blank')
+              }
+            >
+              <img src={gitLogo} alt="git" />
+            </StyledButton>
+            <StyledButton
+              type="button"
+              onClick={() =>
+                window.open(
+                  'https://www.figma.com/file/lrcTq4IIk5FnHrfkC7AUej/Jungle_%EB%94%94%EC%9E%90%EC%9D%B8?type=design&node-id=40%3A731&mode=design&t=qZmauJzdsjNoGeH8-1',
+                  '_blank'
+                )
+              }
+            >
+              <img src={figmaLogo} alt="figma" />
+            </StyledButton>
+          </StyledTeamWrapper>
+        </StyledTeamContainter>
+      </StyledIntroductionSection>
     </>
   );
 }
 
 export default MainPage;
 
-const IntroductionSection = styled.div`
+const StyledIntroductionSection = styled.div`
   display: flex;
   height: 22.5rem;
   padding: 3.125rem 0;
@@ -58,7 +70,7 @@ const IntroductionSection = styled.div`
   }
 `;
 
-const IntroductionBox = styled.div`
+const StyledIntroductionContainer = styled.div`
   position: relative;
   width: 100%;
   align-self: center;
@@ -74,7 +86,7 @@ const IntroductionBox = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     padding: 0 0 1.875rem 0;
-    border-bottom: 0.15rem solid var(--bs-black-400);
+    border-bottom: 2.4px solid var(--bs-black-400);
     font-size: 3rem;
   }
 
@@ -95,36 +107,36 @@ const IntroductionBox = styled.div`
   }
 `;
 
-const TeamBox = styled.div`
+const StyledTeamContainter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1.875rem;
   width: 60%;
   padding-left: 3.125rem;
-  border-left: 0.15rem solid var(--bs-black-400);
-  
+  border-left: 2.4px solid var(--bs-black-400);
+
   @media ${(props) => props.theme.device.tablet} {
     padding-left: 2.5rem;
   }
   @media ${(props) => props.theme.device.mobile} {
+    width: 100%;
     border-left: none;
     padding: 1.875rem 0 0;
   }
 `;
 
-
-const TeamTitle = styled.span`
+const StyledSpan = styled.span`
   font-size: 3rem;
   font-weight: 600;
 `;
 
-const TeamContent = styled.p`
+const StyledTeamWrapper = styled.p`
   margin-left: auto;
   font-size: 2rem;
 `;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   margin: 0.125rem 0.25rem;
   border: none;
   background-color: transparent;

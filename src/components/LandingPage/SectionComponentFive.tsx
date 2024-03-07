@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { Element } from 'react-scroll';
 import styled from 'styled-components';
-
 import EnterButton from '@components/Button/EnterButton';
 import LoginModal from '@components/LoginModal';
 import SectionScrollUpButton from '@components/LandingPage/SectionScrollUpButton';
@@ -9,6 +8,7 @@ import MotionComponent from '@components/LandingPage/SectionMotionDiv';
 import useLandingStore from '@store/useLandingStore';
 import createChildVariants from '@utils/createChildVariants';
 import Logo from '@assets/landing/landing-logo.svg';
+import SectionScroll from '@components/LandingPage/SectionScroll';
 
 const SectionComponentFive = () => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -41,29 +41,34 @@ const SectionComponentFive = () => {
 
   return (
     <Element name="section5">
-      <MainSection>
-        <MainBox>
+      <SectionScroll
+        targetSectionId="section5"
+        animationKey="sectionFive"
+        setAnimation={setAnimation}
+      />
+      <StyledMainSection>
+        <StyledMainOuter>
           <MotionComponent
             variants={childVariants}
             animation={animations.sectionFour}
           >
-            <LogoBox>
-              <LogoImg src={Logo} alt="JUNGLE 로고" />
-            </LogoBox>
+            <StyledLogoContainer>
+              <StyledLogo src={Logo} alt="JUNGLE 로고" />
+            </StyledLogoContainer>
           </MotionComponent>
           <MotionComponent
             variants={childVariantsTwo}
             animation={animations.sectionFour}
           >
-            <TextBox>
-              <Text>현명하게 취업준비 하는 방법</Text>
-            </TextBox>
+            <StyledTextContainer>
+              <StyledText>현명하게 취업준비 하는 방법</StyledText>
+            </StyledTextContainer>
           </MotionComponent>
           <MotionComponent
             variants={childVariantsThree}
             animation={animations.sectionFour}
           >
-            <ButtonBox>
+            <StyledButtonContainer>
               <EnterButton
                 onClick={() => {
                   setAllSizeModalShow(true);
@@ -75,21 +80,21 @@ const SectionComponentFive = () => {
                   modalOutSideClick={modalOutSideClick}
                 />
               )}
-            </ButtonBox>
+            </StyledButtonContainer>
           </MotionComponent>
-        </MainBox>
+        </StyledMainOuter>
         <SectionScrollUpButton
           sectionId={'section1'}
           handleButtonClick={handleButtonClick}
         />
-      </MainSection>
+      </StyledMainSection>
     </Element>
   );
 };
 
 export default SectionComponentFive;
 
-const MainSection = styled.div`
+const StyledMainSection = styled.div`
   background-color: black;
   color: white;
   width: 100%;
@@ -97,18 +102,18 @@ const MainSection = styled.div`
   position: relative;
 `;
 
-const MainBox = styled.div`
+const StyledMainOuter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3.125rem;
 `;
 
-const LogoBox = styled.div`
+const StyledLogoContainer = styled.div`
   padding-top: 12.5rem;
 `;
 
-const LogoImg = styled.img`
+const StyledLogo = styled.img`
   width: 62.5rem;
 
   @media ${(props) => props.theme.device.tablet} {
@@ -120,17 +125,17 @@ const LogoImg = styled.img`
   }
 `;
 
-const TextBox = styled.div`
+const StyledTextContainer = styled.div`
   padding-top: 3.125rem;
 `;
 
-const Text = styled.p`
+const StyledText = styled.p`
   font-size: 1.875rem;
   font-weight: 500;
   text-align: center;
 `;
 
-const ButtonBox = styled.div`
+const StyledButtonContainer = styled.div`
   padding-top: 3.125rem;
   text-align: center;
 `;

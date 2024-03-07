@@ -28,17 +28,21 @@ const HeaderMenuName: HeaderMenu[] = [
 
 const useHeaderMenuStore = create<State>((set) => ({
   currentMenu: '내 활동.',
-  setCurrentMenu: (path) => set(() => {
-    if (path.includes('/resume')) return { currentMenu: '이력서.' };
+  setCurrentMenu: (path) =>
+    set(() => {
+      if (path.includes('/resume')) return { currentMenu: '이력서.' };
 
-    const exactMatch = HeaderMenuName.find((menu) => menu[path]);
-    const paramsPath = path.substring(0, path.lastIndexOf('/'));
-    const paramsMatch = HeaderMenuName.find((menu) => menu[paramsPath]);
+      const exactMatch = HeaderMenuName.find((menu) => menu[path]);
+      const paramsPath = path.substring(0, path.lastIndexOf('/'));
+      const paramsMatch = HeaderMenuName.find((menu) => menu[paramsPath]);
 
-    return {
-      currentMenu: (exactMatch && exactMatch[path]) || (paramsMatch && paramsMatch[paramsPath]) || '경로오류',
-    };
-  }),
+      return {
+        currentMenu:
+          (exactMatch && exactMatch[path]) ||
+          (paramsMatch && paramsMatch[paramsPath]) ||
+          '경로오류',
+      };
+    }),
 }));
 
 export default useHeaderMenuStore;

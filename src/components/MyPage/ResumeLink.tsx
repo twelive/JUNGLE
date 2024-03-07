@@ -1,25 +1,21 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuthStore } from '@store/useAuthStore';
-import getUserName from '@utils/getUserName';
 import ArrowClickLink from '@assets/common/arrow-clickLink.svg';
 
 function ResumeLink() {
-  const {userEmail} = useAuthStore();
-
   return (
-    <FlexBox>
+    <StyledResumeContainer>
       <h2>이력서</h2>
-      <Link to={`/mypage/${getUserName(userEmail)}/resume`}>
+      <Link to={`/mypage/resume`}>
         <img src={ArrowClickLink} />
       </Link>
-    </FlexBox>
+    </StyledResumeContainer>
   );
 }
 
 export default ResumeLink;
 
-const FlexBox = styled.div`
+const StyledResumeContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,7 +39,7 @@ const FlexBox = styled.div`
     width: 100%;
     margin: 0;
     padding: 2.5rem 0;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
     border-left: none;
   }
 
@@ -53,7 +49,7 @@ const FlexBox = styled.div`
     width: 100%;
     margin: 0;
     padding: 1.875rem 0;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
     border-left: none;
   }
 `;

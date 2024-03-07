@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { supabase } from '@/client';
 import { StackDiggingDTO } from '@/types/StackDiggingDTO';
-import BookMarkButton from '@components/StudyPage/BookMarkButton';
 import { useAuthStore } from '@store/useAuthStore';
-import notbookmark from '@assets/common/bookmarkwhite.svg';
+import notbookmark from '@assets/common/bookmarkblack.svg';
+import QueryBookMarkButton from './QueryBookMarkButton';
 
 const getListData: () => Promise<StackDiggingDTO[] | null> = async () => {
   const { data } = await supabase
@@ -32,30 +32,30 @@ function StackDiggingItem({  comment = '0' }) {
     
    {
   (stackListData ?? []).map((item) => (
-    <Box to={`/study/stack/detail/${item.id}`} key={item.id}>
-      <BookMarkButtonWrapper>
+    <StyledListBox to={`/study/stack/detail/${item.id}`} key={item.id}>
+      <StyledBookMarkButtonDiv>
 
-      <BookMarkButton notBookmarkImg={notbookmark} itemId={item.id} userId={userId} itemType='stack' ></BookMarkButton>
+      <QueryBookMarkButton notBookmarkImg={notbookmark} itemId={item.id} userId={userId} itemType='stack' ></QueryBookMarkButton>
 
-      </BookMarkButtonWrapper>
-      <TitleBox>
-        <Title>{item.title}</Title>
-      </TitleBox>
-      <Author>{item.user_email}</Author>
-      <TextBox>
-        <Content>{item.text}</Content>
-      </TextBox>
-      <BottomBox>
-        <Created>{new Date(item.created_at).toISOString().split('T')[0]}</Created>
+      </StyledBookMarkButtonDiv>
+      <StyledTitleDiv>
+        <StyledTitleSpan>{item.title}</StyledTitleSpan>
+      </StyledTitleDiv>
+      <StyledAuthorDiv>{item.user_email}</StyledAuthorDiv>
+      <StyledTextDiv>
+        <StyledContentSpan>{item.text}</StyledContentSpan>
+      </StyledTextDiv>
+      <StyledBottomDiv>
+        <StyledCreatedDiv>{new Date(item.created_at).toISOString().split('T')[0]}</StyledCreatedDiv>
  {item.stack_comment_counter !== null ? (
-              <CommentCounter>
+              <StyledCommentCountP>
                 {item.stack_comment_counter >= 99 ? '99+' : item.stack_comment_counter}
-              </CommentCounter>
+              </StyledCommentCountP>
             ) : (
-              <CommentCounter>{comment}</CommentCounter>
+              <StyledCommentCountP>{comment}</StyledCommentCountP>
             )}
-      </BottomBox>
-    </Box>
+      </StyledBottomDiv>
+    </StyledListBox>
   ))
 }
     </>
@@ -64,7 +64,7 @@ function StackDiggingItem({  comment = '0' }) {
 
 export default StackDiggingItem;
 
-const Box = styled(Link)`
+const StyledListBox = styled(Link)`
   text-decoration-line: none;
   position: relative;
   overflow: hidden;
@@ -74,8 +74,9 @@ const Box = styled(Link)`
   min-width: 16.25rem;
   height: 16.25rem;
   padding: 1.875rem;
+  border: 2px black solid;
   border-radius: 0.9375rem;
-  background: var(--bs-black-300);
+  background: white;
 
   @media ${(props) => props.theme.device.tablet} {
     min-width: 15rem;
@@ -84,13 +85,13 @@ const Box = styled(Link)`
   }
 `;
 
-const TitleBox = styled.div`
+const StyledTitleDiv = styled.div`
 width: 100%;
 `;
 
-const Title = styled.span`
+const StyledTitleSpan = styled.span`
   display: block;
-  color: white;
+  color: var(--bs-black-300);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -104,7 +105,7 @@ const Title = styled.span`
   }
 `;
 
-const Author = styled.div`
+const StyledAuthorDiv = styled.div`
 width: 100%;
 line-clamp: 1;
 text-overflow: ellipsis;
@@ -112,11 +113,11 @@ white-space: nowrap;
 overflow: hidden;
 padding-top: 0.875rem;
 padding-bottom: 0.875rem;
-color: white;
+color: var(--bs-black-300);
 `;
 
-const Content = styled.span`
-  color: white;
+const StyledContentSpan = styled.span`
+  color: var(--bs-black-300);
   text-align: right;
   font-size: 1.5rem;
   padding-top: 0.75rem;
@@ -131,7 +132,7 @@ const Content = styled.span`
   }
 `;
 
-const TextBox = styled.div`
+const StyledTextDiv = styled.div`
 
 overflow: hidden;
   text-overflow: ellipsis;
@@ -151,12 +152,12 @@ overflow: hidden;
 
 `;
 
-const Created = styled.div`
-  color: white;
+const StyledCreatedDiv = styled.div`
+  color: var(--bs-black-300);
   
 `;
 
-const BottomBox = styled.div`
+const StyledBottomDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -167,10 +168,10 @@ const BottomBox = styled.div`
   
 `;
 
-const CommentCounter = styled.p`
-color: white;
+const StyledCommentCountP = styled.p`
+color: var(--bs-black-300);
 font-size: 1rem;
-border: 0.0625rem solid white;
+border: 1px solid white;
 border-radius: 0.3125rem;
 padding-left: 0.3125rem;
 padding-right: 0.3125rem;
@@ -178,7 +179,7 @@ padding-right: 0.3125rem;
 
 `;
 
-const BookMarkButtonWrapper = styled.div`
+const StyledBookMarkButtonDiv = styled.div`
 z-index: 999999;
 position: absolute;
 right: 0.3125rem;

@@ -17,35 +17,35 @@ function JobInterviewPage() {
       <Helmet>
         <title>Interview - JUNGLE</title>
       </Helmet>
-      <MainSection>
+      <StyledMainSection>
         <SwiperComponent slides={slides} />
-        <MenuBox>
+        <StyledMenuContainer>
           <JobHeaderItem />
-        </MenuBox>
-        <MainBox>
+        </StyledMenuContainer>
+        <StyledMainContainer>
           <JobInterviewBox />
-        </MainBox>
-      </MainSection>
+        </StyledMainContainer>
+      </StyledMainSection>
     </>
   );
 }
 
 export default JobInterviewPage;
 
-const MainSection = styled.section`
+const StyledMainSection = styled.section`
   width: 100%;
 `;
 
-const MenuBox = styled.div`
+const StyledMenuContainer = styled.div`
   padding: 3.125rem;
-  border: 0.063rem solid black;
+  border: 1px solid black;
 `;
 
-const MainBox = styled.div`
-  border: 0.063rem solid black;
+const StyledMainContainer = styled.div`
+  border: 1px solid black;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 4.5rem;
+  gap: 5rem;
   place-items: center;
   padding: 3.125rem 2.5rem;
 

@@ -2,22 +2,22 @@ import styled from 'styled-components';
 
 function PointSection({ point = 0 }) {
   return (
-    <PointBox>
+    <StyledPointContainer>
       <h2>활동 포인트</h2>
-      <PointContainer>
-        <Text>POINT</Text>
-        <InnerBox>
-          <PointText>{point}</PointText>
-          <Text>P</Text>
-        </InnerBox>
-      </PointContainer>
-    </PointBox>
+      <StyledPointWrapper>
+        <StyledSpan>POINT</StyledSpan>
+        <StyledInnerBox>
+          <StyledPointSpan>{point}</StyledPointSpan>
+          <StyledSpan>P</StyledSpan>
+        </StyledInnerBox>
+      </StyledPointWrapper>
+    </StyledPointContainer>
   );
 }
 
 export default PointSection;
 
-const PointBox = styled.div`
+const StyledPointContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -27,17 +27,16 @@ const PointBox = styled.div`
   @media ${(props) => props.theme.device.tablet} {
     width: 100%;
     padding-top: 2.5rem;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
   }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
     padding-top: 1.875rem;
-    border-top: 0.15rem solid var(--bs-black-400);
+    border-top: 2.4px solid var(--bs-black-400);
   }
-
 `;
 
-const PointContainer = styled.div`
+const StyledPointWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -55,7 +54,7 @@ const PointContainer = styled.div`
   }
 `;
 
-const InnerBox = styled.div`
+const StyledInnerBox = styled.div`
   display: flex;
   padding-left: 1.25rem;
   align-items: center;
@@ -66,7 +65,7 @@ const InnerBox = styled.div`
   }
 `;
 
-const Text = styled.span`
+const StyledSpan = styled.span`
   text-align: center;
   font-size: 4.375rem;
   font-weight: 700;
@@ -81,12 +80,12 @@ const Text = styled.span`
   }
 `;
 
-const PointText = styled(Text)`
+const StyledPointSpan = styled(StyledSpan)`
   text-align: center;
   font-size: 3.75rem;
   font-weight: 600;
   letter-spacing: -0.125rem;
-  border-bottom: 0.4375rem solid black;
+  border-bottom: 7px solid black;
 
   @media ${(props) => props.theme.device.tablet} {
     font-size: 3.5rem;
