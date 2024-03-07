@@ -10,6 +10,7 @@ import debounce from '@/utils/debounce';
 import { ResumeNewDTO } from '@/types/ResumeNew';
 import ResumeSubheading from '@/components/MyPage/ResumeSubheading';
 import ResumeInfoIcon from '@/components/MyPage/ResumeInfoIcon';
+import ProfileResume from '@/components/MyPage/ProfileResume';
 
 const createData: (
   tableName: string,
@@ -25,7 +26,6 @@ const createData: (
 
 function ResumeNewPage() {
   const userId = useAuthStore((state) => state.user);
-  const userEmail = useAuthStore((state) => state.userEmail);
   const navigate = useNavigate();
   const [, setTitle] = useState('');
   const [, setName] = useState('');
@@ -38,7 +38,7 @@ function ResumeNewPage() {
   const [, setLink] = useState('');
   const [linkCount, setLinkCount] = useState(0);
   const [, setActivity] = useState('');
-  const [, setContent] = useState('');
+  const [, setProject] = useState('');
   const [, setIntroduce] = useState('');
   const [stack, setStack] = useState<
     'Javascript' | 'TypeScirpt' | 'React' | 'Next.js'
@@ -53,10 +53,19 @@ function ResumeNewPage() {
   const githubRef = useRef<HTMLInputElement>(null);
   const blogRef = useRef<HTMLInputElement>(null);
   const linkRef = useRef<HTMLInputElement>(null);
-  const activityRef = useRef<HTMLTextAreaElement>(null);
-  const projectRef = useRef<HTMLTextAreaElement>(null);
-  const introduceRef = useRef<HTMLTextAreaElement>(null);
-  const SecureEmail = userEmail.replace(/@.*/, '');
+
+  const activityTitleRef = useRef<HTMLInputElement>(null);
+  const activityPlaceRef = useRef<HTMLInputElement>(null);
+  const activityPeriodRef = useRef<HTMLInputElement>(null);
+  const activityContentRef = useRef<HTMLTextAreaElement>(null);
+
+  const projectTitleRef = useRef<HTMLInputElement>(null);
+  const projectDepartmentRef = useRef<HTMLInputElement>(null);
+  const projectPeriodRef = useRef<HTMLInputElement>(null);
+  const projectContentRef = useRef<HTMLTextAreaElement>(null);
+
+  const introduceTitleRef = useRef<HTMLInputElement>(null);
+  const introduceContentRef = useRef<HTMLTextAreaElement>(null);
 
   const debouncedSetTitle = debounce((value: string) => setTitle(value), 500);
   const debouncedSetName = debounce((value: string) => setName(value), 500);
@@ -70,8 +79,8 @@ function ResumeNewPage() {
     (value: string) => setActivity(value),
     500
   );
-  const debouncedSetContent = debounce(
-    (value: string) => setContent(value),
+  const debouncedSetProject = debounce(
+    (value: string) => setProject(value),
     500
   );
   const debouncedSetIntroduce = debounce(
@@ -123,20 +132,33 @@ function ResumeNewPage() {
     const github = githubRef.current?.value;
     const blog = blogRef.current?.value;
     const link = linkRef.current?.value;
-    const activity = activityRef.current?.value;
-    const project = projectRef.current?.value;
-    const introduce = introduceRef.current?.value;
+    const activity = [
+      activityTitleRef.current?.value,
+      activityPlaceRef.current?.value,
+      activityPeriodRef.current?.value,
+      activityContentRef.current?.value,
+    ];
+    const project = [
+      projectTitleRef.current?.value,
+      projectDepartmentRef.current?.value,
+      projectPeriodRef.current?.value,
+      projectContentRef.current?.value,
+    ];
+    const introduce = [
+      introduceTitleRef.current?.value,
+      introduceContentRef.current?.value,
+    ];
 
     if (title && name && job && userId) {
       const data = {
         title,
-        name,
-        job,
-        phone,
-        mail,
-        github,
-        blog,
-        link,
+        info_name: name,
+        info_job: job,
+        info_phone: phone,
+        info_mail: mail,
+        info_github: github,
+        info_blog: blog,
+        info_link: link,
         activity,
         project,
         introduce,
@@ -147,7 +169,7 @@ function ResumeNewPage() {
         await createData('resume', data);
         toast.success(`작성 완료 👌 ${stack}`);
         setTimeout(() => {
-          navigate(`/mypage/${SecureEmail}/resume`);
+          navigate('/mypage/resume');
         }, 3000);
       } catch (error) {
         toast.error('작성 실패 😞');
@@ -163,7 +185,7 @@ function ResumeNewPage() {
     titleRef.current!.value = '';
     nameRef.current!.value = '';
     jobRef.current!.value = '';
-    projectRef.current!.value = '';
+    // 추가 예정
   };
 
   return (
@@ -172,6 +194,10 @@ function ResumeNewPage() {
         <title>createNew ResumePage</title>
       </Helmet>
       <h1 className="sr-only">새 이력서 작성</h1>
+      <ProfileSection>
+        <h3>사진</h3>
+        <ProfileResume />
+      </ProfileSection>
       <StyledFormArea onSubmit={handleSubmit}>
         <h2 className="sr-only">제목</h2>
         <StyledTitleInput
@@ -265,27 +291,112 @@ function ResumeNewPage() {
             기술 스택 추가
           </StyledPlusButton>
         </StyledSection>
-        <label>
-          <ResumeSubheading>경험/활동/교육</ResumeSubheading>
+        <ResumeSubheading>경험/활동/교육</ResumeSubheading>
+        <StyledSection>
+          <StyledDiv>
+            <label htmlFor="activityTitle">활동명</label>
+            <StyledPersonalInput
+              type="text"
+              id="activityTitle"
+              placeholder="활동 제목을 입력해주세요."
+              ref={activityTitleRef}
+              onChange={(e) => debouncedSetActivity(e.target.value)}
+            />
+          </StyledDiv>
+          <StyledDiv>
+            <label htmlFor="activityPlace">기관/장소명</label>
+            <StyledPersonalInput
+              type="text"
+              id="activityPlace"
+              placeholder="기관 또는 장소를 입력해주세요."
+              ref={activityPlaceRef}
+              onChange={(e) => debouncedSetActivity(e.target.value)}
+            />
+          </StyledDiv>
+          <StyledDiv>
+            <label htmlFor="activityPeriod">활동 기간</label>
+            <StyledPersonalInput
+              type="text"
+              id="activityPeriod"
+              placeholder="기간을 입력해주세요."
+              ref={activityPeriodRef}
+              onChange={(e) => debouncedSetActivity(e.target.value)}
+            />
+          </StyledDiv>
           <StyledTextarea
-            ref={activityRef}
+            placeholder="활동을 입력해주세요."
+            ref={activityContentRef}
             onChange={(e) => debouncedSetActivity(e.target.value)}
           />
-        </label>
-        <label>
-          <ResumeSubheading>프로젝트</ResumeSubheading>
+          <StyledPlusButton onClick={() => {}}>
+            <ResumeInfoIcon />
+            활동 추가
+          </StyledPlusButton>
+        </StyledSection>
+        <ResumeSubheading>프로젝트</ResumeSubheading>
+        <StyledSection>
+          <StyledDiv>
+            <label htmlFor="projectTitle">프로젝트명</label>
+            <StyledPersonalInput
+              type="text"
+              id="projectTitle"
+              placeholder="프로젝트 제목을 입력해주세요."
+              ref={projectTitleRef}
+              onChange={(e) => debouncedSetProject(e.target.value)}
+            />
+          </StyledDiv>
+          <StyledDiv>
+            <label htmlFor="projectDepartment">소속/기타</label>
+            <StyledPersonalInput
+              type="text"
+              id="projectDepartment"
+              placeholder="소속을 입력해주세요."
+              ref={projectDepartmentRef}
+              onChange={(e) => debouncedSetProject(e.target.value)}
+            />
+          </StyledDiv>
+          <StyledDiv>
+            <label htmlFor="projectPeroid">활동 기간</label>
+            <StyledPersonalInput
+              type="text"
+              id="projectPeroid"
+              placeholder="기간을 입력해주세요."
+              ref={projectPeriodRef}
+              onChange={(e) => debouncedSetProject(e.target.value)}
+            />
+          </StyledDiv>
           <StyledTextarea
-            ref={projectRef}
-            onChange={(e) => debouncedSetContent(e.target.value)}
+            placeholder="활동을 입력해주세요."
+            ref={projectContentRef}
+            onChange={(e) => debouncedSetProject(e.target.value)}
           />
-        </label>
-        <label>
-          <ResumeSubheading>자기소개</ResumeSubheading>
+          <StyledPlusButton onClick={() => {}}>
+            <ResumeInfoIcon />
+            프로젝트 추가
+          </StyledPlusButton>
+        </StyledSection>
+        <ResumeSubheading>자기소개</ResumeSubheading>
+        <StyledSection>
+          <StyledDiv>
+            <label htmlFor="introduceText">소제목</label>
+            <StyledPersonalInput
+              type="text"
+              id="introduceText"
+              placeholder="소제목을 입력해주세요."
+              ref={introduceTitleRef}
+              onChange={(e) => debouncedSetIntroduce(e.target.value)}
+            />
+          </StyledDiv>
           <StyledTextarea
-            ref={introduceRef}
-            onChange={(e) => debouncedSetIntroduce(e.target.value)}
+            placeholder="내용을 입력해주세요."
+            ref={introduceContentRef}
+            onChange={(e) => debouncedSetProject(e.target.value)}
           />
-        </label>
+          <StyledPlusButton onClick={() => {}}>
+            <ResumeInfoIcon />
+            단락 추가
+          </StyledPlusButton>
+        </StyledSection>
         <ResumeSubheading>포트폴리오</ResumeSubheading>
         <StyledSection>
           {Array(portfolioCount)
@@ -293,7 +404,7 @@ function ResumeNewPage() {
             .map((_, index) => (
               <StyledLabel>
                 <ResumeInfoIcon />
-                <StyledPersonalInput
+                <StyledInput
                   key={index}
                   type="url"
                   placeholder="추가 링크 주소를 입력해주세요."
@@ -332,6 +443,30 @@ const StyledFormArea = styled.form`
   border: 3px solid gray;
   border-radius: 1.25rem;
   background: #efeee9;
+  font-size: 1.5rem;
+
+  @media ${(props) => props.theme.device.tablet} {
+    font-size: 1.25rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 0.875rem;
+  }
+`;
+
+const ProfileSection = styled.section`
+  margin-left: 1.25rem;
+  h3 {
+    margin: 1.25rem 0;
+    font-size: 2.25rem;
+    font-weight: 600;
+
+    @media ${(props) => props.theme.device.tablet} {
+      font-size: 2rem;
+    }
+    @media ${(props) => props.theme.device.mobile} {
+      font-size: 1.375rem;
+    }
+  }
 `;
 
 const StyledSection = styled.div`
@@ -350,15 +485,25 @@ const StyledSection = styled.div`
   }
 
   span {
-    font-size: 2rem;
     font-weight: 600;
+  }
+`;
 
-    @media ${(props) => props.theme.device.tablet} {
-      font-size: 1.75rem;
-    }
-    @media ${(props) => props.theme.device.mobile} {
-      font-size: 1.125rem;
-    }
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  @media ${(props) => props.theme.device.tablet} {
+    width: auto;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    width: auto;
+  }
+
+  label {
+    width: 8.125rem;
+    cursor: pointer;
   }
 `;
 
@@ -373,6 +518,7 @@ const StyledPersonalContainer = styled.div`
 const StyledLabel = styled.label`
   display: flex;
   gap: 0.625rem;
+  align-items: center;
   max-width: 50rem;
   cursor: pointer;
 
@@ -406,40 +552,16 @@ const StyledInput = styled.input`
 `;
 
 const StyledTitleInput = styled(StyledInput)`
-  font-size: 2.75rem;
   font-weight: bold;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 2.5rem;
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 1.5rem;
-  }
 `;
 
 const StyledInfoInput = styled(StyledInput)`
   max-width: 50rem;
-  font-size: 2rem;
   font-weight: 500;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.75rem;
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 1.125rem;
-  }
 `;
 
 const StyledPersonalInput = styled(StyledInput)`
   width: 100%;
-  font-size: 1.5rem;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.25rem;
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 0.875rem;
-  }
 `;
 
 const StyledPlusButton = styled.button`
@@ -463,21 +585,13 @@ const StyledPlusButton = styled.button`
 
 const StyledTextarea = styled.textarea`
   width: 100%;
-  min-height: 18.75rem;
+  min-height: 12.5rem;
   resize: none;
   box-sizing: border-box;
-  margin-top: 0.3125rem;
-  padding: 0.3125rem;
-  border: 1px solid black;
   padding: 0.625rem;
-  font-size: 1.5rem;
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.25rem;
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 0.875rem;
-  }
+  margin-top: 0.3125rem;
+  border: 1px solid black;
+  border-radius: 0.3125rem;
 `;
 
 const ButtonArea = styled.div`
@@ -498,20 +612,11 @@ const Button = styled.button`
   border-radius: 0.3125rem;
   box-sizing: border-box;
   background-color: white;
-  font-size: 1.5rem;
   font-weight: 500;
 
   &:hover {
     background-color: #111;
     color: white;
     font-weight: 600;
-  }
-
-  @media ${(props) => props.theme.device.tablet} {
-    font-size: 1.25rem;
-  }
-
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 0.875rem;
   }
 `;
