@@ -42,7 +42,7 @@ const { data: bookData,  getListData } = useDataStore();
 
   const { selectedTag, setSelectedTag } = useTagStore();
   const  userId   = useAuthStore((state) => (state.user));
-
+  
   
   const { getAllList } = useStorageStore();
   const itemType = `book`;
@@ -170,7 +170,7 @@ return (
 
 
   <section>
-      <h2>로드맵</h2>
+    
 
   </section>
 </>
