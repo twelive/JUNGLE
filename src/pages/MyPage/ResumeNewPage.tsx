@@ -26,7 +26,6 @@ const createData: (
 
 function ResumeNewPage() {
   const userId = useAuthStore((state) => state.user);
-  const userEmail = useAuthStore((state) => state.userEmail);
   const navigate = useNavigate();
   const [, setTitle] = useState('');
   const [, setName] = useState('');
@@ -51,7 +50,6 @@ function ResumeNewPage() {
   const jobRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const mailRef = useRef<HTMLInputElement>(null);
-  const SecureEmail = userEmail.replace(/@.*/, '');
   const githubRef = useRef<HTMLInputElement>(null);
   const blogRef = useRef<HTMLInputElement>(null);
   const linkRef = useRef<HTMLInputElement>(null);
@@ -171,7 +169,7 @@ function ResumeNewPage() {
         await createData('resume', data);
         toast.success(`작성 완료 👌 ${stack}`);
         setTimeout(() => {
-          navigate(`/mypage/${SecureEmail}/resume`);
+          navigate('/mypage/resume');
         }, 3000);
       } catch (error) {
         toast.error('작성 실패 😞');
