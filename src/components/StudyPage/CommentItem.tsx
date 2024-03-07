@@ -80,19 +80,17 @@ const deleteData: (id: number) => Promise<void> = async (id) => {
 
 }
 
-//////////////////////////////////////////!
 
-function CommentItem () {
-  // const [editMode, setEditMode] = useState(false);
-  // const [editModes, setEditModes] = useState<{ [commentId: string]: boolean }>({});
+
+function CommentItem() {
   const [editModes, setEditModes] = useState<{ [commentId: string]: boolean }>({});
   const [editTexts, setEditTexts] = useState<{ [commentId: string]: string }>({});
 
-
-const { itemId } = useParams();
+  
+  const { itemId } = useParams();
   const thisId  = Number(itemId); 
   const userId = useAuthStore((state) => (state.user));
-  // const myId  = String(userId); 
+  
  
   const userEmail = useAuthStore((state) => (state.userEmail));
   const [comments, setComments] = useState<StackDiggingCommentDTO[]>([]);
@@ -138,7 +136,7 @@ const handleEditClick = (commentId: string | number) => {
       return;
     } 
     if (content && userId && itemId) {
-      const data : StackCommentDTO
+      const data: StackCommentDTO
         = {
         
         text: content,
@@ -146,15 +144,15 @@ const handleEditClick = (commentId: string | number) => {
         stack_id: thisId,
         email: userEmail
         
-      }
+      };
       
       try {
         await createCommentData(data);
+        const updatedComments = await fetchCommentData(thisId);
+      if (updatedComments) {
+        setComments(updatedComments);
+      }
         toast.success('입력 완료 👌');
-
-
-        setTimeout(() => {
-        }, 3000);
 
 
       } catch (error) {
@@ -185,17 +183,24 @@ const handleEditClick = (commentId: string | number) => {
       };
       
       try {
+              setComments(prevComments => prevComments.map(comment => {
+        if (comment.id === commentId) {
+          return { ...comment, text: content };
+        } else {
+          return comment;
+        }
+      }));
+
+
+        
         await updateData('stack_comment', data, Number(commentId));
+
+
         toast.success('수정 완료 👌');
          setEditModes((prevEditModes) => ({
         ...prevEditModes,
         [String(commentId)]: false,
       }));
-
-
-        setTimeout(() => {
-        }, 3000);
-
 
       } catch (error) {
         console.error('Error updating data:');
@@ -212,6 +217,7 @@ const handleEditClick = (commentId: string | number) => {
         console.log("Deleting comment with ID:", commentThisId)
         await deleteData(Number(commentThisId));
         toast.success('삭제 완료 👌');
+        setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentThisId));
       } catch(error) {
         console.error('Error deleting data:');
         toast.error('삭제 실패 😞');
@@ -224,7 +230,6 @@ const handleEditClick = (commentId: string | number) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, commentId: string | number) => {
   const { value } = e.target;
   
-  // 사용자의 입력에 따라 editTexts를 업데이트합니다.
   setEditTexts((prevEditTexts) => ({
     ...prevEditTexts,
     [String(commentId)]: value,
@@ -240,16 +245,12 @@ const handleEditClick = (commentId: string | number) => {
                 
         <h1>댓글{comments.length}개</h1>
                 <CommentsSort>
-                  {/* <SortBy>분류</SortBy> */}
                 </CommentsSort>
               </CommentInfo>
     <div>
                 <ul>
           <CommentFormArea>
-            {/* <Commenter></Commenter> */}
-            {/* src={profile} */}
             <CommentForm id='comment' onSubmit={handleSubmitClick}>
-              {/* onSubmit={handleCommentSubmit} */}
                       <CommentInput
                         type="text"
                         placeholder="댓글 내용을 입력해주세요."
@@ -260,7 +261,6 @@ const handleEditClick = (commentId: string | number) => {
                 
                         
               />
-              {/* ref={commentInputRef} */}
                     </CommentForm >
             <CommentButton type='submit' form='comment'><CommentButtonText>댓글달기</CommentButtonText></CommentButton>
 
@@ -310,12 +310,6 @@ const handleEditClick = (commentId: string | number) => {
                
                    </CommentList>
       ))}
-                  {/* {comments.map((comment) => (
-                   
-             
-                  
-                 ))} */}
-            
             
                   </CommentListWrapper>
                   
@@ -361,20 +355,7 @@ display: flex;
     background-color: ${(props) => props.theme.hoverColor};;
   }
 `;
-// const SortIcon = styled.img `
 
-// `;
-// const SortBy = styled.p `
-  
-// `;
-
-
-// const Commenter = styled.img `
-//   width: 24px;
-//   height: 24px;
-//   border-radius: 100%;
- 
-// `;
 
 const CommentFormArea = styled.div `
 
@@ -412,7 +393,7 @@ padding: 5px;
 
 
 const CommentButton = styled.button `
-/* width: 40px; */
+
 height: 24px;
 border: 0.1px solid black;
 border-radius: 5px;
@@ -437,7 +418,6 @@ line-height: 20px;
 `;
 
 const CommentText = styled.p `
-  /* overflow: hidden; */
   display: inline-block;
   word-wrap: normal;
   word-break: break-all;
@@ -462,7 +442,6 @@ const CommentEdit = styled.button `
 height: 24px;
 border: 0.1px solid black;
 border-radius: 5px;
-/* background-color: var(--darkmode-bgColor); */
 &:hover {
   background-color: ${(props) => props.theme.hoverColor};
 
@@ -476,7 +455,7 @@ width: 40px;
 height: 24px;
 border: 0.1px solid black;
 border-radius: 5px;
-/* background-color: var(--darkmode-bgColor); */
+
 &:hover {
  background-color: ${(props) => props.theme.hoverColor};
 
@@ -485,7 +464,7 @@ border-radius: 5px;
 `;
 
 const CommentButtonText = styled.p `
-  /* color: var(--darkmode-color); */
+
  flex-basis: 1;
  white-space: nowrap;
 `;
@@ -496,7 +475,7 @@ const CommenterBox = styled.div `
 `;
 
 const UpdatedAt = styled.p `
-  /* color: var(--darkmode-color); */
+
   font-size: 10px;
 `;
 
