@@ -14,42 +14,47 @@ interface LikeButtonProps {
 
 
 function LikeButton({ itemId, userId, itemType, likeCounter}:LikeButtonProps) {
-const initialLikes = JSON.parse(localStorage.getItem(`likes-${itemId}`) || 'false');
+
+  const initialLikes = localStorage.getItem(`likes-${itemId}`) === 'true';
 
 
 const [toggle, setToggle] = useState(initialLikes);
 
-const updateLikes = async () => {
-  if (toggle) {
-    const { error } = await supabase
-      .from('likes')
-      .delete()
-      .match({
-        user_id: userId,
-        [`${itemType}_id`]: itemId
-      });
+  const updateLikes = async () => {
+  
+    try { 
 
-    if (error) {
-      console.error('Error deleting like:', error.message);
-    } else {
-      setToggle(!toggle);
-localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
-    }
-  } else {
-    const { error } = await supabase
-      .from('likes')
-      .upsert({
-        [`${itemType}_id`]: itemId,
-      });
+      if (toggle) {
+        await supabase
+          .from('likes')
+          .delete()
+          .match({
+            user_id: String(userId),
+            [`${itemType}_id`]: itemId
+          });
+    
+ 
+      } else {
+        await supabase
+          .from('likes')
+          .insert({
+            user_id:  String(userId),
+            [`${itemType}_id`]: itemId,
+          });
+      }
 
-    if (error) {
-      console.error('Error updating likes:', error.message);
-    } else {
-      setToggle(!toggle);
+   
       localStorage.setItem(`likes-${itemId}`, JSON.stringify(!toggle));
+      setToggle(!toggle);
     }
-  }
-};
+    catch (error) {
+      console.error('Error updating likes:');
+      
+      setToggle(!toggle);
+
+    }
+  };
+
 
 
 
